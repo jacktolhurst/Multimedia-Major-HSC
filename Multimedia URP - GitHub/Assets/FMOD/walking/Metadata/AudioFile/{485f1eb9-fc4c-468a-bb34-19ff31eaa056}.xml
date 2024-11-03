@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{485f1eb9-fc4c-468a-bb34-19ff31eaa056}">
+		<property name="assetPath">
+			<value>walking-soundscape-200112.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>16.344000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{96f3f99e-f851-49ee-aee3-c523cf69cfae}</destination>
+		</relationship>
+	</object>
+</objects>
