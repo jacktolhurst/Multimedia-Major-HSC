@@ -1300,8 +1300,8 @@
     "m_ObjectId": "1d0cdca23eed429ebe4c7d35ccf3408f",
     "m_Title": "Calc Highspots",
     "m_Position": {
-        "x": -3432.0,
-        "y": 957.0
+        "x": -3432.66650390625,
+        "y": 957.3333740234375
     }
 }
 
@@ -3386,8 +3386,8 @@
     "m_ObjectId": "96034631a14c4d2681cc16b6df74a8e2",
     "m_Title": "Calc Shadows",
     "m_Position": {
-        "x": -3351.0,
-        "y": -537.0
+        "x": -3351.333251953125,
+        "y": -536.666748046875
     }
 }
 

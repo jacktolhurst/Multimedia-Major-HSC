@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DrawLike Player
-  m_Shader: {fileID: -6465566751694194690, guid: 550d26b4b7f8f9c42aac4883417d1282,
+  m_Shader: {fileID: -6465566751694194690, guid: 0b97d06807fea9a46b3efb63f260c5cd,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -56,7 +56,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Divide2: 500
+    - _Divide2: 0
     - _DivideSpeed: 0.006
     - _HighesCuttoff: 0.34
     - _LightingCuttoff: -0.31
