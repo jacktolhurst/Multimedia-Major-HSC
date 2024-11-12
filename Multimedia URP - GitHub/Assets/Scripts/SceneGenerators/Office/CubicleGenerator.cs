@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CubicleGenerator : MonoBehaviour
 {
@@ -7,14 +8,13 @@ public class CubicleGenerator : MonoBehaviour
     [SerializeField] private GameObject cubiclePrefab;
     private GameObject lastCubicle;
     private GameObject currentCubicle;
+    private List<GameObject> allCubicles = new List<GameObject>();
 
-    [SerializeField] private int cubicleGenerations =  5;
-    [SerializeField] private int cubicleXDistance;
-    [SerializeField] private int cubicleZDistance;
-    
-    
+    [SerializeField] private Vector2 cubicleDistance;
 
-    void Start(){
+    private bool reachedMaxCubicles = false;   
+
+    void OnEnable(){
         GenerateStatics();
     }
 
@@ -24,17 +24,15 @@ public class CubicleGenerator : MonoBehaviour
         if(lastCubicle == null){
             lastCubicle = cubiclePrefab;
         }
-        for (int i = 0; i < cubicleGenerations; i++) {
+
+        while(!reachedMaxCubicles){
             Vector3 areaSize = cubicleRenderer.bounds.size;
-            Vector3 generatedPosition = new Vector3(lastCubicle.transform.position.x + areaSize.x + cubicleXDistance, cubiclePrefab.transform.position.y, lastCubicle.transform.position.z); 
+            Vector3 generatedPosition = new Vector3(lastCubicle.transform.position.x + areaSize.x + cubicleDistance.x, cubiclePrefab.transform.position.y, lastCubicle.transform.position.z); 
 
             generatedPosition = CheckPhysicsBox(generatedPosition, areaSize);
 
-            if(cubicleGenerations == 0){
-                break;
-            }
-
             currentCubicle = Instantiate(cubiclePrefab, generatedPosition, cubiclePrefab.transform.rotation);
+            allCubicles.Add(currentCubicle);
             currentCubicle.transform.localScale = Vector3.Scale(cubiclePrefab.transform.localScale, cubiclePrefab.transform.parent.gameObject.transform.localScale);
 
             lastCubicle = currentCubicle;
@@ -52,16 +50,24 @@ public class CubicleGenerator : MonoBehaviour
                 }
                 else{
                     position.x = cubiclePrefab.transform.position.x;
-                    position.z -= cubicleZDistance + size.z;
+                    position.z -= cubicleDistance.y + size.z;
 
-                    position = CheckPhysicsBox(position, size);
+                    return CheckPhysicsBox(position, size);
                 }
             }
         }
 
         if(!hasGround){
-            cubicleGenerations = 0;
+            reachedMaxCubicles = true;
         }
         return position;
+    }
+
+    void OnDisable(){
+        foreach(GameObject obj in allCubicles){
+            Destroy(obj);
+        }
+        allCubicles.Clear();
+        reachedMaxCubicles = false;
     }
 }
