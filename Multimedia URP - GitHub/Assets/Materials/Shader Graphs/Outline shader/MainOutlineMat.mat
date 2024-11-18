@@ -60,7 +60,7 @@ Material:
     - _CastShadows: 0
     - _Cull: 1
     - _DstBlend: 0
-    - _Outline: 0.001
+    - _Outline: 0.0015
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 1

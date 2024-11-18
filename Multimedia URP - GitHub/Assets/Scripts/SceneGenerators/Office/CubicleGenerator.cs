@@ -3,71 +3,105 @@ using System.Collections.Generic;
 
 public class CubicleGenerator : MonoBehaviour
 {
-    private Renderer cubicleRenderer;
+    [System.Serializable]
+    private class cubicleObj{
+        public GameObject gameObject;
+        public float chance;
+    }
 
-    [SerializeField] private GameObject cubiclePrefab;
-    private GameObject lastCubicle;
-    private GameObject currentCubicle;
-    private List<GameObject> allCubicles = new List<GameObject>();
+    [SerializeField] private List<cubicleObj> cubicleObjs = new List<cubicleObj>();
 
-    [SerializeField] private Vector2 cubicleDistance;
+    private List<GameObject> generatedCubicles = new List<GameObject>();
 
-    private bool reachedMaxCubicles = false;   
+    private GameObject selectedCubicle;
+
+    private Vector3 initialPosition;
+    [SerializeField] private Vector3 addedPosition;
+    [SerializeField] private Vector3 CubicleSize;
+
+    [SerializeField] private int generations;
 
     void OnEnable(){
-        GenerateStatics();
-    }
+        initialPosition = transform.position;
 
-    private void GenerateStatics(){
-        cubicleRenderer = cubiclePrefab.GetComponent<Renderer>();
+        for (int i = 0; i < generations; i++){
+            selectedCubicle = Instantiate(PickCubicle(cubicleObjs),  CreatePosition(),  Quaternion.identity);
+            generatedCubicles.Add(selectedCubicle);
 
-        if(lastCubicle == null){
-            lastCubicle = cubiclePrefab;
-        }
-
-        while(!reachedMaxCubicles){
-            Vector3 areaSize = cubicleRenderer.bounds.size;
-            Vector3 generatedPosition = new Vector3(lastCubicle.transform.position.x + areaSize.x + cubicleDistance.x, cubiclePrefab.transform.position.y, lastCubicle.transform.position.z); 
-
-            generatedPosition = CheckPhysicsBox(generatedPosition, areaSize);
-
-            currentCubicle = Instantiate(cubiclePrefab, generatedPosition, cubiclePrefab.transform.rotation);
-            allCubicles.Add(currentCubicle);
-            currentCubicle.transform.localScale = Vector3.Scale(cubiclePrefab.transform.localScale, cubiclePrefab.transform.parent.gameObject.transform.localScale);
-
-            lastCubicle = currentCubicle;
+            transform.position = new Vector3(transform.position.x + 6, transform.position.y, transform.position.z);
         }
     }
 
-    private Vector3 CheckPhysicsBox(Vector3 position, Vector3 size){
-        bool hasGround = false;
+    private float GetChances(List<cubicleObj> cubicleObjs){
+        float totalWeight = 0;
+        foreach(cubicleObj obj in cubicleObjs){
+            totalWeight += obj.chance;
+        }
+        return Random.Range(0, totalWeight);;
+    }
 
-        Collider[] collidersInArea = Physics.OverlapBox(position, size / 2);
-        if(collidersInArea.Length > 0){
-            foreach (Collider collider in collidersInArea){
-                if(collider.gameObject.layer == 11){
-                    hasGround = true;
-                }
-                else{
-                    position.x = cubiclePrefab.transform.position.x;
-                    position.z -= cubicleDistance.y + size.z;
+    private GameObject PickCubicle(List<cubicleObj> cubicleObjs){
 
-                    return CheckPhysicsBox(position, size);
+        float randomChance = GetChances(cubicleObjs);
+
+        float cumulativeWeight = 0f;
+
+        foreach(cubicleObj obj in cubicleObjs){
+            cumulativeWeight += obj.chance;
+
+            if (randomChance < cumulativeWeight){
+                return obj.gameObject;
+            }
+        }
+
+        return cubicleObjs[cubicleObjs.Count - 1].gameObject;
+    }
+
+    private Vector3 CreatePosition(){
+        Vector3 lastPosition = Vector3.zero; // The last position
+        Vector3 tempPosition = Vector3.zero; // A temporary postion, mimicing the newPosition but without physics box testing.
+        Vector3 newPosition = Vector3.zero; // The final position
+
+        bool touchesWall = false;
+
+    
+        if(generatedCubicles.Count == 0){
+            lastPosition = transform.position;
+        }
+        else{
+            lastPosition = generatedCubicles[generatedCubicles.Count - 1].transform.position;
+        }
+        tempPosition = lastPosition + new Vector3(addedPosition.x, 0, 0);
+
+        Collider[] physicsBox = Physics.OverlapBox(tempPosition, CubicleSize / 2, Quaternion.identity);
+        if(physicsBox.Length > 0){
+            foreach(Collider collider in physicsBox){
+                if(collider.gameObject.layer == 8){
+                    touchesWall = true;
                 }
             }
         }
 
-        if(!hasGround){
-            reachedMaxCubicles = true;
+        if(touchesWall){
+            newPosition = initialPosition + new Vector3(0, 0, addedPosition.z) + new Vector3(0, 0, lastPosition.z);
         }
-        return position;
+        else{
+            newPosition = tempPosition;
+        }
+
+
+
+        return newPosition;
     }
 
     void OnDisable(){
-        foreach(GameObject obj in allCubicles){
-            Destroy(obj);
+        foreach(GameObject cubicle in generatedCubicles){
+            Destroy(cubicle);
         }
-        allCubicles.Clear();
-        reachedMaxCubicles = false;
+
+        generatedCubicles.Clear();
+
+        transform.position = initialPosition;
     }
+
 }
