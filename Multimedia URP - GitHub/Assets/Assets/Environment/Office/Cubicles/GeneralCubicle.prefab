@@ -1712,7 +1712,7 @@ GameObject:
   - component: {fileID: 5794474516904792981}
   - component: {fileID: 3525391075676555242}
   - component: {fileID: 5205274790779096638}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cubicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

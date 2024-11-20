@@ -64,6 +64,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Shadow_Brightness: 0.5
+    - _Transparency: 1
     m_Colors:
     - _Color: {r: 0.15723258, g: 0.15723258, b: 0.15723258, a: 0}
     - _Tiling: {r: 0, g: 0, b: 0, a: 0}
