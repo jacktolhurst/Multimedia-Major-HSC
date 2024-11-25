@@ -1,14 +1,47 @@
 using UnityEngine;
 
 public class FirstPersonMovement : MonoBehaviour
-{
-    Rigidbody rb;
+{   
+    [Header("Attributes")]
+    [SerializeField] private Renderer playerRenderer;
+
+    private Rigidbody rb;
+
+// ----------------------------------------------------------------
+
+    [Header("Movement")]
+    [SerializeField] private Transform orientation;
 
     private Vector3 moveDirection;
 
-
     [SerializeField] private float speed;
-    [SerializeField] private float drag;
+    [SerializeField] private float sprintSpeed;
+    private float movementMultiplier = 10;
+    [SerializeField] private float groundDrag = 6f;
+
+// ----------------------------------------------------------------
+
+    [Header("Ground and Jumping")]
+    [SerializeField] private LayerMask groundMask;
+
+    private Vector3 playerBoundsSize;
+
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpMultiplier = 0.4f;
+    [SerializeField] private float airDrag = 2f;
+    [SerializeField] private float checkBoxSize;
+    [Range(0f, 1f)]
+    [SerializeField] private float boxPadding;
+
+    private bool isGrounded;
+
+// ----------------------------------------------------------------
+
+    [Header("Testing")]
+    [SerializeField] bool drawGizmos;
+
+// ----------------------------------------------------------------
+
 
     void Awake(){
         rb = GetComponent<Rigidbody>();
@@ -16,22 +49,43 @@ public class FirstPersonMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         moveDirection = Vector3.zero;
+
+        playerBoundsSize = playerRenderer.bounds.size;
+
+        if(drawGizmos){
+            Debug.Log("Bounding Box size: " + playerBoundsSize);
+        }
     }
 
     void Update(){
+        isGrounded = Physics.CheckBox(transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize, playerBoundsSize.z) - new Vector3(boxPadding, 0, boxPadding), Quaternion.identity, groundMask, QueryTriggerInteraction.UseGlobal);
+
         GetInput();
         ControlDrag();
+
+        if(Input.GetAxisRaw("Jump") > 0 && isGrounded){
+            Jump();
+        }
     }
 
     private void GetInput(){
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
-        moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+    }
+
+    private void Jump(){
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
     private void ControlDrag(){ 
-        rb.linearDamping = drag;
+        if(isGrounded){
+            rb.linearDamping = groundDrag;
+        } 
+        else{
+            rb.linearDamping = airDrag;
+        }
     }
 
     void FixedUpdate(){
@@ -39,6 +93,26 @@ public class FirstPersonMovement : MonoBehaviour
     }
 
     private void Movement(){
-        rb.AddForce(moveDirection.normalized * speed, ForceMode.Acceleration);
+        if(isGrounded){
+            rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.  Acceleration);
+        }
+        else{
+            rb.AddForce(moveDirection.normalized * speed * movementMultiplier * jumpMultiplier, ForceMode.  Acceleration);
+
+        }
+    }
+
+
+    void OnDrawGizmos(){
+        if(drawGizmos){
+            if(isGrounded){
+                Gizmos.color = Color.green;
+            }
+            else{
+                Gizmos.color = Color.red;
+            }
+
+            Gizmos.DrawCube (transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize, playerBoundsSize.z)  - new Vector3(boxPadding, 0, boxPadding));
+        }
     }
 }
