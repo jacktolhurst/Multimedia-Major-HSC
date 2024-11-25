@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour
 {
+    [Header("Transform")]
     [SerializeField] private Transform cam;
     [SerializeField] private Transform orientation;
+    [SerializeField] private Transform player;
 
+// ----------------------------------------------------------------
+
+    [Header("Sensitivity")]
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
     private float mouseX;
@@ -13,7 +18,10 @@ public class FirstPersonCamera : MonoBehaviour
     private float xRotation;
     private float yRotation;
 
-    void Start(){
+// ----------------------------------------------------------------
+
+
+    void Awake(){
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -23,6 +31,8 @@ public class FirstPersonCamera : MonoBehaviour
 
         cam.transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.transform.rotation = Quaternion.Euler(0, yRotation, 0);
+
+        player.localRotation = Quaternion.Euler(0, cam.transform.localRotation.eulerAngles.y, 0);
     }
 
     private void MyInput(){
