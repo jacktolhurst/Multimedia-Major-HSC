@@ -9,17 +9,29 @@ public class CubicleGenerator : MonoBehaviour
         public float chance;
     }
 
+    [Header("Cubicle")]
     [SerializeField] private List<cubicleObj> cubicleObjs = new List<cubicleObj>();
-
     private List<GameObject> generatedCubicles = new List<GameObject>();
 
-    private GameObject selectedCubicle;
-
-    private Vector3 initialPosition;
+    [Header("Cubicle Attributes")]
     [SerializeField] private Vector3 addedPosition;
     [SerializeField] private Vector3 CubicleSize;
 
+    private GameObject selectedCubicle;
+
     [SerializeField] private int generations;
+    
+    [Header("Positioning")]
+    [SerializeField] private Transform playerPos;
+
+    private Vector3 initialPosition;
+    private Vector3 lastPlayerPos = Vector3.zero;
+
+    [Header("Rendering")]
+    [SerializeField] private float cubicleRenderDist;
+
+    [Header("Testing")]
+    public bool drawGizmos;
 
     void OnEnable(){
         initialPosition = transform.position;
@@ -30,6 +42,8 @@ public class CubicleGenerator : MonoBehaviour
 
             transform.position = new Vector3(transform.position.x + 6, transform.position.y, transform.position.z);
         }
+
+        InvokeRepeating(nameof(EveryInterval), 0f, 1f);
     }
 
     private float GetChances(List<cubicleObj> cubicleObjs){
@@ -89,9 +103,23 @@ public class CubicleGenerator : MonoBehaviour
             newPosition = tempPosition;
         }
 
-
-
         return newPosition;
+    }
+
+    void EveryInterval(){
+        foreach(GameObject obj in generatedCubicles){
+            if(!isClose(playerPos.position, obj.transform.position, cubicleRenderDist)){
+                obj.SetActive(false);
+            }
+            else{
+                obj.SetActive(true);
+            }
+        }
+        lastPlayerPos = playerPos.position;
+    }
+
+    private bool isClose(Vector3 APos, Vector3 BPos, float dist){
+        return Vector3.Distance(APos, BPos) < dist;
     }
 
     void OnDisable(){
@@ -102,6 +130,14 @@ public class CubicleGenerator : MonoBehaviour
         generatedCubicles.Clear();
 
         transform.position = initialPosition;
+
+        CancelInvoke(nameof(EveryInterval));
+    }
+
+    void OnDrawGizmos(){
+        if(drawGizmos){
+            Gizmos.DrawWireSphere(playerPos.position, cubicleRenderDist);
+        }
     }
 
 }

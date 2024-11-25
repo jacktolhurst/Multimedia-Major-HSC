@@ -38,7 +38,7 @@ public class FirstPersonMovement : MonoBehaviour
 // ----------------------------------------------------------------
 
     [Header("Testing")]
-    [SerializeField] bool drawGizmos;
+    public bool drawGizmos;
 
 // ----------------------------------------------------------------
 
@@ -63,7 +63,7 @@ public class FirstPersonMovement : MonoBehaviour
         GetInput();
         ControlDrag();
 
-        if(Input.GetAxisRaw("Jump") > 0 && isGrounded){
+        if(Input.GetButtonDown("Jump") && isGrounded){
             Jump();
         }
     }
@@ -76,6 +76,7 @@ public class FirstPersonMovement : MonoBehaviour
     }
 
     private void Jump(){
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 
