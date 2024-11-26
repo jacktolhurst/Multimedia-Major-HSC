@@ -37,11 +37,6 @@ public class FirstPersonMovement : MonoBehaviour
 
 // ----------------------------------------------------------------
 
-    [Header("Testing")]
-    public bool drawGizmos;
-
-// ----------------------------------------------------------------
-
 
     void Awake(){
         rb = GetComponent<Rigidbody>();
@@ -51,10 +46,6 @@ public class FirstPersonMovement : MonoBehaviour
         moveDirection = Vector3.zero;
 
         playerBoundsSize = playerRenderer.bounds.size;
-
-        if(drawGizmos){
-            Debug.Log("Bounding Box size: " + playerBoundsSize);
-        }
     }
 
     void Update(){
@@ -105,15 +96,13 @@ public class FirstPersonMovement : MonoBehaviour
 
 
     void OnDrawGizmos(){
-        if(drawGizmos){
-            if(isGrounded){
-                Gizmos.color = Color.green;
-            }
-            else{
-                Gizmos.color = Color.red;
-            }
-
-            Gizmos.DrawCube (transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize, playerBoundsSize.z)  - new Vector3(boxPadding, 0, boxPadding));
+        if(isGrounded){
+            Gizmos.color = Color.green;
         }
+        else{
+            Gizmos.color = Color.red;
+        }
+
+        Gizmos.DrawCube (transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize,playerBoundsSize.z)  - new Vector3(boxPadding, 0, boxPadding));
     }
 }

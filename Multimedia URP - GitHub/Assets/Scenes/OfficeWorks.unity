@@ -5836,9 +5836,9 @@ MonoBehaviour:
   addedPosition: {x: 6, y: 0, z: -22}
   CubicleSize: {x: 27.55764, y: 18, z: 5}
   generations: 440
-  playerPos: {fileID: 1395693330}
-  cubicleRenderDist: 9.48
-  drawGizmos: 1
+  player: {fileID: 1395693326}
+  cubicleRenderDist: 20
+  interval: 1
 --- !u!1001 &625636894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12582,8 +12582,8 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 3
-      scalar: -25
-      minScalar: -35
+      scalar: -45
+      minScalar: -65
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -16566,7 +16566,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1445492441}
-  - component: {fileID: 1445492442}
   m_Layer: 0
   m_Name: DebugMode
   m_TagString: Untagged
@@ -16589,19 +16588,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1445492442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445492440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5491b848da192e04f83c729a3dd1e886, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  test: 0
 --- !u!1 &1482019482
 GameObject:
   m_ObjectHideFlags: 3
@@ -16870,7 +16856,6 @@ MonoBehaviour:
   airDrag: 1
   checkBoxSize: 0.005
   boxPadding: 0.7
-  drawGizmos: 1
 --- !u!54 &1649549244
 Rigidbody:
   m_ObjectHideFlags: 0

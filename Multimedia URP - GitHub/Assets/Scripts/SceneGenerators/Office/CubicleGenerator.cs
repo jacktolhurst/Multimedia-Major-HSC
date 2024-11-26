@@ -22,16 +22,20 @@ public class CubicleGenerator : MonoBehaviour
     [SerializeField] private int generations;
     
     [Header("Positioning")]
-    [SerializeField] private Transform playerPos;
+    [SerializeField] private GameObject player;
 
     private Vector3 initialPosition;
     private Vector3 lastPlayerPos = Vector3.zero;
+    private Vector3 playerBoundsSize;
 
     [Header("Rendering")]
     [SerializeField] private float cubicleRenderDist;
+    [SerializeField] private float interval;
 
-    [Header("Testing")]
-    public bool drawGizmos;
+
+    void Awake(){
+        playerBoundsSize = player.GetComponent<Renderer>().bounds.size;
+    }
 
     void OnEnable(){
         initialPosition = transform.position;
@@ -43,7 +47,7 @@ public class CubicleGenerator : MonoBehaviour
             transform.position = new Vector3(transform.position.x + 6, transform.position.y, transform.position.z);
         }
 
-        InvokeRepeating(nameof(EveryInterval), 0f, 1f);
+        InvokeRepeating(nameof(EveryInterval), 0, interval);
     }
 
     private float GetChances(List<cubicleObj> cubicleObjs){
@@ -108,14 +112,15 @@ public class CubicleGenerator : MonoBehaviour
 
     void EveryInterval(){
         foreach(GameObject obj in generatedCubicles){
-            if(!isClose(playerPos.position, obj.transform.position, cubicleRenderDist)){
+            if(!isClose(player.transform.position, obj.transform.position, cubicleRenderDist)){
                 obj.SetActive(false);
             }
             else{
                 obj.SetActive(true);
             }
         }
-        lastPlayerPos = playerPos.position;
+
+        lastPlayerPos = player.transform.position;
     }
 
     private bool isClose(Vector3 APos, Vector3 BPos, float dist){
@@ -135,9 +140,9 @@ public class CubicleGenerator : MonoBehaviour
     }
 
     void OnDrawGizmos(){
-        if(drawGizmos){
-            Gizmos.DrawWireSphere(playerPos.position, cubicleRenderDist);
-        }
+        Gizmos.DrawWireSphere(player.transform.position, cubicleRenderDist);
+
+        Gizmos.DrawCube(player.transform.position, playerBoundsSize);
     }
 
 }
