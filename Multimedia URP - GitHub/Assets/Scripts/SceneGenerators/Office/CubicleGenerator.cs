@@ -27,10 +27,14 @@ public class CubicleGenerator : MonoBehaviour
     private Vector3 initialPosition;
     private Vector3 lastPlayerPos = Vector3.zero;
     private Vector3 playerBoundsSize;
+    private Vector3 playerIntervalPos;
 
     [Header("Rendering")]
     [SerializeField] private float cubicleRenderDist;
+    private float lastCubicleRenderDist;
+    [Range(0.1f, 20f)]
     [SerializeField] private float interval;
+    private float lastInterval;
 
 
     void Awake(){
@@ -48,6 +52,9 @@ public class CubicleGenerator : MonoBehaviour
         }
 
         InvokeRepeating(nameof(EveryInterval), 0, interval);
+
+        lastInterval = interval;
+        lastCubicleRenderDist = cubicleRenderDist;
     }
 
     private float GetChances(List<cubicleObj> cubicleObjs){
@@ -110,6 +117,16 @@ public class CubicleGenerator : MonoBehaviour
         return newPosition;
     }
 
+    void FixedUpdate(){
+        if(lastInterval != interval || lastCubicleRenderDist != cubicleRenderDist){
+            CancelInvoke(nameof(EveryInterval));
+            InvokeRepeating(nameof(EveryInterval), 0, interval);
+
+            lastInterval = interval;
+            lastCubicleRenderDist = cubicleRenderDist;
+        }
+    }
+
     void EveryInterval(){
         foreach(GameObject obj in generatedCubicles){
             if(!isClose(player.transform.position, obj.transform.position, cubicleRenderDist)){
@@ -141,8 +158,8 @@ public class CubicleGenerator : MonoBehaviour
 
     void OnDrawGizmos(){
         Gizmos.DrawWireSphere(player.transform.position, cubicleRenderDist);
-
-        Gizmos.DrawCube(player.transform.position, playerBoundsSize);
+    
+        Gizmos.DrawWireCube(lastPlayerPos, playerBoundsSize - new Vector3(0.1f,0.1f,0.1f));
     }
 
 }

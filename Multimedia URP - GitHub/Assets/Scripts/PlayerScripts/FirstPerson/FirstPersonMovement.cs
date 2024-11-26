@@ -21,7 +21,7 @@ public class FirstPersonMovement : MonoBehaviour
 
 // ----------------------------------------------------------------
 
-    [Header("Ground and Jumping")]
+    [Header("Jumping")]
     [SerializeField] private LayerMask groundMask;
 
     private Vector3 playerBoundsSize;
@@ -29,9 +29,20 @@ public class FirstPersonMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpMultiplier = 0.4f;
     [SerializeField] private float airDrag = 2f;
+
+    [Header("Using CheckBox")]
     [SerializeField] private float checkBoxSize;
     [Range(0f, 1f)]
     [SerializeField] private float boxPadding;
+
+    [SerializeField] private bool useCheckBox;
+
+    [Header("Using Raycasts")]
+    [SerializeField] private float raycastDistance;
+
+    private Vector3[] raycastPositions = {new Vector3(0,0,0)};
+
+    [SerializeField] private bool useRaycast;
 
     private bool isGrounded;
 
@@ -46,10 +57,35 @@ public class FirstPersonMovement : MonoBehaviour
         moveDirection = Vector3.zero;
 
         playerBoundsSize = playerRenderer.bounds.size;
+
+        Vector3[] positions = {
+            new Vector3(0, -(playerBoundsSize.y/2), 0),
+            new Vector3(playerBoundsSize.x/2, -playerBoundsSize.y/2, -playerBoundsSize.z/2),
+            new Vector3(playerBoundsSize.x/2, -playerBoundsSize.y/2, playerBoundsSize.z/2),
+            new Vector3(-playerBoundsSize.x/2, -playerBoundsSize.y/2, -playerBoundsSize.z/2),
+            new Vector3(-playerBoundsSize.x/2, -playerBoundsSize.y/2, playerBoundsSize.z/2)
+        };
+
+        raycastPositions = positions;
     }
 
     void Update(){
-        isGrounded = Physics.CheckBox(transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize, playerBoundsSize.z) - new Vector3(boxPadding, 0, boxPadding), Quaternion.identity, groundMask, QueryTriggerInteraction.UseGlobal);
+        if(useCheckBox){
+            isGrounded = Physics.CheckBox(transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize, playerBoundsSize.z) - new Vector3(boxPadding, 0, boxPadding), orientation.rotation, groundMask);
+
+        }
+        if(useRaycast){
+            isGrounded = false;
+            foreach (var position in raycastPositions){
+                Vector3 worldPosition = transform.TransformPoint(position);
+                if(Physics.Raycast(worldPosition, Vector3.down, raycastDistance, groundMask)){
+                    Debug.Log("hi");
+                    isGrounded = true;
+                    break;
+                }
+                
+            }
+        }
 
         GetInput();
         ControlDrag();
@@ -103,6 +139,16 @@ public class FirstPersonMovement : MonoBehaviour
             Gizmos.color = Color.red;
         }
 
-        Gizmos.DrawCube (transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize,playerBoundsSize.z)  - new Vector3(boxPadding, 0, boxPadding));
+        Gizmos.matrix = Matrix4x4.TRS(transform.position, orientation.rotation, Vector3.one);
+
+        if(useCheckBox){
+            Gizmos.DrawCube(Vector3.zero - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize,playerBoundsSize.z)  - new Vector3(boxPadding, 0, boxPadding));
+        }
+
+        if(useRaycast){
+            foreach (var position in raycastPositions){
+                Gizmos.DrawLine(position, position + Vector3.down * raycastDistance);
+            }
+        }
     }
 }
