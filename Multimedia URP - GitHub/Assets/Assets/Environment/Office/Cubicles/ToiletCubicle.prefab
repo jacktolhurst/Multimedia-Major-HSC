@@ -867,7 +867,7 @@ GameObject:
   - component: {fileID: 4076629945873427932}
   m_Layer: 6
   m_Name: Cubicle.005
-  m_TagString: Untagged
+  m_TagString: Cubicle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1465,6 +1465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8103768355541420433}
+  - component: {fileID: 6810340506151963341}
   m_Layer: 0
   m_Name: ToiletCubicle
   m_TagString: Untagged
@@ -1503,6 +1504,19 @@ Transform:
   - {fileID: 2941583715014177888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6810340506151963341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316331835703175235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5c2b9b5303eb44f8ce1b1be9e26198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowPoly: 0
 --- !u!1 &6438947412299909009
 GameObject:
   m_ObjectHideFlags: 0

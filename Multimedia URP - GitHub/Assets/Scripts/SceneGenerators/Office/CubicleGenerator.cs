@@ -130,10 +130,10 @@ public class CubicleGenerator : MonoBehaviour
     void EveryInterval(){
         foreach(GameObject obj in generatedCubicles){
             if(!isClose(player.transform.position, obj.transform.position, cubicleRenderDist)){
-                obj.SetActive(false);
+                obj.GetComponent<TurnLowPolyScript>().TurnLowPoly();
             }
             else{
-                obj.SetActive(true);
+                obj.GetComponent<TurnLowPolyScript>().TurnOffLowPoly();
             }
         }
 

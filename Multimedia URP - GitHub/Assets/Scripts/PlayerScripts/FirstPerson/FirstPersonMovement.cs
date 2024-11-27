@@ -38,11 +38,14 @@ public class FirstPersonMovement : MonoBehaviour
     [SerializeField] private bool useCheckBox;
 
     [Header("Using Raycasts")]
+    [Range(0.1f,1f)]
     [SerializeField] private float raycastDistance;
+    [SerializeField] private float rayPadding;
 
     private Vector3[] raycastPositions = {new Vector3(0,0,0)};
 
     [SerializeField] private bool useRaycast;
+
 
     private bool isGrounded;
 
@@ -57,7 +60,9 @@ public class FirstPersonMovement : MonoBehaviour
         moveDirection = Vector3.zero;
 
         playerBoundsSize = playerRenderer.bounds.size;
+    }
 
+    void Update(){
         Vector3[] positions = {
             new Vector3(0, -(playerBoundsSize.y/2), 0),
             new Vector3(playerBoundsSize.x/2, -playerBoundsSize.y/2, -playerBoundsSize.z/2),
@@ -65,25 +70,26 @@ public class FirstPersonMovement : MonoBehaviour
             new Vector3(-playerBoundsSize.x/2, -playerBoundsSize.y/2, -playerBoundsSize.z/2),
             new Vector3(-playerBoundsSize.x/2, -playerBoundsSize.y/2, playerBoundsSize.z/2)
         };
-
         raycastPositions = positions;
-    }
 
-    void Update(){
         if(useCheckBox){
             isGrounded = Physics.CheckBox(transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize, playerBoundsSize.z) - new Vector3(boxPadding, 0, boxPadding), orientation.rotation, groundMask);
 
         }
         if(useRaycast){
-            isGrounded = false;
-            foreach (var position in raycastPositions){
-                Vector3 worldPosition = transform.TransformPoint(position);
-                if(Physics.Raycast(worldPosition, Vector3.down, raycastDistance, groundMask)){
-                    Debug.Log("hi");
-                    isGrounded = true;
+            bool raycasted = false;
+            foreach (Vector3 position in raycastPositions){
+                if(Physics.Raycast(position + transform.position + new Vector3(0, rayPadding, 0), Vector3.down, raycastDistance, groundMask)){
+                    raycasted = true;
                     break;
                 }
-                
+            }
+
+            if(raycasted){
+                isGrounded = true;
+            }
+            else{
+                isGrounded = false;
             }
         }
 
@@ -146,8 +152,13 @@ public class FirstPersonMovement : MonoBehaviour
         }
 
         if(useRaycast){
-            foreach (var position in raycastPositions){
-                Gizmos.DrawLine(position, position + Vector3.down * raycastDistance);
+            foreach(Vector3 position in raycastPositions){
+                if(isGrounded){
+                    Debug.DrawRay(position + transform.position + new Vector3(0, rayPadding, 0), Vector3.down * raycastDistance, Color.green);
+                }
+                else{ 
+                    Debug.DrawRay(position + transform.position + new Vector3(0, rayPadding, 0), Vector3.down * raycastDistance, Color.red);
+                }
             }
         }
     }
