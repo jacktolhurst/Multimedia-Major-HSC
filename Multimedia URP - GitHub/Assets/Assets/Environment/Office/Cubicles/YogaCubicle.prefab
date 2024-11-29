@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8333462115834167364}
   m_Layer: 6
   m_Name: Candel.006
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 3677145802524248079}
   m_Layer: 6
   m_Name: Candel.001
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 2228915358571416943}
   m_Layer: 6
   m_Name: Candel.007
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 3007255130191045199}
   m_Layer: 6
   m_Name: Ball.001
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 7590305947901894492}
   m_Layer: 6
   m_Name: Candel.003
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -846,7 +846,7 @@ GameObject:
   - component: {fileID: 5932781286255897524}
   m_Layer: 6
   m_Name: Candel.002
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 6128521915727022027}
   m_Layer: 6
   m_Name: Candel
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1400,7 +1400,7 @@ GameObject:
   - component: {fileID: 5093632702863397224}
   m_Layer: 6
   m_Name: Candel.005
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1539,7 +1539,7 @@ GameObject:
   - component: {fileID: 4348361879088285152}
   m_Layer: 6
   m_Name: Candel.004
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1815,7 +1815,7 @@ GameObject:
   - component: {fileID: 6951437821261713562}
   m_Layer: 6
   m_Name: Ball.002
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1999,7 +1999,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5c2b9b5303eb44f8ce1b1be9e26198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowPoly: 0
 --- !u!1 &7579825453193332822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,7 +2151,7 @@ GameObject:
   - component: {fileID: 3769613311861436659}
   m_Layer: 6
   m_Name: Cubicle.004
-  m_TagString: Cubicle
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2262,7 +2261,7 @@ GameObject:
   - component: {fileID: 4679125494529507135}
   m_Layer: 6
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4304543456294853353}
   m_Layer: 6
   m_Name: Paper.002
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 7153592599477671906}
   m_Layer: 6
   m_Name: Paper.008
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 3115912880607479272}
   m_Layer: 6
   m_Name: Paper
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 2452076308560382711}
   m_Layer: 6
   m_Name: Paper.006
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 5219216181080276799}
   m_Layer: 6
   m_Name: Paper.025
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 2564979623325614894}
   m_Layer: 6
   m_Name: Paper.023
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 5802073607131250428}
   m_Layer: 6
   m_Name: Paper.009
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 6481333024984934907}
   m_Layer: 6
   m_Name: Paper.021
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 3869708027295838746}
   m_Layer: 6
   m_Name: Paper.022
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1224,7 +1224,7 @@ GameObject:
   - component: {fileID: 3731245794335326522}
   m_Layer: 6
   m_Name: Paper.019
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1310,7 +1310,7 @@ GameObject:
   - component: {fileID: 2518611014315811833}
   m_Layer: 6
   m_Name: Paper.007
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1396,7 +1396,7 @@ GameObject:
   - component: {fileID: 3105515311658782179}
   m_Layer: 6
   m_Name: Paper.003
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1482,7 +1482,7 @@ GameObject:
   - component: {fileID: 5652180937523317626}
   m_Layer: 6
   m_Name: Paper.001
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1628,7 +1628,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5c2b9b5303eb44f8ce1b1be9e26198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowPoly: 0
 --- !u!1 &5704817096566858706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,7 +1860,7 @@ GameObject:
   - component: {fileID: 4571850754583345802}
   m_Layer: 6
   m_Name: Cubicle.001
-  m_TagString: Cubicle
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1969,7 +1968,7 @@ GameObject:
   - component: {fileID: 3898046434240363888}
   m_Layer: 6
   m_Name: Paper.024
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2274,7 +2273,7 @@ GameObject:
   - component: {fileID: 4485546747165187571}
   m_Layer: 6
   m_Name: Paper.005
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2739,7 +2738,7 @@ GameObject:
   - component: {fileID: 6336283846439259988}
   m_Layer: 6
   m_Name: Paper.020
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2825,7 +2824,7 @@ GameObject:
   - component: {fileID: 827432681416696643}
   m_Layer: 6
   m_Name: Paper.004
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

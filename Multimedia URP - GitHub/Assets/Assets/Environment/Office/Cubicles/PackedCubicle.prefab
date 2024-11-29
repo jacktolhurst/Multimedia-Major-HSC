@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 4107306243472672692}
   m_Layer: 6
   m_Name: Paper.014
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1276,7 +1276,7 @@ GameObject:
   - component: {fileID: 8579322026284553967}
   m_Layer: 6
   m_Name: Paper.015
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1362,7 +1362,7 @@ GameObject:
   - component: {fileID: 6276019295218408060}
   m_Layer: 6
   m_Name: Paper.013
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1500,7 +1500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5c2b9b5303eb44f8ce1b1be9e26198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowPoly: 0
 --- !u!1 &5694632437166043995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,7 +1623,7 @@ GameObject:
   - component: {fileID: 3097958722726039857}
   m_Layer: 6
   m_Name: Cubicle.003
-  m_TagString: Cubicle
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1951,7 +1950,7 @@ GameObject:
   - component: {fileID: 4412928891035765190}
   m_Layer: 6
   m_Name: Paper.016
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -729,7 +729,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5c2b9b5303eb44f8ce1b1be9e26198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lowPoly: 0
 --- !u!1 &1842457559804733623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1099,7 @@ GameObject:
   - component: {fileID: 4274495125218670477}
   m_Layer: 6
   m_Name: Cubicle.002
-  m_TagString: Cubicle
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3236,7 +3235,7 @@ GameObject:
   - component: {fileID: 6754393709534130497}
   m_Layer: 6
   m_Name: Paper.012
-  m_TagString: Untagged
+  m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
