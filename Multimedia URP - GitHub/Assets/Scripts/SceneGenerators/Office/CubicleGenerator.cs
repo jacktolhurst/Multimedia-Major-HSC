@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections; 
 using System.Collections.Generic;
 
 public class CubicleGenerator : MonoBehaviour
@@ -31,10 +32,8 @@ public class CubicleGenerator : MonoBehaviour
 
     [Header("Rendering")]
     [SerializeField] private float cubicleRenderDist;
-    private float lastCubicleRenderDist;
     [Range(0.1f, 20f)]
     [SerializeField] private float interval;
-    private float lastInterval;
 
 
     void Awake(){
@@ -51,10 +50,8 @@ public class CubicleGenerator : MonoBehaviour
             transform.position = new Vector3(transform.position.x + 6, transform.position.y, transform.position.z);
         }
 
-        InvokeRepeating(nameof(EveryInterval), 0, interval);
-
-        lastInterval = interval;
-        lastCubicleRenderDist = cubicleRenderDist;
+        FirstDistCheck();
+        StartCoroutine(DistCheck());
     }
 
     private float GetChances(List<cubicleObj> cubicleObjs){
@@ -117,17 +114,7 @@ public class CubicleGenerator : MonoBehaviour
         return newPosition;
     }
 
-    void FixedUpdate(){
-        if(lastInterval != interval || lastCubicleRenderDist != cubicleRenderDist){
-            CancelInvoke(nameof(EveryInterval));
-            InvokeRepeating(nameof(EveryInterval), 0, interval);
-
-            lastInterval = interval;
-            lastCubicleRenderDist = cubicleRenderDist;
-        }
-    }
-
-    void EveryInterval(){
+    private void FirstDistCheck(){
         foreach(GameObject obj in generatedCubicles){
             if(!isClose(player.transform.position, obj.transform.position, cubicleRenderDist)){
                 obj.GetComponent<TurnLowPolyScript>().TurnLowPoly();
@@ -136,8 +123,25 @@ public class CubicleGenerator : MonoBehaviour
                 obj.GetComponent<TurnLowPolyScript>().TurnOffLowPoly();
             }
         }
-
         lastPlayerPos = player.transform.position;
+    }
+
+    private IEnumerator DistCheck() {
+        while(true){
+            foreach(GameObject obj in generatedCubicles){
+                if(!isClose(player.transform.position, obj.transform.position, cubicleRenderDist)){
+                    obj.GetComponent<TurnLowPolyScript>().TurnLowPoly();
+                }
+                else{
+                    obj.GetComponent<TurnLowPolyScript>().TurnOffLowPoly();
+                }
+                yield return null;
+            }
+            lastPlayerPos = player.transform.position;
+
+            Debug.Log("im running");
+            yield return new WaitForSeconds(interval);
+        }
     }
 
     private bool isClose(Vector3 APos, Vector3 BPos, float dist){
@@ -153,7 +157,7 @@ public class CubicleGenerator : MonoBehaviour
 
         transform.position = initialPosition;
 
-        CancelInvoke(nameof(EveryInterval));
+        StopCoroutine(DistCheck());
     }
 
     void OnDrawGizmos(){
@@ -161,5 +165,4 @@ public class CubicleGenerator : MonoBehaviour
     
         Gizmos.DrawWireCube(lastPlayerPos, playerBoundsSize - new Vector3(0.1f,0.1f,0.1f));
     }
-
 }
