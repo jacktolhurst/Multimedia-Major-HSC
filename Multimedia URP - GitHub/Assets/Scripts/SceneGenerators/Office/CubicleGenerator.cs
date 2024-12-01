@@ -131,11 +131,11 @@ public class CubicleGenerator : MonoBehaviour
             foreach(GameObject obj in generatedCubicles){
                 if(!isClose(player.transform.position, obj.transform.position, cubicleRenderDist)){
                     obj.GetComponent<TurnLowPolyScript>().TurnLowPoly();
+                    yield return null;  
                 }
                 else{
                     obj.GetComponent<TurnLowPolyScript>().TurnOffLowPoly();
                 }
-                yield return null;
             }
             lastPlayerPos = player.transform.position;
 
