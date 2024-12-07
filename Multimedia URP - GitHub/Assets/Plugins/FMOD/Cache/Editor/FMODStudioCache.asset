@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: Assets/FMOD/walking/Build/Desktop/Test.bank
   Name: Test
   StudioPath: bank:/Test
-  lastModified: 638669413661870447
+  lastModified: 638662265714995082
   FileSizes:
   - Name: Desktop
     Value: 154144
@@ -62,10 +62,10 @@ MonoBehaviour:
   Path: Assets/FMOD/walking/Build/Desktop/NotesMaker.bank
   Name: NotesMaker
   StudioPath: bank:/NotesMaker
-  lastModified: 638669413660620809
+  lastModified: 638663097580077768
   FileSizes:
   - Name: Desktop
-    Value: 134112
+    Value: 106944
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -92,7 +92,7 @@ MonoBehaviour:
   - {fileID: 3778028899709088277}
   StringsBanks:
   - {fileID: 4817408082466223523}
-  cacheTime: 638669413661870447
+  cacheTime: 638663097580077768
   cacheVersion: 131620
 --- !u!114 &2413619922383735836
 MonoBehaviour:
@@ -115,12 +115,12 @@ MonoBehaviour:
   Banks:
   - {fileID: -5303715767479013428}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1500
+  Length: 1000
 --- !u!114 &3778028899709088277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   Path: Assets/FMOD/walking/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638669413659648415
+  lastModified: 638663097578304598
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -156,7 +156,7 @@ MonoBehaviour:
   Path: Assets/FMOD/walking/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638669413659658421
+  lastModified: 638663097578334692
   FileSizes:
   - Name: Desktop
     Value: 892
