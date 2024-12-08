@@ -35,6 +35,8 @@ public class CubicleGenerator : MonoBehaviour
     [Range(0.1f, 20f)]
     [SerializeField] private float interval;
 
+    [SerializeField] private bool doDistCheck;
+
 
     void Awake(){
         playerBoundsSize = player.GetComponent<Renderer>().bounds.size;
@@ -50,8 +52,11 @@ public class CubicleGenerator : MonoBehaviour
             transform.position = new Vector3(transform.position.x + 6, transform.position.y, transform.position.z);
         }
 
-        FirstDistCheck();
-        StartCoroutine(DistCheck());
+
+        if(doDistCheck){
+            FirstDistCheck();
+            StartCoroutine(DistCheck());
+        }
     }
 
     private float GetChances(List<cubicleObj> cubicleObjs){
@@ -139,7 +144,6 @@ public class CubicleGenerator : MonoBehaviour
             }
             lastPlayerPos = player.transform.position;
 
-            Debug.Log("im running");
             yield return new WaitForSeconds(interval);
         }
     }
@@ -161,8 +165,11 @@ public class CubicleGenerator : MonoBehaviour
     }
 
     void OnDrawGizmos(){
-        Gizmos.DrawWireSphere(player.transform.position, cubicleRenderDist);
-    
-        Gizmos.DrawWireCube(lastPlayerPos, playerBoundsSize - new Vector3(0.1f,0.1f,0.1f));
+
+        if(doDistCheck){
+            Gizmos.DrawWireSphere(player.transform.position, cubicleRenderDist);
+        
+            Gizmos.DrawWireCube(lastPlayerPos, playerBoundsSize - new Vector3(0.1f,0.1f,0.1f));
+        }
     }
 }

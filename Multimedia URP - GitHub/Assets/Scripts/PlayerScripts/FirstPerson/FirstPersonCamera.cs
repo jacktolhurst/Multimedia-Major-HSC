@@ -26,6 +26,8 @@ public class FirstPersonCamera : MonoBehaviour
     [SerializeField] private float standardFov;
     [SerializeField] private float sprintingFov;
     [SerializeField] private float jumpingFov;
+    [SerializeField] private float fovLerp;
+    private float projectedFov;
 
 // ----------------------------------------------------------------
 
@@ -33,6 +35,7 @@ public class FirstPersonCamera : MonoBehaviour
     void Awake(){
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        projectedFov = cam.GetComponent<Camera>().fieldOfView;
     }
 
     void Update(){
@@ -56,7 +59,8 @@ public class FirstPersonCamera : MonoBehaviour
     }
 
     private void FOV(){
-        cam.GetComponent<Camera>().fieldOfView = standardFov + (Input.GetAxis("Sprint")) * sprintingFov + Mathf.Abs(GetComponent<Rigidbody>().linearVelocity.y) * jumpingFov;
+        projectedFov = standardFov + ((Input.GetAxis("Sprint")) * sprintingFov) + (Mathf.Abs(GetComponent<Rigidbody>().linearVelocity.y) * jumpingFov);
+        cam.GetComponent<Camera>().fieldOfView = Mathf.Lerp(cam.GetComponent<Camera>().fieldOfView, projectedFov, fovLerp);
     }
 
     void OnDrawGizmos(){
