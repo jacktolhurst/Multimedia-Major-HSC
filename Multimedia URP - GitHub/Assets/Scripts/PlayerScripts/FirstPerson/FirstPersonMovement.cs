@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMOD.Studio;
 
 public class FirstPersonMovement : MonoBehaviour
 {   
@@ -30,6 +31,8 @@ public class FirstPersonMovement : MonoBehaviour
     [SerializeField] private float jumpMultiplier = 0.4f;
     [SerializeField] private float airDrag = 2f;
 
+// ----------------------------------------------------------------
+
     [Header("Using CheckBox")]
     [SerializeField] private float checkBoxSize;
     [Range(0f, 1f)]
@@ -37,6 +40,8 @@ public class FirstPersonMovement : MonoBehaviour
 
     [SerializeField] private bool useCheckBox;
 
+// ----------------------------------------------------------------
+    
     [Header("Using Raycasts")]
     [Range(0.1f,1f)]
     [SerializeField] private float raycastDistance;
@@ -46,8 +51,15 @@ public class FirstPersonMovement : MonoBehaviour
 
     [SerializeField] private bool useRaycast;
 
+// ----------------------------------------------------------------
 
+    [Header("isGrounded")]
     private bool isGrounded;
+
+// ----------------------------------------------------------------
+
+    [Header("Sound")]
+    private EventInstance playerFootSteps;
 
 // ----------------------------------------------------------------
 
@@ -60,6 +72,10 @@ public class FirstPersonMovement : MonoBehaviour
         moveDirection = Vector3.zero;
 
         playerBoundsSize = playerRenderer.bounds.size;
+    }
+
+    void Start(){
+        playerFootSteps = AudioManager.instance.CreatEventInstance(FMODEvents.instance.playerFootSteps);
     }
 
     void Update(){
@@ -124,6 +140,8 @@ public class FirstPersonMovement : MonoBehaviour
 
     void FixedUpdate(){
         Movement();
+
+        UpdateSound();
     }
 
     private void Movement(){
@@ -160,6 +178,19 @@ public class FirstPersonMovement : MonoBehaviour
                     Debug.DrawRay(position + transform.position + new Vector3(0, rayPadding, 0), Vector3.down * raycastDistance, Color.red);
                 }
             }
+        }
+    }
+
+    private void UpdateSound(){
+        if(rb.linearVelocity.x != 0 && isGrounded){
+            PLAYBACK_STATE playbackState;
+            playerFootSteps.getPlaybackState(out playbackState);
+            if(playbackState.Equals(PLAYBACK_STATE.STOPPED)){
+                playerFootSteps.start();
+            }
+        }
+        else{ 
+            playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
         }
     }
 }

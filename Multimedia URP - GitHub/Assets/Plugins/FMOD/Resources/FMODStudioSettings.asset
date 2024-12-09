@@ -536,8 +536,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets/FMOD/walking/walking.fspro
-  sourceBankPath: Assets/FMOD/walking/Build
+  sourceProjectPath: ../Working Files/FMOD projects/MainGameMusic/MainGameMusic.fspro
+  sourceBankPath: ../Working Files/FMOD projects/MainGameMusic/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -561,8 +561,7 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - NotesMaker
-  - Test
+  - SFX
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

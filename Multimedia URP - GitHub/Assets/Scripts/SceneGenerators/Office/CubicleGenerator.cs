@@ -143,6 +143,9 @@ public class CubicleGenerator : MonoBehaviour
                 }
             }
             lastPlayerPos = player.transform.position;
+            
+            // TODO: for using FMOD, get rid of later
+            // AudioManager.instance.PlayOneShot(FMODEvents.instance.generationKick, this.transform.position);
 
             yield return new WaitForSeconds(interval);
         }
