@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7557262358905206857}
   m_Layer: 6
   m_Name: Paper.011
-  m_TagString: StayInScene
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 2314052578049955188}
   m_Layer: 6
   m_Name: Paper.010
-  m_TagString: StayInScene
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 1188755292473816867}
   - component: {fileID: 6479156491956914368}
   - component: {fileID: 3540497114240404277}
+  - component: {fileID: 6738826120832375443}
   m_Layer: 6
   m_Name: Keyboard
   m_TagString: Untagged
@@ -557,6 +558,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -327218276259777663, guid: 87ef54266674ae8488c0e4e59697eb44, type: 3}
+--- !u!54 &6738826120832375443
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330187665819614315}
+  serializedVersion: 4
+  m_Mass: 2
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3318358907567530911
 GameObject:
   m_ObjectHideFlags: 0
@@ -1061,6 +1089,7 @@ GameObject:
   - component: {fileID: 8057197982333305696}
   - component: {fileID: 3314809186096404009}
   - component: {fileID: 834634107835602653}
+  - component: {fileID: 7118260381746957148}
   m_Layer: 6
   m_Name: Desktop.001
   m_TagString: Untagged
@@ -1159,6 +1188,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5667955435861162422, guid: 87ef54266674ae8488c0e4e59697eb44, type: 3}
+--- !u!54 &7118260381746957148
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666009703083579020}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5921933555318247892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1227,7 @@ GameObject:
   - component: {fileID: 4548187571805988153}
   - component: {fileID: 1494443510377618044}
   - component: {fileID: 2333948784774339925}
+  - component: {fileID: 6945856717953058862}
   m_Layer: 6
   m_Name: DeadPlant.001
   m_TagString: Untagged
@@ -1268,6 +1325,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6300471610929522742, guid: 87ef54266674ae8488c0e4e59697eb44, type: 3}
+--- !u!54 &6945856717953058862
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5921933555318247892}
+  serializedVersion: 4
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6006873877105435361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,7 +2025,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8920397144016588353}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1972,6 +2056,7 @@ GameObject:
   - component: {fileID: 6983265202316006210}
   - component: {fileID: 8731697553978658687}
   - component: {fileID: 223830055918995805}
+  - component: {fileID: 2827050204668501012}
   m_Layer: 6
   m_Name: Pen
   m_TagString: Untagged
@@ -2069,3 +2154,30 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1049237082592561434, guid: 87ef54266674ae8488c0e4e59697eb44, type: 3}
+--- !u!54 &2827050204668501012
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9213444913873925272}
+  serializedVersion: 4
+  m_Mass: 0.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

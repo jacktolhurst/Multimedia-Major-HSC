@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 3677145802524248079}
   m_Layer: 6
   m_Name: Candel.001
-  m_TagString: StayInScene
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -707,7 +707,7 @@ GameObject:
   - component: {fileID: 7590305947901894492}
   m_Layer: 6
   m_Name: Candel.003
-  m_TagString: StayInScene
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -846,7 +846,7 @@ GameObject:
   - component: {fileID: 5932781286255897524}
   m_Layer: 6
   m_Name: Candel.002
-  m_TagString: StayInScene
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 6128521915727022027}
   m_Layer: 6
   m_Name: Candel
-  m_TagString: StayInScene
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1400,7 +1400,7 @@ GameObject:
   - component: {fileID: 5093632702863397224}
   m_Layer: 6
   m_Name: Candel.005
-  m_TagString: StayInScene
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1539,7 +1539,7 @@ GameObject:
   - component: {fileID: 4348361879088285152}
   m_Layer: 6
   m_Name: Candel.004
-  m_TagString: StayInScene
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
