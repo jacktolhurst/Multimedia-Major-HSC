@@ -9,7 +9,6 @@ public class GrabObjects : MonoBehaviour
 
     [SerializeField] private GameObject cam;
     private GameObject grabbedObj;
-    private GameObject tempObj;
 
     private Rigidbody grabbedObjrb;
 
@@ -20,13 +19,14 @@ public class GrabObjects : MonoBehaviour
     [SerializeField] private string grabTag;
 
     private float lerpAmount;
-    [Range(0, 1)]
     [SerializeField] private float colorLerpAmount;
     private float maxMass = 0;
     [SerializeField] private float closeAmountSmoothing;
     private float beforeAngleDrag;
+    [SerializeField] private float lerpAmountTimes;
 
     [SerializeField] private int grabDist;
+    [SerializeField] private int holdDist;
     [SerializeField] private int objRotDrag;
 
     private bool isGrabbing = false;
@@ -73,22 +73,22 @@ public class GrabObjects : MonoBehaviour
         }
 
         if(canGrab){
-            cursorMat.color = Color.Lerp(cursorMat.color, canGrabColor, colorLerpAmount);
+            cursorMat.color = Color.Lerp(cursorMat.color, canGrabColor, Time.deltaTime * colorLerpAmount);
         }
         else{ 
-            cursorMat.color = Color.Lerp(cursorMat.color, cantGrabColor, colorLerpAmount);
+            cursorMat.color = Color.Lerp(cursorMat.color, cantGrabColor, Time.deltaTime * colorLerpAmount);
         }
     }
 
     private void MoveObject(){
-        if(Physics.Raycast(mainRay, out RaycastHit hit, grabDist, playerMask) && hit.transform.gameObject != grabbedObj){
-            Vector3 lerpedPos = Vector3.Lerp(grabbedObj.transform.position, hit.point, lerpAmount);
+        if(Physics.Raycast(mainRay, out RaycastHit hit, holdDist, playerMask) && hit.transform.gameObject != grabbedObj){
+            Vector3 lerpedPos = Vector3.Lerp(grabbedObj.transform.position, hit.point, lerpAmount * Time.deltaTime);
             if(!isClose(grabbedObj.transform.position, lerpedPos, closeAmountSmoothing)){
                 grabbedObj.transform.position = lerpedPos;
             }
         }
         else{
-            Vector3 lerpedPos = Vector3.Lerp(grabbedObj.transform.position, mainRay.origin + mainRay.direction * grabDist, lerpAmount);
+            Vector3 lerpedPos = Vector3.Lerp(grabbedObj.transform.position, mainRay.origin + mainRay.direction * holdDist, lerpAmount * Time.deltaTime);
             if(!isClose(grabbedObj.transform.position, lerpedPos, closeAmountSmoothing)){
                 grabbedObj.transform.position = lerpedPos;
             }
@@ -105,9 +105,9 @@ public class GrabObjects : MonoBehaviour
         beforeAngleDrag = grabbedObjrb.angularDamping;
         grabbedObjrb.angularDamping = objRotDrag;
 
-        lerpAmount = Mathf.Clamp(maxMass/grabbedObjrb.mass, 0, 1);
+        lerpAmount = (maxMass/grabbedObjrb.mass) * lerpAmountTimes;
 
-        CreateTempObj();
+        grabbedObj.tag = "StayInScene";
     }
 
     private void LetGoObjectValues(){
@@ -115,10 +115,6 @@ public class GrabObjects : MonoBehaviour
 
         grabbedObjrb.collisionDetectionMode = CollisionDetectionMode.Discrete;
         grabbedObjrb.angularDamping = beforeAngleDrag;
-    }
-
-    private void CreateTempObj(){
-        
     }
 
     void OnDrawGizmos(){

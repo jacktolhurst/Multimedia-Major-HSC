@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 104901664}
   - component: {fileID: 104901663}
   m_Layer: 0
-  m_Name: SceneRestarter
+  m_Name: ManagerGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3162f92f576228a45a2f5db82e7ae63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetFrameRate: 60
 --- !u!4 &104901664
 Transform:
   m_ObjectHideFlags: 0
@@ -22227,9 +22228,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 448
   grabTag: Grabbable
-  colorLerpAmount: 0.1
+  colorLerpAmount: 6
   closeAmountSmoothing: 0.0001
-  grabDist: 2
+  lerpAmountTimes: 100
+  grabDist: 4
+  holdDist: 2
   objRotDrag: 10
 --- !u!1 &1682670642
 GameObject:
