@@ -667,7 +667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1535473495938274782}
-  - component: {fileID: -4804517308461953628}
+  - component: {fileID: -5703719490124649645}
   m_Layer: 0
   m_Name: BookCubicle
   m_TagString: Untagged
@@ -717,7 +717,7 @@ Transform:
   - {fileID: 4334560119375736202}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4804517308461953628
+--- !u!114 &-5703719490124649645
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

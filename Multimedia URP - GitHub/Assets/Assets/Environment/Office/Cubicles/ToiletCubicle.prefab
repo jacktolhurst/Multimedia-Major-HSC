@@ -1465,7 +1465,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8103768355541420433}
-  - component: {fileID: 6810340506151963341}
+  - component: {fileID: -8127735935883108310}
   m_Layer: 0
   m_Name: ToiletCubicle
   m_TagString: Untagged
@@ -1504,7 +1504,7 @@ Transform:
   - {fileID: 2941583715014177888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6810340506151963341
+--- !u!114 &-8127735935883108310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

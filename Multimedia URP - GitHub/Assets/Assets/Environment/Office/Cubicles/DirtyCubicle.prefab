@@ -1564,7 +1564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2617860247689550481}
-  - component: {fileID: -6643876730840846507}
+  - component: {fileID: 5973307747469548941}
   m_Layer: 0
   m_Name: DirtyCubicle
   m_TagString: Untagged
@@ -1616,7 +1616,7 @@ Transform:
   - {fileID: 4523571378609421427}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6643876730840846507
+--- !u!114 &5973307747469548941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

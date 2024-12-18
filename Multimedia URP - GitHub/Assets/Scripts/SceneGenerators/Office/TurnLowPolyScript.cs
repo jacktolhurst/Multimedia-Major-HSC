@@ -4,9 +4,8 @@ using System.Collections.Generic;
 public class TurnLowPolyScript : MonoBehaviour
 {
     public void TurnLowPoly(){
-        List<GameObject> foundObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("StayInScene")).FindAll(g => g.transform.IsChildOf(this.transform));
         foreach(Transform child in transform){
-            if(!foundObjects.Contains(child.gameObject)){
+            if(child.gameObject.tag != "StayInScene"){
                 child.gameObject.SetActive(false);
             }
         }

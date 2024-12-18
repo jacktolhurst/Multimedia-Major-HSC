@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class GrabObjects : MonoBehaviour
 {
+    [SerializeField] private CubicleGeneratorV2 cubicleGeneratorV2;
+
     [SerializeField] private Material cursorMat;
 
     [SerializeField] private Color canGrabColor;
@@ -108,6 +110,8 @@ public class GrabObjects : MonoBehaviour
         lerpAmount = (maxMass/grabbedObjrb.mass) * lerpAmountTimes;
 
         grabbedObj.tag = "StayInScene";
+
+        cubicleGeneratorV2.KeepObject(grabbedObj);
     }
 
     private void LetGoObjectValues(){

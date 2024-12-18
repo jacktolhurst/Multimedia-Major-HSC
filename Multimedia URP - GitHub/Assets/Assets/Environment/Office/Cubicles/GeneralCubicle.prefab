@@ -1498,7 +1498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5710497894110575624}
-  - component: {fileID: 5094611821682763382}
+  - component: {fileID: -39552119214904292}
   m_Layer: 0
   m_Name: GeneralCubicle
   m_TagString: Untagged
@@ -1538,7 +1538,7 @@ Transform:
   - {fileID: 4900023789790710032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5094611821682763382
+--- !u!114 &-39552119214904292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

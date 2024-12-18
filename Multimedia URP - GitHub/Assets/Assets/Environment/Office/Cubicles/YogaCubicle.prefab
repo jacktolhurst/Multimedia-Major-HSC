@@ -1946,7 +1946,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8630417332153703812}
-  - component: {fileID: -989694468800119345}
+  - component: {fileID: 3780917501717286896}
   m_Layer: 0
   m_Name: YogaCubicle
   m_TagString: Untagged
@@ -1987,7 +1987,7 @@ Transform:
   - {fileID: 7517423836697831431}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-989694468800119345
+--- !u!114 &3780917501717286896
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

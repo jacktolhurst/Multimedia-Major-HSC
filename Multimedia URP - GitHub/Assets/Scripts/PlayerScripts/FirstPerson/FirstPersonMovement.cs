@@ -58,8 +58,8 @@ public class FirstPersonMovement : MonoBehaviour
 
 // ----------------------------------------------------------------
 
-    [Header("Sound")]
-    private EventInstance playerFootSteps;
+    // [Header("Sound")]
+    // private EventInstance playerFootSteps;
 
 // ----------------------------------------------------------------
 
@@ -74,9 +74,9 @@ public class FirstPersonMovement : MonoBehaviour
         playerBoundsSize = playerRenderer.bounds.size;
     }
 
-    void Start(){
-        playerFootSteps = AudioManager.instance.CreatEventInstance(FMODEvents.instance.playerFootSteps);
-    }
+    // void Start(){
+    //     playerFootSteps = AudioManager.instance.CreatEventInstance(FMODEvents.instance.playerFootSteps);
+    // }
 
     void Update(){
         Vector3[] positions = {
@@ -141,7 +141,7 @@ public class FirstPersonMovement : MonoBehaviour
     void FixedUpdate(){
         Movement();
 
-        UpdateSound();
+        // UpdateSound();
     }
 
     private void Movement(){
@@ -181,16 +181,16 @@ public class FirstPersonMovement : MonoBehaviour
         }
     }
 
-    private void UpdateSound(){
-        if(rb.linearVelocity.x != 0 && isGrounded){
-            PLAYBACK_STATE playbackState;
-            playerFootSteps.getPlaybackState(out playbackState);
-            if(playbackState.Equals(PLAYBACK_STATE.STOPPED)){
-                playerFootSteps.start();
-            }
-        }
-        else{ 
-            playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
-        }
-    }
+    // private void UpdateSound(){
+    //     if(rb.linearVelocity.x != 0 && isGrounded){
+    //         PLAYBACK_STATE playbackState;
+    //         playerFootSteps.getPlaybackState(out playbackState);
+    //         if(playbackState.Equals(PLAYBACK_STATE.STOPPED)){
+    //             playerFootSteps.start();
+    //         }
+    //     }
+    //     else{ 
+    //         playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
+    //     }
+    // }
 }
