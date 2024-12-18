@@ -19,20 +19,24 @@ public class CubicleGeneratorV2 : MonoBehaviour
     [SerializeField] private GameObject player;
     private GameObject nonChunkedParent;
 
+    private Bounds selfBounds;
+
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private LayerMask wallMask;
 
     private Vector3 startingPos = Vector3.zero;
+    private Vector3 playerPos;
+    [SerializeField] private Vector3 boundsSize;
 
     [SerializeField] private float additionDistFromPrev;
     [SerializeField] private float walkwayDistance;
     [SerializeField] private float checkDistance;
+    [SerializeField] private float cubicleScaling;
 
     private int rows = 0;
     [SerializeField] private int chunkSize;
     private int iteration = 0;
     [SerializeField] private int maxIteration; // the max iteration count, pretty arbetrary
-    [SerializeField] private int interval;
 
     [SerializeField] private bool reGenerate;
     [SerializeField] private bool drawGizmos;
@@ -42,6 +46,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
         CreateCubicles();
 
+        selfBounds = GetComponent<BoxCollider>().bounds;
     }
 
     void Start(){
@@ -58,23 +63,27 @@ public class CubicleGeneratorV2 : MonoBehaviour
             CreateCubicles();
             reGenerate = false;
         }
+
+        playerPos = player.transform.position;
+
+        selfBounds.center = playerPos;
+        selfBounds.size = boundsSize;
     }
 
     private IEnumerator DistCheck(){
         while(true){
             foreach(KeyValuePair<GameObject, Vector3> pair in parentVector){
-                if(!IsClose(pair.Value, player.transform.position, checkDistance)){
+                if(!selfBounds.Contains(pair.Value)){
                     if(pair.Key.activeSelf != false){
                         pair.Key.SetActive(false);
-                        yield return null;
                     }
                 }
                 else{
                     if(pair.Key.activeSelf != true){
                         pair.Key.SetActive(true);
-                        yield return null;
                     }
                 }
+                yield return null;
             }
             yield return null;
         }
@@ -88,7 +97,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
             List<GameObject> chunkedObjects = new List<GameObject>();
 
-            for(int i = 0; i < chunkSize; i++){
+            for(int i = 0; i < chunkSize + 1; i++){
 
                 GameObject obj = GetObj();
                 Vector3 position = transform.position;
@@ -154,7 +163,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
         foreach(GameObject child in nonChunkedObjects){
             GameObject obj = Instantiate(child, child.transform.position, child.transform.rotation, nonChunkedParent.transform);
             if(child.name.Contains("Cubicle")){
-                obj.transform.localScale *= 1.6f;
+                obj.transform.localScale *= cubicleScaling;
             }
         }
     }
@@ -265,7 +274,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
             }
 
             Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(player.transform.position, checkDistance);
+            Gizmos.DrawWireCube(playerPos, boundsSize);
         }
     }
 }

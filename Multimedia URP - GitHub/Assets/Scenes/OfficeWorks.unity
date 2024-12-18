@@ -175,6 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53298772}
   - component: {fileID: 53298771}
+  - component: {fileID: 53298773}
   m_Layer: 0
   m_Name: CubicleGeneratorV2
   m_TagString: Untagged
@@ -220,12 +221,13 @@ MonoBehaviour:
   wallMask:
     serializedVersion: 2
     m_Bits: 256
-  additionDistFromPrev: 0
-  walkwayDistance: 20
-  checkDistance: 47.8
-  chunkSize: 10
-  maxIteration: 100
-  interval: 10
+  boundsSize: {x: 50, y: 25, z: 40}
+  additionDistFromPrev: -0.5
+  walkwayDistance: 10
+  checkDistance: 35
+  cubicleScaling: 1.45
+  chunkSize: 5
+  maxIteration: 200
   reGenerate: 0
   drawGizmos: 1
 --- !u!4 &53298772
@@ -243,6 +245,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &53298773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53298770}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &104901662
 GameObject:
   m_ObjectHideFlags: 0
@@ -5687,76 +5710,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1264760869}
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
---- !u!1 &539054472
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 539054474}
-  - component: {fileID: 539054475}
-  m_Layer: 0
-  m_Name: CubicleGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &539054474
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539054472}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -50, y: 2.25, z: 10.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &539054475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539054472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25b64cbd9b55a4b43a4ec475258edc79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cubicleObjs:
-  - gameObject: {fileID: 6872805143060948726, guid: 130a6922aa13c4147b066d5414222550,
-      type: 3}
-    chance: 40
-  - gameObject: {fileID: 5484985688424306213, guid: a5949bd6091a12943915084fedbeb753,
-      type: 3}
-    chance: 5
-  - gameObject: {fileID: 1579061923543834654, guid: bb09bfa2be664b848b7e3e3dad660ca6,
-      type: 3}
-    chance: 5
-  - gameObject: {fileID: 5255830076675516124, guid: e0cfde0ace2c3a84986c72b925a436bf,
-      type: 3}
-    chance: 2
-  - gameObject: {fileID: 7223554113747979325, guid: f74bf68e7554a7941a508b1cf6addbae,
-      type: 3}
-    chance: 1
-  - gameObject: {fileID: 6316331835703175235, guid: 4f35b1db503d97d46a7193ef3662ead1,
-      type: 3}
-    chance: 1
-  addedPosition: {x: 6, y: 0, z: -30}
-  CubicleSize: {x: 8, y: 5, z: 2}
-  generations: 400
-  player: {fileID: 1395693326}
-  cubicleRenderDist: 40
-  interval: 2
-  doDistCheck: 1
 --- !u!1001 &625636894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21486,7 +21439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40415b106d8a5ae489fa7172200ccd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubicleGeneratorV2: {fileID: 0}
+  cubicleGeneratorV2: {fileID: 53298771}
   cursorMat: {fileID: 2100000, guid: e6a2ffeb71cc63c4bab4c74859c4e66b, type: 2}
   canGrabColor: {r: 1, g: 1, b: 1, a: 1}
   cantGrabColor: {r: 0, g: 0, b: 0, a: 1}
@@ -22013,7 +21966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nonRigidbodyVelocity: 0
-  attenuationObject: {fileID: 539054472}
+  attenuationObject: {fileID: 0}
 --- !u!1 &2108399105
 GameObject:
   m_ObjectHideFlags: 0
@@ -22091,7 +22044,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 393288144}
-  - {fileID: 539054474}
   - {fileID: 53298772}
   - {fileID: 390010651}
   - {fileID: 413495424}
