@@ -72,13 +72,7 @@ public class FirstPersonMovement : MonoBehaviour
         moveDirection = Vector3.zero;
 
         playerBoundsSize = playerRenderer.bounds.size;
-    }
 
-    // void Start(){
-    //     playerFootSteps = AudioManager.instance.CreatEventInstance(FMODEvents.instance.playerFootSteps);
-    // }
-
-    void Update(){
         Vector3[] positions = {
             new Vector3(0, -(playerBoundsSize.y/2), 0),
             new Vector3(playerBoundsSize.x/2, -playerBoundsSize.y/2, -playerBoundsSize.z/2),
@@ -87,6 +81,13 @@ public class FirstPersonMovement : MonoBehaviour
             new Vector3(-playerBoundsSize.x/2, -playerBoundsSize.y/2, playerBoundsSize.z/2)
         };
         raycastPositions = positions;
+    }
+
+    // void Start(){
+    //     playerFootSteps = AudioManager.instance.CreatEventInstance(FMODEvents.instance.playerFootSteps);
+    // }
+
+    void Update(){
 
         if(useCheckBox){
             isGrounded = Physics.CheckBox(transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize, playerBoundsSize.z) - new Vector3(boxPadding, 0, boxPadding), orientation.rotation, groundMask);

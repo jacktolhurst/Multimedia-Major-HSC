@@ -19,37 +19,52 @@ public class CubicleGeneratorV2 : MonoBehaviour
     [SerializeField] private GameObject player;
     private GameObject nonChunkedParent;
 
-    private Bounds selfBounds;
+    private Bounds checkBounds;
+    private Bounds playerMovementBounds;
 
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private LayerMask wallMask;
 
     private Vector3 startingPos = Vector3.zero;
     private Vector3 playerPos;
-    [SerializeField] private Vector3 boundsSize;
+    [SerializeField] private Vector3 checkBoundsSize;
+    [SerializeField] private Vector3 playerDistBoundsSize;
+    private Vector3 delayedPlayerPos;
 
     [SerializeField] private float additionDistFromPrev;
     [SerializeField] private float walkwayDistance;
-    [SerializeField] private float checkDistance;
     [SerializeField] private float cubicleScaling;
+    [SerializeField] private float gapDistance;
 
     private int rows = 0;
     [SerializeField] private int chunkSize;
     private int iteration = 0;
-    [SerializeField] private int maxIteration; // the max iteration count, pretty arbetrary
+    [SerializeField] private int maxIteration; // the max iteration count, pretty arbetrary but needed
 
     [SerializeField] private bool reGenerate;
     [SerializeField] private bool drawGizmos;
+    private bool updatedPlayerMovementBounds;
+    [SerializeField] private bool doDistCheck;
 
     void Awake(){
         startingPos = transform.position;
+        playerPos = player.transform.position;
+        delayedPlayerPos = playerPos;
 
         CreateCubicles();
 
-        selfBounds = GetComponent<BoxCollider>().bounds;
+
+        checkBounds = GetComponent<BoxCollider>().bounds;
+        checkBounds.center = playerPos;
+        checkBounds.size = checkBoundsSize;
+
+        playerMovementBounds = new Bounds(playerPos, playerDistBoundsSize);
+
     }
 
     void Start(){
+        EarlyDistCheck();
+
         StartCoroutine(DistCheck());
     }
 
@@ -66,31 +81,57 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
         playerPos = player.transform.position;
 
-        selfBounds.center = playerPos;
-        selfBounds.size = boundsSize;
+        checkBounds.center = playerPos;
+        checkBounds.size = checkBoundsSize;
+        
+        playerMovementBounds.size = playerDistBoundsSize;
     }
 
-    private IEnumerator DistCheck(){
-        while(true){
+    private void EarlyDistCheck(){ // an early version of discheck used in the awake to leverage intial memory
+        if(doDistCheck){
             foreach(KeyValuePair<GameObject, Vector3> pair in parentVector){
-                if(!selfBounds.Contains(pair.Value)){
-                    if(pair.Key.activeSelf != false){
+                if(!checkBounds.Contains(pair.Value)){
+                    if(pair.Key.activeSelf){
                         pair.Key.SetActive(false);
                     }
                 }
                 else{
-                    if(pair.Key.activeSelf != true){
+                    if(!pair.Key.activeSelf){
                         pair.Key.SetActive(true);
                     }
                 }
-                yield return null;
             }
-            yield return null;
         }
     }
 
+    private IEnumerator DistCheck(){
+        while(doDistCheck){
+            if(!playerMovementBounds.Contains(playerPos)){
+                foreach(KeyValuePair<GameObject, Vector3> pair in parentVector){
+                    if(!checkBounds.Contains(pair.Value)){
+                        if(pair.Key.activeSelf){
+                            pair.Key.SetActive(false);
+                        }
+                    }
+                    else{
+                        if(!pair.Key.activeSelf){
+                            pair.Key.SetActive(true);
+                            yield return null;
+                        }
+                    }
+                }
+                updatedPlayerMovementBounds = true;
+                playerMovementBounds.center = playerPos;
+            }
+            else{
+                yield return null;
+            }
+        }
+    }
 
     private void CreateCubicles(){ // starts the creation of all cubicles
+        transform.position = GetPos(null, gapDistance);
+
         List<GameObject> nonChunkedObjects = new List<GameObject>();
         
         while(iteration < maxIteration){
@@ -98,6 +139,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
             List<GameObject> chunkedObjects = new List<GameObject>();
 
             for(int i = 0; i < chunkSize + 1; i++){
+
 
                 GameObject obj = GetObj();
                 Vector3 position = transform.position;
@@ -123,21 +165,20 @@ public class CubicleGeneratorV2 : MonoBehaviour
                     }
                 }
 
-                GameObject instanceObj = Instantiate(obj, position, Quaternion.identity);
+                if(i != 0){
 
-                foreach(Transform childTrans in instanceObj.transform) {
-                    GameObject child = childTrans.gameObject;
+                    GameObject instanceObj = Instantiate(obj, position, Quaternion.identity);
 
-                    if(child.tag == "StayInScene"){
-                        nonChunkedObjects.Add(child);
-                        Destroy(child);
+                    foreach(Transform childTrans in instanceObj.transform) {
+                        GameObject child = childTrans.gameObject;
+
+                        if(child.tag == "StayInScene"){
+                            nonChunkedObjects.Add(child);
+                            Destroy(child);
+                        }
                     }
-                }
 
-                chunkedObjects.Add(instanceObj);
-
-                if(i == 0){
-                    Destroy(chunkedObjects[chunkedObjects.Count-1]);
+                    chunkedObjects.Add(instanceObj);
                 }
             }
 
@@ -155,6 +196,8 @@ public class CubicleGeneratorV2 : MonoBehaviour
             parentVector.Add(parentObj, GetMidPosition(children)); 
 
             iteration ++;
+
+            transform.position = GetPos(null, gapDistance);
         }
 
         nonChunkedParent = new GameObject("Parent Stay In Scene");
@@ -166,6 +209,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
                 obj.transform.localScale *= cubicleScaling;
             }
         }
+
     }
     
     private GameObject GetObj(){ //  gets the random obj each time, uses the RandomChance func to get the chance then returns if the total chance is higher teh random chance, oif nothing returns just do the most likely one
@@ -202,14 +246,20 @@ public class CubicleGeneratorV2 : MonoBehaviour
         return Random.Range(0, chance);
     }
 
-    private Vector3 GetPos(GameObject obj){
-        for(int i = 0; i < 2; i++){
-            Vector3 generatedPos = transform.position +  new Vector3(GetBounds(obj).size.x + additionDistFromPrev, 0, 0);
-            if(IsPosValid(generatedPos, obj)){
-                return generatedPos;
+    private Vector3 GetPos(GameObject obj = null, float size = 0){
+        if(obj != null){
+            for(int i = 0; i < 2; i++){
+                Vector3 generatedPos = transform.position +  new Vector3(GetBounds(obj).size.x + additionDistFromPrev, 0, 0);
+                if(IsPosValid(generatedPos, obj)){
+                    return generatedPos;
+                }
             }
+            return Vector3.zero;
         }
-        return Vector3.zero;
+        else{
+            Vector3 generatedPos = transform.position +  new Vector3(size + additionDistFromPrev, 0, 0);
+            return generatedPos;
+        }
     }
 
     private bool IsPosValid(Vector3 pos, GameObject obj){ // checks if the position is valid, if there is a ground but nothing else, true, if it hirts a wall, false, if it hits nothing, false
@@ -223,15 +273,15 @@ public class CubicleGeneratorV2 : MonoBehaviour
     }
 
     private Bounds GetBounds(GameObject obj){ // returns the bounds of the largest object on the x in the children of the object
-        float boundsSize = 0;
+        float checkBoundsSize = 0;
         Bounds newBounds = new Bounds();
 
         foreach(Transform childTrans in obj.transform){
             GameObject child = childTrans.gameObject;
             if(child.GetComponent<Renderer>()){
-                if(child.GetComponent<Renderer>().bounds.size.x > boundsSize){
+                if(child.GetComponent<Renderer>().bounds.size.x > checkBoundsSize){
                     newBounds = child.GetComponent<Renderer>().bounds;
-                    boundsSize = newBounds.size.x;
+                    checkBoundsSize = newBounds.size.x;
                 }
             }
         }
@@ -274,7 +324,14 @@ public class CubicleGeneratorV2 : MonoBehaviour
             }
 
             Gizmos.color = Color.white;
-            Gizmos.DrawWireCube(playerPos, boundsSize);
+            Gizmos.DrawWireCube(delayedPlayerPos, checkBoundsSize);
+
+            Gizmos.DrawWireCube(delayedPlayerPos, playerDistBoundsSize);
+
+            if(updatedPlayerMovementBounds){
+                delayedPlayerPos = playerPos;
+                updatedPlayerMovementBounds = false;
+            }
         }
     }
 }
