@@ -20,12 +20,14 @@ public class GrabObjects : MonoBehaviour
 
     [SerializeField] private string grabTag;
 
-    private float lerpAmount;
+    private Vector3 targetPosition;
+
     [SerializeField] private float colorLerpAmount;
-    private float maxMass = 0;
     [SerializeField] private float closeAmountSmoothing;
     private float beforeAngleDrag;
-    [SerializeField] private float lerpAmountTimes;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float objectMaxDistance;
+    [SerializeField] private float power;
 
     [SerializeField] private int grabDist;
     [SerializeField] private int holdDist;
@@ -33,16 +35,7 @@ public class GrabObjects : MonoBehaviour
 
     private bool isGrabbing = false;
     private bool canGrab = false;
-
-    void Start(){
-        Rigidbody[] allObjects = FindObjectsByType<Rigidbody>(FindObjectsSortMode.None);
-        foreach(Rigidbody objRb in allObjects){
-            if(objRb.mass > maxMass){
-                maxMass = objRb.mass;
-            }
-        }
-        maxMass /= 50;
-    }
+    private bool tooFar = false;
 
     void Update(){
         mainRay = new Ray(cam.transform.position, cam.transform.forward);
@@ -64,14 +57,11 @@ public class GrabObjects : MonoBehaviour
                 canGrab = false;
             }
         }
-        else if(Input.GetKeyDown(KeyCode.Mouse0) && isGrabbing){
+        else if(Input.GetKeyDown(KeyCode.Mouse0) && isGrabbing || tooFar){
             isGrabbing = false;
+            tooFar = false;
             LetGoObjectValues();
             grabbedObj = null;
-        }
-        
-        if(isGrabbing){ 
-            MoveObject();
         }
 
         if(canGrab){
@@ -80,23 +70,29 @@ public class GrabObjects : MonoBehaviour
         else{ 
             cursorMat.color = Color.Lerp(cursorMat.color, cantGrabColor, Time.deltaTime * colorLerpAmount);
         }
+
+        if(isGrabbing && Vector3.Distance(grabbedObj.transform.position, transform.position) > objectMaxDistance){
+            Debug.Log("too far");
+            cursorMat.color = Color.red;
+            tooFar = true;
+        }
+    }
+
+    void FixedUpdate(){
+        if(isGrabbing){ 
+            MoveObject();
+        }
     }
 
     private void MoveObject(){
-        if(Physics.Raycast(mainRay, out RaycastHit hit, holdDist, playerMask) && hit.transform.gameObject != grabbedObj){
-            Vector3 lerpedPos = Vector3.Lerp(grabbedObj.transform.position, hit.point, lerpAmount * Time.deltaTime);
-            if(!isClose(grabbedObj.transform.position, lerpedPos, closeAmountSmoothing)){
-                grabbedObj.transform.position = lerpedPos;
-            }
-        }
-        else{
-            Vector3 lerpedPos = Vector3.Lerp(grabbedObj.transform.position, mainRay.origin + mainRay.direction * holdDist, lerpAmount * Time.deltaTime);
-            if(!isClose(grabbedObj.transform.position, lerpedPos, closeAmountSmoothing)){
-                grabbedObj.transform.position = lerpedPos;
-            }
-        }
+        targetPosition = mainRay.origin + mainRay.direction * holdDist;
 
-        grabbedObjrb.linearVelocity = Vector3.zero;
+        Vector3 direction = (targetPosition - grabbedObjrb.position).normalized;
+        float distance = Vector3.Distance(grabbedObj.transform.position, transform.position);
+        grabbedObjrb.linearVelocity = direction * moveSpeed * Mathf.Pow(distance, power);
+
+
+        Debug.Log(grabbedObjrb.linearVelocity);
     }
 
     private void GrabObjectValues(){
@@ -106,8 +102,6 @@ public class GrabObjects : MonoBehaviour
         grabbedObjrb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         beforeAngleDrag = grabbedObjrb.angularDamping;
         grabbedObjrb.angularDamping = objRotDrag;
-
-        lerpAmount = (maxMass/grabbedObjrb.mass) * lerpAmountTimes;
 
         grabbedObj.tag = "StayInScene";
 
@@ -122,13 +116,15 @@ public class GrabObjects : MonoBehaviour
     }
 
     void OnDrawGizmos(){
-        Debug.DrawRay(mainRay.origin, mainRay.direction * grabDist, Color.magenta);
+        if(isGrabbing){
+            Debug.DrawRay(mainRay.origin, mainRay.direction * holdDist, Color.cyan);
+
+            Gizmos.color = Color.grey;
+            Gizmos.DrawWireSphere(transform.position, objectMaxDistance);
+        }
+        else{
+            Debug.DrawRay(mainRay.origin, mainRay.direction * grabDist, Color.blue);
+        }
+
     }
-
-    private bool isClose(Vector3 APos, Vector3 BPos, float dist){
-        return Vector3.Distance(APos, BPos) < dist;
-    }
-
-
-
 }
