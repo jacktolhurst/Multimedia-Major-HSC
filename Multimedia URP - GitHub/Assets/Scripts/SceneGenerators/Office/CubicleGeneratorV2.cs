@@ -11,7 +11,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
     }
 
     private Dictionary<GameObject, Vector3> parentVector = new Dictionary<GameObject, Vector3>();
-    
+
     [SerializeField] private List<objects> cubicleObjs = new List<objects>();
 
     private List<GameObject> generatedObjs = new List<GameObject>();
