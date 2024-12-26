@@ -21453,8 +21453,10 @@ MonoBehaviour:
     m_Bits: 448
   grabTag: Grabbable
   colorLerpAmount: 6
-  closeAmountSmoothing: 0.0001
+  closeAmountSmoothing: 0.1
   lerpAmountTimes: 500
+  moveSpeed: 2
+  objectMaxDistance: 5
   grabDist: 4
   holdDist: 2
   objRotDrag: 10
