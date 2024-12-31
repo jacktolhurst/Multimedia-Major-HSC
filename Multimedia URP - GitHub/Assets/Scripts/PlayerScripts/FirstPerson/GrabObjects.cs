@@ -2,39 +2,49 @@ using UnityEngine;
 
 public class GrabObjects : MonoBehaviour
 {
+    [Header("CubicleGeneratorV2")] // used specifically to call the keepObejct function, to update all lists to keep this object
     [SerializeField] private CubicleGeneratorV2 cubicleGeneratorV2;
 
-    [SerializeField] private Material cursorMat;
+    [Header("Cursor")] // changing the colours of the cursor to match if the player can grab and to tell when an object is too far
+    [SerializeField] private Material cursorMat; 
 
     [SerializeField] private Color canGrabColor;
     [SerializeField] private Color cantGrabColor;
 
-    [SerializeField] private GameObject cam;
-    private GameObject grabbedObj;
+    [SerializeField] private float colorLerpAmount;
 
-    private Rigidbody grabbedObjrb;
+    [Header("Raycasting")] // variables used in the raycast needed for grabbing the object and holding it there
+    [SerializeField] private GameObject cam;
 
     private Ray mainRay;
 
     [SerializeField] private LayerMask playerMask;
 
+    [SerializeField] private float grabDist;
+
+    private bool canGrab = false;
+
+    [Header("Grabbed Object Values")] // all variables to do with the setting and retreiving values with the grabbedObj (NOT MOVEMENT)
+    private GameObject grabbedObj;
+
+    private Rigidbody grabbedObjrb;
+
     [SerializeField] private string grabTag;
 
-    private Vector3 targetPosition;
-
-    [SerializeField] private float colorLerpAmount;
-    [SerializeField] private float closeAmountSmoothing;
     private float beforeAngleDrag;
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float objectMaxDistance;
-    [SerializeField] private float power;
 
-    [SerializeField] private int grabDist;
-    [SerializeField] private int holdDist;
     [SerializeField] private int objRotDrag;
 
     private bool isGrabbing = false;
-    private bool canGrab = false;
+
+    [Header("Grabbed Object Movement")] // all values with movement inside the grabbed object
+
+    [SerializeField] private float baseMoveSpeed;
+    private float moveSpeed;
+    [SerializeField] private float objectMaxDistance;
+
+    [SerializeField] private int holdDist;
+
     private bool tooFar = false;
 
     void Update(){
@@ -68,13 +78,14 @@ public class GrabObjects : MonoBehaviour
             cursorMat.color = Color.Lerp(cursorMat.color, canGrabColor, Time.deltaTime * colorLerpAmount);
         }
         else{ 
-            cursorMat.color = Color.Lerp(cursorMat.color, cantGrabColor, Time.deltaTime * colorLerpAmount);
+            cursorMat.color = Color.Lerp(cursorMat.color, cantGrabColor, Time.deltaTime * (colorLerpAmount / 3));
         }
 
-        if(isGrabbing && Vector3.Distance(grabbedObj.transform.position, transform.position) > objectMaxDistance){
-            Debug.Log("too far");
-            cursorMat.color = Color.red;
-            tooFar = true;
+        if(isGrabbing){
+            if(Vector3.Distance(grabbedObj.transform.position, transform.position) > objectMaxDistance){
+                cursorMat.color = Color.red;
+                tooFar = true;
+            }
         }
     }
 
@@ -85,14 +96,12 @@ public class GrabObjects : MonoBehaviour
     }
 
     private void MoveObject(){
-        targetPosition = mainRay.origin + mainRay.direction * holdDist;
+        Vector3 targetPosition = mainRay.origin + mainRay.direction * holdDist;
 
         Vector3 direction = (targetPosition - grabbedObjrb.position).normalized;
-        float distance = Vector3.Distance(grabbedObj.transform.position, transform.position);
-        grabbedObjrb.linearVelocity = direction * moveSpeed * Mathf.Pow(distance, power);
-
-
-        Debug.Log(grabbedObjrb.linearVelocity);
+        float distance = Vector3.Distance(targetPosition, grabbedObj.transform.position);
+        
+        grabbedObjrb.linearVelocity = direction * moveSpeed * distance;
     }
 
     private void GrabObjectValues(){
@@ -106,6 +115,8 @@ public class GrabObjects : MonoBehaviour
         grabbedObj.tag = "StayInScene";
 
         cubicleGeneratorV2.KeepObject(grabbedObj);
+
+        moveSpeed = baseMoveSpeed/grabbedObjrb.mass;
     }
 
     private void LetGoObjectValues(){

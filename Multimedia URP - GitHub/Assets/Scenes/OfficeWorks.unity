@@ -21447,17 +21447,18 @@ MonoBehaviour:
   cursorMat: {fileID: 2100000, guid: e6a2ffeb71cc63c4bab4c74859c4e66b, type: 2}
   canGrabColor: {r: 1, g: 1, b: 1, a: 1}
   cantGrabColor: {r: 0, g: 0, b: 0, a: 1}
+  colorLerpAmount: 6
   cam: {fileID: 2100320614}
   playerMask:
     serializedVersion: 2
     m_Bits: 448
-  grabTag: Grabbable
-  colorLerpAmount: 6
-  closeAmountSmoothing: 0.1
-  lerpAmountTimes: 500
-  moveSpeed: 2
-  objectMaxDistance: 5
   grabDist: 4
+  grabTag: Grabbable
+  baseMoveSpeed: 5
+  objectMaxDistance: 5
+  distanceMin: 0.1
+  distanceDiv: 30
+  power: 4
   holdDist: 2
   objRotDrag: 10
 --- !u!1 &1682670642
