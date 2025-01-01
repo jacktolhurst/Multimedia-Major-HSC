@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 38334870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 6.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21095,7 +21095,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 5e42c754f07623849adc814434977454, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21454,13 +21454,12 @@ MonoBehaviour:
     m_Bits: 448
   grabDist: 4
   grabTag: Grabbable
+  objRotDrag: 10
   baseMoveSpeed: 5
   objectMaxDistance: 5
-  distanceMin: 0.1
-  distanceDiv: 30
-  power: 4
   holdDist: 2
-  objRotDrag: 10
+  blurMat: {fileID: 2100000, guid: 17ffa9ce2dc5fc8408c09dfdb30f2cd0, type: 2}
+  shaderMovementSmoothing: 30
 --- !u!1 &1682670642
 GameObject:
   m_ObjectHideFlags: 0

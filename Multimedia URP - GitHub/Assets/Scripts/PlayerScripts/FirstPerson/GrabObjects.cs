@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class GrabObjects : MonoBehaviour
 {
@@ -47,6 +48,17 @@ public class GrabObjects : MonoBehaviour
 
     private bool tooFar = false;
 
+    [Header("Motion Effects")] // everything to do with effects done while in play
+    private GameObject childObj;
+
+    [SerializeField] private Material blurMat;
+
+    private Vector3 lastPosition;
+
+    [SerializeField] private float shaderMovementSmoothing;
+
+    private bool doShow = false;
+
     void Update(){
         mainRay = new Ray(cam.transform.position, cam.transform.forward);
         if(!isGrabbing){
@@ -86,6 +98,9 @@ public class GrabObjects : MonoBehaviour
                 cursorMat.color = Color.red;
                 tooFar = true;
             }
+
+            lastPosition = Vector3.Lerp(lastPosition, grabbedObj.transform.position, Time.deltaTime * shaderMovementSmoothing);
+            childObj.transform.position = lastPosition;
         }
     }
 
@@ -117,6 +132,21 @@ public class GrabObjects : MonoBehaviour
         cubicleGeneratorV2.KeepObject(grabbedObj);
 
         moveSpeed = baseMoveSpeed/grabbedObjrb.mass;
+
+        childObj = Instantiate(grabbedObj);
+        foreach(Component component in childObj.GetComponents<Component>()){
+            if(!(component is MeshRenderer) && !(component is MeshFilter) && !(component is Transform)){
+                Destroy(component);
+            }
+        }
+        childObj.GetComponent<MeshRenderer>().materials = new Material[0];
+        childObj.GetComponent<MeshRenderer>().material = blurMat;
+
+        childObj.layer = 0;
+        childObj.transform.parent = grabbedObj.transform;
+
+        doShow = true;
+        StartCoroutine(ShaderInterval());
     }
 
     private void LetGoObjectValues(){
@@ -124,6 +154,17 @@ public class GrabObjects : MonoBehaviour
 
         grabbedObjrb.collisionDetectionMode = CollisionDetectionMode.Discrete;
         grabbedObjrb.angularDamping = beforeAngleDrag;
+
+        doShow = false;
+        StopCoroutine(ShaderInterval());
+        Destroy(childObj);
+    }
+
+    private IEnumerator ShaderInterval(){
+        while(doShow){
+            lastPosition = grabbedObj.transform.position;
+            yield return new WaitForSeconds(1);
+        }
     }
 
     void OnDrawGizmos(){

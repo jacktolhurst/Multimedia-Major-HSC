@@ -317,7 +317,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
     }
 
     void OnDrawGizmos(){
-        if(drawGizmos){
+        if(drawGizmos && Application.isPlaying){
             Gizmos.color = Color.red;
             foreach(KeyValuePair<GameObject, Vector3> pair in parentVector){
                 Gizmos.DrawWireSphere(pair.Value + new Vector3(0, 10,0), 2);
