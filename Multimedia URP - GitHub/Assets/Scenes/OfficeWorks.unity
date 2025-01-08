@@ -24,9 +24,9 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.27672952, g: 0.27672952, b: 0.27672952, a: 1}
   m_AmbientGroundColor: {r: 0.06918234, g: 0.06918234, b: 0.06918234, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.30817598, g: 0.30817598, b: 0.30817598, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 4a2a1af78a111e845a0b4a48f1892f3a, type: 2}
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -21043,35 +21043,14 @@ GameObject:
   - component: {fileID: 1395693330}
   - component: {fileID: 1395693329}
   - component: {fileID: 1395693328}
-  - component: {fileID: 1395693327}
-  m_Layer: 9
+  - component: {fileID: 1395693331}
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1395693327
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395693326}
-  m_Material: {fileID: 13400000, guid: 964a1f39bfcb90749b530f709fa8cb41, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1395693328
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21124,7 +21103,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395693326}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1395693330
 Transform:
   m_ObjectHideFlags: 0
@@ -21134,12 +21113,35 @@ Transform:
   m_GameObject: {fileID: 1395693326}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.111}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1649549245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1395693331
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395693326}
+  m_Material: {fileID: 13400000, guid: 964a1f39bfcb90749b530f709fa8cb41, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1493633841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6169f2a7db4220947b17171db6ac7753,
@@ -21356,12 +21358,11 @@ MonoBehaviour:
   jumpForce: 15
   jumpMultiplier: 0.015
   airDrag: 1
-  checkBoxSize: 0.005
-  boxPadding: 0.7
-  useCheckBox: 0
-  raycastDistance: 0.2
-  rayPadding: 0.1
-  useRaycast: 1
+  jumpIntervalTime: 1.5
+  raycastPadding: {x: 0.05, y: 0.05}
+  innerIterations: 4
+  iterations: 20
+  raycastSize: 0.11
 --- !u!54 &1649549244
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21454,12 +21455,15 @@ MonoBehaviour:
     m_Bits: 448
   grabDist: 4
   grabTag: Grabbable
-  objRotDrag: 10
+  objRotDrag: 2
   baseMoveSpeed: 5
   objectMaxDistance: 5
+  massDivision: 2
   holdDist: 2
-  blurMat: {fileID: 2100000, guid: 17ffa9ce2dc5fc8408c09dfdb30f2cd0, type: 2}
-  shaderMovementSmoothing: 30
+  blurMat: {fileID: 2100000, guid: a760f9e7e33682c4f85c638ced40374a, type: 2}
+  shaderMovementSmoothing: 40
+  speedDivision: 90
+  alphaMultiplier: 0.75
 --- !u!1 &1682670642
 GameObject:
   m_ObjectHideFlags: 0
@@ -21759,7 +21763,7 @@ Transform:
   m_GameObject: {fileID: 1953897451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21939,8 +21943,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 100000
+  near clip plane: 0.01
+  far clip plane: 10000
   field of view: 60
   orthographic: 0
   orthographic size: 5

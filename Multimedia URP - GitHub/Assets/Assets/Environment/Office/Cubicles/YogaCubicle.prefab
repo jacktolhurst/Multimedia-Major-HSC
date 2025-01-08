@@ -446,7 +446,7 @@ Transform:
   m_GameObject: {fileID: 1109595268021587406}
   serializedVersion: 2
   m_LocalRotation: {x: 0.49894866, y: 0.5010491, z: 0.5010538, w: -0.49894404}
-  m_LocalPosition: {x: -1.1015708, y: 0.147, z: 1.2376075}
+  m_LocalPosition: {x: -1.101, y: -0.408, z: 1.2376075}
   m_LocalScale: {x: 25, y: 30, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -584,7 +584,7 @@ Transform:
   m_GameObject: {fileID: 1476525469419185965}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.08523846, y: -0.9170697, z: 1.167213}
+  m_LocalPosition: {x: 0.08536752, y: -1.1720697, z: 1.167213}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -688,7 +688,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -999,7 +999,7 @@ Transform:
   m_GameObject: {fileID: 1680648927396754772}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.49999997, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: 0.07241726, y: -0.36999997, z: 1.2207494}
+  m_LocalPosition: {x: 0.072546326, y: -0.802, z: 1.2207494}
   m_LocalScale: {x: 60, y: 20, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1276,10 +1276,11 @@ Transform:
   m_GameObject: {fileID: 3027243974338859385}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 1.367, y: -0.7529999, z: -0.35637808}
+  m_LocalPosition: {x: 1.3671291, y: -1.011, z: -0.371}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4381685697204675247}
   m_Father: {fileID: 8630417332153703812}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4116570331618972579
@@ -1691,12 +1692,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6365568705999578885}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 1.3669996, y: -0.483, z: -0.35637808}
-  m_LocalScale: {x: 3, y: 3, z: 15}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0.0191}
+  m_LocalScale: {x: 0.19999999, y: 0.19999997, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8630417332153703812}
+  m_Father: {fileID: 7517423836697831431}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5414588814632007480
 MeshFilter:
@@ -1829,7 +1830,7 @@ Transform:
   m_GameObject: {fileID: 6524703968162525784}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 1.3524923, y: -1.1532626, z: -0.3733101}
+  m_LocalPosition: {x: 1.3526214, y: -1.3229, z: -0.3733101}
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1933,7 +1934,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1979,7 +1980,6 @@ Transform:
   - {fileID: 6722557617176100697}
   - {fileID: 7115388094660688246}
   - {fileID: 455793946482679613}
-  - {fileID: 4381685697204675247}
   - {fileID: 8510473843093212657}
   - {fileID: 2388836501837983734}
   - {fileID: 34378584477200383}
@@ -2178,7 +2178,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7674324130568811066}
-  m_Mesh: {fileID: -5529125529952187940, guid: 87ef54266674ae8488c0e4e59697eb44, type: 3}
+  m_Mesh: {fileID: 30945264241753363, guid: 87ef54266674ae8488c0e4e59697eb44, type: 3}
 --- !u!23 &7620508652297068620
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2275,7 +2275,7 @@ Transform:
   m_GameObject: {fileID: 8000113988487923696}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -1.1241288, y: -0.691, z: 1.167213}
+  m_LocalPosition: {x: -1.124, y: -0.946, z: 1.167213}
   m_LocalScale: {x: 75, y: 75, z: 75}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2379,7 +2379,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

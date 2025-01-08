@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using FMOD.Studio;
 
 public class FirstPersonMovement : MonoBehaviour
@@ -25,31 +26,28 @@ public class FirstPersonMovement : MonoBehaviour
     [Header("Jumping")]
     [SerializeField] private LayerMask groundMask;
 
-    private Vector3 playerBoundsSize;
+    private Vector3 playerBoundsExtents;
 
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpMultiplier = 0.4f;
     [SerializeField] private float airDrag = 2f;
+    private float lastJumpTime;
+    [SerializeField] private float jumpIntervalTime;
 
 // ----------------------------------------------------------------
 
-    [Header("Using CheckBox")]
-    [SerializeField] private float checkBoxSize;
-    [Range(0f, 1f)]
-    [SerializeField] private float boxPadding;
-
-    [SerializeField] private bool useCheckBox;
-
-// ----------------------------------------------------------------
-    
     [Header("Using Raycasts")]
+    [SerializeField] private Vector2 raycastPadding;
+
+    private List<Vector3> chachedPositions = new List<Vector3>();
+
+    [Range(0,360)]
+    [SerializeField] private int innerIterations;
+    [Range(0,360)]
+    [SerializeField] private int iterations;
+
     [Range(0.1f,1f)]
-    [SerializeField] private float raycastDistance;
-    [SerializeField] private float rayPadding;
-
-    private Vector3[] raycastPositions = {new Vector3(0,0,0)};
-
-    [SerializeField] private bool useRaycast;
+    [SerializeField] private float raycastSize;
 
 // ----------------------------------------------------------------
 
@@ -71,16 +69,19 @@ public class FirstPersonMovement : MonoBehaviour
 
         moveDirection = Vector3.zero;
 
-        playerBoundsSize = playerRenderer.bounds.size;
+        playerBoundsExtents = playerRenderer.bounds.extents;
 
-        Vector3[] positions = {
-            new Vector3(0, -(playerBoundsSize.y/2), 0),
-            new Vector3(playerBoundsSize.x/2, -playerBoundsSize.y/2, -playerBoundsSize.z/2),
-            new Vector3(playerBoundsSize.x/2, -playerBoundsSize.y/2, playerBoundsSize.z/2),
-            new Vector3(-playerBoundsSize.x/2, -playerBoundsSize.y/2, -playerBoundsSize.z/2),
-            new Vector3(-playerBoundsSize.x/2, -playerBoundsSize.y/2, playerBoundsSize.z/2)
-        };
-        raycastPositions = positions;
+        chachedPositions.Add(new Vector3(0, -playerBoundsExtents.y + 0.1f,0));
+        for(int i = 0; i < innerIterations; i++){
+            float angle = (360 / innerIterations) * i;
+
+            chachedPositions.Add(GetPosAtAngle(new Vector3(0, -playerBoundsExtents.y + 0.1f, 0), new Vector2(playerBoundsExtents.x/2, playerBoundsExtents.z/2), angle));
+        }
+        for(int i = 0; i < iterations; i++){
+            float angle = (360 / iterations) * i;
+            
+            chachedPositions.Add(GetPosAtAngle(new Vector3(0, -playerBoundsExtents.y + 0.1f, 0), new Vector2(playerBoundsExtents.x, playerBoundsExtents.z), angle));
+        }
     }
 
     // void Start(){
@@ -88,34 +89,34 @@ public class FirstPersonMovement : MonoBehaviour
     // }
 
     void Update(){
-
-        if(useCheckBox){
-            isGrounded = Physics.CheckBox(transform.position - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize, playerBoundsSize.z) - new Vector3(boxPadding, 0, boxPadding), orientation.rotation, groundMask);
-
-        }
-        if(useRaycast){
-            bool raycasted = false;
-            foreach (Vector3 position in raycastPositions){
-                if(Physics.Raycast(position + transform.position + new Vector3(0, rayPadding, 0), Vector3.down, raycastDistance, groundMask)){
-                    raycasted = true;
-                    break;
-                }
-            }
-
-            if(raycasted){
-                isGrounded = true;
-            }
-            else{
-                isGrounded = false;
-            }
-        }
-
         GetInput();
         ControlDrag();
 
-        if(Input.GetButtonDown("Jump") && isGrounded){
-            Jump();
+        isGrounded = CheckGround();
+        if(Input.GetButtonDown("Jump")){
+            if(isGrounded && Time.time - lastJumpTime > jumpIntervalTime){
+                Jump();
+            }
         }
+    }
+
+    private bool CheckGround(){
+        foreach(Vector3 position in chachedPositions){
+            if(Physics.Raycast(position + transform.position, Vector3.down, raycastSize, groundMask)){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    private Vector3 GetPosAtAngle(Vector3 centre, Vector2 distances, float angle){
+        float radians = Mathf.Deg2Rad * angle;
+
+        float xOffset = Mathf.Cos(radians) * (distances.x - raycastPadding.x);
+        float zOffset = Mathf.Sin(radians) * (distances.y - raycastPadding.y);
+
+        return new Vector3(centre.x + xOffset, centre.y, centre.z + zOffset);
     }
 
     private void GetInput(){
@@ -128,6 +129,8 @@ public class FirstPersonMovement : MonoBehaviour
     private void Jump(){
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        lastJumpTime = Time.time;
     }
 
     private void ControlDrag(){ 
@@ -157,27 +160,12 @@ public class FirstPersonMovement : MonoBehaviour
 
 
     void OnDrawGizmos(){
-        if(isGrounded){
-            Gizmos.color = Color.green;
-        }
-        else{
-            Gizmos.color = Color.red;
-        }
-
-        Gizmos.matrix = Matrix4x4.TRS(transform.position, orientation.rotation, Vector3.one);
-
-        if(useCheckBox){
-            Gizmos.DrawCube(Vector3.zero - new  Vector3(0, playerBoundsSize.y/2 + checkBoxSize/2, 0), new Vector3(playerBoundsSize.x, checkBoxSize,playerBoundsSize.z)  - new Vector3(boxPadding, 0, boxPadding));
-        }
-
-        if(useRaycast){
-            foreach(Vector3 position in raycastPositions){
-                if(isGrounded){
-                    Debug.DrawRay(position + transform.position + new Vector3(0, rayPadding, 0), Vector3.down * raycastDistance, Color.green);
-                }
-                else{ 
-                    Debug.DrawRay(position + transform.position + new Vector3(0, rayPadding, 0), Vector3.down * raycastDistance, Color.red);
-                }
+        foreach(Vector3 position in chachedPositions){
+            if(isGrounded){
+                Debug.DrawRay(position + transform.position, Vector3.down * raycastSize, Color.green);
+            }
+            else{ 
+                Debug.DrawRay(position + transform.position, Vector3.down * raycastSize, Color.red);
             }
         }
     }

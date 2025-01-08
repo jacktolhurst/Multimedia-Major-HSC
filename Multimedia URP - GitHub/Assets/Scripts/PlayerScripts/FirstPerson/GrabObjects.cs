@@ -43,6 +43,7 @@ public class GrabObjects : MonoBehaviour
     [SerializeField] private float baseMoveSpeed;
     private float moveSpeed;
     [SerializeField] private float objectMaxDistance;
+    [SerializeField] private float massDivision;
 
     [SerializeField] private int holdDist;
 
@@ -56,6 +57,8 @@ public class GrabObjects : MonoBehaviour
     private Vector3 lastPosition;
 
     [SerializeField] private float shaderMovementSmoothing;
+    [SerializeField] private float speedDivision;
+    [SerializeField] private float alphaMultiplier;
 
     private bool doShow = false;
 
@@ -99,8 +102,11 @@ public class GrabObjects : MonoBehaviour
                 tooFar = true;
             }
 
+            ManageChildMaterial();
+
             lastPosition = Vector3.Lerp(lastPosition, grabbedObj.transform.position, Time.deltaTime * shaderMovementSmoothing);
             childObj.transform.position = lastPosition;
+
         }
     }
 
@@ -108,6 +114,18 @@ public class GrabObjects : MonoBehaviour
         if(isGrabbing){ 
             MoveObject();
         }
+    }
+
+    private void ManageChildMaterial(){
+        float magnitude = grabbedObjrb.linearVelocity.magnitude / speedDivision;
+        Vector3 normalizedDirection = grabbedObjrb.linearVelocity.normalized;
+        blurMat.SetVector("_ObjectSizeVector", magnitude * normalizedDirection);
+
+        float rounded = (float)Mathf.Round(Vector3.Distance(childObj.transform.position, grabbedObj.transform.position) * 10) / 10;
+        blurMat.SetFloat("_Alpha", rounded * alphaMultiplier);
+
+        blurMat.SetColor("_Color", grabbedObjrb.GetComponent<Renderer>().material.color);
+
     }
 
     private void MoveObject(){
@@ -126,12 +144,16 @@ public class GrabObjects : MonoBehaviour
         grabbedObjrb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         beforeAngleDrag = grabbedObjrb.angularDamping;
         grabbedObjrb.angularDamping = objRotDrag;
+        grabbedObjrb.useGravity = true;
+        grabbedObjrb.isKinematic = false;
 
         grabbedObj.tag = "StayInScene";
 
         cubicleGeneratorV2.KeepObject(grabbedObj);
-
-        moveSpeed = baseMoveSpeed/grabbedObjrb.mass;
+        foreach(Transform child in grabbedObj.transform){
+            cubicleGeneratorV2.KeepObject(child.gameObject);
+        }
+        moveSpeed = Mathf.Clamp(baseMoveSpeed/(grabbedObjrb.mass / massDivision),baseMoveSpeed/2, baseMoveSpeed);
 
         childObj = Instantiate(grabbedObj);
         foreach(Component component in childObj.GetComponents<Component>()){

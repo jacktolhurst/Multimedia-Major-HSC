@@ -73,7 +73,7 @@ MonoBehaviour:
   - {fileID: -7487024394410073660}
   m_RendererFeatureMap: 73359a661aa1ec2cc4e18032fbbe1898
   m_UseNativeRenderPass: 0
-  xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
+  xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   m_AssetVersion: 2
   m_OpaqueLayerMask:
