@@ -94,9 +94,10 @@ Material:
     - _alpa: 0.05
     - _alpha: 0.25
     m_Colors:
-    - _Color: {r: 0.24705878, g: 0.12156858, b: 0.003921569, a: 0}
+    - _Color: {r: 0.2767295, g: 0.2767295, b: 0.2767295, a: 0}
     - _ObjectSizeVectir: {r: 0.19, g: 0.37, b: 0, a: 0}
-    - _ObjectSizeVector: {r: -0.013879495, g: -0.0037940333, b: -0.002307835, a: 0}
+    - _ObjectSizeVector: {r: -0.0013403124, g: -0.00002563132, b: -0.00054739317,
+        a: 0}
     - _Offset: {r: -18.2, g: 2.02, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -44,14 +44,17 @@ public class GrabObjects : MonoBehaviour
     private float moveSpeed;
     [SerializeField] private float objectMaxDistance;
     [SerializeField] private float massDivision;
+    [SerializeField] private float throwSpeed;
 
     [SerializeField] private int holdDist;
 
     private bool tooFar = false;
 
-    [Header("Motion Effects")] // everything to do with effects done while in play
+
+
     private GameObject childObj;
 
+    [Header("Motion Effects")] // everything to do with effects done while in play
     [SerializeField] private Material blurMat;
 
     private Vector3 lastPosition;
@@ -172,6 +175,8 @@ public class GrabObjects : MonoBehaviour
     }
 
     private void LetGoObjectValues(){
+        grabbedObjrb.linearVelocity = mainRay.direction * throwSpeed/grabbedObjrb.mass;
+
         grabbedObjrb.useGravity = true;
 
         grabbedObjrb.collisionDetectionMode = CollisionDetectionMode.Discrete;
