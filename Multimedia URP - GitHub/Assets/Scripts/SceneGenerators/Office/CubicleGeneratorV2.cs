@@ -59,7 +59,6 @@ public class CubicleGeneratorV2 : MonoBehaviour
         checkBounds.size = checkBoundsSize;
 
         playerMovementBounds = new Bounds(playerPos, playerDistBoundsSize);
-
     }
 
     void Start(){
@@ -111,6 +110,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
                     if(!checkBounds.Contains(pair.Value)){
                         if(pair.Key.activeSelf){
                             pair.Key.SetActive(false);
+                            yield return null;
                         }
                     }
                     else{

@@ -128,7 +128,6 @@ public class GrabObjects : MonoBehaviour
         blurMat.SetFloat("_Alpha", rounded * alphaMultiplier);
 
         blurMat.SetColor("_Color", grabbedObjrb.GetComponent<Renderer>().material.color);
-
     }
 
     private void MoveObject(){

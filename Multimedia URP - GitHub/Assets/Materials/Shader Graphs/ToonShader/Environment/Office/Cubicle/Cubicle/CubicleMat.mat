@@ -45,7 +45,8 @@ Material:
     m_Floats:
     - _Divide2: 5000
     - _DivideSpeed: 0.006
-    - _HighesCuttoff: 0.34
+    - _HighAddition: 0.4
+    - _HighesCuttoff: 0.6
     - _LightingCuttoff: -0.31
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -53,7 +54,7 @@ Material:
     - _Transparency: 1
     m_Colors:
     - _Color: {r: 0.36477977, g: 0.36477977, b: 0.36477977, a: 0}
-    - _Tiling: {r: 200, g: 200, b: 0, a: 0}
+    - _Tiling: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &6693391781858327521

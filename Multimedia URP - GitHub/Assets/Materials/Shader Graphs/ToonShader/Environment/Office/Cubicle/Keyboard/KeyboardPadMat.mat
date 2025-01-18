@@ -43,7 +43,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _HighesCuttoff: 0.34
+    - _HighAddition: 0.4
+    - _HighesCuttoff: 0.6
     - _LightingCuttoff: -0.31
     - _QueueControl: 0
     - _QueueOffset: 0

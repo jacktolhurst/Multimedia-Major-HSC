@@ -24,6 +24,8 @@ public class FirstPersonMovement : MonoBehaviour
 // ----------------------------------------------------------------
 
     [Header("Jumping")]
+    [SerializeField]private CapsuleCollider playerCollider;
+
     [SerializeField] private LayerMask groundMask;
 
     private Vector3 playerBoundsExtents;
@@ -33,34 +35,25 @@ public class FirstPersonMovement : MonoBehaviour
     [SerializeField] private float airDrag = 2f;
     private float lastJumpTime;
     [SerializeField] private float jumpIntervalTime;
+    [SerializeField] private float heightDivision;
+    private float standardHeight;
 
 // ----------------------------------------------------------------
 
-    [Header("Using Raycasts")]
+    [Header("Raycasting")]
     [SerializeField] private Vector2 raycastPadding;
 
-    private List<Vector3> chachedPositions = new List<Vector3>();
+    private List<Vector3> cachedPositions = new List<Vector3>();
 
     [Range(0,360)]
     [SerializeField] private int innerIterations;
     [Range(0,360)]
     [SerializeField] private int iterations;
 
-    [Range(0.1f,1f)]
-    [SerializeField] private float raycastSize;
+    private float raycastSize;
+    private float raycastHeightSubtract;
 
-// ----------------------------------------------------------------
-
-    [Header("isGrounded")]
     private bool isGrounded;
-
-// ----------------------------------------------------------------
-
-    // [Header("Sound")]
-    // private EventInstance playerFootSteps;
-
-// ----------------------------------------------------------------
-
 
     void Awake(){
         rb = GetComponent<Rigidbody>();
@@ -71,26 +64,26 @@ public class FirstPersonMovement : MonoBehaviour
 
         playerBoundsExtents = playerRenderer.bounds.extents;
 
-        chachedPositions.Add(new Vector3(0, -playerBoundsExtents.y + 0.1f,0));
+        raycastHeightSubtract = playerBoundsExtents.y / 2;
+        raycastSize = raycastHeightSubtract + 0.01f;
+
+        cachedPositions.Add(new Vector3(0, -playerBoundsExtents.y + raycastHeightSubtract,0));
         for(int i = 0; i < innerIterations; i++){
             float angle = (360 / innerIterations) * i;
 
-            chachedPositions.Add(GetPosAtAngle(new Vector3(0, -playerBoundsExtents.y + 0.1f, 0), new Vector2(playerBoundsExtents.x/2, playerBoundsExtents.z/2), angle));
+            cachedPositions.Add(GetPosAtAngle(new Vector3(0, -playerBoundsExtents.y + raycastHeightSubtract, 0), new Vector2(playerBoundsExtents.x/2, playerBoundsExtents.z/2), angle));
         }
         for(int i = 0; i < iterations; i++){
             float angle = (360 / iterations) * i;
             
-            chachedPositions.Add(GetPosAtAngle(new Vector3(0, -playerBoundsExtents.y + 0.1f, 0), new Vector2(playerBoundsExtents.x, playerBoundsExtents.z), angle));
+            cachedPositions.Add(GetPosAtAngle(new Vector3(0, -playerBoundsExtents.y + raycastHeightSubtract, 0), new Vector2(playerBoundsExtents.x, playerBoundsExtents.z), angle));
         }
-    }
 
-    // void Start(){
-    //     playerFootSteps = AudioManager.instance.CreatEventInstance(FMODEvents.instance.playerFootSteps);
-    // }
+        standardHeight = playerCollider.height;
+    }
 
     void Update(){
         GetInput();
-        ControlDrag();
 
         isGrounded = CheckGround();
         if(Input.GetButtonDown("Jump")){
@@ -100,13 +93,16 @@ public class FirstPersonMovement : MonoBehaviour
         }
     }
 
+    void LateUpdate(){
+        ControlDragAndSize();
+    }
+
     private bool CheckGround(){
-        foreach(Vector3 position in chachedPositions){
+        foreach(Vector3 position in cachedPositions){
             if(Physics.Raycast(position + transform.position, Vector3.down, raycastSize, groundMask)){
                 return true;
             }
         }
-        
         return false;
     }
 
@@ -133,19 +129,21 @@ public class FirstPersonMovement : MonoBehaviour
         lastJumpTime = Time.time;
     }
 
-    private void ControlDrag(){ 
+    private void ControlDragAndSize(){ 
         if(isGrounded){
             rb.linearDamping = groundDrag;
+
+            playerCollider.height = standardHeight;
         } 
         else{
             rb.linearDamping = airDrag;
+
+            playerCollider.height = standardHeight/heightDivision;
         }
     }
 
     void FixedUpdate(){
         Movement();
-
-        // UpdateSound();
     }
 
     private void Movement(){
@@ -160,7 +158,7 @@ public class FirstPersonMovement : MonoBehaviour
 
 
     void OnDrawGizmos(){
-        foreach(Vector3 position in chachedPositions){
+        foreach(Vector3 position in cachedPositions){
             if(isGrounded){
                 Debug.DrawRay(position + transform.position, Vector3.down * raycastSize, Color.green);
             }
@@ -169,17 +167,4 @@ public class FirstPersonMovement : MonoBehaviour
             }
         }
     }
-
-    // private void UpdateSound(){
-    //     if(rb.linearVelocity.x != 0 && isGrounded){
-    //         PLAYBACK_STATE playbackState;
-    //         playerFootSteps.getPlaybackState(out playbackState);
-    //         if(playbackState.Equals(PLAYBACK_STATE.STOPPED)){
-    //             playerFootSteps.start();
-    //         }
-    //     }
-    //     else{ 
-    //         playerFootSteps.stop(STOP_MODE.ALLOWFADEOUT);
-    //     }
-    // }
 }

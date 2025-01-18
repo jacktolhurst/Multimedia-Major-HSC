@@ -69,7 +69,8 @@ Material:
     - _BUILTIN_ZWriteControl: 0
     - _Divide2: 500
     - _DivideSpeed: 0.006
-    - _HighesCuttoff: 0.34
+    - _HighAddition: 0.4
+    - _HighesCuttoff: 0.6
     - _LightingCuttoff: -0.31
     - _LownessCuttoff: 0
     - _QueueControl: 0

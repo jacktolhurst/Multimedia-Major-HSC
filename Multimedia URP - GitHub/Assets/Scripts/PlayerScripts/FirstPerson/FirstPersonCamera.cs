@@ -3,7 +3,8 @@ using UnityEngine;
 public class FirstPersonCamera : MonoBehaviour
 {
     [Header("Transform")]
-    [SerializeField] private GameObject cam;
+    [SerializeField] private GameObject camObj;
+    private Camera cam;
     [SerializeField] private GameObject player;
 
     [SerializeField] private Transform orientation;
@@ -21,6 +22,7 @@ public class FirstPersonCamera : MonoBehaviour
 
 // ----------------------------------------------------------------
 
+    private Rigidbody rb;
     [Header("FOV")]
     [Range(0, 180)]
     [SerializeField] private float standardFov;
@@ -31,24 +33,29 @@ public class FirstPersonCamera : MonoBehaviour
     [SerializeField] float minFov;
     [SerializeField] float maxFov;
     private float projectedFov;
+    private float lastFov;
 
 // ----------------------------------------------------------------
 
 
     void Awake(){
+        cam = camObj.GetComponent<Camera>();
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        projectedFov = cam.GetComponent<Camera>().fieldOfView;
+        projectedFov = cam.fieldOfView;
+
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update(){
         MyInput(); 
         FOV();
 
-        cam.transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+        camObj.transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.transform.rotation = Quaternion.Euler(0, yRotation, 0);
 
-        player.transform.localRotation = Quaternion.Euler(0, cam.transform.localRotation.eulerAngles.y, 0);
+        player.transform.localRotation = Quaternion.Euler(0, camObj.transform.localRotation.eulerAngles.y, 0);
     }
 
     private void MyInput(){
@@ -67,8 +74,9 @@ public class FirstPersonCamera : MonoBehaviour
         standardFov = Mathf.Clamp(standardFov, minFov, maxFov);
 
         // for movement
-        projectedFov = standardFov + ((Input.GetAxis("Sprint")) * sprintingFov) + (Mathf.Abs(GetComponent<Rigidbody>().linearVelocity.y) * jumpingFov);
-        
-        cam.GetComponent<Camera>().fieldOfView = Mathf.Lerp(cam.GetComponent<Camera>().fieldOfView, projectedFov, fovLerp);
+        projectedFov = standardFov + ((Input.GetAxis("Sprint")) * sprintingFov) + (Mathf.Abs(rb.linearVelocity.y) * jumpingFov);
+        if(lastFov != projectedFov){
+            lastFov = cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, projectedFov, fovLerp);
+        }
     }
 }
