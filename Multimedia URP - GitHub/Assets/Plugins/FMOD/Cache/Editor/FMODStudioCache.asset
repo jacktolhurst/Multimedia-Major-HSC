@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4015165616951843568
+--- !u!114 &-8713790872579345107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../../Builds/Tempmusic/Build/Desktop/Master.strings.bank
+  Path: ../Working Files/FMOD projects/MainGameMusic/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638698593683114813
+  lastModified: 638693499153808936
   FileSizes:
   - Name: Desktop
-    Value: 810
+    Value: 864
   Exists: 1
---- !u!114 &-3862277973010333194
+--- !u!114 &-4143049216680786089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,62 +30,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/MainGameMusic.bank
+  m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: 
-  Path: ../../Builds/Tempmusic/Build/Desktop/MainGameMusic.bank
-  Name: MainGameMusic
-  StudioPath: bank:/MainGameMusic
-  lastModified: 638698593683154866
+  Path: ../Working Files/FMOD projects/MainGameMusic/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638693499154053745
   FileSizes:
   - Name: Desktop
-    Value: 1046
-  Exists: 1
---- !u!114 &-3286014993820646895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/tester
-  m_EditorClassIdentifier: 
-  Path: event:/tester
-  Guid:
-    Data1: -1824129635
-    Data2: 1325136619
-    Data3: -1573120854
-    Data4: -179626547
-  Banks:
-  - {fileID: -3862277973010333194}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-1782344752921432411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../../Builds/Tempmusic/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638698593683104755
-  FileSizes:
-  - Name: Desktop
-    Value: 1036
+    Value: 17120
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -100,15 +53,90 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -4015165616951843568}
-  - {fileID: -3862277973010333194}
-  - {fileID: -1782344752921432411}
+  - {fileID: -8713790872579345107}
+  - {fileID: 8530878040816342550}
+  - {fileID: -4143049216680786089}
   EditorEvents:
-  - {fileID: -3286014993820646895}
+  - {fileID: 8919352792520555880}
+  - {fileID: 55031464877586648}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -1782344752921432411}
+  - {fileID: 8530878040816342550}
   StringsBanks:
-  - {fileID: -4015165616951843568}
-  cacheTime: 638698593683154866
+  - {fileID: -8713790872579345107}
+  cacheTime: 638693499154053745
   cacheVersion: 131620
+--- !u!114 &55031464877586648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/KickOneShot
+  m_EditorClassIdentifier: 
+  Path: event:/KickOneShot
+  Guid:
+    Data1: 301884906
+    Data2: 1222234269
+    Data3: -1041934964
+    Data4: -652187577
+  Banks:
+  - {fileID: -4143049216680786089}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8530878040816342550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../Working Files/FMOD projects/MainGameMusic/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638693499153783758
+  FileSizes:
+  - Name: Desktop
+    Value: 1036
+  Exists: 1
+--- !u!114 &8919352792520555880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerFootSteps
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerFootSteps
+  Guid:
+    Data1: -286034588
+    Data2: 1140787953
+    Data3: 1876233649
+    Data4: -1639931393
+  Banks:
+  - {fileID: -4143049216680786089}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500

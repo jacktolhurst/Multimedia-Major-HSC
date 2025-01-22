@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - StayInScene
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Ground
   - Wall
   - Player
-  - 
+  - 3DUI
   - 
   - 
   - 

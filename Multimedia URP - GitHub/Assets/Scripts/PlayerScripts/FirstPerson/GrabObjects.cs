@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GrabObjects : MonoBehaviour
 {
@@ -27,8 +28,13 @@ public class GrabObjects : MonoBehaviour
 
     [Header("Grabbed Object Values")] // all variables to do with the setting and retreiving values with the grabbedObj (NOT MOVEMENT)
     private GameObject grabbedObj;
+    private GameObject childObj;
+
+    private Collider selfCollider;
 
     private Rigidbody grabbedObjrb;
+
+    private MeshRenderer childObjMeshRenderer;
 
     [SerializeField] private string grabTag;
 
@@ -45,14 +51,12 @@ public class GrabObjects : MonoBehaviour
     [SerializeField] private float objectMaxDistance;
     [SerializeField] private float massDivision;
     [SerializeField] private float throwSpeed;
-
-    [SerializeField] private int holdDist;
+    [SerializeField] private float baseHoldDist;
+    private float holdDist;
+    [SerializeField] private float minGrabbedObjDist;
+    [SerializeField] private float maxGrabbedObjDist;
 
     private bool tooFar = false;
-
-
-
-    private GameObject childObj;
 
     [Header("Motion Effects")] // everything to do with effects done while in play
     [SerializeField] private Material blurMat;
@@ -64,6 +68,10 @@ public class GrabObjects : MonoBehaviour
     [SerializeField] private float alphaMultiplier;
 
     private bool doShow = false;
+
+    void Awake(){
+        selfCollider = transform.GetChild(1).GetComponent<Collider>();
+    }
 
     void Update(){
         mainRay = new Ray(cam.transform.position, cam.transform.forward);
@@ -149,13 +157,23 @@ public class GrabObjects : MonoBehaviour
         grabbedObjrb.useGravity = true;
         grabbedObjrb.isKinematic = false;
 
-        grabbedObj.tag = "StayInScene";
+        if(grabbedObj.transform.parent.transform.parent != null){
+            if(grabbedObj.transform.parent.transform.parent.name.ToLower().Contains("parent")){
+                grabbedObj.tag = "StayInScene";
 
-        cubicleGeneratorV2.KeepObject(grabbedObj);
-        foreach(Transform child in grabbedObj.transform){
-            cubicleGeneratorV2.KeepObject(child.gameObject);
+                cubicleGeneratorV2.KeepObject(grabbedObj);
+                foreach(Transform child in grabbedObj.transform){
+                    cubicleGeneratorV2.KeepObject(child.gameObject);
+                }
+            }
         }
+        
         moveSpeed = Mathf.Clamp(baseMoveSpeed/(grabbedObjrb.mass / massDivision),baseMoveSpeed/2, baseMoveSpeed);
+        holdDist = Mathf.Clamp((grabbedObjrb.mass * grabbedObj.GetComponent<Renderer>().bounds.extents.magnitude) + baseHoldDist, minGrabbedObjDist, maxGrabbedObjDist);
+
+        foreach(Collider collider in grabbedObj.GetComponents<Collider>()){
+            Physics.IgnoreCollision(collider, selfCollider, true);
+        }
 
         childObj = Instantiate(grabbedObj);
         foreach(Component component in childObj.GetComponents<Component>()){
@@ -163,8 +181,10 @@ public class GrabObjects : MonoBehaviour
                 Destroy(component);
             }
         }
-        childObj.GetComponent<MeshRenderer>().materials = new Material[0];
-        childObj.GetComponent<MeshRenderer>().material = blurMat;
+
+        childObjMeshRenderer = childObj.GetComponent<MeshRenderer>();
+        childObjMeshRenderer.materials = new Material[0];
+        childObjMeshRenderer.material = blurMat;
 
         childObj.layer = 0;
         childObj.transform.parent = grabbedObj.transform;
@@ -180,6 +200,10 @@ public class GrabObjects : MonoBehaviour
 
         grabbedObjrb.collisionDetectionMode = CollisionDetectionMode.Discrete;
         grabbedObjrb.angularDamping = beforeAngleDrag;
+
+        foreach(Collider collider in grabbedObj.GetComponents<Collider>()){
+            Physics.IgnoreCollision(collider, selfCollider, false);
+        }
 
         doShow = false;
         StopCoroutine(ShaderInterval());

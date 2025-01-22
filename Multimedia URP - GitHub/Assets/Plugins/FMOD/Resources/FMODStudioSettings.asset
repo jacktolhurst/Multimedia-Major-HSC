@@ -536,8 +536,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../Builds/Tempmusic/Tempmusic.fspro
-  sourceBankPath: ../../Builds/Tempmusic/Build
+  sourceProjectPath: ../Working Files/FMOD projects/MainGameMusic/MainGameMusic.fspro
+  sourceBankPath: ../Working Files/FMOD projects/MainGameMusic/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -561,7 +561,7 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - MainGameMusic
+  - SFX
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
@@ -686,7 +686,7 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     Overlay:
-      Value: 1
+      Value: 0
       HasValue: 1
     OverlayPosition:
       Value: 0
