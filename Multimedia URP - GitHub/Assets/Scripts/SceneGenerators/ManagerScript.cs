@@ -12,11 +12,15 @@ public class ManagerScript : MonoBehaviour
 
     void Update(){
         if(Input.GetKey("p")){
-            SceneManager.LoadScene("OfficeWorks");
+            RestartScene();
         }
 
         if(Application.targetFrameRate != targetFrameRate){
             Application.targetFrameRate = targetFrameRate;
         }
+    }
+
+    public void RestartScene(){
+        SceneManager.LoadScene("OfficeWorks");
     }
 }

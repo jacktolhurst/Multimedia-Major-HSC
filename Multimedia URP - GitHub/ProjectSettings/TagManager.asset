@@ -13,11 +13,14 @@ TagManager:
   - 
   - Water
   - UI
-  - BlackOutlined
+  - Door
   - Ground
   - Wall
   - Player
   - 3DUI
+  - BlackOutlined
+  - WhiteOutlined
+  - PurpleOutlined
   - 
   - 
   - 
@@ -35,13 +38,13 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - testing
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 3DUI
+    uniqueID: 4112385471
     locked: 0
   m_RenderingLayers:
   - Default

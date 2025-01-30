@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7657429975504181147}
   - component: {fileID: 8333462115834167364}
   - component: {fileID: 3009535968631442790}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Candel.006
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 9193559593442459321}
   - component: {fileID: 3677145802524248079}
   - component: {fileID: 6669242236254235440}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Candel.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 1184884802156074370}
   - component: {fileID: 2228915358571416943}
   - component: {fileID: 1211192040887031644}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Candel.007
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 1849456415588763708}
   - component: {fileID: 2948476689124843666}
   - component: {fileID: 2206650337298140813}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Moniter.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 7413389439023576358}
   - component: {fileID: 3007255130191045199}
   - component: {fileID: 4780649415045366788}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Ball.001
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 8647286344242788644}
   - component: {fileID: 7590305947901894492}
   - component: {fileID: 6590567821538588790}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Candel.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 5696828012429181123}
   - component: {fileID: 5932781286255897524}
   - component: {fileID: 2558271952775781824}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Candel.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ GameObject:
   - component: {fileID: 2494001881055369029}
   - component: {fileID: 9070686587026694562}
   - component: {fileID: 733902191452569183}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Keyboard.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1114,7 +1114,7 @@ GameObject:
   - component: {fileID: 5053462757143094456}
   - component: {fileID: 6128521915727022027}
   - component: {fileID: 8969609476369803246}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Candel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1252,7 +1252,7 @@ GameObject:
   - component: {fileID: 515563568220015398}
   - component: {fileID: 5803477300688262370}
   - component: {fileID: 7151158255873595889}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Pot.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1391,7 +1391,7 @@ GameObject:
   - component: {fileID: 1448785405571811968}
   - component: {fileID: 5093632702863397224}
   - component: {fileID: 1712871844587938712}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Candel.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1529,7 +1529,7 @@ GameObject:
   - component: {fileID: 4603553741320671211}
   - component: {fileID: 4348361879088285152}
   - component: {fileID: 5421795074691265758}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Candel.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1668,7 +1668,7 @@ GameObject:
   - component: {fileID: 894453183571053626}
   - component: {fileID: 4955646493577051547}
   - component: {fileID: 1430633381899777702}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Cubicle
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -1819,7 +1819,7 @@ GameObject:
   - component: {fileID: 2200619733259418776}
   - component: {fileID: 447633525536423896}
   - component: {fileID: 1170225669568758824}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: DeadPlant.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1956,7 +1956,7 @@ GameObject:
   - component: {fileID: 8080157243164835859}
   - component: {fileID: 6951437821261713562}
   - component: {fileID: 5404879184734643003}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Ball.002
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -2088,7 +2088,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8630417332153703812}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: YogaCubicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2140,7 +2140,7 @@ GameObject:
   - component: {fileID: 881046865283462023}
   - component: {fileID: 8451614799914406596}
   - component: {fileID: 5253401236318231001}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Desktop.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2277,7 +2277,7 @@ GameObject:
   - component: {fileID: 4658229752940288050}
   - component: {fileID: 4679125494529507135}
   - component: {fileID: 8492558517350984218}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Ball
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -2411,7 +2411,7 @@ GameObject:
   - component: {fileID: 34378584477200383}
   - component: {fileID: 521960387538615619}
   - component: {fileID: 3396341499861787541}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Mat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

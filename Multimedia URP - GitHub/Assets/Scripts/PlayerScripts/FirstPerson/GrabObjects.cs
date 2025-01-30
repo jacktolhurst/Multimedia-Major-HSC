@@ -24,7 +24,7 @@ public class GrabObjects : MonoBehaviour
 
     [SerializeField] private float grabDist;
 
-    private bool canGrab = false;
+    [HideInInspector] public bool canGrab = false;
 
     [Header("Grabbed Object Values")] // all variables to do with the setting and retreiving values with the grabbedObj (NOT MOVEMENT)
     private GameObject grabbedObj;
@@ -45,7 +45,6 @@ public class GrabObjects : MonoBehaviour
     private bool isGrabbing = false;
 
     [Header("Grabbed Object Movement")] // all values with movement inside the grabbed object
-
     [SerializeField] private float baseMoveSpeed;
     private float moveSpeed;
     [SerializeField] private float objectMaxDistance;
@@ -58,19 +57,12 @@ public class GrabObjects : MonoBehaviour
 
     private bool tooFar = false;
 
-    [Header("Motion Effects")] // everything to do with effects done while in play
-    [SerializeField] private Material blurMat;
-
-    private Vector3 lastPosition;
-
-    [SerializeField] private float shaderMovementSmoothing;
-    [SerializeField] private float speedDivision;
-    [SerializeField] private float alphaMultiplier;
-
-    private bool doShow = false;
+    [Header("Effects")]
+    [SerializeField] private int effectMask;
+    private int defaultMask;
 
     void Awake(){
-        selfCollider = transform.GetChild(1).GetComponent<Collider>();
+        selfCollider = transform.GetChild(0).GetComponent<Collider>();
     }
 
     void Update(){
@@ -112,12 +104,6 @@ public class GrabObjects : MonoBehaviour
                 cursorMat.color = Color.red;
                 tooFar = true;
             }
-
-            ManageChildMaterial();
-
-            lastPosition = Vector3.Lerp(lastPosition, grabbedObj.transform.position, Time.deltaTime * shaderMovementSmoothing);
-            childObj.transform.position = lastPosition;
-
         }
     }
 
@@ -125,17 +111,6 @@ public class GrabObjects : MonoBehaviour
         if(isGrabbing){ 
             MoveObject();
         }
-    }
-
-    private void ManageChildMaterial(){
-        float magnitude = grabbedObjrb.linearVelocity.magnitude / speedDivision;
-        Vector3 normalizedDirection = grabbedObjrb.linearVelocity.normalized;
-        blurMat.SetVector("_ObjectSizeVector", magnitude * normalizedDirection);
-
-        float rounded = (float)Mathf.Round(Vector3.Distance(childObj.transform.position, grabbedObj.transform.position) * 10) / 10;
-        blurMat.SetFloat("_Alpha", rounded * alphaMultiplier);
-
-        blurMat.SetColor("_Color", grabbedObjrb.GetComponent<Renderer>().material.color);
     }
 
     private void MoveObject(){
@@ -156,6 +131,7 @@ public class GrabObjects : MonoBehaviour
         grabbedObjrb.angularDamping = objRotDrag;
         grabbedObjrb.useGravity = true;
         grabbedObjrb.isKinematic = false;
+        grabbedObjrb.interpolation = RigidbodyInterpolation.Interpolate;
 
         if(grabbedObj.transform.parent.transform.parent != null){
             if(grabbedObj.transform.parent.transform.parent.name.ToLower().Contains("parent")){
@@ -175,22 +151,8 @@ public class GrabObjects : MonoBehaviour
             Physics.IgnoreCollision(collider, selfCollider, true);
         }
 
-        childObj = Instantiate(grabbedObj);
-        foreach(Component component in childObj.GetComponents<Component>()){
-            if(!(component is MeshRenderer) && !(component is MeshFilter) && !(component is Transform)){
-                Destroy(component);
-            }
-        }
-
-        childObjMeshRenderer = childObj.GetComponent<MeshRenderer>();
-        childObjMeshRenderer.materials = new Material[0];
-        childObjMeshRenderer.material = blurMat;
-
-        childObj.layer = 0;
-        childObj.transform.parent = grabbedObj.transform;
-
-        doShow = true;
-        StartCoroutine(ShaderInterval());
+        defaultMask = grabbedObj.layer;
+        grabbedObj.layer = effectMask;
     }
 
     private void LetGoObjectValues(){
@@ -205,16 +167,7 @@ public class GrabObjects : MonoBehaviour
             Physics.IgnoreCollision(collider, selfCollider, false);
         }
 
-        doShow = false;
-        StopCoroutine(ShaderInterval());
-        Destroy(childObj);
-    }
-
-    private IEnumerator ShaderInterval(){
-        while(doShow){
-            lastPosition = grabbedObj.transform.position;
-            yield return new WaitForSeconds(1);
-        }
+        grabbedObj.layer = defaultMask;
     }
 
     void OnDrawGizmos(){

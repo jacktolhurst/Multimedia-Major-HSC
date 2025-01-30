@@ -18,6 +18,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
     [SerializeField] private GameObject player;
     private GameObject nonChunkedParent;
+    private GameObject majorParent;
 
     private Bounds checkBounds;
     private Bounds playerMovementBounds;
@@ -133,6 +134,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
         transform.position = GetPos(null, gapDistance);
 
         List<GameObject> nonChunkedObjects = new List<GameObject>();
+        List<GameObject> parentObjects = new List<GameObject>();
         
         while(iteration < maxIteration){
 
@@ -184,6 +186,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
             GameObject parentObj = new GameObject($"Parent {iteration + 1}");
             generatedObjs.Add(parentObj);
+            parentObjects.Add(parentObj);
 
             List<GameObject> children = new List<GameObject>();
 
@@ -202,12 +205,19 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
         nonChunkedParent = new GameObject("Parent Stay In Scene");
         generatedObjs.Add(nonChunkedParent);
+        parentObjects.Add(nonChunkedParent);
         
         foreach(GameObject child in nonChunkedObjects){
             GameObject obj = Instantiate(child, child.transform.position, child.transform.rotation, nonChunkedParent.transform);
             if(child.name.Contains("Cubicle")){
                 obj.transform.localScale *= cubicleScaling;
             }
+        }
+
+        
+        majorParent = new GameObject("CubiclesParent");
+        foreach(GameObject obj in parentObjects){
+            obj.transform.parent = majorParent.transform;
         }
 
     }

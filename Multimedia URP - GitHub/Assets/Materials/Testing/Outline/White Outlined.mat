@@ -40,7 +40,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMovement: 10
-    - _Outline: 0.04
+    - _Density: 12.64
+    - _Outline: 0.003
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

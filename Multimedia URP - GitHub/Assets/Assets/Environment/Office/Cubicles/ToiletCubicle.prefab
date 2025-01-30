@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8578967326767517179}
   - component: {fileID: 723347186699839354}
   - component: {fileID: 6615522601870140893}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: DeadPlant.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 1415531527915199528}
   - component: {fileID: 9118539336218261974}
   - component: {fileID: 7058493660208754588}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Cylinder.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 3831787967726381614}
   - component: {fileID: 7666229213777768813}
   - component: {fileID: 7022523485374887677}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Paper.018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 8498835346734587416}
   - component: {fileID: 414173049173696582}
   - component: {fileID: 1695122808795774398}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Moniter.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 1739011981511620235}
   - component: {fileID: 7268797412722595586}
   - component: {fileID: 6970575750438346924}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.024
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 9180182080101279681}
   - component: {fileID: 3476860369044462131}
   - component: {fileID: 8433587484350529583}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.026
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 1055971054572733273}
   - component: {fileID: 5424857223767378204}
   - component: {fileID: 727329059034944898}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.025
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,7 +918,7 @@ GameObject:
   - component: {fileID: 2443242693259938674}
   - component: {fileID: 3657389384342732085}
   - component: {fileID: 1286032977366856410}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.027
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1054,7 +1054,7 @@ GameObject:
   - component: {fileID: 1775164164267127372}
   - component: {fileID: 3388811571797281920}
   - component: {fileID: 2959412777820882426}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1184,7 +1184,7 @@ GameObject:
   - component: {fileID: 7813064573950590448}
   - component: {fileID: 1066022385797678434}
   - component: {fileID: 8171146592421644633}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Pot.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,7 +1323,7 @@ GameObject:
   - component: {fileID: 1090439924194316670}
   - component: {fileID: 7272324131200961748}
   - component: {fileID: 5499755084687674364}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Desktop.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1456,7 +1456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8103768355541420433}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ToiletCubicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1506,7 +1506,7 @@ GameObject:
   - component: {fileID: 1927725677672843429}
   - component: {fileID: 7212874118255345046}
   - component: {fileID: 1047524335439186637}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Pen.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1645,7 +1645,7 @@ GameObject:
   - component: {fileID: 7635558735604368211}
   - component: {fileID: 7591614248785547325}
   - component: {fileID: 3756307837343270175}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Cubicle
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -1796,7 +1796,7 @@ GameObject:
   - component: {fileID: 74976441124311128}
   - component: {fileID: 4197162648905652543}
   - component: {fileID: 8357233424915402737}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Keyboard.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1931,7 +1931,7 @@ GameObject:
   - component: {fileID: 4422263131980711134}
   - component: {fileID: 8279275341771786245}
   - component: {fileID: 767961630679359031}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Paper.017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2020,7 +2020,7 @@ GameObject:
   - component: {fileID: 7253862027499451098}
   - component: {fileID: 6962831693077353531}
   - component: {fileID: 4153072023130486114}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Toilet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

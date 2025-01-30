@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3196134936260724224}
   - component: {fileID: 2383178375354101521}
   - component: {fileID: 7557262358905206857}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Paper.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4468657674439639874}
   - component: {fileID: 6350656094595812871}
   - component: {fileID: 8659869194406032889}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 3579825414768225947}
   - component: {fileID: 5053309063604110264}
   - component: {fileID: 2650728062788549372}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 4013630836327979634}
   - component: {fileID: 2046029781895231580}
   - component: {fileID: 2314052578049955188}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Paper.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 6479156491956914368}
   - component: {fileID: 6738826120832375443}
   - component: {fileID: 9025823252087045322}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Keyboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 7602543216680709984}
   - component: {fileID: 5178168871946631441}
   - component: {fileID: 251755883686060420}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 2620527820691633408}
   - component: {fileID: 5447752101135373226}
   - component: {fileID: 7783649775364480170}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -869,7 +869,7 @@ GameObject:
   - component: {fileID: 8746452491822839704}
   - component: {fileID: 6246258092720667511}
   - component: {fileID: 1459899035289084237}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: ChairLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 3314809186096404009}
   - component: {fileID: 7118260381746957148}
   - component: {fileID: 7629203204537333009}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Desktop.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1165,7 +1165,7 @@ GameObject:
   - component: {fileID: 1494443510377618044}
   - component: {fileID: 6945856717953058862}
   - component: {fileID: 9083584896401747445}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: DeadPlant.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1301,7 +1301,7 @@ GameObject:
   - component: {fileID: 2789838743214822282}
   - component: {fileID: 2661001138803698747}
   - component: {fileID: 5101402307763160417}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1438,7 +1438,7 @@ GameObject:
   - component: {fileID: 9135194362691547103}
   - component: {fileID: 183093261050084589}
   - component: {fileID: 1941953338769256275}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Cubicle
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -1585,7 +1585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5710497894110575624}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SlightlyGeneralCubicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1636,7 +1636,7 @@ GameObject:
   - component: {fileID: 5262375654050520639}
   - component: {fileID: 102836027111924582}
   - component: {fileID: 1610978486734701879}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Pot.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1776,7 +1776,7 @@ GameObject:
   - component: {fileID: 5733423705876230349}
   - component: {fileID: 5578802094871045205}
   - component: {fileID: 496251506097627114}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: ChairMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1933,7 +1933,7 @@ GameObject:
   - component: {fileID: 7797177700365537129}
   - component: {fileID: 4522341485516921584}
   - component: {fileID: 2364951425516348542}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2063,7 +2063,7 @@ GameObject:
   - component: {fileID: 8702473734726229772}
   - component: {fileID: 5084666476798259816}
   - component: {fileID: 6763603002077622224}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Moniter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2202,7 +2202,7 @@ GameObject:
   - component: {fileID: 223830055918995805}
   - component: {fileID: 2827050204668501012}
   - component: {fileID: 2599161101537235430}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Pen
   m_TagString: Untagged
   m_Icon: {fileID: 0}

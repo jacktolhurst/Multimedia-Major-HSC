@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1303055867271580031}
   - component: {fileID: 4692052287812210719}
   - component: {fileID: 8329374870461379742}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.018
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 7780376898084305328}
   - component: {fileID: 2528880024919124689}
   - component: {fileID: 8804079683580833296}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 1214459803911090988}
   - component: {fileID: 9105580476976667847}
   - component: {fileID: 3668459194504910056}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.016
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 9197068744315357063}
   - component: {fileID: 2853047184340683719}
   - component: {fileID: 3976147404946277811}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 4847656353813956978}
   - component: {fileID: 8500626337266698906}
   - component: {fileID: 6954979497659333882}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Desk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1535473495938274782}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BookCubicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 822887048483191710}
   - component: {fileID: 165909798901740809}
   - component: {fileID: 9190780918195174983}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 6450337477704289389}
   - component: {fileID: 5416039910366504791}
   - component: {fileID: 1644496975617598389}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Desktop.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,7 +1018,7 @@ GameObject:
   - component: {fileID: 918778728466538253}
   - component: {fileID: 2866943654805290225}
   - component: {fileID: 6119471033914111289}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Pen.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1157,7 +1157,7 @@ GameObject:
   - component: {fileID: 4679994858187771946}
   - component: {fileID: 927585039997087354}
   - component: {fileID: 5662241831015802028}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Cubicle
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -1308,7 +1308,7 @@ GameObject:
   - component: {fileID: 7143929571316302235}
   - component: {fileID: 8153714630174063783}
   - component: {fileID: 7036682066505238447}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1444,7 +1444,7 @@ GameObject:
   - component: {fileID: 8730784295790401132}
   - component: {fileID: 2638166489199350456}
   - component: {fileID: 2806500803641843674}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.017
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1581,7 @@ GameObject:
   - component: {fileID: 3467140065071456744}
   - component: {fileID: 5348803430092404847}
   - component: {fileID: 7803066222893708976}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1717,7 @@ GameObject:
   - component: {fileID: 6360794170972406914}
   - component: {fileID: 6187307039975007927}
   - component: {fileID: 1352165746397106238}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Moniter.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1855,7 +1855,7 @@ GameObject:
   - component: {fileID: 8520511671702127940}
   - component: {fileID: 7450711216372338157}
   - component: {fileID: 6505352720947293916}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1991,7 +1991,7 @@ GameObject:
   - component: {fileID: 8684093528805662146}
   - component: {fileID: 5351131142783080747}
   - component: {fileID: 4141356483812226917}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2128,7 +2128,7 @@ GameObject:
   - component: {fileID: 5993021719500750743}
   - component: {fileID: 7412291375511467424}
   - component: {fileID: 2818104058996329771}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: ChairLeg.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2287,7 +2287,7 @@ GameObject:
   - component: {fileID: 3696146923038169211}
   - component: {fileID: 6865995255993649906}
   - component: {fileID: 4773048066788330877}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Moniter.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2425,7 +2425,7 @@ GameObject:
   - component: {fileID: 1820085474366465987}
   - component: {fileID: 5735016954988573062}
   - component: {fileID: 1943313075832734083}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2561,7 +2561,7 @@ GameObject:
   - component: {fileID: 868116688218830675}
   - component: {fileID: 5554476086961743308}
   - component: {fileID: 8214556485140593227}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2697,7 +2697,7 @@ GameObject:
   - component: {fileID: 8661038760483852695}
   - component: {fileID: 7850638832125927848}
   - component: {fileID: 1694412978053475187}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2817,7 +2817,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2834,7 +2834,7 @@ GameObject:
   - component: {fileID: 3630733242652471147}
   - component: {fileID: 486399446730120407}
   - component: {fileID: 2409080241754977283}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Keyboard.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2971,7 +2971,7 @@ GameObject:
   - component: {fileID: 430518525315925935}
   - component: {fileID: 2994982651601611128}
   - component: {fileID: 2795446799650076650}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3108,7 +3108,7 @@ GameObject:
   - component: {fileID: 4008320643871310102}
   - component: {fileID: 6305590776972167924}
   - component: {fileID: 5165221196716001246}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: ChairMain.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3265,7 +3265,7 @@ GameObject:
   - component: {fileID: 5642084418981723881}
   - component: {fileID: 8054435614467452195}
   - component: {fileID: 1025368329681075915}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3399,7 +3399,7 @@ GameObject:
   - component: {fileID: 5750600299102774673}
   - component: {fileID: 8527188344850378634}
   - component: {fileID: 6754393709534130497}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Paper.012
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
@@ -3487,7 +3487,7 @@ GameObject:
   - component: {fileID: 2052259774169702593}
   - component: {fileID: 1156318665121880091}
   - component: {fileID: 4716329456575568795}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Binder.015
   m_TagString: Untagged
   m_Icon: {fileID: 0}

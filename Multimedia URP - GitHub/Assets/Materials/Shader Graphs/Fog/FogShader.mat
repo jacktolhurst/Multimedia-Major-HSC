@@ -48,14 +48,28 @@ Material:
     - _Alpha_threshold: 0
     - _BUILTIN_QueueControl: -1
     - _BUILTIN_QueueOffset: 0
+    - _Dot: 0.12
+    - _Fuzz: 0.06
+    - _LargeMovementScale: 0.27
     - _MovementMultiplier: 0.1
-    - _MovementNoiseScale: 0.1
+    - _MovementNoiseScale: 1
+    - _MovementScale: 0.01
     - _NoiseMovementMultiplier: 0.01
+    - _NoisePower: 0.44
+    - _Power: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Range: 0.03
+    - _Scale: 0.5
+    - _SmallMovementScale: 0.42
+    - _Threshold: -0.13
+    - _Time: 0
     - _TimeMultiplier: 0.01
+    - _VoronoiPower: 0.04
+    - _range: 0.01
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.6289307, g: 0.6289307, b: 0.6289307, a: 1}
+    - _Color_1: {r: 0, g: 0, b: 0, a: 0}
     - _Colour: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 0}
     - _ObjectSizeVector: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 4, g: 4, b: 0, a: 0}
