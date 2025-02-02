@@ -133,7 +133,7 @@ public class GrabObjects : MonoBehaviour
         grabbedObjrb.isKinematic = false;
         grabbedObjrb.interpolation = RigidbodyInterpolation.Interpolate;
 
-        if(grabbedObj.transform.parent.transform.parent != null){
+        if(grabbedObj.transform.parent != null && grabbedObj.transform.parent.transform.parent != null){
             if(grabbedObj.transform.parent.transform.parent.name.ToLower().Contains("parent")){
                 grabbedObj.tag = "StayInScene";
 
@@ -147,8 +147,10 @@ public class GrabObjects : MonoBehaviour
         moveSpeed = Mathf.Clamp(baseMoveSpeed/(grabbedObjrb.mass / massDivision),baseMoveSpeed/2, baseMoveSpeed);
         holdDist = Mathf.Clamp((grabbedObjrb.mass * grabbedObj.GetComponent<Renderer>().bounds.extents.magnitude) + baseHoldDist, minGrabbedObjDist, maxGrabbedObjDist);
 
-        foreach(Collider collider in grabbedObj.GetComponents<Collider>()){
-            Physics.IgnoreCollision(collider, selfCollider, true);
+        if(grabbedObj.layer != 6){
+            foreach(Collider collider in grabbedObj.GetComponents<Collider>()){
+                Physics.IgnoreCollision(collider, selfCollider, true);
+            }
         }
 
         defaultMask = grabbedObj.layer;
