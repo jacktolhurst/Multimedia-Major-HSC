@@ -27,8 +27,8 @@ public class CardReaderDoor : MonoBehaviour
         if(!unlocked && boundsCollider.Contains(key.transform.position)){
             lockedDoor.Unlock(new Vector3(-1, 0, 0), 10f, 50f);
 
-            readerMat[0].SetColor("_Color", Color.green);
-            readerMat[2].SetColor("_Color", Color.green);
+            readerMat[0].SetColor("_MainColor", Color.green);
+            readerMat[2].SetColor("_MainColor", Color.green);
             readerMat[3].SetColor("_Color", Color.green + (Color.white/2));
 
             unlocked = true;
