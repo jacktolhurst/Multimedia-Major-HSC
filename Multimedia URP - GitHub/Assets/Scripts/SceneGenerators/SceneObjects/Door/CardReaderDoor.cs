@@ -14,7 +14,7 @@ public class CardReaderDoor : MonoBehaviour
 
     private Bounds boundsCollider;
 
-    private bool unlocked = false;
+    [HideInInspector] public bool unlocked = false;
 
     void Awake(){
         lockedDoor = GetComponent<LockedDoor>();
@@ -25,7 +25,7 @@ public class CardReaderDoor : MonoBehaviour
 
     void Update(){
         if(!unlocked && boundsCollider.Contains(key.transform.position)){
-            lockedDoor.Unlock(new Vector3(-1, 0, 0), 10f, 50f);
+            lockedDoor.Unlock(new Vector3(-2, 0, 0), 10f, 50f);
 
             readerMat[0].SetColor("_MainColor", Color.green);
             readerMat[2].SetColor("_MainColor", Color.green);

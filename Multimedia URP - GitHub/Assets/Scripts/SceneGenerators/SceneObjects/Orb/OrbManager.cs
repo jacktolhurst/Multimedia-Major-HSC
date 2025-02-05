@@ -4,8 +4,14 @@ using System.Collections.Generic;
 public class OrbManager : MonoBehaviour
 {
     private List<GameObject> objects = new List<GameObject>();
+    [SerializeField] private GameObject wire;
+    
+    [SerializeField] private ManagerScript manager;
+    [SerializeField] private CardReaderDoor cardReaderDoor;
 
-    private ParticleSystem childParticleSystem;
+    [SerializeField] private ParticleSystem childParticleSystem;
+
+    [SerializeField] private Light mainLight;
 
     Collider[] forceColliders;
     Collider[] sceneColliders;
@@ -18,29 +24,39 @@ public class OrbManager : MonoBehaviour
     [SerializeField] private float baseForce;
     private float sceneRadius;
     [SerializeField] private float orbSpeed;
+    private float initialIntensity;
 
     void Awake(){
         baseScale = transform.localScale;
 
-        childParticleSystem = transform.GetChild(0).GetComponent<ParticleSystem>();
+        projectedScale = transform.localScale;
+
+        initialIntensity = mainLight.intensity;
     }
 
     void Update(){
-        SceneCheck();
+        if(cardReaderDoor.unlocked){
+            SceneCheck();
 
-        projectedScale = baseScale * (objects.Count + 1);
-        transform.localScale = Vector3.Lerp(transform.localScale, projectedScale, orbSpeed * Time.deltaTime);
+            transform.localScale = Vector3.Lerp(transform.localScale, projectedScale, orbSpeed * Time.deltaTime);
 
-        sceneRadius = (transform.localScale.x/2) - 0.1f;
-        forceRadius = baseForceRadius * sceneRadius;
+            sceneRadius = (transform.localScale.x/2) - 0.4f;
+            forceRadius = baseForceRadius * sceneRadius;
 
-        var shape = childParticleSystem.shape;
-        shape.scale = transform.localScale;
+            var shape = childParticleSystem.shape;
+            shape.scale = transform.localScale;
 
+            mainLight.intensity = initialIntensity + ((transform.localScale.magnitude - baseScale.magnitude) * 3000);
+            mainLight.range = forceRadius;
+
+            wire.SetActive(true);
+        }
     }
 
     void FixedUpdate(){
-        ForceCheck();
+        if(cardReaderDoor.unlocked){
+            ForceCheck();
+        }
     }
 
     private void SceneCheck(){
@@ -50,9 +66,13 @@ public class OrbManager : MonoBehaviour
             GameObject obj = collider.transform.gameObject;
             if(obj.layer == 9){
                 // TODO: change scene to the next
+                manager.RestartScene();
             }
-            else if(obj.layer != 7 && obj.layer != 8){
+            else if(obj.layer != 7 && obj.layer != 8 && obj.layer != 0){
                 objects.Add(obj);
+                if(obj.GetComponent<Renderer>() != null){
+                    projectedScale += new Vector3(1,1,1) * obj.GetComponent<Renderer>().bounds.extents.magnitude;
+                }
                 obj.SetActive(false);
             }
         }
@@ -68,7 +88,7 @@ public class OrbManager : MonoBehaviour
                     rb = collider.transform.parent.GetComponent<Rigidbody>();
                 }
             }
-            if(rb != null){
+            if(rb != null && collider.transform.gameObject.layer != 8 && collider.transform.gameObject.layer != 7 && collider.transform.gameObject.layer != 0){
                 rb.isKinematic = false;
 
                 Vector3 direction = (transform.position - rb.position).normalized;

@@ -145,7 +145,12 @@ public class GrabObjects : MonoBehaviour
         }
         
         moveSpeed = Mathf.Clamp(baseMoveSpeed/(grabbedObjrb.mass / massDivision),baseMoveSpeed/2, baseMoveSpeed);
-        holdDist = Mathf.Clamp((grabbedObjrb.mass * grabbedObj.GetComponent<Renderer>().bounds.extents.magnitude) + baseHoldDist, minGrabbedObjDist, maxGrabbedObjDist);
+        if(grabbedObj.GetComponent<Renderer>() != null){
+            holdDist = Mathf.Clamp((grabbedObjrb.mass * grabbedObj.GetComponent<Renderer>().bounds.extents.magnitude) + baseHoldDist, minGrabbedObjDist, maxGrabbedObjDist);
+        }
+        else{
+            holdDist = Mathf.Clamp(grabbedObjrb.mass + baseHoldDist, minGrabbedObjDist, maxGrabbedObjDist);
+        }
 
         if(grabbedObj.layer != 6){
             foreach(Collider collider in grabbedObj.GetComponents<Collider>()){
