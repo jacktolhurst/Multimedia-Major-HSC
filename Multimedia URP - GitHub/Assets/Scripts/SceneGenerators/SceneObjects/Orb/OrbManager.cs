@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections; 
 using System.Collections.Generic; 
 
 public class OrbManager : MonoBehaviour
@@ -25,6 +26,11 @@ public class OrbManager : MonoBehaviour
     private float sceneRadius;
     [SerializeField] private float orbSpeed;
     private float initialIntensity;
+    [SerializeField] private float maxSize;
+
+    private bool statedSceneCheck;
+    private bool statedChangeTransform;
+    private bool statedForceCheck;
 
     void Awake(){
         baseScale = transform.localScale;
@@ -35,9 +41,20 @@ public class OrbManager : MonoBehaviour
     }
 
     void Update(){
-        if(cardReaderDoor.unlocked){
-            SceneCheck();
+        if(cardReaderDoor.unlocked && !statedChangeTransform && !statedSceneCheck){
+            StartCoroutine(SceneCheck());
+            StartCoroutine(ChangeTransform());
+        }
+    }
 
+    void FixedUpdate(){
+        if(cardReaderDoor.unlocked && !statedForceCheck){
+            StartCoroutine(ForceCheck());
+        }
+    }
+    private IEnumerator ChangeTransform(){
+        statedChangeTransform = true;
+        while(true){
             transform.localScale = Vector3.Lerp(transform.localScale, projectedScale, orbSpeed * Time.deltaTime);
 
             sceneRadius = (transform.localScale.x/2) - 0.4f;
@@ -50,55 +67,66 @@ public class OrbManager : MonoBehaviour
             mainLight.range = forceRadius;
 
             wire.SetActive(true);
-        }
-    }
 
-    void FixedUpdate(){
-        if(cardReaderDoor.unlocked){
-            ForceCheck();
-        }
-    }
-
-    private void SceneCheck(){
-        sceneColliders = Physics.OverlapSphere(transform.position, sceneRadius);
-
-        foreach(Collider collider in sceneColliders){
-            GameObject obj = collider.transform.gameObject;
-            if(obj.layer == 9){
-                // TODO: change scene to the next
-                manager.RestartScene();
+            if(maxSize <= transform.localScale.magnitude){
+                cardReaderDoor.unlocked = false;
+                maxSize = 1000000;
             }
-            else if(obj.layer != 7 && obj.layer != 8 && obj.layer != 0){
-                objects.Add(obj);
-                if(obj.GetComponent<Renderer>() != null){
-                    projectedScale += new Vector3(1,1,1) * obj.GetComponent<Renderer>().bounds.extents.magnitude;
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator SceneCheck(){
+        statedSceneCheck = true;
+        while(true){
+            sceneColliders = Physics.OverlapSphere(transform.position, sceneRadius);
+
+            foreach(Collider collider in sceneColliders){
+                GameObject obj = collider.transform.gameObject;
+                if(obj.layer == 9){
+                    // TODO: change scene to the next
+                    manager.RestartScene();
                 }
-                obj.SetActive(false);
-            }
-        }
-    }
-
-    private void ForceCheck(){
-        forceColliders = Physics.OverlapSphere(transform.position, forceRadius);
-
-        foreach(Collider collider in forceColliders){
-            Rigidbody rb = collider.GetComponent<Rigidbody>();
-            if(collider.transform.parent != null){
-                if(collider.transform.parent.GetComponent<Rigidbody>() != null){
-                    rb = collider.transform.parent.GetComponent<Rigidbody>();
+                else if(obj.layer != 7 && obj.layer != 8 && obj.layer != 0){
+                    objects.Add(obj);
+                    if(obj.GetComponent<Renderer>() != null){
+                        projectedScale += new Vector3(1,1,1) * obj.GetComponent<Renderer>().bounds.extents.magnitude;
+                    }
+                    obj.SetActive(false);
                 }
             }
-            if(rb != null && collider.transform.gameObject.layer != 8 && collider.transform.gameObject.layer != 7 && collider.transform.gameObject.layer != 0){
-                rb.isKinematic = false;
 
-                Vector3 direction = (transform.position - rb.position).normalized;
-                float distance = Vector3.Distance(transform.position, rb.position);
-                float force = (baseForce * 2/distance) * (Vector3.Distance(baseScale, transform.localScale) + 1);
+            yield return null;
+        }
+    }
 
-                rb.AddForce(direction * force, ForceMode.Acceleration);
+    private IEnumerator ForceCheck(){
+        statedForceCheck = true;
+        while(true){
+            forceColliders = Physics.OverlapSphere(transform.position, forceRadius);
 
-                Debug.DrawRay(rb.position, direction * distance, Color.red);
+            foreach(Collider collider in forceColliders){
+                Rigidbody rb = collider.GetComponent<Rigidbody>();
+                if(collider.transform.parent != null){
+                    if(collider.transform.parent.GetComponent<Rigidbody>() != null){
+                        rb = collider.transform.parent.GetComponent<Rigidbody>();
+                    }
+                }
+                if(rb != null && collider.transform.gameObject.layer != 8 && collider.transform.gameObject.layer != 7 && collider.transform.gameObject.layer != 0){
+                    rb.isKinematic = false;
+
+                    Vector3 direction = (transform.position - rb.position).normalized;
+                    float distance = Vector3.Distance(transform.position, rb.position);
+                    float force = (baseForce * 2/distance) * (Vector3.Distance(baseScale, transform.localScale) + 1);
+
+                    rb.AddForce(direction * force, ForceMode.Acceleration);
+
+                    Debug.DrawRay(rb.position, direction * distance, Color.red);
+                }
             }
+
+            yield return null;
         }
     }
 
