@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LockedDoor : MonoBehaviour
 {
-    public void Lock(float lockAmount = 100000, float damperAmount = 0){
+    public void Lock(float lockAmount = 10000000, float damperAmount = 0){
         ChangeHinge(lockAmount, damperAmount);
     }
 

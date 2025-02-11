@@ -64,7 +64,7 @@ public class OrbManager : MonoBehaviour
             shape.scale = transform.localScale;
 
             mainLight.intensity = initialIntensity + ((transform.localScale.magnitude - baseScale.magnitude) * 3000);
-            mainLight.range = forceRadius;
+            mainLight.range = forceRadius + forceRadius/2;
 
             wire.SetActive(true);
 
@@ -92,6 +92,11 @@ public class OrbManager : MonoBehaviour
                     objects.Add(obj);
                     if(obj.GetComponent<Renderer>() != null){
                         projectedScale += new Vector3(1,1,1) * obj.GetComponent<Renderer>().bounds.extents.magnitude;
+                    }
+                    foreach(Transform child in transform){
+                        if(child.GetComponent<Renderer>() != null){
+                            projectedScale += new Vector3(1,1,1) * child.GetComponent<Renderer>().bounds.extents.magnitude;
+                        }
                     }
                     obj.SetActive(false);
                 }

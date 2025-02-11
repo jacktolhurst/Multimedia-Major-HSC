@@ -54,6 +54,7 @@ public class GrabObjects : MonoBehaviour
     private float holdDist;
     [SerializeField] private float minGrabbedObjDist;
     [SerializeField] private float maxGrabbedObjDist;
+    private float prevMass;
 
     private bool tooFar = false;
 
@@ -143,6 +144,9 @@ public class GrabObjects : MonoBehaviour
                 }
             }
         }
+        foreach(Transform child in grabbedObj.transform){
+            child.gameObject.layer = effectMask;
+        }
         
         moveSpeed = Mathf.Clamp(baseMoveSpeed/(grabbedObjrb.mass / massDivision),baseMoveSpeed/2, baseMoveSpeed);
         if(grabbedObj.GetComponent<Renderer>() != null){
@@ -160,10 +164,13 @@ public class GrabObjects : MonoBehaviour
 
         defaultMask = grabbedObj.layer;
         grabbedObj.layer = effectMask;
+
+        prevMass = grabbedObjrb.mass;
+        grabbedObjrb.mass = 20 * grabbedObjrb.mass;
     }
 
     private void LetGoObjectValues(){
-        grabbedObjrb.linearVelocity = mainRay.direction * throwSpeed/grabbedObjrb.mass;
+        grabbedObjrb.linearVelocity = grabbedObjrb.linearVelocity + mainRay.direction * throwSpeed/prevMass;
 
         grabbedObjrb.useGravity = true;
 
@@ -174,7 +181,12 @@ public class GrabObjects : MonoBehaviour
             Physics.IgnoreCollision(collider, selfCollider, false);
         }
 
+        foreach(Transform child in grabbedObj.transform){
+            child.gameObject.layer = defaultMask;
+        }
         grabbedObj.layer = defaultMask;
+
+        grabbedObjrb.mass = prevMass;
     }
 
     void OnDrawGizmos(){

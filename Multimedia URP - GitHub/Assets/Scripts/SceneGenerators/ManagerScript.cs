@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class ManagerScript : MonoBehaviour
 {
@@ -8,6 +9,14 @@ public class ManagerScript : MonoBehaviour
     void Start(){
         QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = targetFrameRate;
+
+        Renderer[] allRenderers = Resources.FindObjectsOfTypeAll<Renderer>()
+            .Where(r => r.gameObject.scene.IsValid()).ToArray();
+
+        foreach (Renderer rend in allRenderers)
+        {
+            rend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
     }
 
     void Update(){

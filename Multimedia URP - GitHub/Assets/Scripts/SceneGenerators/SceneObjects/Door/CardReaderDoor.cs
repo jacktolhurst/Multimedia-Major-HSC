@@ -20,7 +20,7 @@ public class CardReaderDoor : MonoBehaviour
 
     private List<Material> readerMat = new List<Material>();
 
-    [HideInInspector] public bool unlocked = false;
+    public bool unlocked = false;
 
     void Awake(){
         lockedDoor = GetComponent<LockedDoor>();
