@@ -56,6 +56,12 @@ public class FirstPersonMovement : MonoBehaviour
 
     private bool isGrounded;
 
+    [HideInInspector] public Vector3 generatedStartPos;
+    [Header("StartPositioning")]
+    [SerializeField] private Vector3 subtractedPosition;
+
+    [SerializeField] private bool useStartPos;
+
     void Awake(){
         rb = GetComponent<Rigidbody>();
 
@@ -83,6 +89,17 @@ public class FirstPersonMovement : MonoBehaviour
         standardHeight = playerCollider.height;
     }
 
+    void Start(){
+        if(useStartPos){
+            rb.isKinematic = true;
+            if(generatedStartPos != Vector3.zero){
+                generatedStartPos.y = 1;
+                generatedStartPos -= subtractedPosition;
+                transform.position = generatedStartPos;
+            }
+        }
+    }
+
     void Update(){
         GetInput();
 
@@ -91,6 +108,10 @@ public class FirstPersonMovement : MonoBehaviour
             if(isGrounded && Time.time - lastJumpTime > jumpIntervalTime){
                 Jump();
             }
+        }
+
+        if(useStartPos){
+            rb.isKinematic = false;
         }
     }
 

@@ -16,9 +16,12 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
     private List<GameObject> generatedObjs = new List<GameObject>();
 
+    [SerializeField] private FirstPersonMovement FPM;
+
     [SerializeField] private GameObject player;
     private GameObject nonChunkedParent;
     private GameObject majorParent;
+    [SerializeField] private GameObject playerCubicle;
 
     private Bounds checkBounds;
     private Bounds playerMovementBounds;
@@ -41,6 +44,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
     [SerializeField] private int chunkSize;
     private int iteration = 0;
     [SerializeField] private int maxIteration; // the max iteration count, pretty arbetrary but needed
+    [SerializeField] private int playerCubicleNum;
 
     [SerializeField] private bool reGenerate;
     [SerializeField] private bool drawGizmos;
@@ -144,6 +148,11 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
 
                 GameObject obj = GetObj();
+                
+                if(playerCubicleNum == iteration * chunkSize + i){
+                    obj = playerCubicle;
+                }
+
                 Vector3 position = transform.position;
 
                 if(chunkedObjects.Count != 0){
@@ -164,6 +173,10 @@ public class CubicleGeneratorV2 : MonoBehaviour
                     }
                     else{
                         transform.position = position;
+                        
+                        if(playerCubicleNum == iteration * chunkSize + i){
+                            FPM.generatedStartPos = transform.position;
+                        }
                     }
                 }
 
