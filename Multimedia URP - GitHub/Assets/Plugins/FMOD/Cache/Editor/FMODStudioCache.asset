@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638749659889126468
+  lastModified: 638749848002551038
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638749667781144271
+  lastModified: 638749862955277793
   FileSizes:
   - Name: Desktop
-    Value: 378464
+    Value: 47904
   Exists: 1
 --- !u!114 &-3807605593485191457
 MonoBehaviour:
@@ -60,7 +60,7 @@ MonoBehaviour:
     Data4: -2094243013
   Banks:
   - {fileID: -8933516579531222678}
-  IsStream: 1
+  IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
@@ -82,7 +82,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638749659889141496
+  lastModified: 638749848002556126
   FileSizes:
   - Name: Desktop
     Value: 812
@@ -110,5 +110,5 @@ MonoBehaviour:
   - {fileID: -9004091244016072083}
   StringsBanks:
   - {fileID: -1268362605650552912}
-  cacheTime: 638749667781144271
+  cacheTime: 638749862955277793
   cacheVersion: 131622

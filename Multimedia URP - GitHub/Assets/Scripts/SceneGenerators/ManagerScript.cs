@@ -7,7 +7,6 @@ public class ManagerScript : MonoBehaviour
     [SerializeField] private int targetFrameRate;
 
     void Start(){
-        QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = targetFrameRate;
 
         Renderer[] allRenderers = Resources.FindObjectsOfTypeAll<Renderer>()
@@ -30,6 +29,7 @@ public class ManagerScript : MonoBehaviour
     }
 
     public void RestartScene(){
+        AudioManager.instance.StopAllSound();
         SceneManager.LoadScene("OfficeWorks");
     }
 }
