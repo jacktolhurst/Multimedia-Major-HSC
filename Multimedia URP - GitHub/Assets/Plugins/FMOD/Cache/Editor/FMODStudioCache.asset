@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5468671911176509687
+--- !u!114 &-9004091244016072083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: ../../Builds/Tempmusic/Build/Desktop/Master.bank
+  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638698593683104755
+  lastModified: 638749659889126468
   FileSizes:
   - Name: Desktop
     Value: 1036
   Exists: 1
---- !u!114 &-3102038563975408610
+--- !u!114 &-8933516579531222678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -30,15 +30,62 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/MainGameMusic.bank
+  m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: 
-  Path: ../../Builds/Tempmusic/Build/Desktop/MainGameMusic.bank
-  Name: MainGameMusic
-  StudioPath: bank:/MainGameMusic
-  lastModified: 638698593683154866
+  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638749667781144271
   FileSizes:
   - Name: Desktop
-    Value: 1046
+    Value: 378464
+  Exists: 1
+--- !u!114 &-3807605593485191457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MetalDetectorThru
+  m_EditorClassIdentifier: 
+  Path: event:/MetalDetectorThru
+  Guid:
+    Data1: 456978871
+    Data2: 1325953534
+    Data3: 1524490667
+    Data4: -2094243013
+  Banks:
+  - {fileID: -8933516579531222678}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1268362605650552912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638749659889141496
+  FileSizes:
+  - Name: Desktop
+    Value: 812
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -53,62 +100,15 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 1752489995873015216}
-  - {fileID: -3102038563975408610}
-  - {fileID: -5468671911176509687}
+  - {fileID: -1268362605650552912}
+  - {fileID: -9004091244016072083}
+  - {fileID: -8933516579531222678}
   EditorEvents:
-  - {fileID: 3527210976044552354}
+  - {fileID: -3807605593485191457}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -5468671911176509687}
+  - {fileID: -9004091244016072083}
   StringsBanks:
-  - {fileID: 1752489995873015216}
-  cacheTime: 638698593683154866
+  - {fileID: -1268362605650552912}
+  cacheTime: 638749667781144271
   cacheVersion: 131622
---- !u!114 &1752489995873015216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../../Builds/Tempmusic/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638698593683114813
-  FileSizes:
-  - Name: Desktop
-    Value: 810
-  Exists: 1
---- !u!114 &3527210976044552354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/tester
-  m_EditorClassIdentifier: 
-  Path: event:/tester
-  Guid:
-    Data1: -1824129635
-    Data2: 1325136619
-    Data3: -1573120854
-    Data4: -179626547
-  Banks:
-  - {fileID: -3102038563975408610}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
