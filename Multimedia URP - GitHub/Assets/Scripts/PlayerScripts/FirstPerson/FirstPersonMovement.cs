@@ -62,6 +62,9 @@ public class FirstPersonMovement : MonoBehaviour
 
     [SerializeField] private bool useStartPos;
 
+    [Header("Audio")]
+    private EventInstance playerFootsteps;
+
     void Awake(){
         rb = GetComponent<Rigidbody>();
 
@@ -98,6 +101,8 @@ public class FirstPersonMovement : MonoBehaviour
                 transform.position = generatedStartPos;
             }
         }
+
+        playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.footStepsSFX);
     }
 
     void Update(){
@@ -166,6 +171,7 @@ public class FirstPersonMovement : MonoBehaviour
 
     void FixedUpdate(){
         Movement();
+        UpdateSound();
     }
 
     private void Movement(){
@@ -178,6 +184,18 @@ public class FirstPersonMovement : MonoBehaviour
         }
     }
 
+    private void UpdateSound(){
+        if(moveDirection.normalized != Vector3.zero && isGrounded){
+            PLAYBACK_STATE playBackState;
+            playerFootsteps.getPlaybackState(out playBackState);
+            if( playBackState.Equals(PLAYBACK_STATE.STOPPED)){
+                playerFootsteps.start();
+            }
+        }
+        else{ 
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+    }
 
     void OnDrawGizmos(){
         foreach(Vector3 position in cachedPositions){

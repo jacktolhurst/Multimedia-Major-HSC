@@ -29,7 +29,6 @@ public class ManagerScript : MonoBehaviour
     }
 
     public void RestartScene(){
-        AudioManager.instance.StopAllSound();
         SceneManager.LoadScene("OfficeWorks");
     }
 }

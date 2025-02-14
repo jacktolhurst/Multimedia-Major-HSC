@@ -45,6 +45,7 @@ public class OrbManager : MonoBehaviour
             StartCoroutine(SceneCheck());
             StartCoroutine(ChangeTransform());
         }
+
     }
 
     void FixedUpdate(){
