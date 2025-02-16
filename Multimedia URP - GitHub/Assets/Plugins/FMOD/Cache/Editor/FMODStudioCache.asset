@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638751259607211906
+  lastModified: 638752311818842618
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -35,11 +35,58 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638751259609352445
+  lastModified: 638752311819041989
   FileSizes:
   - Name: Desktop
-    Value: 61056
+    Value: 60928
   Exists: 1
+--- !u!114 &-6366183555996181344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Ambience.bank
+  m_EditorClassIdentifier: 
+  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Ambience.bank
+  Name: Ambience
+  StudioPath: bank:/Ambience
+  lastModified: 638752284287889060
+  FileSizes:
+  - Name: Desktop
+    Value: 26272
+  Exists: 1
+--- !u!114 &-5262855604895969103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Footsteps/Footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Footsteps/Footsteps
+  Guid:
+    Data1: 553788734
+    Data2: 1338763801
+    Data3: 1113861267
+    Data4: 872523554
+  Banks:
+  - {fileID: -8933516579531222678}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
 --- !u!114 &-1268362605650552912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,30 +102,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638751259607236908
+  lastModified: 638752311818852631
   FileSizes:
   - Name: Desktop
-    Value: 1012
-  Exists: 1
---- !u!114 &-263503507313551536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Ambience.bank
-  m_EditorClassIdentifier: 
-  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Ambience.bank
-  Name: Ambience
-  StudioPath: bank:/Ambience
-  lastModified: 638750539361365668
-  FileSizes:
-  - Name: Desktop
-    Value: 26272
+    Value: 1006
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -96,19 +123,19 @@ MonoBehaviour:
   - {fileID: -1268362605650552912}
   - {fileID: -9004091244016072083}
   - {fileID: -8933516579531222678}
-  - {fileID: -263503507313551536}
+  - {fileID: -6366183555996181344}
   EditorEvents:
-  - {fileID: 9120580598426885256}
-  - {fileID: 574500276377251449}
-  - {fileID: 1274075892507194195}
+  - {fileID: 1986156152004386473}
+  - {fileID: 1480508188663382691}
+  - {fileID: -5262855604895969103}
   EditorParameters: []
   MasterBanks:
   - {fileID: -9004091244016072083}
   StringsBanks:
   - {fileID: -1268362605650552912}
-  cacheTime: 638751259609352445
+  cacheTime: 638752311819041989
   cacheVersion: 131622
---- !u!114 &574500276377251449
+--- !u!114 &1480508188663382691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,34 +162,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &1274075892507194195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/Footsteps/PlayerFootsteps
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/Footsteps/PlayerFootsteps
-  Guid:
-    Data1: 294196892
-    Data2: 1186007138
-    Data3: 1505216156
-    Data4: 1553341435
-  Banks:
-  - {fileID: -8933516579531222678}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 480
---- !u!114 &9120580598426885256
+--- !u!114 &1986156152004386473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,7 +181,7 @@ MonoBehaviour:
     Data3: 59270031
     Data4: 513295140
   Banks:
-  - {fileID: -263503507313551536}
+  - {fileID: -6366183555996181344}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0

@@ -4,11 +4,40 @@ using FMODUnity;
 
 public class FMODEvents : MonoBehaviour
 {
-    [field: Header("Metal Detector SFX")]
-    [field: SerializeField] public EventReference metalDetectorSFX {get; private set; }
+    [System.Serializable]
+    public class SoundEventClass{
+        [field: SerializeField] public EventReference eventReference {get; private set; }
 
-    [field: Header("Player SFX")]
-    [field: SerializeField] public EventReference footStepsSFX {get; private set; }
+        [HideInInspector] public Vector3 position;
+
+        public string name;
+
+        public float BPM;
+
+        public bool continuous;
+        [HideInInspector] public bool playNow;
+
+        public void PlaySound(Vector3 newPosition){
+            position = newPosition;
+            playNow = true;
+        }
+
+        public void StopSound(){
+            position = Vector3.zero;
+            playNow = false;
+        }
+
+        public float GetBPM(){
+            return BPM;
+        }
+
+        public void ChangeBPM(float newBPM){
+            BPM = newBPM;
+            AudioManager.instance.ChangeBPM();
+        }
+    }
+
+    public List<SoundEventClass> soundEvents = new List<SoundEventClass>();
 
     public static FMODEvents instance {get; private set;}
 
@@ -17,5 +46,11 @@ public class FMODEvents : MonoBehaviour
             Debug.LogError("More then one FMOD event manager");
         }
         instance = this;
+    }
+
+    void OnValidate(){
+        if(instance != null && AudioManager.instance.bpmBatchClasseDict.Count != 0){
+            AudioManager.instance.ChangeBPM();
+        }
     }
 }
