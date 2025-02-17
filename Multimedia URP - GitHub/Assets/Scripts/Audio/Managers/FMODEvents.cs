@@ -13,9 +13,18 @@ public class FMODEvents : MonoBehaviour
         public string name;
 
         public float BPM;
+        private float baseBPM;
 
         public bool continuous;
         [HideInInspector] public bool playNow;
+
+        public void FirstUpdate(){
+            baseBPM = BPM;
+        }
+
+        public void UpdateSound(){
+            BPM = baseBPM;
+        }
 
         public void PlaySound(Vector3 newPosition){
             position = newPosition;
@@ -31,9 +40,11 @@ public class FMODEvents : MonoBehaviour
             return BPM;
         }
 
-        public void ChangeBPM(float newBPM){
+        public void ChangeBPM(float newBPM, SoundEventClass soundEventClass){
+            float prevBPM = BPM;
+            baseBPM = newBPM;
             BPM = newBPM;
-            AudioManager.instance.ChangeBPM();
+            AudioManager.instance.ChangeBPM(prevBPM, soundEventClass);
         }
     }
 
@@ -45,12 +56,16 @@ public class FMODEvents : MonoBehaviour
         if(instance != null){
             Debug.LogError("More then one FMOD event manager");
         }
-        instance = this;
+        instance = this;    
+
+        foreach(SoundEventClass soundEvent in soundEvents){
+            soundEvent.FirstUpdate();
+        }
     }
 
-    void OnValidate(){
-        if(instance != null && AudioManager.instance.bpmBatchClasseDict.Count != 0){
-            AudioManager.instance.ChangeBPM();
+    void Update(){
+        foreach(SoundEventClass soundEvent in soundEvents){
+            soundEvent.UpdateSound();
         }
     }
 }

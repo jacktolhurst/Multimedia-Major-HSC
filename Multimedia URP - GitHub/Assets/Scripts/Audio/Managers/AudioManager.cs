@@ -45,15 +45,20 @@ public class AudioManager : MonoBehaviour
         ReOrderList();
     }
 
-    public void ChangeBPM(){
-        foreach(Coroutine coroutine in bpmCoroutineDict.Values){
-            StopCoroutine(coroutine);
-        }
-        Debug.Log("hello");
+    public void ChangeBPM(float prevBPM, FMODEvents.SoundEventClass soundEventClass){
+        float newBPM = soundEventClass.BPM;
 
-        bpmCoroutineDict.Clear();
-        bpmBatchClasseDict.Clear();
-        ReOrderList();
+        bpmBatchClasseDict[prevBPM].soundEvents.Remove(soundEventClass);
+
+        if(!bpmBatchClasseDict.ContainsKey(newBPM)){
+            bpmBatchClasseDict.Add(newBPM, new BPMBatchClass());
+            bpmBatchClasseDict[newBPM].BPM = newBPM;
+            bpmCoroutineDict.Add(newBPM, StartCoroutine(bpmBatchClasseDict[newBPM].StartSound()));
+        }
+        bpmBatchClasseDict[newBPM].soundEvents.Add(soundEventClass);
+
+        Debug.Log(bpmBatchClasseDict[newBPM].BPM);
+        Debug.Log(bpmBatchClasseDict[newBPM].soundEvents[0].name);
     }
 
     private void ReOrderList(){

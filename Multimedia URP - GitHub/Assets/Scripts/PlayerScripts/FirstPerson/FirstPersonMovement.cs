@@ -104,8 +104,6 @@ public class FirstPersonMovement : MonoBehaviour
         }
 
         playerFootsteps = AudioManager.instance.GetSoundEventClass(footStepsName);
-
-        // playerFootsteps = AudioManager.instance.CreateInstance(FMODEvents.instance.footStepsSFX);
     }
 
     void Update(){
@@ -174,21 +172,25 @@ public class FirstPersonMovement : MonoBehaviour
 
     void FixedUpdate(){
         Movement();
-        // UpdateSound();
     }
 
     private void Movement(){
         if(isGrounded){
             rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.  Acceleration);
-            if(Input.GetAxisRaw("Sprint") != 0){
-                playerFootsteps.ChangeBPM(Mathf.Min(playerFootsteps.GetBPM() * (Input.GetAxisRaw("Sprint") + 1), 120));
-            }
+            if(!playerFootsteps.playNow){
+                if(Input.GetAxisRaw("Sprint") == 0){
+                    playerFootsteps.ChangeBPM(120, playerFootsteps);
+                }
+                else{ 
+                    playerFootsteps.ChangeBPM(150, playerFootsteps);
+                }
 
-            if(moveDirection.normalized != Vector3.zero){
-                playerFootsteps.PlaySound(transform.position);
-            }
-            else{
-                playerFootsteps.StopSound();
+                if(moveDirection.normalized != Vector3.zero){
+                    playerFootsteps.PlaySound(transform.position);
+                }
+                else{
+                    playerFootsteps.StopSound();
+                }
             }
         }
         else{
@@ -196,19 +198,6 @@ public class FirstPersonMovement : MonoBehaviour
             playerFootsteps.StopSound();
         }
     }
-
-    // private void UpdateSound(){
-    //     if(moveDirection.normalized != Vector3.zero && isGrounded){
-    //         PLAYBACK_STATE playBackState;
-    //         playerFootsteps.getPlaybackState(out playBackState);
-    //         if( playBackState.Equals(PLAYBACK_STATE.STOPPED)){
-    //             playerFootsteps.start();
-    //         }
-    //     }
-    //     else{ 
-    //         playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
-    //     }
-    // }
 
     void OnDrawGizmos(){
         foreach(Vector3 position in cachedPositions){
