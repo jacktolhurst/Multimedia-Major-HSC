@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638753889824174501
+  lastModified: 638754081094696867
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -35,7 +35,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638753892680882456
+  lastModified: 638754110757665795
   FileSizes:
   - Name: Desktop
     Value: 157632
@@ -55,11 +55,38 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638753908571673747
+  lastModified: 638754110757462409
   FileSizes:
   - Name: Desktop
     Value: 26144
   Exists: 1
+--- !u!114 &-3681085502266646726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Grabbing object/Grabbing Object
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Grabbing object/Grabbing Object
+  Guid:
+    Data1: -1435327189
+    Data2: 1314591851
+    Data3: -1385932882
+    Data4: 1415534246
+  Banks:
+  - {fileID: -8933516579531222678}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1268362605650552912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +102,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638753889824203484
+  lastModified: 638754081094706254
   FileSizes:
   - Name: Desktop
     Value: 1080
@@ -101,13 +128,13 @@ MonoBehaviour:
   - {fileID: 1986156152004386473}
   - {fileID: 1480508188663382691}
   - {fileID: 3718129751981856262}
-  - {fileID: 6578157094694700571}
+  - {fileID: -3681085502266646726}
   EditorParameters: []
   MasterBanks:
   - {fileID: -9004091244016072083}
   StringsBanks:
   - {fileID: -1268362605650552912}
-  cacheTime: 638753908571673747
+  cacheTime: 638754110757665795
   cacheVersion: 131622
 --- !u!114 &1480508188663382691
 MonoBehaviour:
@@ -190,30 +217,3 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
---- !u!114 &6578157094694700571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/Grabbing object/Grabbing Object
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/Grabbing object/Grabbing Object
-  Guid:
-    Data1: -1435327189
-    Data2: 1314591851
-    Data3: -1385932882
-    Data4: 1415534246
-  Banks:
-  - {fileID: -8933516579531222678}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0

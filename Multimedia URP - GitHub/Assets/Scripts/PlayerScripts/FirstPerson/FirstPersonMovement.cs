@@ -179,23 +179,19 @@ public class FirstPersonMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.  Acceleration);
             if(!playerFootstepsSound.playNow){
                 if(Input.GetAxisRaw("Sprint") == 0){
-                    playerFootstepsSound.ChangeBPM(120, playerFootstepsSound);
+                    playerFootstepsSound.ChangeBPM(playerFootstepsSound.GetOriginalBPM(), playerFootstepsSound);
                 }
                 else{ 
-                    playerFootstepsSound.ChangeBPM(150, playerFootstepsSound);
+                    playerFootstepsSound.ChangeBPM(playerFootstepsSound.GetOriginalBPM()+40, playerFootstepsSound);
                 }
 
                 if(moveDirection.normalized != Vector3.zero){
                     playerFootstepsSound.PlaySound(transform.position);
                 }
-                else{
-                    playerFootstepsSound.StopSound();
-                }
             }
         }
         else{
             rb.AddForce(moveDirection.normalized * speed * movementMultiplier * jumpMultiplier, ForceMode.  Acceleration);
-            playerFootstepsSound.StopSound();
         }
     }
 

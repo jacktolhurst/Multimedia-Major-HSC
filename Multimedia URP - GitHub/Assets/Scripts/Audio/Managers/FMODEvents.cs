@@ -8,18 +8,23 @@ public class FMODEvents : MonoBehaviour
     public class SoundEventClass{
         public string name;
         
-        [field: SerializeField] public EventReference eventReference {get; private set; }
+        [field: SerializeField] public EventReference eventReference {get; private set;}
+        [HideInInspector] public FMOD.Studio.EventInstance eventInstance;
 
         [HideInInspector] public Vector3 position;
 
         public float BPM;
         private float baseBPM;
+        private float originalBPM;
 
         public bool continuous;
+        public bool dontPlay;
         [HideInInspector] public bool playNow;
 
         public void FirstUpdate(){
             baseBPM = BPM;
+            originalBPM = BPM;
+            eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
         }
 
         public void UpdateSound(){
@@ -34,10 +39,15 @@ public class FMODEvents : MonoBehaviour
         public void StopSound(){
             position = Vector3.zero;
             playNow = false;
+            AudioManager.instance.StopSound(eventInstance);
         }
 
         public float GetBPM(){
             return BPM;
+        }
+
+        public float GetOriginalBPM(){
+            return originalBPM;
         }
 
         public void ChangeBPM(float newBPM, SoundEventClass soundEventClass){
