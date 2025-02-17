@@ -64,7 +64,7 @@ public class FirstPersonMovement : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private string footStepsName;
-    private FMODEvents.SoundEventClass playerFootsteps;
+    private FMODEvents.SoundEventClass playerFootstepsSound;
 
     void Awake(){
         rb = GetComponent<Rigidbody>();
@@ -103,7 +103,7 @@ public class FirstPersonMovement : MonoBehaviour
             }
         }
 
-        playerFootsteps = AudioManager.instance.GetSoundEventClass(footStepsName);
+        playerFootstepsSound = AudioManager.instance.GetSoundEventClass(footStepsName);
     }
 
     void Update(){
@@ -177,25 +177,25 @@ public class FirstPersonMovement : MonoBehaviour
     private void Movement(){
         if(isGrounded){
             rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.  Acceleration);
-            if(!playerFootsteps.playNow){
+            if(!playerFootstepsSound.playNow){
                 if(Input.GetAxisRaw("Sprint") == 0){
-                    playerFootsteps.ChangeBPM(120, playerFootsteps);
+                    playerFootstepsSound.ChangeBPM(120, playerFootstepsSound);
                 }
                 else{ 
-                    playerFootsteps.ChangeBPM(150, playerFootsteps);
+                    playerFootstepsSound.ChangeBPM(150, playerFootstepsSound);
                 }
 
                 if(moveDirection.normalized != Vector3.zero){
-                    playerFootsteps.PlaySound(transform.position);
+                    playerFootstepsSound.PlaySound(transform.position);
                 }
                 else{
-                    playerFootsteps.StopSound();
+                    playerFootstepsSound.StopSound();
                 }
             }
         }
         else{
             rb.AddForce(moveDirection.normalized * speed * movementMultiplier * jumpMultiplier, ForceMode.  Acceleration);
-            playerFootsteps.StopSound();
+            playerFootstepsSound.StopSound();
         }
     }
 

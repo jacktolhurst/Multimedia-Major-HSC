@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638753811287475127
+  lastModified: 638753889824174501
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638753811288194510
+  lastModified: 638753892680882456
   FileSizes:
   - Name: Desktop
-    Value: 60928
+    Value: 157632
   Exists: 1
 --- !u!114 &-6366183555996181344
 MonoBehaviour:
@@ -55,10 +55,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638753811287292305
+  lastModified: 638753908571673747
   FileSizes:
   - Name: Desktop
-    Value: 26272
+    Value: 26144
   Exists: 1
 --- !u!114 &-1268362605650552912
 MonoBehaviour:
@@ -75,10 +75,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638753811287490171
+  lastModified: 638753889824203484
   FileSizes:
   - Name: Desktop
-    Value: 1006
+    Value: 1080
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -101,12 +101,13 @@ MonoBehaviour:
   - {fileID: 1986156152004386473}
   - {fileID: 1480508188663382691}
   - {fileID: 3718129751981856262}
+  - {fileID: 6578157094694700571}
   EditorParameters: []
   MasterBanks:
   - {fileID: -9004091244016072083}
   StringsBanks:
   - {fileID: -1268362605650552912}
-  cacheTime: 638753811288194510
+  cacheTime: 638753908571673747
   cacheVersion: 131622
 --- !u!114 &1480508188663382691
 MonoBehaviour:
@@ -157,7 +158,7 @@ MonoBehaviour:
   - {fileID: -6366183555996181344}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -189,3 +190,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
+--- !u!114 &6578157094694700571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Grabbing object/Grabbing Object
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Grabbing object/Grabbing Object
+  Guid:
+    Data1: -1435327189
+    Data2: 1314591851
+    Data3: -1385932882
+    Data4: 1415534246
+  Banks:
+  - {fileID: -8933516579531222678}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0

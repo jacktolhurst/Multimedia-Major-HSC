@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{dc51d561-070a-409f-b28c-bc2df3145085}">
+		<property name="assetPath">
+			<value>ssstik.io_1739396092878.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>7.9673469387755098</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{160e69d2-3853-4857-bc9e-24d488a9fe31}</destination>
+		</relationship>
+	</object>
+</objects>

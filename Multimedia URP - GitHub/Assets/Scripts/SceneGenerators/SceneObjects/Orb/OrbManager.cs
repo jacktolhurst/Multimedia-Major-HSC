@@ -32,12 +32,21 @@ public class OrbManager : MonoBehaviour
     private bool statedChangeTransform;
     private bool statedForceCheck;
 
+    [Header("Audio")]
+    [SerializeField] private string orbAmbienceName;
+    private FMODEvents.SoundEventClass orbAmbienceSound;
+
     void Awake(){
         baseScale = transform.localScale;
 
         projectedScale = transform.localScale;
 
         initialIntensity = mainLight.intensity;
+    }
+
+    void Start(){
+        orbAmbienceSound = AudioManager.instance.GetSoundEventClass(orbAmbienceName);
+        orbAmbienceSound.PlaySound(transform.position);
     }
 
     void Update(){

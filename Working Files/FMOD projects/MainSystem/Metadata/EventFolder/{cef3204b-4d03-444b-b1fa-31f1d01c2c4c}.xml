@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{cef3204b-4d03-444b-b1fa-31f1d01c2c4c}">
+		<property name="name">
+			<value>Grabbing object</value>
+		</property>
+		<relationship name="folder">
+			<destination>{929cd99d-24b2-4818-8174-cf46f67ad847}</destination>
+		</relationship>
+	</object>
+</objects>

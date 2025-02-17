@@ -56,9 +56,15 @@ public class AudioManager : MonoBehaviour
             bpmCoroutineDict.Add(newBPM, StartCoroutine(bpmBatchClasseDict[newBPM].StartSound()));
         }
         bpmBatchClasseDict[newBPM].soundEvents.Add(soundEventClass);
+    }
 
-        Debug.Log(bpmBatchClasseDict[newBPM].BPM);
-        Debug.Log(bpmBatchClasseDict[newBPM].soundEvents[0].name);
+    public void StopAllSounds(){ 
+        foreach(Coroutine coroutine in bpmCoroutineDict.Values){
+            StopCoroutine(coroutine);
+        }
+
+        bpmBatchClasseDict.Clear();
+        bpmCoroutineDict.Clear();
     }
 
     private void ReOrderList(){
@@ -88,25 +94,4 @@ public class AudioManager : MonoBehaviour
         Debug.LogError("Sound event not found: " + name);
         return null;
     }
-
-    // public void PlayOneShot(EventReference sound, Vector3 worldPos){
-    //     RuntimeManager.PlayOneShot(sound, worldPos);
-    // }
-
-    // public EventInstance CreateInstance(EventReference eventReference){
-    //     EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
-    //     eventInstances.Add(eventInstance);
-    //     return eventInstance;
-    // }
-
-    // private void CleanUp(){
-    //     foreach(EventInstance eventInstance in eventInstances){ 
-    //         eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-    //         eventInstance.release();
-    //     }
-    // }
-
-    // void OnDestroy(){
-    //     CleanUp();
-    // }
 }

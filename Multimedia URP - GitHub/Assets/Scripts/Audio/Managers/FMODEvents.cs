@@ -6,11 +6,11 @@ public class FMODEvents : MonoBehaviour
 {
     [System.Serializable]
     public class SoundEventClass{
+        public string name;
+        
         [field: SerializeField] public EventReference eventReference {get; private set; }
 
         [HideInInspector] public Vector3 position;
-
-        public string name;
 
         public float BPM;
         private float baseBPM;
