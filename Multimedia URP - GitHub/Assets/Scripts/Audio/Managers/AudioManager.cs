@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
         ReOrderList();
     }
 
-    public void ChangeBPM(float prevBPM, FMODEvents.SoundEventClass soundEventClass){
+    public void ChangeBPM(FMODEvents.SoundEventClass soundEventClass, float prevBPM){
         float newBPM = soundEventClass.BPM;
 
         bpmBatchClasseDict[prevBPM].soundEvents.Remove(soundEventClass);
@@ -92,9 +92,17 @@ public class AudioManager : MonoBehaviour
         masterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
-    public bool IsPlaying(FMOD.Studio.EventInstance instance){
+    public void ChangeMaxDistance(FMOD.Studio.EventInstance eventInstance, float maxDist){
+        eventInstance.setProperty(EVENT_PROPERTY.MAXIMUM_DISTANCE, maxDist);
+    }
+
+    public void ChangeMinDistance(FMOD.Studio.EventInstance eventInstance, float minDist){
+        eventInstance.setProperty(EVENT_PROPERTY.MAXIMUM_DISTANCE, minDist);
+    }
+
+    public bool IsPlaying(FMOD.Studio.EventInstance eventInstance){
 	    FMOD.Studio.PLAYBACK_STATE state;   
-	    instance.getPlaybackState(out state);
+	    eventInstance.getPlaybackState(out state);
 	    return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
     }
 

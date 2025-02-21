@@ -50,11 +50,19 @@ public class FMODEvents : MonoBehaviour
             return originalBPM;
         }
 
-        public void ChangeBPM(float newBPM, SoundEventClass soundEventClass){
+        public void ChangeBPM(float newBPM){
             float prevBPM = BPM;
             baseBPM = newBPM;
             BPM = newBPM;
-            AudioManager.instance.ChangeBPM(prevBPM, soundEventClass);
+            AudioManager.instance.ChangeBPM(this, prevBPM);
+        }
+
+        public void ChangeMaxDistance(float maxDist){
+            AudioManager.instance.ChangeMaxDistance(eventInstance, maxDist);
+        }
+
+        public void ChangeMinDistance(float minDist){
+            AudioManager.instance.ChangeMinDistance(eventInstance, minDist);
         }
     }
 

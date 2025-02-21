@@ -19,6 +19,7 @@ public class OrbManager : MonoBehaviour
 
     private Vector3 baseScale;
     private Vector3 projectedScale;
+    [SerializeField] private Vector3 speakerPosition;
 
     [SerializeField] private float baseForceRadius;
     private float forceRadius;
@@ -34,7 +35,10 @@ public class OrbManager : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private string orbAmbienceName;
+    [SerializeField] private string orbSizeDetectedName;
     private FMODEvents.SoundEventClass orbAmbienceSound;
+    private FMODEvents.SoundEventClass orbSizeDetectedSound;
+    public float maxSoundDist;
 
     void Awake(){
         baseScale = transform.localScale;
@@ -46,6 +50,8 @@ public class OrbManager : MonoBehaviour
 
     void Start(){
         orbAmbienceSound = AudioManager.instance.GetSoundEventClass(orbAmbienceName);
+        orbSizeDetectedSound = AudioManager.instance.GetSoundEventClass(orbSizeDetectedName);
+
         orbAmbienceSound.PlaySound(transform.position);
     }
 
@@ -67,21 +73,29 @@ public class OrbManager : MonoBehaviour
         while(true){
             transform.localScale = Vector3.Lerp(transform.localScale, projectedScale, orbSpeed * Time.deltaTime);
 
-            sceneRadius = (transform.localScale.x/2) - 0.4f;
+            Vector3 localScale = transform.localScale;
+
+            sceneRadius = (localScale.x/2) - 0.4f;
             forceRadius = baseForceRadius * sceneRadius;
 
             var shape = childParticleSystem.shape;
-            shape.scale = transform.localScale;
+            shape.scale = localScale;
 
-            mainLight.intensity = initialIntensity + ((transform.localScale.magnitude - baseScale.magnitude) * 3000);
+            mainLight.intensity = initialIntensity + ((localScale.magnitude - baseScale.magnitude) * 3000);
             mainLight.range = forceRadius + forceRadius/2;
 
             wire.SetActive(true);
 
-            if(maxSize <= transform.localScale.magnitude){
+            if(maxSize <= localScale.magnitude){
                 cardReaderDoor.unlocked = false;
+
+                orbSizeDetectedSound.PlaySound(speakerPosition);
+
                 maxSize = 1000000;
             }
+
+            orbAmbienceSound.ChangeMaxDistance(forceRadius * 2);
+            orbAmbienceSound.ChangeMinDistance(localScale.magnitude * 2);
 
             yield return null;
         }
@@ -151,5 +165,9 @@ public class OrbManager : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, sceneRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(speakerPosition, 2);
+
     }
 }

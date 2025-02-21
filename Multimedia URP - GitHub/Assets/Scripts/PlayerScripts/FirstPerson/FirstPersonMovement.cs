@@ -176,13 +176,13 @@ public class FirstPersonMovement : MonoBehaviour
 
     private void Movement(){
         if(isGrounded){
-            rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.  Acceleration);
+            rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.Acceleration);
             if(!playerFootstepsSound.playNow){
                 if(Input.GetAxisRaw("Sprint") == 0){
-                    playerFootstepsSound.ChangeBPM(playerFootstepsSound.GetOriginalBPM(), playerFootstepsSound);
+                    playerFootstepsSound.ChangeBPM(playerFootstepsSound.GetOriginalBPM());
                 }
                 else{ 
-                    playerFootstepsSound.ChangeBPM(playerFootstepsSound.GetOriginalBPM()+40, playerFootstepsSound);
+                    playerFootstepsSound.ChangeBPM(playerFootstepsSound.GetOriginalBPM()+40);
                 }
 
                 if(moveDirection.normalized != Vector3.zero){

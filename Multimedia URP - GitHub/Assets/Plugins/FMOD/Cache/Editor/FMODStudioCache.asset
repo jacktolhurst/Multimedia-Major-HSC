@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638754081094696867
+  lastModified: 638754832811262387
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638754110757665795
+  lastModified: 638757453855227173
   FileSizes:
   - Name: Desktop
-    Value: 157632
+    Value: 307680
   Exists: 1
 --- !u!114 &-6366183555996181344
 MonoBehaviour:
@@ -55,7 +55,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638754110757462409
+  lastModified: 638757453854219040
   FileSizes:
   - Name: Desktop
     Value: 26144
@@ -87,6 +87,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-3551657068566279284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/VoiceOver/OrbRoom/GravitationalField
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/VoiceOver/OrbRoom/GravitationalField
+  Guid:
+    Data1: 376305365
+    Data2: 1099554178
+    Data3: -125844576
+    Data4: -1545723645
+  Banks:
+  - {fileID: -8933516579531222678}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5100
 --- !u!114 &-1268362605650552912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,10 +129,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638754081094706254
+  lastModified: 638754832811277416
   FileSizes:
   - Name: Desktop
-    Value: 1080
+    Value: 1146
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -129,12 +156,13 @@ MonoBehaviour:
   - {fileID: 1480508188663382691}
   - {fileID: 3718129751981856262}
   - {fileID: -3681085502266646726}
+  - {fileID: -3551657068566279284}
   EditorParameters: []
   MasterBanks:
   - {fileID: -9004091244016072083}
   StringsBanks:
   - {fileID: -1268362605650552912}
-  cacheTime: 638754110757665795
+  cacheTime: 638757453855227173
   cacheVersion: 131622
 --- !u!114 &1480508188663382691
 MonoBehaviour:
