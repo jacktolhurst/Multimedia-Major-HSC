@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3265336402473236279
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SkyBoxMat
+  m_Shader: {fileID: -6465566751694194690, guid: d52af5b62f89ed942bc000d7c0b80242,
+    type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _RECEIVE_SHADOWS_OFF
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendModePreserveSpecular: 1
+    - _BlinkingDiv: 200
+    - _CastShadows: 0
+    - _Cull: 2
+    - _DayColorBlend: 1
+    - _DstBlend: 0
+    - _Float: 2.3
+    - _Float_1: -7.78
+    - _HorizonColorBlend: 9.5
+    - _NightColorBlend: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _ReceiveShadows: 0
+    - _SrcBlend: 1
+    - _StarDensity: 231.2
+    - _StarMovementSpeed: 30.08
+    - _StarMovementSpeedDiv: 11.62
+    - _StarScale: 500
+    - _StarSize: -0.03
+    - _StarTiling: 13.33
+    - _StarsPower: 50
+    - _StarsScale: 134.12
+    - _SunPos: -1.55
+    - _Surface: 0
+    - _TOD: 0.36
+    - _TimeOfDay: 0.32
+    - _WorkflowMode: 1
+    - _ZTest: 4
+    - _ZWrite: 1
+    - _ZWriteControl: 0
+    - _test: 69.75
+    m_Colors:
+    - _BackGroundColor: {r: 0, g: 0.007699581, b: 0.06918234, a: 0}
+    - _BackgroundColor: {r: 0.007179281, g: 0.02177761, b: 0.20754719, a: 0}
+    - _BotomColor: {r: 1, g: 1, b: 1, a: 0}
+    - _BottomColor: {r: 5.5459356, g: 1.2501613, b: 0.23229063, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _DayColor: {r: 0.4765075, g: 0, b: 0.754717, a: 0}
+    - _HorizonColor: {r: 1, g: 0.5212681, b: 0, a: 0}
+    - _MiddleColor: {r: 0.8301887, g: 0.13526453, b: 0, a: 0}
+    - _NightColor: {r: 0, g: 0.052887343, b: 0.23270428, a: 0}
+    - _SkyColor: {r: 0.5447143, g: 0, b: 0.5660378, a: 0}
+    - _StarColor: {r: 0.67295593, g: 0.6640156, b: 0.5396344, a: 0}
+    - _StarsColor: {r: 1024, g: 678.59656, b: 0, a: 1}
+    - _SunColor: {r: 1, g: 0.3555199, b: 0, a: 0}
+    - _TopColor: {r: 0.277061, g: 0, b: 0.54901963, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1

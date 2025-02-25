@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using FMOD.Studio;
 
-[SelectionBase]
 public class FirstPersonMovement : MonoBehaviour
 {   
     [Header("Attributes")]

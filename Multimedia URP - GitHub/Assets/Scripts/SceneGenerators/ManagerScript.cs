@@ -30,6 +30,6 @@ public class ManagerScript : MonoBehaviour
 
     public void RestartScene(){
         AudioManager.instance.StopAllSounds();
-        SceneManager.LoadScene("OfficeWorks");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

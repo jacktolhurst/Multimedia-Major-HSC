@@ -1,0 +1,203 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3657271454709069316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1500355309489418725}
+  - component: {fileID: 5867900687134906538}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1500355309489418725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657271454709069316}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5511714435900222782}
+  m_Father: {fileID: 1795698142874782717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5867900687134906538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3657271454709069316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20639d707b1b1614a99f8dca2b711aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5161576979591805390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795698142874782717}
+  - component: {fileID: 2476129743559265837}
+  m_Layer: 0
+  m_Name: ManagerGameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1795698142874782717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161576979591805390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1500355309489418725}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2476129743559265837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5161576979591805390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3162f92f576228a45a2f5db82e7ae63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetFrameRate: 0
+--- !u!1 &7462405575783054488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5511714435900222782}
+  - component: {fileID: 2773379468629714949}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5511714435900222782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462405575783054488}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1500355309489418725}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2773379468629714949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7462405575783054488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dae9e5bc1cb5ae43998483daafe2909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEvents:
+  - name: OrbAmbience
+    <eventReference>k__BackingField:
+      Guid:
+        Data1: -78750832
+        Data2: 1084842981
+        Data3: 59270031
+        Data4: 513295140
+      Path: event:/Ambience/Orb/OrbAmbient
+    position: {x: 0, y: 0, z: 0}
+    BPM: 60
+    continuous: 1
+    dontPlay: 0
+    playNow: 0
+  - name: FootSteps
+    <eventReference>k__BackingField:
+      Guid:
+        Data1: 553788734
+        Data2: 1338763801
+        Data3: 1113861267
+        Data4: 872523554
+      Path: event:/SFX/Player/Footsteps/Footsteps
+    position: {x: 0, y: 0, z: 0}
+    BPM: 110
+    continuous: 0
+    dontPlay: 0
+    playNow: 0
+  - name: MetalDetector
+    <eventReference>k__BackingField:
+      Guid:
+        Data1: 456978871
+        Data2: 1325953534
+        Data3: 1524490667
+        Data4: -2094243013
+      Path: event:/SFX/MetalDectector/MetalDetectorThru
+    position: {x: 0, y: 0, z: 0}
+    BPM: 60
+    continuous: 0
+    dontPlay: 0
+    playNow: 0
+  - name: GrabObject
+    <eventReference>k__BackingField:
+      Guid:
+        Data1: -1435327189
+        Data2: 1314591851
+        Data3: -1385932882
+        Data4: 1415534246
+      Path: event:/SFX/Player/Grabbing object/Grabbing Object
+    position: {x: 0, y: 0, z: 0}
+    BPM: 60
+    continuous: 0
+    dontPlay: 0
+    playNow: 0
+  - name: GravitationFieldDetected
+    <eventReference>k__BackingField:
+      Guid:
+        Data1: 376305365
+        Data2: 1099554178
+        Data3: -125844576
+        Data4: -1545723645
+      Path: event:/SFX/VoiceOver/OrbRoom/GravitationalField
+    position: {x: 0, y: 0, z: 0}
+    BPM: 60
+    continuous: 0
+    dontPlay: 0
+    playNow: 0

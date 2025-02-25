@@ -106,20 +106,6 @@ public class AudioManager : MonoBehaviour
 	    return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
     }
 
-    private void ReOrderList(){
-        foreach(FMODEvents.SoundEventClass soundEvent in FMODEvents.instance.soundEvents){
-            if(!bpmBatchClasseDict.ContainsKey(soundEvent.BPM)){
-                bpmBatchClasseDict.Add(soundEvent.BPM, new BPMBatchClass());
-            }
-            bpmBatchClasseDict[soundEvent.BPM].soundEvents.Add(soundEvent);
-            bpmBatchClasseDict[soundEvent.BPM].BPM = soundEvent.BPM;
-        }
-
-        foreach(KeyValuePair<float, BPMBatchClass> keyValuePair in bpmBatchClasseDict){
-            bpmCoroutineDict.Add(keyValuePair.Key, StartCoroutine(keyValuePair.Value.StartSound()));
-        }
-    }
-
     public FMODEvents.SoundEventClass GetSoundEventClass(string name){
         if(name == null || name.Length == 0){
             Debug.LogError("Sound name has nothing in it");
@@ -132,5 +118,19 @@ public class AudioManager : MonoBehaviour
         }
         Debug.LogError("Sound event not found: " + name);
         return null;
+    }
+
+    private void ReOrderList(){
+        foreach(FMODEvents.SoundEventClass soundEvent in FMODEvents.instance.soundEvents){
+            if(!bpmBatchClasseDict.ContainsKey(soundEvent.BPM)){
+                bpmBatchClasseDict.Add(soundEvent.BPM, new BPMBatchClass());
+            }
+            bpmBatchClasseDict[soundEvent.BPM].soundEvents.Add(soundEvent);
+            bpmBatchClasseDict[soundEvent.BPM].BPM = soundEvent.BPM;
+        }
+
+        foreach(KeyValuePair<float, BPMBatchClass> keyValuePair in bpmBatchClasseDict){
+            bpmCoroutineDict.Add(keyValuePair.Key, StartCoroutine(keyValuePair.Value.StartSound()));
+        }
     }
 }
