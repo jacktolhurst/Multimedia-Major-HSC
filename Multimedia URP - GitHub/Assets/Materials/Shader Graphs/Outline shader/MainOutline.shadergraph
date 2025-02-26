@@ -1671,10 +1671,10 @@
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.GroupData",
     "m_ObjectId": "98a02cb2c2e04f1e86cb9b796c655b4f",
-    "m_Title": "Outlien Distance",
+    "m_Title": "Outline Distance",
     "m_Position": {
-        "x": -2437.333251953125,
-        "y": -699.333251953125
+        "x": -2437.0,
+        "y": -700.0
     }
 }
 
