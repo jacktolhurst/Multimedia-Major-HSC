@@ -8,14 +8,6 @@ public class ManagerScript : MonoBehaviour
 
     void Start(){
 		Application.targetFrameRate = targetFrameRate;
-
-        Renderer[] allRenderers = Resources.FindObjectsOfTypeAll<Renderer>()
-            .Where(r => r.gameObject.scene.IsValid()).ToArray();
-
-        foreach (Renderer rend in allRenderers)
-        {
-            rend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        }
     }
 
     void Update(){
@@ -31,5 +23,14 @@ public class ManagerScript : MonoBehaviour
     public void RestartScene(){
         AudioManager.instance.StopAllSounds();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void TurnOffShadows(){ 
+        Renderer[] allRenderers = Resources.FindObjectsOfTypeAll<Renderer>()
+            .Where(r => r.gameObject.scene.IsValid()).ToArray();
+
+        foreach (Renderer rend in allRenderers){
+            rend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
     }
 }

@@ -100,6 +100,18 @@ public class AudioManager : MonoBehaviour
         eventInstance.setProperty(EVENT_PROPERTY.MAXIMUM_DISTANCE, minDist);
     }
 
+    public void ChangeVolume(FMOD.Studio.EventInstance eventInstance, float volume){ 
+        eventInstance.setVolume(volume);
+    }
+    
+    public void AddVolumeToAllSounds(float volume){
+        foreach(BPMBatchClass bpmClass in bpmBatchClasseDict.Values){
+            foreach(FMODEvents.SoundEventClass eventClass in bpmClass.soundEvents){
+                eventClass.ChangeVolume(Mathf.Max(0, eventClass.GetVolume() + volume));
+            }
+        }
+    }
+
     public bool IsPlaying(FMOD.Studio.EventInstance eventInstance){
 	    FMOD.Studio.PLAYBACK_STATE state;   
 	    eventInstance.getPlaybackState(out state);

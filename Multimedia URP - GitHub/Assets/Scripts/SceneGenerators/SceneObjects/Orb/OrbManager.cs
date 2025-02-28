@@ -17,6 +17,8 @@ public class OrbManager : MonoBehaviour
     Collider[] forceColliders;
     Collider[] sceneColliders;
 
+    Material[] objMaterials;
+
     private Vector3 baseScale;
     private Vector3 projectedScale;
     [SerializeField] private Vector3 speakerPosition;
@@ -49,6 +51,8 @@ public class OrbManager : MonoBehaviour
     }
 
     void Start(){
+        objMaterials = GetComponent<Renderer>().materials;
+
         orbAmbienceSound = AudioManager.instance.GetSoundEventClass(orbAmbienceName);
         orbSizeDetectedSound = AudioManager.instance.GetSoundEventClass(orbSizeDetectedName);
 
@@ -91,8 +95,14 @@ public class OrbManager : MonoBehaviour
 
                 orbSizeDetectedSound.PlaySound(speakerPosition);
 
+
+                objMaterials[0].SetFloat("_Speed", 0.01f);
+
                 maxSize = 1000000;
             }
+
+            objMaterials[0].SetFloat("_MovementIntensity", Mathf.Min(0.3f, localScale.magnitude/100));
+            objMaterials[1].SetFloat("_Outline", Mathf.Min(0.3f, (localScale.magnitude/100) + 0.05f));
 
             orbAmbienceSound.ChangeMaxDistance(forceRadius * 2);
             orbAmbienceSound.ChangeMinDistance(localScale.magnitude * 2);

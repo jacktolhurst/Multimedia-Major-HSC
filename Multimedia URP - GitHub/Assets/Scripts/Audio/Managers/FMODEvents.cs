@@ -13,21 +13,27 @@ public class FMODEvents : MonoBehaviour
 
         [HideInInspector] public Vector3 position;
 
-        public float BPM;
+        public float BPM = 60;
         private float baseBPM;
         private float originalBPM;
+        [Range(0,2)]
+        public float volume = 1;
 
         public bool continuous;
         public bool dontPlay;
         [HideInInspector] public bool playNow;
 
-        public void FirstUpdate(){
+        public void Awake(){
             baseBPM = BPM;
             originalBPM = BPM;
             eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
         }
 
-        public void UpdateSound(){
+        public void Start(){
+            ChangeVolume(volume);
+        }
+
+        public void Update(){
             BPM = baseBPM;
         }
 
@@ -64,6 +70,15 @@ public class FMODEvents : MonoBehaviour
         public void ChangeMinDistance(float minDist){
             AudioManager.instance.ChangeMinDistance(eventInstance, minDist);
         }
+
+        public void ChangeVolume(float changedVolume){
+            volume = changedVolume;
+            AudioManager.instance.ChangeVolume(eventInstance,volume);
+        }
+
+        public float GetVolume(){ 
+            return volume;
+        }
     }
 
     public List<SoundEventClass> soundEvents = new List<SoundEventClass>();
@@ -77,13 +92,19 @@ public class FMODEvents : MonoBehaviour
         instance = this;    
 
         foreach(SoundEventClass soundEvent in soundEvents){
-            soundEvent.FirstUpdate();
+            soundEvent.Awake();
+        }
+    }
+
+    void Start(){    
+        foreach(SoundEventClass soundEvent in soundEvents){
+            soundEvent.Start();
         }
     }
 
     void Update(){
         foreach(SoundEventClass soundEvent in soundEvents){
-            soundEvent.UpdateSound();
+            soundEvent.Update();
         }
     }
 }
