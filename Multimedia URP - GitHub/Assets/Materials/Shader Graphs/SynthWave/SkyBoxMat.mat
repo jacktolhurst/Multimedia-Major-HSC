@@ -91,16 +91,16 @@ Material:
     - _BackGroundColor: {r: 0, g: 0.007699581, b: 0.06918234, a: 0}
     - _BackgroundColor: {r: 0.007179281, g: 0.02177761, b: 0.20754719, a: 0}
     - _BotomColor: {r: 1, g: 1, b: 1, a: 0}
-    - _BottomColor: {r: 5.5459356, g: 1.2501613, b: 0.23229063, a: 0}
+    - _BottomColor: {r: 0.2784314, g: 0, b: 0.54901963, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _DayColor: {r: 0.4765075, g: 0, b: 0.754717, a: 0}
     - _HorizonColor: {r: 1, g: 0.5212681, b: 0, a: 0}
-    - _MiddleColor: {r: 0.8301887, g: 0.13526453, b: 0, a: 0}
+    - _MiddleColor: {r: 0.54901963, g: 0, b: 0.2126628, a: 0}
     - _NightColor: {r: 0, g: 0.052887343, b: 0.23270428, a: 0}
     - _SkyColor: {r: 0.5447143, g: 0, b: 0.5660378, a: 0}
     - _StarColor: {r: 0.67295593, g: 0.6640156, b: 0.5396344, a: 0}
     - _StarsColor: {r: 1024, g: 678.59656, b: 0, a: 1}
     - _SunColor: {r: 1, g: 0.3555199, b: 0, a: 0}
-    - _TopColor: {r: 0.277061, g: 0, b: 0.54901963, a: 0}
+    - _TopColor: {r: 2, g: 0.3142857, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
