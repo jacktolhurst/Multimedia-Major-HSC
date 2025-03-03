@@ -244,7 +244,7 @@
                 "m_Node": {
                     "m_Id": "418dc3f11a844c889b340c11224881d7"
                 },
-                "m_SlotId": 2
+                "m_SlotId": 1
             },
             "m_InputSlot": {
                 "m_Node": {
@@ -832,7 +832,7 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     },
-    "m_Space": 2
+    "m_Space": 3
 }
 
 {
@@ -1546,10 +1546,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -4271.3330078125,
+            "x": -4256.66748046875,
             "y": 1674.666748046875,
-            "width": 120.666015625,
-            "height": 150.6666259765625
+            "width": 120.6669921875,
+            "height": 150.666748046875
         }
     },
     "m_Slots": [
@@ -3078,8 +3078,8 @@
     "m_ObjectId": "90a1ae263652496aab6c9d5a04067c59",
     "m_Title": "Distance gradient",
     "m_Position": {
-        "x": -4984.66650390625,
-        "y": 934.0
+        "x": -4984.66748046875,
+        "y": 934.0001220703125
     }
 }
 
@@ -3839,7 +3839,7 @@
     "m_Title": "Calc Shadows",
     "m_Position": {
         "x": -4792.0009765625,
-        "y": -1583.3336181640625
+        "y": -1583.33349609375
     }
 }
 
