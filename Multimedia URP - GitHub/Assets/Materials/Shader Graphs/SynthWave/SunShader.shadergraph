@@ -2182,8 +2182,8 @@
     "m_ObjectId": "7fe4348c652d4abe9cb1b1bcca9d06f0",
     "m_Title": "Alpha",
     "m_Position": {
-        "x": -1674.0,
-        "y": 1496.0
+        "x": -1674.6666259765625,
+        "y": 1496.6666259765625
     }
 }
 
@@ -2325,7 +2325,7 @@
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 1,
+    "m_RenderFace": 2,
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
@@ -2482,8 +2482,8 @@
     "m_ObjectId": "9e9851f84e4f48078009b24253a5287b",
     "m_Title": "Color",
     "m_Position": {
-        "x": -630.0,
-        "y": 207.0
+        "x": -631.3331909179688,
+        "y": 207.3333282470703
     }
 }
 

@@ -146,9 +146,9 @@ MonoBehaviour:
       Path: event:/Ambience/Orb/OrbAmbient
     position: {x: 0, y: 0, z: 0}
     BPM: 60
+    volume: 1
     continuous: 1
     dontPlay: 0
-    playNow: 0
   - name: FootSteps
     <eventReference>k__BackingField:
       Guid:
@@ -159,9 +159,9 @@ MonoBehaviour:
       Path: event:/SFX/Player/Footsteps/Footsteps
     position: {x: 0, y: 0, z: 0}
     BPM: 110
+    volume: 1
     continuous: 0
     dontPlay: 0
-    playNow: 0
   - name: MetalDetector
     <eventReference>k__BackingField:
       Guid:
@@ -172,9 +172,9 @@ MonoBehaviour:
       Path: event:/SFX/MetalDectector/MetalDetectorThru
     position: {x: 0, y: 0, z: 0}
     BPM: 60
+    volume: 1
     continuous: 0
     dontPlay: 0
-    playNow: 0
   - name: GrabObject
     <eventReference>k__BackingField:
       Guid:
@@ -185,9 +185,9 @@ MonoBehaviour:
       Path: event:/SFX/Player/Grabbing object/Grabbing Object
     position: {x: 0, y: 0, z: 0}
     BPM: 60
+    volume: 0.285
     continuous: 0
     dontPlay: 0
-    playNow: 0
   - name: GravitationFieldDetected
     <eventReference>k__BackingField:
       Guid:
@@ -198,6 +198,6 @@ MonoBehaviour:
       Path: event:/SFX/VoiceOver/OrbRoom/GravitationalField
     position: {x: 0, y: 0, z: 0}
     BPM: 60
+    volume: 1
     continuous: 0
     dontPlay: 0
-    playNow: 0

@@ -18,10 +18,11 @@ public class FMODEvents : MonoBehaviour
         private float originalBPM;
         [Range(0,2)]
         public float volume = 1;
+        [Range(1,10)]
+        public float impact;
 
         public bool continuous;
         public bool dontPlay;
-        [HideInInspector] public bool playNow;
 
         public void Awake(){
             baseBPM = BPM;
@@ -39,13 +40,12 @@ public class FMODEvents : MonoBehaviour
 
         public void PlaySound(Vector3 newPosition){
             position = newPosition;
-            playNow = true;
+            AudioManager.instance.PlaySound(this);
         }
 
         public void StopSound(){
             position = Vector3.zero;
-            playNow = false;
-            AudioManager.instance.StopSound(eventInstance);
+            AudioManager.instance.StopSound(this);
         }
 
         public float GetBPM(){
@@ -78,6 +78,10 @@ public class FMODEvents : MonoBehaviour
 
         public float GetVolume(){ 
             return volume;
+        }
+
+        public bool IsPlaying(){
+            return AudioManager.instance.IsPlaying(eventInstance);
         }
     }
 

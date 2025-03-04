@@ -15,33 +15,31 @@ public class AudioManager : MonoBehaviour
         public IEnumerator StartSound(){
             while(true){
                 foreach(FMODEvents.SoundEventClass soundEvent in soundEvents){
-                    if( !soundEvent.dontPlay){
-                        if(soundEvent.playNow){
-                            if(soundEvent.continuous){
-                                if(!instance.IsPlaying(soundEvent.eventInstance)){
-                                    soundEvent.eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(soundEvent.position));
-                                    soundEvent.eventInstance.start();
-                                }
-                            }
-                            else{
-                                soundEvent.eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(soundEvent.position));
-                                soundEvent.eventInstance.start();
-                                soundEvent.playNow = false;
-                            }
-                        }
+                    if(!soundEvent.dontPlay){
+                        // if(!AudioManager.instance.currentSounds.Contains(soundEvent)){
+                        //     AudioManager.instance.currentSounds.Add(soundEvent);
+                        // }
+
+                        // yield return null;
+
+                        soundEvent.eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(soundEvent.position));
+                        soundEvent.eventInstance.start();
+                        AudioManager.instance.currentSounds.Remove(soundEvent);
                     }
                 }
+                soundEvents = new List<FMODEvents.SoundEventClass>();
                 yield return new WaitForSeconds(60 / BPM);
             }
         }
     }
 
+    public static AudioManager instance {get; private set;}
+
     public Dictionary<float, BPMBatchClass> bpmBatchClasseDict = new Dictionary<float, BPMBatchClass>();
     public Dictionary<float, Coroutine> bpmCoroutineDict = new Dictionary<float, Coroutine>();
 
-    public static AudioManager instance {get; private set;}
 
-    private List<EventInstance> eventInstances = new List<EventInstance>();
+    public List<FMODEvents.SoundEventClass> currentSounds = new List<FMODEvents.SoundEventClass>();
 
     void Awake(){
         if(instance != null){
@@ -57,25 +55,30 @@ public class AudioManager : MonoBehaviour
     public void ChangeBPM(FMODEvents.SoundEventClass soundEventClass, float prevBPM){
         float newBPM = soundEventClass.BPM;
 
-        bpmBatchClasseDict[prevBPM].soundEvents.Remove(soundEventClass);
-
-        if (bpmBatchClasseDict[prevBPM].soundEvents.Count == 0){
-            StopCoroutine(bpmCoroutineDict[prevBPM]);
-            bpmBatchClasseDict.Remove(prevBPM);
-            bpmCoroutineDict.Remove(prevBPM);
-        }
-
         if(!bpmBatchClasseDict.ContainsKey(newBPM)){
             bpmBatchClasseDict.Add(newBPM, new BPMBatchClass());
             bpmBatchClasseDict[newBPM].BPM = newBPM;
+
             bpmCoroutineDict.Add(newBPM, StartCoroutine(bpmBatchClasseDict[newBPM].StartSound()));
         }
-        bpmBatchClasseDict[newBPM].soundEvents.Add(soundEventClass);
     }
 
-    public void StopSound(FMOD.Studio.EventInstance eventInstance){
-        eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        eventInstance.release();
+    public void PlaySound(FMODEvents.SoundEventClass soundEventClass){
+        if(!bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Contains(soundEventClass)){
+            bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Add(soundEventClass);
+        }
+
+        if(!currentSounds.Contains(soundEventClass)){
+            currentSounds.Add(soundEventClass);
+        }
+    }
+
+    public void StopSound(FMODEvents.SoundEventClass soundEventClass){
+        if(bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Contains(soundEventClass)){
+            bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Remove(soundEventClass);
+        }
+        soundEventClass.eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        soundEventClass.eventInstance.release();
     }
 
     public void StopAllSounds(){ 
@@ -113,9 +116,23 @@ public class AudioManager : MonoBehaviour
     }
 
     public bool IsPlaying(FMOD.Studio.EventInstance eventInstance){
-	    FMOD.Studio.PLAYBACK_STATE state;   
-	    eventInstance.getPlaybackState(out state);
-	    return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
+        FMOD.Studio.PLAYBACK_STATE state;   
+        eventInstance.getPlaybackState(out state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
+    }
+
+    public List<FMODEvents.SoundEventClass> GetAllSounds(){
+        return currentSounds;
+    }
+
+    public List<FMODEvents.SoundEventClass> GetAllSoundsInRange(float range, Vector3 position){
+        List<FMODEvents.SoundEventClass> soundsInRange = new List<FMODEvents.SoundEventClass>();
+        foreach(FMODEvents.SoundEventClass eventClass in currentSounds){
+            if(Vector3.Distance(position, eventClass.position) <= range){
+                soundsInRange.Add(eventClass);
+            }
+        }
+        return soundsInRange;
     }
 
     public FMODEvents.SoundEventClass GetSoundEventClass(string name){
@@ -137,7 +154,6 @@ public class AudioManager : MonoBehaviour
             if(!bpmBatchClasseDict.ContainsKey(soundEvent.BPM)){
                 bpmBatchClasseDict.Add(soundEvent.BPM, new BPMBatchClass());
             }
-            bpmBatchClasseDict[soundEvent.BPM].soundEvents.Add(soundEvent);
             bpmBatchClasseDict[soundEvent.BPM].BPM = soundEvent.BPM;
         }
 

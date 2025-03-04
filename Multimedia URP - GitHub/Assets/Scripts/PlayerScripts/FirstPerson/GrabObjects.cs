@@ -201,9 +201,6 @@ public class GrabObjects : MonoBehaviour
     void OnDrawGizmos(){
         if(isGrabbing){
             Debug.DrawRay(mainRay.origin, mainRay.direction * holdDist, Color.cyan);
-
-            Gizmos.color = Color.grey;
-            Gizmos.DrawWireSphere(transform.position, objectMaxDistance);
         }
         else{
             Debug.DrawRay(mainRay.origin, mainRay.direction * grabDist, Color.blue);

@@ -176,7 +176,7 @@ public class OrbManager : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, sceneRadius);
 
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(speakerPosition, 2);
 
     }
