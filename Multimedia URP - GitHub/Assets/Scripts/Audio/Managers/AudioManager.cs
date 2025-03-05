@@ -16,14 +16,12 @@ public class AudioManager : MonoBehaviour
             while(true){
                 foreach(FMODEvents.SoundEventClass soundEvent in soundEvents){
                     if(!soundEvent.dontPlay){
-                        if(!AudioManager.instance.currentSounds.Contains(soundEvent)){
-                            AudioManager.instance.currentSounds.Add(soundEvent);
-                        }
+                        AudioManager.instance.currentSounds.Add(soundEvent);
 
                         soundEvent.eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(soundEvent.position));
                         soundEvent.eventInstance.start();
 
-                        AudioManager.instance.StartCoroutine(AudioManager.instance.TrackSound(soundEvent));;
+                        AudioManager.instance.StartCoroutine(AudioManager.instance.TrackSound(soundEvent));
                     }
                 }
                 soundEvents = new List<FMODEvents.SoundEventClass>();
@@ -63,8 +61,13 @@ public class AudioManager : MonoBehaviour
     }
 
     public void PlaySound(FMODEvents.SoundEventClass soundEventClass){
-        if(!bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Contains(soundEventClass)){
+        if(soundEventClass.haveMultiples){
             bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Add(soundEventClass);
+        }
+        else{
+            if(!bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Contains(soundEventClass)){
+                bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Add(soundEventClass);
+            }
         }
     }
 

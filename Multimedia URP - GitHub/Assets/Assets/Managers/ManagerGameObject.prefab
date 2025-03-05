@@ -151,6 +151,7 @@ MonoBehaviour:
     impact: 1
     continuous: 1
     dontPlay: 0
+    haveMultiples: 0
   - name: FootSteps
     <eventReference>k__BackingField:
       Guid:
@@ -165,6 +166,7 @@ MonoBehaviour:
     impact: 3
     continuous: 0
     dontPlay: 0
+    haveMultiples: 0
   - name: MetalDetector
     <eventReference>k__BackingField:
       Guid:
@@ -179,6 +181,7 @@ MonoBehaviour:
     impact: 0
     continuous: 0
     dontPlay: 0
+    haveMultiples: 1
   - name: GrabObject
     <eventReference>k__BackingField:
       Guid:
@@ -193,6 +196,7 @@ MonoBehaviour:
     impact: 2
     continuous: 0
     dontPlay: 0
+    haveMultiples: 1
   - name: GravitationFieldDetected
     <eventReference>k__BackingField:
       Guid:
@@ -207,3 +211,4 @@ MonoBehaviour:
     impact: 8
     continuous: 0
     dontPlay: 0
+    haveMultiples: 0

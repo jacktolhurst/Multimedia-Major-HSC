@@ -23,6 +23,7 @@ public class FMODEvents : MonoBehaviour
 
         public bool continuous;
         public bool dontPlay;
+        public bool haveMultiples;
 
         public void Awake(){
             baseBPM = BPM;
