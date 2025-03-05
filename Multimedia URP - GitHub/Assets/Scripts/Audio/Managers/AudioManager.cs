@@ -18,8 +18,11 @@ public class AudioManager : MonoBehaviour
                     if(!soundEvent.dontPlay){
                         AudioManager.instance.currentSounds.Add(soundEvent);
 
-                        soundEvent.eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(soundEvent.position));
-                        soundEvent.eventInstance.start();
+                        FMOD.Studio.EventInstance newInstance = FMODUnity.RuntimeManager.CreateInstance(soundEvent.eventReference);
+                        
+
+                        newInstance.set3DAttributes(RuntimeUtils.To3DAttributes(soundEvent.position));
+                        newInstance.start();
 
                         AudioManager.instance.StartCoroutine(AudioManager.instance.TrackSound(soundEvent));
                     }
