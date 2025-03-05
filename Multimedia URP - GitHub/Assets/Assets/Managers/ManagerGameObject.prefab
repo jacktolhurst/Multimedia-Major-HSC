@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20639d707b1b1614a99f8dca2b711aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSounds: []
 --- !u!1 &5161576979591805390
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +148,7 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     BPM: 60
     volume: 1
+    impact: 1
     continuous: 1
     dontPlay: 0
   - name: FootSteps
@@ -160,6 +162,7 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     BPM: 110
     volume: 1
+    impact: 3
     continuous: 0
     dontPlay: 0
   - name: MetalDetector
@@ -173,6 +176,7 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     BPM: 60
     volume: 1
+    impact: 0
     continuous: 0
     dontPlay: 0
   - name: GrabObject
@@ -186,6 +190,7 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     BPM: 60
     volume: 0.285
+    impact: 2
     continuous: 0
     dontPlay: 0
   - name: GravitationFieldDetected
@@ -199,5 +204,6 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     BPM: 60
     volume: 1
+    impact: 8
     continuous: 0
     dontPlay: 0

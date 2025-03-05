@@ -730,21 +730,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2773379468629714949, guid: 6f7285def082a8e40b0fb28d11398789,
-        type: 3}
-      propertyPath: soundEvents.Array.data[0].impact
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2773379468629714949, guid: 6f7285def082a8e40b0fb28d11398789,
-        type: 3}
-      propertyPath: soundEvents.Array.data[1].impact
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2773379468629714949, guid: 6f7285def082a8e40b0fb28d11398789,
-        type: 3}
-      propertyPath: soundEvents.Array.data[3].impact
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 5161576979591805390, guid: 6f7285def082a8e40b0fb28d11398789,
         type: 3}
       propertyPath: m_Name
@@ -1056,7 +1041,7 @@ MonoBehaviour:
   obj: {fileID: 0}
   soundDistance: 31.65
   sphereBaseSize: 2
-  sphereBaseTime: 0
+  sphereBaseTime: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1064,9 +1049,9 @@ SceneRoots:
   - {fileID: 1034551053}
   - {fileID: 896814270}
   - {fileID: 1591182830}
-  - {fileID: 1498926098}
   - {fileID: 1262051457}
   - {fileID: 1144793099}
   - {fileID: 1550675136}
   - {fileID: 655462259}
   - {fileID: 3009484060287759556}
+  - {fileID: 1498926098}

@@ -16,15 +16,14 @@ public class AudioManager : MonoBehaviour
             while(true){
                 foreach(FMODEvents.SoundEventClass soundEvent in soundEvents){
                     if(!soundEvent.dontPlay){
-                        // if(!AudioManager.instance.currentSounds.Contains(soundEvent)){
-                        //     AudioManager.instance.currentSounds.Add(soundEvent);
-                        // }
-
-                        // yield return null;
+                        if(!AudioManager.instance.currentSounds.Contains(soundEvent)){
+                            AudioManager.instance.currentSounds.Add(soundEvent);
+                        }
 
                         soundEvent.eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(soundEvent.position));
                         soundEvent.eventInstance.start();
-                        AudioManager.instance.currentSounds.Remove(soundEvent);
+
+                        AudioManager.instance.StartCoroutine(AudioManager.instance.TrackSound(soundEvent));;
                     }
                 }
                 soundEvents = new List<FMODEvents.SoundEventClass>();
@@ -66,10 +65,6 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(FMODEvents.SoundEventClass soundEventClass){
         if(!bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Contains(soundEventClass)){
             bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Add(soundEventClass);
-        }
-
-        if(!currentSounds.Contains(soundEventClass)){
-            currentSounds.Add(soundEventClass);
         }
     }
 
@@ -113,6 +108,17 @@ public class AudioManager : MonoBehaviour
                 eventClass.ChangeVolume(Mathf.Max(0, eventClass.GetVolume() + volume));
             }
         }
+    }
+
+    public IEnumerator TrackSound(FMODEvents.SoundEventClass soundEvent){
+        FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
+
+        while (state != FMOD.Studio.PLAYBACK_STATE.STOPPED){
+            soundEvent.eventInstance.getPlaybackState(out state);
+            yield return null;
+        }
+
+        currentSounds.Remove(soundEvent);
     }
 
     public bool IsPlaying(FMOD.Studio.EventInstance eventInstance){
