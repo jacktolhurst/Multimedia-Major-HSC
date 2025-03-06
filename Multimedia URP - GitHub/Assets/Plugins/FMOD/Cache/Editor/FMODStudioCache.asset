@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638757539867113129
+  lastModified: 638768703013811888
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 1218
   Exists: 1
 --- !u!114 &-8933516579531222678
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638757539869699306
+  lastModified: 638768705344311284
   FileSizes:
   - Name: Desktop
-    Value: 307680
+    Value: 308672
   Exists: 1
 --- !u!114 &-7833105818451395148
 MonoBehaviour:
@@ -82,10 +82,34 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638757539867038772
+  lastModified: 638768679180226598
   FileSizes:
   - Name: Desktop
     Value: 26144
+  Exists: 1
+--- !u!114 &-4048508161291808575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  StudioPath: parameter:/Volume
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1113324
+    data2: 3789873207
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &-3681085502266646726
 MonoBehaviour:
@@ -110,7 +134,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 8699603852776530168}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -129,10 +154,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638757539867123116
+  lastModified: 638768703013847891
   FileSizes:
   - Name: Desktop
-    Value: 1146
+    Value: 1194
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -157,12 +182,13 @@ MonoBehaviour:
   - {fileID: 3718129751981856262}
   - {fileID: -3681085502266646726}
   - {fileID: -7833105818451395148}
-  EditorParameters: []
+  EditorParameters:
+  - {fileID: -4048508161291808575}
   MasterBanks:
   - {fileID: -9004091244016072083}
   StringsBanks:
   - {fileID: -1268362605650552912}
-  cacheTime: 638757539869699306
+  cacheTime: 638768705344311284
   cacheVersion: 131622
 --- !u!114 &1480508188663382691
 MonoBehaviour:
@@ -245,3 +271,27 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
+--- !u!114 &8699603852776530168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Grabbing Object/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1113324
+    data2: 3789873207
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1

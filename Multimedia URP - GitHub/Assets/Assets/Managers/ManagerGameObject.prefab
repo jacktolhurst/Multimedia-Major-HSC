@@ -91,7 +91,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3162f92f576228a45a2f5db82e7ae63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseVolume: 0.2
   targetFrameRate: 0
+  grabObjectName: 
 --- !u!1 &7462405575783054488
 GameObject:
   m_ObjectHideFlags: 0

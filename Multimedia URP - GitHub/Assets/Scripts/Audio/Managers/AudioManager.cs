@@ -78,8 +78,8 @@ public class AudioManager : MonoBehaviour
         if(bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Contains(soundEventClass)){
             bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Remove(soundEventClass);
         }
-        soundEventClass.eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        soundEventClass.eventInstance.release();
+        soundEventClass.prefabEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        soundEventClass.prefabEventInstance.release();
     }
 
     public void StopAllSounds(){ 
@@ -105,22 +105,27 @@ public class AudioManager : MonoBehaviour
     }
 
     public void ChangeVolume(FMOD.Studio.EventInstance eventInstance, float volume){ 
-        eventInstance.setVolume(volume);
+        eventInstance.setParameterByName("Volume", volume);
+        eventInstance.getParameterByName("Volume", out float setVolume);
+        Debug.Log(setVolume);
     }
     
-    public void AddVolumeToAllSounds(float volume){
-        foreach(BPMBatchClass bpmClass in bpmBatchClasseDict.Values){
-            foreach(FMODEvents.SoundEventClass eventClass in bpmClass.soundEvents){
-                eventClass.ChangeVolume(Mathf.Max(0, eventClass.GetVolume() + volume));
-            }
-        }
+    public void AllSoundsVolume(float rawVolume){
+        FMOD.Studio.Bus masterBus;
+        FMODUnity.RuntimeManager.StudioSystem.getBus("bus:/", out masterBus);
+
+        float minVolume = 0.01f;
+        float maxVolume = 1;
+        rawVolume = Mathf.Clamp(rawVolume, minVolume, maxVolume);
+        float volume = Mathf.Pow(rawVolume, 2.2f);
+        masterBus.setVolume(volume);
     }
 
     public IEnumerator TrackSound(FMODEvents.SoundEventClass soundEvent){
         FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
 
         while (state != FMOD.Studio.PLAYBACK_STATE.STOPPED){
-            soundEvent.eventInstance.getPlaybackState(out state);
+            soundEvent.prefabEventInstance.getPlaybackState(out state);
             yield return null;
         }
 

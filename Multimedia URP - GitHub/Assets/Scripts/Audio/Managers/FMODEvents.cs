@@ -9,7 +9,7 @@ public class FMODEvents : MonoBehaviour
         public string name;
         
         [field: SerializeField] public EventReference eventReference {get; private set;}
-        [HideInInspector] public FMOD.Studio.EventInstance eventInstance;
+        [HideInInspector] public FMOD.Studio.EventInstance prefabEventInstance;
 
         [HideInInspector] public Vector3 position;
 
@@ -28,7 +28,7 @@ public class FMODEvents : MonoBehaviour
         public void Awake(){
             baseBPM = BPM;
             originalBPM = BPM;
-            eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
+            prefabEventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
         }
 
         public void Start(){
@@ -65,16 +65,16 @@ public class FMODEvents : MonoBehaviour
         }
 
         public void ChangeMaxDistance(float maxDist){
-            AudioManager.instance.ChangeMaxDistance(eventInstance, maxDist);
+            AudioManager.instance.ChangeMaxDistance(prefabEventInstance, maxDist);
         }
 
         public void ChangeMinDistance(float minDist){
-            AudioManager.instance.ChangeMinDistance(eventInstance, minDist);
+            AudioManager.instance.ChangeMinDistance(prefabEventInstance, minDist);
         }
 
         public void ChangeVolume(float changedVolume){
             volume = changedVolume;
-            AudioManager.instance.ChangeVolume(eventInstance,volume);
+            AudioManager.instance.ChangeVolume(prefabEventInstance,volume);
         }
 
         public float GetVolume(){ 
@@ -82,7 +82,7 @@ public class FMODEvents : MonoBehaviour
         }
 
         public bool IsPlaying(){
-            return AudioManager.instance.IsPlaying(eventInstance);
+            return AudioManager.instance.IsPlaying(prefabEventInstance);
         }
     }
 
