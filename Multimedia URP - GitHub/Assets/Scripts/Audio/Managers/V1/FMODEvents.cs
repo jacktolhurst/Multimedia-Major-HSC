@@ -9,7 +9,7 @@ public class FMODEvents : MonoBehaviour
         public string name;
         
         [field: SerializeField] public EventReference eventReference {get; private set;}
-        [HideInInspector] public FMOD.Studio.EventInstance prefabEventInstance;
+        public List<FMOD.Studio.EventInstance> instances = new List<FMOD.Studio.EventInstance>();
 
         [HideInInspector] public Vector3 position;
 
@@ -28,11 +28,9 @@ public class FMODEvents : MonoBehaviour
         public void Awake(){
             baseBPM = BPM;
             originalBPM = BPM;
-            prefabEventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
         }
 
         public void Start(){
-            ChangeVolume(volume);
         }
 
         public void Update(){
@@ -40,13 +38,19 @@ public class FMODEvents : MonoBehaviour
         }
 
         public void PlaySound(Vector3 newPosition){
-            position = newPosition;
-            AudioManager.instance.PlaySound(this);
+            AudioManagerV1.instance.PlaySound(this);
         }
 
         public void StopSound(){
             position = Vector3.zero;
-            AudioManager.instance.StopSound(this);
+            AudioManagerV1.instance.StopSound(this);
+        }
+
+        public void ChangeBPM(float newBPM){
+            float prevBPM = BPM;
+            baseBPM = newBPM;
+            BPM = newBPM;
+            AudioManagerV1.instance.ChangeBPM(this, prevBPM);
         }
 
         public float GetBPM(){
@@ -57,32 +61,17 @@ public class FMODEvents : MonoBehaviour
             return originalBPM;
         }
 
-        public void ChangeBPM(float newBPM){
-            float prevBPM = BPM;
-            baseBPM = newBPM;
-            BPM = newBPM;
-            AudioManager.instance.ChangeBPM(this, prevBPM);
-        }
-
-        public void ChangeMaxDistance(float maxDist){
-            AudioManager.instance.ChangeMaxDistance(prefabEventInstance, maxDist);
-        }
-
-        public void ChangeMinDistance(float minDist){
-            AudioManager.instance.ChangeMinDistance(prefabEventInstance, minDist);
-        }
-
-        public void ChangeVolume(float changedVolume){
-            volume = changedVolume;
-            AudioManager.instance.ChangeVolume(prefabEventInstance,volume);
-        }
-
         public float GetVolume(){ 
             return volume;
         }
 
         public bool IsPlaying(){
-            return AudioManager.instance.IsPlaying(prefabEventInstance);
+            if(instances.Count == 0){
+                return false;
+            }
+            else{
+                return true;
+            }
         }
     }
 

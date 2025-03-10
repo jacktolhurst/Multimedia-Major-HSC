@@ -35,13 +35,6 @@ public class OrbManager : MonoBehaviour
     private bool statedChangeTransform;
     private bool statedForceCheck;
 
-    [Header("Audio")]
-    [SerializeField] private string orbAmbienceName;
-    [SerializeField] private string orbSizeDetectedName;
-    private FMODEvents.SoundEventClass orbAmbienceSound;
-    private FMODEvents.SoundEventClass orbSizeDetectedSound;
-    public float maxSoundDist;
-
     void Awake(){
         baseScale = transform.localScale;
 
@@ -52,11 +45,6 @@ public class OrbManager : MonoBehaviour
 
     void Start(){
         objMaterials = GetComponent<Renderer>().materials;
-
-        orbAmbienceSound = AudioManager.instance.GetSoundEventClass(orbAmbienceName);
-        orbSizeDetectedSound = AudioManager.instance.GetSoundEventClass(orbSizeDetectedName);
-
-        orbAmbienceSound.PlaySound(transform.position);
     }
 
     void Update(){
@@ -93,9 +81,6 @@ public class OrbManager : MonoBehaviour
             if(maxSize <= localScale.magnitude){
                 cardReaderDoor.unlocked = false;
 
-                orbSizeDetectedSound.PlaySound(speakerPosition);
-
-
                 objMaterials[0].SetFloat("_Speed", 0.01f);
 
                 maxSize = 1000000;
@@ -103,9 +88,6 @@ public class OrbManager : MonoBehaviour
 
             objMaterials[0].SetFloat("_MovementIntensity", Mathf.Min(0.3f, localScale.magnitude/100));
             objMaterials[1].SetFloat("_Outline", Mathf.Min(0.3f, (localScale.magnitude/100) + 0.05f));
-
-            orbAmbienceSound.ChangeMaxDistance(forceRadius * 2);
-            orbAmbienceSound.ChangeMinDistance(localScale.magnitude * 2);
 
             yield return null;
         }

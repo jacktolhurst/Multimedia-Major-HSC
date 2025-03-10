@@ -3,19 +3,17 @@ using System.Collections.Generic;
 
 public class SoundDetection : MonoBehaviour
 {
-    private List<FMODEvents.SoundEventClass> soundEvents = new List<FMODEvents.SoundEventClass>();
-    private FMODEvents.SoundEventClass chosenEvent;
+    List<AudioManager.EventHandler> soundEvents = new List<AudioManager.EventHandler>();
+    [SerializeField] private AudioManager.EventHandler chosenEvent;
 
-    [SerializeField] private GameObject obj;
 
     [SerializeField] private float soundDistance;
-    [SerializeField] private float sphereBaseSize;
 
     void Update(){
-        soundEvents = AudioManager.instance.GetAllSoundsInRange(soundDistance, transform.position);
+        soundEvents = AudioManager.instance.CurrentEventsInRange(transform.position, soundDistance);
 
         float highestImpact = 0;
-        foreach(FMODEvents.SoundEventClass soundEvent in soundEvents){
+        foreach(AudioManager.EventHandler soundEvent in soundEvents){
             if(soundEvent.impact > highestImpact){
                 highestImpact = soundEvent.impact;
                 chosenEvent = soundEvent;
@@ -28,14 +26,17 @@ public class SoundDetection : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, soundDistance);
 
         if(Application.isPlaying){  
-            Gizmos.color = Color.red;
-            foreach(FMODEvents.SoundEventClass soundEvent in soundEvents){
+            foreach(AudioManager.EventHandler soundEvent in soundEvents){
                 if(chosenEvent != null && soundEvent == chosenEvent){
                     Gizmos.color = Color.green;
                 }
-                Gizmos.DrawWireSphere(soundEvent.position, sphereBaseSize + (soundEvent.impact-1));
+                else{
+                    Gizmos.color = Color.red;
+                }
+                Gizmos.DrawWireSphere(soundEvent.position, soundEvent.impact);
             }
             if(chosenEvent != null && soundEvents.Count != 0){
+                Gizmos.color = Color.green;
                 Debug.DrawRay(transform.position, (chosenEvent.position - transform.position).normalized * Vector3.Distance(transform.position, chosenEvent.position), Color.green);
             }
         }

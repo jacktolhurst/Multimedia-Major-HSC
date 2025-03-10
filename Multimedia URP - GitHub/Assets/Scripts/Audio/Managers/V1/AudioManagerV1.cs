@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FMODUnity;
 using FMOD.Studio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManagerV1 : MonoBehaviour
 {
 
     public class BPMBatchClass{
@@ -16,15 +16,17 @@ public class AudioManager : MonoBehaviour
             while(true){
                 foreach(FMODEvents.SoundEventClass soundEvent in soundEvents){
                     if(!soundEvent.dontPlay){
-                        AudioManager.instance.currentSounds.Add(soundEvent);
+                        AudioManagerV1.instance.currentSounds.Add(soundEvent);
 
                         FMOD.Studio.EventInstance newInstance = FMODUnity.RuntimeManager.CreateInstance(soundEvent.eventReference);
-                        
+                        newInstance.setVolume(soundEvent.volume);
 
                         newInstance.set3DAttributes(RuntimeUtils.To3DAttributes(soundEvent.position));
                         newInstance.start();
+                        newInstance.release();
 
-                        AudioManager.instance.StartCoroutine(AudioManager.instance.TrackSound(soundEvent));
+                        soundEvent.instances.Add(newInstance);
+                        AudioManagerV1.instance.StartCoroutine(AudioManagerV1.instance.TrackSound(soundEvent,newInstance));
                     }
                 }
                 soundEvents = new List<FMODEvents.SoundEventClass>();
@@ -33,7 +35,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public static AudioManager instance {get; private set;}
+    public static AudioManagerV1 instance {get; private set;}
 
     public Dictionary<float, BPMBatchClass> bpmBatchClasseDict = new Dictionary<float, BPMBatchClass>();
     public Dictionary<float, Coroutine> bpmCoroutineDict = new Dictionary<float, Coroutine>();
@@ -78,8 +80,11 @@ public class AudioManager : MonoBehaviour
         if(bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Contains(soundEventClass)){
             bpmBatchClasseDict[soundEventClass.BPM].soundEvents.Remove(soundEventClass);
         }
-        soundEventClass.prefabEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        soundEventClass.prefabEventInstance.release();
+        foreach(EventInstance eventInstance in soundEventClass.instances){
+            eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            eventInstance.release();
+        }
+        soundEventClass.instances.Clear();
     }
 
     public void StopAllSounds(){ 
@@ -96,20 +101,6 @@ public class AudioManager : MonoBehaviour
         masterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
-    public void ChangeMaxDistance(FMOD.Studio.EventInstance eventInstance, float maxDist){
-        eventInstance.setProperty(EVENT_PROPERTY.MAXIMUM_DISTANCE, maxDist);
-    }
-
-    public void ChangeMinDistance(FMOD.Studio.EventInstance eventInstance, float minDist){
-        eventInstance.setProperty(EVENT_PROPERTY.MAXIMUM_DISTANCE, minDist);
-    }
-
-    public void ChangeVolume(FMOD.Studio.EventInstance eventInstance, float volume){ 
-        eventInstance.setParameterByName("Volume", volume);
-        eventInstance.getParameterByName("Volume", out float setVolume);
-        Debug.Log(setVolume);
-    }
-    
     public void AllSoundsVolume(float rawVolume){
         FMOD.Studio.Bus masterBus;
         FMODUnity.RuntimeManager.StudioSystem.getBus("bus:/", out masterBus);
@@ -121,14 +112,15 @@ public class AudioManager : MonoBehaviour
         masterBus.setVolume(volume);
     }
 
-    public IEnumerator TrackSound(FMODEvents.SoundEventClass soundEvent){
+    public IEnumerator TrackSound(FMODEvents.SoundEventClass soundEvent, FMOD.Studio.EventInstance instance){
         FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
 
         while (state != FMOD.Studio.PLAYBACK_STATE.STOPPED){
-            soundEvent.prefabEventInstance.getPlaybackState(out state);
+            instance.getPlaybackState(out state);
             yield return null;
         }
 
+        soundEvent.instances.Remove(instance);
         currentSounds.Remove(soundEvent);
     }
 

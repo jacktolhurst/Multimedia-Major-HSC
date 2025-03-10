@@ -4,32 +4,21 @@ using System.Linq;
 
 public class ManagerScript : MonoBehaviour
 {
+    [Range(0,4)]
     [SerializeField] private float baseVolume;
-    [SerializeField] private float newVolume;
 
     [SerializeField] private int targetFrameRate;
 
-    [Header("Audio")]
-    [SerializeField] private string grabObjectName;
-    private FMODEvents.SoundEventClass grabObjectSound;
-
     void Start(){
 		Application.targetFrameRate = targetFrameRate;
-
-        grabObjectSound = AudioManager.instance.GetSoundEventClass(grabObjectName);
     }
 
     void Update(){
-        if(Input.GetKey("p")){
+        if(Input.GetKeyUp("p")){
             RestartScene();
         }
-        if(Input.GetKeyUp("l")){
-            grabObjectSound.ChangeVolume(newVolume);
-        }
-        if(Input.GetKeyUp("k")){
-            grabObjectSound.PlaySound(transform.position);
-        }
-        AudioManager.instance.AllSoundsVolume(baseVolume);
+
+        AudioManager.instance.ChangeAllVolume(baseVolume);
 
         if(Application.targetFrameRate != targetFrameRate){
             Application.targetFrameRate = targetFrameRate;
@@ -37,7 +26,6 @@ public class ManagerScript : MonoBehaviour
     }
 
     public void RestartScene(){
-        AudioManager.instance.StopAllSounds();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

@@ -55,15 +55,17 @@ public class FirstPersonMovement : MonoBehaviour
 
     private bool isGrounded;
 
+// ----------------------------------------------------------------
+
     [HideInInspector] public Vector3 generatedStartPos;
     [Header("StartPositioning")]
     [SerializeField] private Vector3 subtractedPosition;
 
     [SerializeField] private bool useStartPos;
 
+// ----------------------------------------------------------------
     [Header("Audio")]
-    [SerializeField] private string footStepsName;
-    private FMODEvents.SoundEventClass playerFootstepsSound;
+    [SerializeField] private AudioManager.AudioReferenceClass footStepsSound;
 
     void Awake(){
         rb = GetComponent<Rigidbody>();
@@ -101,8 +103,6 @@ public class FirstPersonMovement : MonoBehaviour
                 transform.position = generatedStartPos;
             }
         }
-
-        playerFootstepsSound = AudioManager.instance.GetSoundEventClass(footStepsName);
     }
 
     void Update(){
@@ -176,16 +176,12 @@ public class FirstPersonMovement : MonoBehaviour
     private void Movement(){
         if(isGrounded){
             rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.Acceleration);
-            if(!playerFootstepsSound.IsPlaying()){
-                if(Input.GetAxisRaw("Sprint") == 0){
-                    playerFootstepsSound.ChangeBPM(playerFootstepsSound.GetOriginalBPM());
-                }
-                else{ 
-                    playerFootstepsSound.ChangeBPM(playerFootstepsSound.GetOriginalBPM()+40);
-                }
-
+            if(!footStepsSound.IsPlaying()){
                 if(moveDirection.normalized != Vector3.zero){
-                    playerFootstepsSound.PlaySound(transform.position);
+                    footStepsSound.PlaySoundObject(transform.gameObject);
+                }
+                else{
+                    footStepsSound.StopSound();
                 }
             }
         }

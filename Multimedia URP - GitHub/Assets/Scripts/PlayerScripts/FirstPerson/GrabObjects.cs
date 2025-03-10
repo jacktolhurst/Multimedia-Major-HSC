@@ -63,15 +63,10 @@ public class GrabObjects : MonoBehaviour
     private int defaultMask;
 
     [Header("Audio")]
-    [SerializeField] private string grabObjectName;
-    private FMODEvents.SoundEventClass grabObjectSound;
+    [SerializeField] private AudioManager.AudioReferenceClass grabbingObjectSound;
 
     void Awake(){
         selfCollider = transform.GetChild(0).GetComponent<Collider>();
-    }
-
-    void Start(){ 
-        grabObjectSound = AudioManager.instance.GetSoundEventClass(grabObjectName);
     }
 
     void Update(){
@@ -82,7 +77,7 @@ public class GrabObjects : MonoBehaviour
                     canGrab = true;
                     if(Input.GetKeyDown(KeyCode.Mouse0)){ 
                         grabbedObj = hit.transform.gameObject;
-                        grabObjectSound.PlaySound(hit.transform.position);
+                        grabbingObjectSound.PlaySoundObject(hit.transform.gameObject);
                         isGrabbing = true;
                         GrabObjectValues();
                     }
