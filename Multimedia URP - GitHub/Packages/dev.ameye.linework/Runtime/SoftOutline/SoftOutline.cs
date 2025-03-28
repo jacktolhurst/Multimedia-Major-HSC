@@ -771,9 +771,9 @@ namespace Linework.SoftOutline
         #pragma warning disable 618, 672
         public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
         {
-            if (settings == null || renderingData.cameraData.cameraType == CameraType.SceneView && !settings.ShowInSceneView) return;
+            if (settings == null || softOutlinePass == null || renderingData.cameraData.cameraType == CameraType.SceneView && !settings.ShowInSceneView) return;
             if (renderingData.cameraData.cameraType is CameraType.Preview or CameraType.Reflection) return;
-
+            
             softOutlinePass.CreateHandles(renderingData);
             softOutlinePass.SetTarget(renderer.cameraDepthTargetHandle);
         }

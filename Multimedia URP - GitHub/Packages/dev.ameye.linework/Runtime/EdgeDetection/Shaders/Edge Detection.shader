@@ -186,14 +186,10 @@
 
                 bool mask = false;
                 bool fill = false;
-                float4 section_rgba = SampleSceneSection(uv);
-                float section = section_rgba.r;
+                float section = SampleSceneSection(uv).r;
                 if (section == 1.0) fill = true;
                 if (section == 0.0) mask = true;
-                half color_lut_value = section_rgba.g;
 
-                float4 line_color = _OutlineColor;
-                
                 ///
                 /// EDGE DETECTION
                 ///
@@ -237,13 +233,10 @@
                 #if defined(LUMINANCE)
                     luminance_samples[i] = SampleSceneLuminance(uvs[i]);
                 #endif
-                    float4 sectionRGBA = SampleSceneSection(uvs[i]);
-
-                    section_samples[i] = sectionRGBA.r;
+                    
+                    section_samples[i] = SampleSceneSection(uvs[i]).r;
                     if(section_samples[i] == 1) fill = true;
                     if(section_samples[i] == 0) mask = true;
-
-                    if(sectionRGBA.g > 0) color_lut_value = sectionRGBA.g;
                 }
 
                 #if defined(DEPTH)
@@ -408,7 +401,7 @@
                 if(mask) return half4(0,0,1,1);
 
                 #if defined(DEBUG_SECTIONS_RAW_VALUES)
-                half4 section_raw = half4(section_rgba.g,section_rgba.g,section_rgba.g,1.0); //half4(section,section,0,1);
+                half4 section_raw = half4(section,0,0,1);
                 return lerp(section_raw, half4(1,1,1,1), edge_section);
                 #else
                 half4 section_perceptual = half4(HSVToRGB(half3(section * 360.0, 0.5, 1.0)), 1.0);
@@ -422,24 +415,8 @@
                 ///
 
                 // if (fill) return _FillColor;
-
-                half4 colorLUT[5] = {
-    _OutlineColor,  // Red
-    half4(0.0, 1.0, 0.0, 1.0),  // Green
-    half4(0.0, 0.0, 1.0, 1.0),  // Blue
-    half4(1.0, 1.0, 0.0, 1.0),  // Yellow
-    half4(1.0, 0.0, 1.0, 1.0)   // Magenta
-};
-
-// Ensure the index is within bounds
-int index = clamp(int(color_lut_value * 5), 0, 4);
-
-half4 c = colorLUT[index];
                 
-
-             //   half4 c = half4(color_lut_value, color_lut_value, color_lut_value, 1.0);
-               // if (section_rgba.g != 0)
-                    line_color = c;
+                float4 line_color = _OutlineColor;
                 
                 // Shadows.
                 #if defined(OVERRIDE_SHADOW)

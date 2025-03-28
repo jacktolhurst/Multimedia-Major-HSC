@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- Headers should be listed in this order: Added, Changed, Deprecated, Removed, Fixed, Security -->
 
+## [1.4.8] - 2025-03-13
+
+### Fixed
+
+- Android: Fixed graphics format not being supported
+- Fixed some incorrect files being included in 1.4.7
+
+## [1.4.7] - 2025-03-12
+
+### Fixed
+
+- Addressables: Added additional null checks to prevent errors during addressables build on Windows
+
 ## [1.4.6] - 2025-03-08
 
 ### Added

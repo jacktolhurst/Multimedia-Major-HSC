@@ -514,9 +514,9 @@ MonoBehaviour:
         Data4: 872523554
       Path: event:/SFX/Player/Footsteps/Footsteps
     volume: 1
-    maxDistance: 20
-    minDistance: 1
-    impact: 6
+    maxDistance: 2
+    minDistance: 10
+    impact: 10
 --- !u!114 &5621938116740447220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,9 +583,9 @@ MonoBehaviour:
         Data4: 1415534246
       Path: event:/SFX/Player/Grabbing object/Grabbing Object
     volume: 1
-    maxDistance: 20
-    minDistance: 1
-    impact: 3
+    maxDistance: 1
+    minDistance: 5
+    impact: 6
 --- !u!114 &8239444818348434316
 MonoBehaviour:
   m_ObjectHideFlags: 0

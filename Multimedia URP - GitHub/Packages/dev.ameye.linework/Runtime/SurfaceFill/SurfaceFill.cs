@@ -572,7 +572,7 @@ namespace Linework.SurfaceFill
         #pragma warning disable 618, 672
         public override void SetupRenderPasses(ScriptableRenderer renderer, in RenderingData renderingData)
         {
-            if (settings == null || renderingData.cameraData.cameraType == CameraType.SceneView && !settings.ShowInSceneView) return;
+            if (settings == null || surfaceFillPass == null || renderingData.cameraData.cameraType == CameraType.SceneView && !settings.ShowInSceneView) return;
             if (renderingData.cameraData.cameraType is CameraType.Preview or CameraType.Reflection) return;
 
             surfaceFillPass.ConfigureInput(ScriptableRenderPassInput.Color);
