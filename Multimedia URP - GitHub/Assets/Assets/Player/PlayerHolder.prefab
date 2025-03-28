@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6973049426122471190}
   - component: {fileID: 5591722736812546629}
   - component: {fileID: 4314398608734875399}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DepthCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 455956658781397143}
   - component: {fileID: 5220035301164610040}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2832750046654439211}
   - component: {fileID: 5282954079174872037}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,18 @@ MonoBehaviour:
   generatedStartPos: {x: 0, y: 0, z: 0}
   subtractedPosition: {x: 0, y: 0, z: 1.5}
   useStartPos: 0
-  footStepsName: FootSteps
+  footStepsSound:
+    eventReference:
+      Guid:
+        Data1: 553788734
+        Data2: 1338763801
+        Data3: 1113861267
+        Data4: 872523554
+      Path: event:/SFX/Player/Footsteps/Footsteps
+    volume: 1
+    maxDistance: 2
+    minDistance: 10
+    impact: 10
 --- !u!114 &5621938116740447220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,7 +574,18 @@ MonoBehaviour:
   minGrabbedObjDist: 2
   maxGrabbedObjDist: 3
   effectMask: 12
-  grabObjectName: GrabObject
+  grabbingObjectSound:
+    eventReference:
+      Guid:
+        Data1: -1435327189
+        Data2: 1314591851
+        Data3: -1385932882
+        Data4: 1415534246
+      Path: event:/SFX/Player/Grabbing object/Grabbing Object
+    volume: 1
+    maxDistance: 1
+    minDistance: 5
+    impact: 6
 --- !u!114 &8239444818348434316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,7 +612,7 @@ GameObject:
   - component: {fileID: 5594015207422758346}
   - component: {fileID: 6171885227097587224}
   - component: {fileID: 4160022287960439706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirstPersonCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
