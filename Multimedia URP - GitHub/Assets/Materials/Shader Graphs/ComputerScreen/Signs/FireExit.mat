@@ -67,7 +67,7 @@ Material:
     - _test: 0
     m_Colors:
     - _ColorReplacement: {r: 1, g: 0, b: 0, a: 0}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 0}
+    - _MainColor: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 0}
     - _MainOffset: {r: 0.06, g: 0, b: 0, a: 0}
     - _MaintextOffset: {r: 0, g: -1.24, b: 0, a: 0}
     - _MaintextTiling: {r: 1, g: 1.5, b: 0, a: 0}
