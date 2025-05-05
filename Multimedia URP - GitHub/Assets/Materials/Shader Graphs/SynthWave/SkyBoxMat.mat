@@ -101,6 +101,6 @@ Material:
     - _StarColor: {r: 0.67295593, g: 0.6640156, b: 0.5396344, a: 0}
     - _StarsColor: {r: 1024, g: 678.59656, b: 0, a: 1}
     - _SunColor: {r: 1, g: 0.3555199, b: 0, a: 0}
-    - _TopColor: {r: 2, g: 0.3142857, b: 0, a: 0}
+    - _TopColor: {r: 0.5, g: 0.078571424, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

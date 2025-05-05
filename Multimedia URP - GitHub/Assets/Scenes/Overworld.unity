@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 4a2a1af78a111e845a0b4a48f1892f3a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -735,6 +735,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AllUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3542501577570669517, guid: f759a975ca7bddb41bf14a67991b1f33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4665538130041142229, guid: f759a975ca7bddb41bf14a67991b1f33,
         type: 3}
       propertyPath: mainCam
@@ -803,100 +808,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.impact
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.maxDistance
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.minDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.eventReference.Path
-      value: event:/SFX/Player/Footsteps/Footsteps
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.eventReference.Guid.Data1
-      value: 553788734
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.eventReference.Guid.Data2
-      value: 1338763801
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.eventReference.Guid.Data3
-      value: 1113861267
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.eventReference.Guid.Data4
-      value: 872523554
-      objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_Name
       value: PlayerHolder
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.impact
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.maxDistance
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.minDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Path
-      value: event:/SFX/Player/Grabbing object/Grabbing Object
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Guid.Data1
-      value: -1435327189
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Guid.Data2
-      value: 1314591851
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Guid.Data3
-      value: -1385932882
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Guid.Data4
-      value: 1415534246
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
