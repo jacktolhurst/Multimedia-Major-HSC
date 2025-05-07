@@ -62,4 +62,8 @@ public class EnemyAIScript : MonoBehaviour
         agent.SetDestination(transform.position);
         transform.LookAt(player);
     }
+
+    void OnDrawGizmos(){
+        
+    }
 }

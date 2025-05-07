@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3162f92f576228a45a2f5db82e7ae63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseVolume: 0.2
+  baseVolume: 0
   targetFrameRate: 0
