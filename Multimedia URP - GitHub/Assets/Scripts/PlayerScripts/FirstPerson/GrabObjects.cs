@@ -57,6 +57,7 @@ public class GrabObjects : MonoBehaviour
     private float prevMass;
 
     private bool tooFar = false;
+    private bool inactiveObj = false;
 
     [Header("Effects")]
     [SerializeField] private int effectMask;
@@ -90,9 +91,10 @@ public class GrabObjects : MonoBehaviour
                 canGrab = false;
             }
         }
-        else if(Input.GetKeyDown(KeyCode.Mouse0) && isGrabbing || tooFar){
+        else if(Input.GetKeyDown(KeyCode.Mouse0) && isGrabbing || tooFar || inactiveObj){
             isGrabbing = false;
             tooFar = false;
+            inactiveObj = false;
             LetGoObjectValues();
             grabbedObj = null;
         }
@@ -108,6 +110,9 @@ public class GrabObjects : MonoBehaviour
             if(Vector3.Distance(grabbedObj.transform.position, transform.position) > objectMaxDistance){
                 cursorMat.color = Color.red;
                 tooFar = true;
+            }
+            if(!grabbedObj.activeSelf){
+                inactiveObj = true;
             }
         }
     }

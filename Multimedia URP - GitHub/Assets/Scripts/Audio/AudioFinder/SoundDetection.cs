@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
 
 public class SoundDetection : MonoBehaviour
@@ -6,18 +7,34 @@ public class SoundDetection : MonoBehaviour
     List<AudioManager.EventHandler> soundEvents = new List<AudioManager.EventHandler>();
     [SerializeField] private AudioManager.EventHandler chosenEvent;
 
+    private NavMeshAgent agent;
 
     [SerializeField] private float soundDistance;
+
+    void Awake(){
+        agent = GetComponent<NavMeshAgent>();
+    }
 
     void Update(){
         soundEvents = AudioManager.instance.CurrentEventsInRange(transform.position, soundDistance);
 
-        float highestImpact = 0;
-        foreach(AudioManager.EventHandler soundEvent in soundEvents){
-            if(soundEvent.impact > highestImpact){
-                highestImpact = soundEvent.impact;
-                chosenEvent = soundEvent;
+        if(soundEvents.Count != 0){
+            float highestImpact = 0;
+            float lastEventTime = 0;
+            foreach(AudioManager.EventHandler soundEvent in soundEvents){
+                if(soundEvent.impact > highestImpact){
+                    highestImpact = soundEvent.impact;
+                    lastEventTime = soundEvent.time;
+                    chosenEvent = soundEvent;
+                }
+                if(soundEvent.impact == highestImpact){
+                    if(soundEvent.time > lastEventTime){
+                        lastEventTime = soundEvent.time;
+                        chosenEvent = soundEvent;
+                    }
+                }
             }
+            agent.SetDestination(chosenEvent.position);
         }
     }
 

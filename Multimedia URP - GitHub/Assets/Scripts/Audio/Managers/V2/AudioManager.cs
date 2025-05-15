@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
         private float initializedTime;
 
         private bool initialized;
+        public bool dontUseSound;
         
         private IEnumerator UpdateLoop(){
             while(initialized){
@@ -57,15 +58,19 @@ public class AudioManager : MonoBehaviour
         }
 
         public void PlaySoundObject(GameObject obj){
-            FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
-            eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(obj));
-            PlaySoundMain(eventInstance);
+            if(!dontUseSound){
+                FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+                eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(obj));
+                PlaySoundMain(eventInstance);
+            }
         }
 
         public void PlaySoundPosition(Vector3 pos){
-            FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
-            eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
-            PlaySoundMain(eventInstance);
+            if(!dontUseSound){
+                FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+                eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
+                PlaySoundMain(eventInstance);
+            }
         }
 
         public void PlaySoundMain(FMOD.Studio.EventInstance eventInstance){
@@ -82,7 +87,7 @@ public class AudioManager : MonoBehaviour
             eventInstance.start();
 
             Coroutine coroutine = AudioManager.instance.StartCoroutine(TrackSound(eventInstance));
-            EventHandler eventHandler = new EventHandler(eventInstance, coroutine, impact);
+            EventHandler eventHandler = new EventHandler(eventInstance, coroutine, impact, Time.time);
             AudioManager.instance.currentEvents.Add(eventHandler);
             eventHandlers.Add(eventHandler);
 
@@ -149,11 +154,13 @@ public class AudioManager : MonoBehaviour
         public Coroutine activeCoroutine;
         public Vector3 position;
         public float impact;
+        public float time;
 
-        public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newImpact){
+        public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newImpact, float newTime){
             eventInstance = newEventInstance;
             activeCoroutine = newActiveCoroutine;
             impact = newImpact;
+            time = newTime;
         }
 
         public void Update(){

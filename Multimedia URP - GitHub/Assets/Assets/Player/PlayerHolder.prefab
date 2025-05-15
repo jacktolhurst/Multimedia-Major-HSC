@@ -517,6 +517,7 @@ MonoBehaviour:
     maxDistance: 2
     minDistance: 10
     impact: 10
+    dontUseSound: 1
 --- !u!114 &5621938116740447220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +587,7 @@ MonoBehaviour:
     maxDistance: 1
     minDistance: 5
     impact: 6
+    dontUseSound: 0
 --- !u!114 &8239444818348434316
 MonoBehaviour:
   m_ObjectHideFlags: 0
