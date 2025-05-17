@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class OrbManager : MonoBehaviour
 {
+    [SerializeField] private List<GameObject> deletedObjs = new List<GameObject>();
+
+    [SerializeField] private ManagerScript manager;
 
     private Bounds selfBounds;
 
@@ -18,22 +21,22 @@ public class OrbManager : MonoBehaviour
     }
 
     private void SceneCheck(){
-        sceneRadius = transform.localScale.magnitude/10;
+        sceneRadius = transform.localScale.magnitude/2;
 
         Collider[] objColliders = Physics.OverlapSphere(transform.position, sceneRadius);
         foreach(Collider collider in objColliders){
             GameObject obj = collider.transform.gameObject;
+            Bounds objBounds = obj.GetComponent<Collider>().bounds;
             int layer = obj.layer;
 
             if(layer == 11 || layer == 12){
-                Vector3[] vertices = obj.GetComponent<MeshFilter>().mesh.vertices;
-                
-                foreach(Vector3 vertice in vertices){
-                    if(selfBounds.Contains(vertice)){
-                        obj.SetActive(false);
-                        break;
-                    }
+                if(selfBounds.Contains(objBounds.max) && selfBounds.Contains(objBounds.min)){
+                    deletedObjs.Add(obj);
+                    obj.SetActive(false);
                 }
+            }
+            if(layer == 9){
+                manager.RestartScene();
             }
         }
     }

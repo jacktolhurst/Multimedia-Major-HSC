@@ -11,6 +11,7 @@ public class ManagerScript : MonoBehaviour
 
     void Start(){
 		Application.targetFrameRate = targetFrameRate;
+        TurnOffShadows();
     }
 
     void Update(){

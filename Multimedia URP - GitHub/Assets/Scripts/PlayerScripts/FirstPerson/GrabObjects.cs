@@ -112,6 +112,7 @@ public class GrabObjects : MonoBehaviour
                 tooFar = true;
             }
             if(!grabbedObj.activeSelf){
+                cursorMat.color = Color.red;
                 inactiveObj = true;
             }
         }

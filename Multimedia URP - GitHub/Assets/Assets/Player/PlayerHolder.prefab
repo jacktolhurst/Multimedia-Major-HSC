@@ -517,7 +517,7 @@ MonoBehaviour:
     maxDistance: 2
     minDistance: 10
     impact: 10
-    dontUseSound: 1
+    dontUseSound: 0
 --- !u!114 &5621938116740447220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,10 +578,10 @@ MonoBehaviour:
   grabbingObjectSound:
     eventReference:
       Guid:
-        Data1: -1435327189
-        Data2: 1314591851
-        Data3: -1385932882
-        Data4: 1415534246
+        Data1: 2023125065
+        Data2: 1295130547
+        Data3: 1837349250
+        Data4: -329610991
       Path: event:/SFX/Player/Grabbing object/Grabbing Object
     volume: 1
     maxDistance: 1
