@@ -57,6 +57,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Amount: 0
+    - _BUILTIN_QueueControl: -1
+    - _BUILTIN_QueueOffset: 0
     - _Divide2: 500
     - _DivideSpeed: 0.006
     - _Fuzziness: 1.22
@@ -66,7 +68,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Range: 0
-    - _Scale: 0.1
+    - _Scale: 0
     - _Shadow_Brightness: 0.5
     - _Tiling: 6.2
     - _Transparency: 1
@@ -74,10 +76,11 @@ Material:
     - _offset: 1.4
     - _pos: 2.88
     m_Colors:
-    - _Color: {r: 0.3146631, g: 0.381827, b: 0.46540874, a: 0}
-    - _Color1: {r: 0.3135358, g: 0.39798203, b: 0.52201253, a: 0}
-    - _Color2: {r: 0.23855853, g: 0.30094236, b: 0.46540874, a: 0}
+    - _Color: {r: 0.35408506, g: 0.38688838, b: 0.6886792, a: 0}
+    - _Color1: {r: 0.383811, g: 0.5120838, b: 0.7075472, a: 0}
+    - _Color2: {r: 0.104530096, g: 0.14596099, b: 0.254717, a: 0}
     - _Direction: {r: 0, g: 0, b: -1, a: 0}
+    - _Emmisive: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 0, g: 0, b: 0, a: 0}
     - _poa: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

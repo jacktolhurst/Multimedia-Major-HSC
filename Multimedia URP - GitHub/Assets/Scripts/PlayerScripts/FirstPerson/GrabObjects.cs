@@ -156,6 +156,9 @@ public class GrabObjects : MonoBehaviour
         }
         foreach(Transform child in grabbedObj.transform){
             child.gameObject.layer = effectMask;
+            foreach(Transform childTwo in child){
+                childTwo.gameObject.layer = effectMask;
+            }
         }
         
         moveSpeed = Mathf.Clamp(baseMoveSpeed/(grabbedObjrb.mass / massDivision),baseMoveSpeed/2, baseMoveSpeed);
@@ -193,6 +196,9 @@ public class GrabObjects : MonoBehaviour
 
         foreach(Transform child in grabbedObj.transform){
             child.gameObject.layer = defaultMask;
+            foreach(Transform childTwo in child){
+                childTwo.gameObject.layer = defaultMask;
+            }
         }
         grabbedObj.layer = defaultMask;
 
