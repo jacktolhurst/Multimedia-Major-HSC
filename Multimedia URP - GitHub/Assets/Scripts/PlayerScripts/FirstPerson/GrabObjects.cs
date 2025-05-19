@@ -154,12 +154,8 @@ public class GrabObjects : MonoBehaviour
                 }
             }
         }
-        foreach(Transform child in grabbedObj.transform){
-            child.gameObject.layer = effectMask;
-            foreach(Transform childTwo in child){
-                childTwo.gameObject.layer = effectMask;
-            }
-        }
+
+        CheckChildren(effectMask, grabbedObj.transform);
         
         moveSpeed = Mathf.Clamp(baseMoveSpeed/(grabbedObjrb.mass / massDivision),baseMoveSpeed/2, baseMoveSpeed);
         if(grabbedObj.GetComponent<Renderer>() != null){
@@ -194,15 +190,17 @@ public class GrabObjects : MonoBehaviour
             Physics.IgnoreCollision(collider, selfCollider, false);
         }
 
-        foreach(Transform child in grabbedObj.transform){
-            child.gameObject.layer = defaultMask;
-            foreach(Transform childTwo in child){
-                childTwo.gameObject.layer = defaultMask;
-            }
-        }
+        CheckChildren(defaultMask, grabbedObj.transform);
         grabbedObj.layer = defaultMask;
 
         grabbedObjrb.mass = prevMass;
+    }
+
+    private void CheckChildren(int mask, Transform objTrans){
+        foreach(Transform child in objTrans){
+            child.gameObject.layer = mask;
+            CheckChildren(mask, child);
+        }
     }
 
     void OnDrawGizmos(){

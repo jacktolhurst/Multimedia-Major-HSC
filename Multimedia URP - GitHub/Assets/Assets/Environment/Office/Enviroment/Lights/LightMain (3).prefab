@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0890bfb209799974a891bd5be08fed92, type: 2}
+  - {fileID: 2100000, guid: 9fb8bdfc8dfc905409c6cf974ccba585, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -216,11 +216,11 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 1, g: 0.995165, b: 0.9213836, a: 1}
-  m_Intensity: 5
+  m_Color: {r: 1, g: 0.9920436, b: 0.8349056, a: 1}
+  m_Intensity: 10
   m_Range: 100
-  m_SpotAngle: 59.505497
-  m_InnerSpotAngle: 51.307575
+  m_SpotAngle: 105.013306
+  m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -404,11 +404,11 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 1, g: 0.995165, b: 0.9213836, a: 1}
-  m_Intensity: 5
+  m_Color: {r: 1, g: 0.9920436, b: 0.8349056, a: 1}
+  m_Intensity: 10
   m_Range: 100
-  m_SpotAngle: 59.505497
-  m_InnerSpotAngle: 51.307575
+  m_SpotAngle: 105.013306
+  m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -631,7 +631,7 @@ HingeJoint:
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
-  m_BreakForce: Infinity
+  m_BreakForce: 10000
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
@@ -724,7 +724,7 @@ MeshRenderer:
   m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0890bfb209799974a891bd5be08fed92, type: 2}
+  - {fileID: 2100000, guid: 9fb8bdfc8dfc905409c6cf974ccba585, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1243,7 +1243,7 @@ HingeJoint:
     bounciness: 0
     bounceMinVelocity: 0.2
     contactDistance: 0
-  m_BreakForce: Infinity
+  m_BreakForce: 10000
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 1

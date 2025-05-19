@@ -189,3 +189,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411a1f43db7d9364399cbe1c9984043f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  metalDetectorSound:
+    eventReference:
+      Guid:
+        Data1: 456978871
+        Data2: 1325953534
+        Data3: 1524490667
+        Data4: -2094243013
+      Path: event:/SFX/MetalDectector/MetalDetectorThru
+    volume: 1
+    maxDistance: 5
+    minDistance: 1
+    impact: 3
+    dontUseSound: 0

@@ -494,9 +494,9 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 2176
-  jumpForce: 15
+  jumpForce: 12
   jumpMultiplier: 0.015
-  airDrag: 1
+  airDrag: 0.8
   jumpIntervalTime: 1.5
   heightDivision: 1.5
   raycastPadding: {x: 0.05, y: 0.05}
@@ -583,9 +583,9 @@ MonoBehaviour:
         Data3: 1837349250
         Data4: -329610991
       Path: event:/SFX/Player/Grabbing object/Grabbing Object
-    volume: 1
-    maxDistance: 1
-    minDistance: 5
+    volume: 0.1
+    maxDistance: 20
+    minDistance: 1
     impact: 6
     dontUseSound: 0
 --- !u!114 &8239444818348434316
@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
+  m_RequiresDepthTextureOption: 1
   m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras:

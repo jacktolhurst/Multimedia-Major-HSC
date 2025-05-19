@@ -46,6 +46,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManagerGameObject
       objectReference: {fileID: 0}
+    - target: {fileID: 5033000814631401291, guid: 6f7285def082a8e40b0fb28d11398789,
+        type: 3}
+      propertyPath: baseVolume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9182747833958888091, guid: 6f7285def082a8e40b0fb28d11398789,
         type: 3}
       propertyPath: m_LocalPosition.x

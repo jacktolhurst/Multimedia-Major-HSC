@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections; 
 using System.Collections.Generic; 
 
+[SelectionBase]
 public class OrbManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> deletedObjs = new List<GameObject>();
@@ -10,18 +11,36 @@ public class OrbManager : MonoBehaviour
 
     private Bounds selfBounds;
 
-    [SerializeField] private float sceneRadius; 
+    private float sceneRadius; 
+    [SerializeField] private float forceRadius; 
+    [SerializeField] private float attractorMass;
 
     void Start(){
         selfBounds = GetComponent<Collider>().bounds;
     }
 
     void Update(){
+        ForceAddition();
         SceneCheck();
     }
 
+    private void ForceAddition(){
+        Collider[] objColliders = Physics.OverlapSphere(transform.position, forceRadius);
+        foreach(Collider collider in objColliders){
+            Rigidbody rb = collider.GetComponent<Rigidbody>();
+            if(rb == null) continue;
+
+            Vector3 direction = (transform.position - rb.position).normalized;
+            float distance = Mathf.Max(Vector3.Distance(transform.position, rb.position), 0.1f);
+            float force = attractorMass;
+
+            rb.AddForce(direction * force, ForceMode.Acceleration);
+            Debug.DrawRay(rb.position, direction * distance, Color.red);
+        }
+    }
+
     private void SceneCheck(){
-        sceneRadius = transform.localScale.magnitude/2;
+        sceneRadius = transform.localScale.magnitude/3;
 
         Collider[] objColliders = Physics.OverlapSphere(transform.position, sceneRadius);
         foreach(Collider collider in objColliders){
@@ -44,6 +63,7 @@ public class OrbManager : MonoBehaviour
     void OnDrawGizmos(){
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, sceneRadius);
+        Gizmos.DrawWireSphere(transform.position, forceRadius);
     }
 
     // private List<GameObject> objects = new List<GameObject>();

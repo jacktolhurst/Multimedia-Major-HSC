@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class MetalDetector : MonoBehaviour
 {
-    void Start(){
-    }
+    [SerializeField] private AudioManager.AudioReferenceClass metalDetectorSound;
 
     void OnTriggerEnter(Collider other) {
+        metalDetectorSound.PlaySoundPosition(transform.position);
 	}
 }
