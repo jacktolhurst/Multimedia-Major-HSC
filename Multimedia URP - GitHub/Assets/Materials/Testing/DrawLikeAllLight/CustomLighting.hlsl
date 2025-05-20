@@ -88,7 +88,7 @@ void AllAdditionalLights_float(float3 WorldPos, float3 WorldNormal, float2 Cutof
 
 void AllAdditionalLights_half(half3 WorldPos, half3 WorldNormal, half2 CutoffThresholds, out half3 LightColor)
 {
-    LightColor = 0.0f;
+    LightColor = (half3)0;
 
 #ifndef SHADERGRAPH_PREVIEW
     int lightCount = GetAdditionalLightsCount();
@@ -96,14 +96,15 @@ void AllAdditionalLights_half(half3 WorldPos, half3 WorldNormal, half2 CutoffThr
     for(int i = 0; i < lightCount; ++i)
     {
         Light light = GetAdditionalLight(i, WorldPos);
-        
-        float3 color = dot(light.direction, WorldNormal);
-        color = smoothstep(CutoffThresholds.x, CutoffThresholds.y, color);
-        color *= light.color;
-        color *= light.distanceAttenuation;
 
-        LightColor += color;
-    } 
+        half nl = dot(light.direction, WorldNormal);
+
+        half s = smoothstep(CutoffThresholds.x, CutoffThresholds.y, nl);
+
+        half3 c = s * light.color * light.distanceAttenuation;
+
+        LightColor += c;
+    }
 #endif
 }
 
