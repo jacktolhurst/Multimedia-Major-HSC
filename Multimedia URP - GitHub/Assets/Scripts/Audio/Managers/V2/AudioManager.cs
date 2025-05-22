@@ -164,7 +164,7 @@ public class AudioManager : MonoBehaviour
         }
 
         public void Update(){
-            Vector3 newPosition =  AudioManager.instance.GetEventInstancePosition(eventInstance);
+            Vector3 newPosition = AudioManager.instance.GetEventInstancePosition(eventInstance);
             if(newPosition != Vector3.zero){
                 position = newPosition;
             }
