@@ -197,7 +197,7 @@ MonoBehaviour:
         Data3: 1524490667
         Data4: -2094243013
       Path: event:/SFX/MetalDectector/MetalDetectorThru
-    volume: 1
+    volume: 2
     maxDistance: 5
     minDistance: 1
     impact: 3

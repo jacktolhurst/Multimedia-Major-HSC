@@ -15,13 +15,24 @@ public class OrbManager : MonoBehaviour
     [SerializeField] private float forceRadius; 
     [SerializeField] private float attractorMass;
 
+    [SerializeField] private AudioManager.AudioReferenceClass orbAmbientSound;
+
     void Start(){
         selfBounds = GetComponent<Collider>().bounds;
+
+        StartCoroutine(PlayAmbientSound());
     }
 
     void Update(){
         ForceAddition();
         SceneCheck();
+    }
+
+    private IEnumerator PlayAmbientSound(){
+        while(true){
+            orbAmbientSound.PlaySoundObject(transform.gameObject);
+            yield return new WaitForSeconds(5);
+        }
     }
 
     private void ForceAddition(){

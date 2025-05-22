@@ -1361,6 +1361,7 @@ GameObject:
   - component: {fileID: 1700599292}
   - component: {fileID: 1700599298}
   - component: {fileID: 1700599296}
+  - component: {fileID: 1700599299}
   - component: {fileID: 1700599297}
   m_Layer: 11
   m_Name: Enemy
@@ -1521,6 +1522,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1700599299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700599291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fc303b442df9ea4ab158e87736af4e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundDetectionScript: {fileID: 1700599297}
+  agent: {fileID: 1700599296}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 128
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512
+  playerPos: {x: 0, y: 0, z: 0}
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 20
+  timeBetweenAttacks: 10
+  sightRange: 4
+  attackRange: 2
+  playerInSightRange: 0
+  PlayerInAttackRange: 0
 --- !u!1 &1848614705
 GameObject:
   m_ObjectHideFlags: 0

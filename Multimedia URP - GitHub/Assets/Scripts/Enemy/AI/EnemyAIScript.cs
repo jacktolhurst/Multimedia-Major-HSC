@@ -3,12 +3,13 @@ using UnityEngine.AI;
 
 public class EnemyAIScript : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    [SerializeField] private SoundDetection SoundDetectionScript;
 
-    public Transform player;
+    public NavMeshAgent agent;
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    public Vector3 playerPos;
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
@@ -32,7 +33,10 @@ public class EnemyAIScript : MonoBehaviour
         if(playerInSightRange && !PlayerInAttackRange) ChasePlayer();
 
         if(playerInSightRange && PlayerInAttackRange)  AttackPlayer();
+
+        Debug.Log(SoundDetectionScript.chosenEvent.position);
         
+        if(SoundDetectionScript.chosenEvent.position != null) playerPos = SoundDetectionScript.chosenEvent.position;
     }
 
     private void Patroling(){
@@ -55,12 +59,11 @@ public class EnemyAIScript : MonoBehaviour
     }
 
     private void ChasePlayer(){
-        agent.SetDestination(player.position);
+        agent.SetDestination(playerPos);
     }
 
     private void AttackPlayer(){
         agent.SetDestination(transform.position);
-        transform.LookAt(player);
     }
 
     void OnDrawGizmos(){
