@@ -104,7 +104,7 @@ public class AudioManager : MonoBehaviour
             eventInstance.start();
 
             Coroutine coroutine = AudioManager.instance.StartCoroutine(TrackSound(eventInstance));
-            EventHandler eventHandler = new EventHandler(eventInstance, coroutine, Time.time, particleSpeed, particleOffset, impact);
+            EventHandler eventHandler = new EventHandler(this, eventInstance, coroutine, Time.time, particleSpeed, particleOffset, impact);
             AudioManager.instance.currentEvents.Add(eventHandler);
             eventHandlers.Add(eventHandler);
 
@@ -167,6 +167,7 @@ public class AudioManager : MonoBehaviour
     }
 
     public class EventHandler{
+        public AudioManager.AudioReferenceClass referenceClass;
         public FMOD.Studio.EventInstance eventInstance;
         public Coroutine activeCoroutine;
         public Vector3 position;
@@ -175,7 +176,8 @@ public class AudioManager : MonoBehaviour
         public float particleOffset;
         public int impact;
 
-        public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newTime, float newParticleSpeed, float newParticleOffset, int newImpact){
+        public EventHandler(AudioManager.AudioReferenceClass newReferenceClass, FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newTime, float newParticleSpeed, float newParticleOffset, int newImpact){
+            referenceClass = newReferenceClass;
             eventInstance = newEventInstance;
             activeCoroutine = newActiveCoroutine;
             time = newTime;

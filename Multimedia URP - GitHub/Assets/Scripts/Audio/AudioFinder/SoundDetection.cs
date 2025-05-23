@@ -80,6 +80,7 @@ public class SoundDetection : MonoBehaviour
                             int count = particleSystem.GetParticles(currParticles);
                             for (int i = 0; i < count; i++){
                                 currParticles[i].velocity = (particleTargetPos - currParticles[i].position).normalized * particleSpeed;
+                                currParticles[i].startLifetime = Vector3.Distance(particleTargetPos, currParticles[i].position) / particleSpeed;
                             }
 
                             particleSystem.SetParticles(currParticles, count);

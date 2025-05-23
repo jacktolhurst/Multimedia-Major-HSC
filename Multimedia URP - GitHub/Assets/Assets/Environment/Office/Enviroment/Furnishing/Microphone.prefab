@@ -511,6 +511,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220bea9f9c97e03438d7bccddea66c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speakers:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8857790807701116764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,5 +532,5 @@ MonoBehaviour:
   blockLayerMask:
     serializedVersion: 2
     m_Bits: 2147500031
-  soundDistance: 10
+  soundDistance: 4.6
   checkSounds: 1
