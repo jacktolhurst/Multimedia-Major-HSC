@@ -200,5 +200,7 @@ MonoBehaviour:
     volume: 2
     maxDistance: 5
     minDistance: 1
-    impact: 3
+    particleSpeed: 8
+    particleOffset: 0.5
+    impact: 1
     dontUseSound: 0

@@ -12,24 +12,32 @@ public class AudioManager : MonoBehaviour
         public List<EventHandler> eventHandlers = new List<EventHandler>();
 
         [Range(0,3)]
-        public float volume;
+        public float volume = 1;
         private float prevVolume;
         [Min(0)]
-        public float maxDistance;
+        public float maxDistance = 10;
         private float prevMaxDistance;
         [Min(0)]
-        public float minDistance;
+        public float minDistance = 1;
         private float prevMinDistance;
-        public float impact;
-        private float prevImpact;
         private float initializedTime;
+        [Min(0)]
+        public float particleSpeed = 8;
+        private float prevParticleSpeed;
+        [Min(0)]
+        public float particleOffset = 1;
+        private float prevParticleOffset;
+
+        [Min(0)]
+        public int impact;
+        private int prevImpact;
 
         private bool initialized;
         public bool dontUseSound;
         
         private IEnumerator UpdateLoop(){
             while(initialized){
-                if(prevVolume != volume || prevMaxDistance != maxDistance || prevMinDistance != minDistance || prevImpact != impact){
+                if(prevVolume != volume || prevMaxDistance != maxDistance || prevMinDistance != minDistance || prevImpact != impact | prevParticleSpeed != particleSpeed){
                     foreach(EventHandler eventHandler in eventHandlers){
                         if(prevVolume != volume){
                             eventHandler.eventInstance.setVolume(volume);
@@ -46,6 +54,15 @@ public class AudioManager : MonoBehaviour
                         if(prevImpact != impact){
                             eventHandler.impact = impact;
                             prevImpact = impact;
+                        }
+
+                        if(prevParticleSpeed != particleSpeed){
+                            eventHandler.particleSpeed = particleSpeed;
+                            prevParticleSpeed = particleSpeed;
+                        }
+                        if(prevParticleOffset != particleOffset){
+                            eventHandler.particleOffset = particleOffset;
+                            prevParticleOffset = particleOffset;
                         }
                     }
                 }
@@ -87,7 +104,7 @@ public class AudioManager : MonoBehaviour
             eventInstance.start();
 
             Coroutine coroutine = AudioManager.instance.StartCoroutine(TrackSound(eventInstance));
-            EventHandler eventHandler = new EventHandler(eventInstance, coroutine, impact, Time.time);
+            EventHandler eventHandler = new EventHandler(eventInstance, coroutine, Time.time, particleSpeed, particleOffset, impact);
             AudioManager.instance.currentEvents.Add(eventHandler);
             eventHandlers.Add(eventHandler);
 
@@ -113,7 +130,7 @@ public class AudioManager : MonoBehaviour
             minDistance = Mathf.Clamp(minDistance, 0, maxDistance);
         }
 
-        public void SetImpact(float newImpact){
+        public void SetImpact(int newImpact){
             impact = Mathf.Max(newImpact, 0);
         }
 
@@ -153,14 +170,22 @@ public class AudioManager : MonoBehaviour
         public FMOD.Studio.EventInstance eventInstance;
         public Coroutine activeCoroutine;
         public Vector3 position;
-        public float impact;
         public float time;
+        public float particleSpeed;
+        public float particleOffset;
+        public int impact;
 
-        public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newImpact, float newTime){
+        public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newTime, float newParticleSpeed, float newParticleOffset, int newImpact){
             eventInstance = newEventInstance;
             activeCoroutine = newActiveCoroutine;
-            impact = newImpact;
             time = newTime;
+            particleSpeed = newParticleSpeed;
+            particleOffset = newParticleOffset;
+            impact = newImpact;
+
+            FMOD.ATTRIBUTES_3D attributes;
+            eventInstance.get3DAttributes(out attributes);
+            position = new Vector3(attributes.position.x, attributes.position.y, attributes.position.z);
         }
 
         public void Update(){

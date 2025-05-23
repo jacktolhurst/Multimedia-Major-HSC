@@ -516,6 +516,8 @@ MonoBehaviour:
     volume: 1
     maxDistance: 2
     minDistance: 10
+    particleSpeed: 8
+    particleOffset: 0
     impact: 1
     dontUseSound: 0
 --- !u!114 &5621938116740447220
@@ -586,7 +588,9 @@ MonoBehaviour:
     volume: 0.1
     maxDistance: 20
     minDistance: 1
-    impact: 2
+    particleSpeed: 6
+    particleOffset: 1
+    impact: 1
     dontUseSound: 0
 --- !u!114 &8239444818348434316
 MonoBehaviour:

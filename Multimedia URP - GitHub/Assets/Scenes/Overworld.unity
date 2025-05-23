@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 140545650}
   - component: {fileID: 140545649}
   - component: {fileID: 140545648}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,6 +427,74 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &278363496
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7090148987600239162, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_Name
+      value: Microphone (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93e05e8c633c2d04a830c865894e1f42, type: 3}
 --- !u!1 &655462255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,10 +1405,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: footStepsSound.dontUseSound
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_Name
       value: PlayerHolder
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.impact
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.particleSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.particleOffset
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1363,13 +1451,13 @@ GameObject:
   - component: {fileID: 1700599296}
   - component: {fileID: 1700599299}
   - component: {fileID: 1700599300}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1700599292
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1522,21 +1610,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoundDetectionScript: {fileID: 1700599300}
-  agent: {fileID: 1700599296}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 512
-  playerPos: {x: 0, y: 0, z: 0}
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 20
-  timeBetweenAttacks: 10
-  sightRange: 4
-  attackRange: 2
-  playerInSightRange: 0
-  PlayerInAttackRange: 0
 --- !u!114 &1700599300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,8 +1625,10 @@ MonoBehaviour:
   particlePrefab: {fileID: 762517348031247824, guid: a303c6e6c2865604ebeb89010705e98d,
     type: 3}
   particleTargetTrans: {fileID: 140545647}
+  blockLayerMask:
+    serializedVersion: 2
+    m_Bits: 2147500031
   soundDistance: 20
-  particleSpeed: 2
   checkSounds: 1
 --- !u!1 &1848614705
 GameObject:
@@ -1850,3 +1925,4 @@ SceneRoots:
   - {fileID: 263586611}
   - {fileID: 1030361497}
   - {fileID: 1920668933}
+  - {fileID: 278363496}

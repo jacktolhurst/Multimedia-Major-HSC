@@ -21,7 +21,6 @@ public class SoundDetection : MonoBehaviour
     private Vector3 particleObjOffset = new Vector3(0,-200,0);
     
     [SerializeField] private float soundDistance;
-    [SerializeField] private float particleSpeed;
 
     public bool checkSounds = true;
 
@@ -61,9 +60,10 @@ public class SoundDetection : MonoBehaviour
 
                         if(!lastSoundEvents.Contains(soundEvent)){
                             for (int i = 0; i < soundEvent.impact; i++){
-                                Vector3 eventPos = (soundEvent.position) + Random.insideUnitSphere;
+                                Vector3 eventPos = (soundEvent.position) + (Random.insideUnitSphere * soundEvent.particleOffset);
                                 Vector3 direction = (particleTargetTrans.position - eventPos).normalized;
                                 float distance = Vector3.Distance(particleTargetTrans.position, eventPos);
+                                float particleSpeed = soundEvent.particleSpeed;
 
                                 emitParams.position = eventPos;
                                 emitParams.velocity = direction * particleSpeed;

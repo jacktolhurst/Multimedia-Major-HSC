@@ -59799,8 +59799,10 @@ MonoBehaviour:
     volume: 1
     maxDistance: 20
     minDistance: 1
-    impact: 10
-    dontUseSound: 1
+    particleSpeed: 2
+    particleOffset: 2
+    impact: 1
+    dontUseSound: 0
 --- !u!135 &1676636983
 SphereCollider:
   m_ObjectHideFlags: 0
