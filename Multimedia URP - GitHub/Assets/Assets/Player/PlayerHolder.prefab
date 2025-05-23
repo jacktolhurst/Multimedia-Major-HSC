@@ -493,7 +493,7 @@ MonoBehaviour:
   playerCollider: {fileID: 3094195227664366091}
   groundMask:
     serializedVersion: 2
-    m_Bits: 2176
+    m_Bits: 18560
   jumpForce: 12
   jumpMultiplier: 0.015
   airDrag: 0.8
@@ -516,7 +516,7 @@ MonoBehaviour:
     volume: 1
     maxDistance: 2
     minDistance: 10
-    impact: 10
+    impact: 1
     dontUseSound: 0
 --- !u!114 &5621938116740447220
 MonoBehaviour:
@@ -562,7 +562,7 @@ MonoBehaviour:
   cam: {fileID: 9071721636445013011}
   playerMask:
     serializedVersion: 2
-    m_Bits: 2147494344
+    m_Bits: 2147510728
   grabDist: 4
   canGrab: 0
   grabTag: Grabbable
@@ -586,7 +586,7 @@ MonoBehaviour:
     volume: 0.1
     maxDistance: 20
     minDistance: 1
-    impact: 6
+    impact: 2
     dontUseSound: 0
 --- !u!114 &8239444818348434316
 MonoBehaviour:
@@ -676,7 +676,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2147499007
+    m_Bits: 2147515391
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

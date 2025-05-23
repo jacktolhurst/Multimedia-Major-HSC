@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6628215003970527240}
   - component: {fileID: 3431720455897468361}
   - component: {fileID: 4948776691694071263}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 8257821723326193223}
   - component: {fileID: 3021768684509701555}
   - component: {fileID: 7002330272012540199}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Stand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 6851483376542905325}
   - component: {fileID: 3611524631715148081}
   - component: {fileID: 4154363618170020888}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Microphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5755735167474422714}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: MicrophoneHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 7889758823875089076}
   - component: {fileID: 8403315660668790673}
   - component: {fileID: 8857790807701116764}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Microphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,6 +526,9 @@ MonoBehaviour:
   particlePrefab: {fileID: 762517348031247824, guid: a303c6e6c2865604ebeb89010705e98d,
     type: 3}
   particleTargetTrans: {fileID: 5755735167474422714}
-  soundDistance: 5
+  blockLayerMask:
+    serializedVersion: 2
+    m_Bits: 2147500031
+  soundDistance: 20
   particleSpeed: 2.5
   checkSounds: 1

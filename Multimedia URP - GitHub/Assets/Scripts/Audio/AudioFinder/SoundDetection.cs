@@ -15,6 +15,10 @@ public class SoundDetection : MonoBehaviour
     private ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
 
     [SerializeField] private Transform particleTargetTrans;
+
+    [SerializeField] private LayerMask blockLayerMask;
+
+    private Vector3 particleObjOffset = new Vector3(0,-200,0);
     
     [SerializeField] private float soundDistance;
     [SerializeField] private float particleSpeed;
@@ -22,12 +26,15 @@ public class SoundDetection : MonoBehaviour
     public bool checkSounds = true;
 
     void Awake(){
-        particleObject = GameObject.Find("MusicParticle");
+        particleObject = GameObject.Find(particlePrefab.transform.name);
         if(particleObject == null) {
-            particleObject = Instantiate(particlePrefab, Vector3.zero, Quaternion.identity);
+            particleObject = Instantiate(particlePrefab, particleObjOffset, Quaternion.identity);
         }
 
         soundParticles = particleObject.GetComponent<ParticleSystem>();
+
+        var main = soundParticles.main;
+        main.simulationSpace = ParticleSystemSimulationSpace.World;
     }
 
     void Update(){
@@ -38,39 +45,43 @@ public class SoundDetection : MonoBehaviour
                 float highestImpact = 0;
                 float lastEventTime = 0;
                 foreach(AudioManager.EventHandler soundEvent in soundEvents){
-
-
-                    if(soundEvent.impact > highestImpact){
-                        highestImpact = soundEvent.impact;
-                        lastEventTime = soundEvent.time;
-                        chosenEvent = soundEvent;
-                    }
-                    if(soundEvent.impact == highestImpact){
-                        if(soundEvent.time > lastEventTime){
+                    Ray particleRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
+                    if(!Physics.Raycast(particleRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position), blockLayerMask)){
+                        if(soundEvent.impact > highestImpact){
+                            highestImpact = soundEvent.impact;
                             lastEventTime = soundEvent.time;
                             chosenEvent = soundEvent;
                         }
-                    }
-                
-                    if(!lastSoundEvents.Contains(soundEvent)){
-                        for (int i = 0; i < soundEvent.impact; i++){
-                            Vector3 eventPos = soundEvent.position + (Random.insideUnitSphere);
-                            Vector3 direction = (particleTargetTrans.position - eventPos).normalized;
-                            float distance = Vector3.Distance(particleTargetTrans.position, eventPos);
+                        else if(soundEvent.impact == highestImpact){
+                            if(soundEvent.time > lastEventTime){
+                                lastEventTime = soundEvent.time;
+                                chosenEvent = soundEvent;
+                            }
+                        }
 
-                            emitParams.position = eventPos;
-                            emitParams.velocity = direction * particleSpeed;
-                            emitParams.startLifetime = distance / particleSpeed;
+                        if(!lastSoundEvents.Contains(soundEvent)){
+                            for (int i = 0; i < soundEvent.impact; i++){
+                                Vector3 eventPos = (soundEvent.position) + Random.insideUnitSphere;
+                                Vector3 direction = (particleTargetTrans.position - eventPos).normalized;
+                                float distance = Vector3.Distance(particleTargetTrans.position, eventPos);
 
-                            soundParticles.Emit(emitParams, 1);
+                                emitParams.position = eventPos;
+                                emitParams.velocity = direction * particleSpeed;
+                                emitParams.startLifetime = distance / particleSpeed;
+
+                                soundParticles.Emit(emitParams, 1);
+                            }
                         }
                     }
+                    else{
+                        chosenEvent = null;
+                    }
                 }
-                lastSoundEvents = soundEvents;
             }
-            else{
-                chosenEvent = null;
-            }
+            lastSoundEvents = soundEvents;
+        }
+        else{
+            chosenEvent = null;
         }
     }
 

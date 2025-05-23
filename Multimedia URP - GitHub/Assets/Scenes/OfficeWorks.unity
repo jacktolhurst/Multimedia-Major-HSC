@@ -59800,7 +59800,7 @@ MonoBehaviour:
     maxDistance: 20
     minDistance: 1
     impact: 10
-    dontUseSound: 0
+    dontUseSound: 1
 --- !u!135 &1676636983
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -71455,7 +71455,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -170.69
+      value: -168.96
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -71502,11 +71502,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.impact
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_Name
@@ -71517,11 +71512,6 @@ PrefabInstance:
       propertyPath: cubicleGeneratorV2
       value: 
       objectReference: {fileID: 53298771}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.impact
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
