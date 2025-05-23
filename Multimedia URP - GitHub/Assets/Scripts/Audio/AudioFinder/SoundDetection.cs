@@ -11,8 +11,9 @@ public class SoundDetection : MonoBehaviour
     [SerializeField] private GameObject particlePrefab;
     private GameObject particleObject;
 
-    private ParticleSystem soundParticles;
+    private ParticleSystem particleSystem;
     private ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
+    private ParticleSystem.Particle[] currParticles;
 
     [SerializeField] private Transform particleTargetTrans;
 
@@ -30,10 +31,12 @@ public class SoundDetection : MonoBehaviour
             particleObject = Instantiate(particlePrefab, particleObjOffset, Quaternion.identity);
         }
 
-        soundParticles = particleObject.GetComponent<ParticleSystem>();
+        particleSystem = particleObject.GetComponent<ParticleSystem>();
 
-        var main = soundParticles.main;
+        var main = particleSystem.main;
         main.simulationSpace = ParticleSystemSimulationSpace.World;
+
+        currParticles = new ParticleSystem.Particle[particleSystem.main.maxParticles];
     }
 
     void Update(){
@@ -57,21 +60,31 @@ public class SoundDetection : MonoBehaviour
                                 chosenEvent = soundEvent;
                             }
                         }
+                        Vector3 particleTargetPos = particleTargetTrans.position;
+                        float particleSpeed = soundEvent.particleSpeed;
 
                         if(!lastSoundEvents.Contains(soundEvent)){
                             for (int i = 0; i < soundEvent.impact; i++){
                                 Vector3 eventPos = (soundEvent.position) + (Random.insideUnitSphere * soundEvent.particleOffset);
-                                Vector3 direction = (particleTargetTrans.position - eventPos).normalized;
-                                float distance = Vector3.Distance(particleTargetTrans.position, eventPos);
-                                float particleSpeed = soundEvent.particleSpeed;
+                                Vector3 direction = (particleTargetPos - eventPos).normalized;
+                                float distance = Vector3.Distance(particleTargetPos, eventPos);
 
                                 emitParams.position = eventPos;
                                 emitParams.velocity = direction * particleSpeed;
                                 emitParams.startLifetime = distance / particleSpeed;
 
-                                soundParticles.Emit(emitParams, 1);
+                                particleSystem.Emit(emitParams, 1);
                             }
                         }
+                        else{
+                            int count = particleSystem.GetParticles(currParticles);
+                            for (int i = 0; i < count; i++){
+                                currParticles[i].velocity = (particleTargetPos - currParticles[i].position).normalized * particleSpeed;
+                            }
+
+                            particleSystem.SetParticles(currParticles, count);
+                        }
+
                     }
                     else{
                         chosenEvent = null;
