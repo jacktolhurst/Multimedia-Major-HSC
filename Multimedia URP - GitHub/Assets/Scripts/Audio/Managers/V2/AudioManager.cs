@@ -27,6 +27,9 @@ public class AudioManager : MonoBehaviour
         [Min(0)]
         public float particleOffset = 1;
         private float prevParticleOffset;
+        [Min(0)]
+        public float particleLifeTime = 1;
+        private  float prevParticleLifeTime;
 
         [Min(0)]
         public int impact;
@@ -37,7 +40,7 @@ public class AudioManager : MonoBehaviour
         
         private IEnumerator UpdateLoop(){
             while(initialized){
-                if(prevVolume != volume || prevMaxDistance != maxDistance || prevMinDistance != minDistance || prevImpact != impact | prevParticleSpeed != particleSpeed){
+                if(prevVolume != volume || prevMaxDistance != maxDistance || prevMinDistance != minDistance || prevImpact != impact || prevParticleSpeed != particleSpeed || prevParticleOffset != particleOffset || prevParticleLifeTime != particleLifeTime){
                     foreach(EventHandler eventHandler in eventHandlers){
                         if(prevVolume != volume){
                             eventHandler.eventInstance.setVolume(volume);
@@ -64,21 +67,31 @@ public class AudioManager : MonoBehaviour
                             eventHandler.particleOffset = particleOffset;
                             prevParticleOffset = particleOffset;
                         }
+                        if(prevParticleLifeTime != particleLifeTime){
+                            eventHandler.particleLifeTime = particleLifeTime;
+                            prevParticleLifeTime = particleLifeTime;
+                        }
                     }
                 }
 
-                if(initializedTime + 60 <= Time.time && eventHandlers.Count == 0){
-                    initialized = false;
-                }
-                yield return null;
+                if(initializedTime + 60 <= Time.time && eventHandlers.Count == 0) initialized = false;
+                else yield return null;
             }
         }
 
         public void PlaySoundObject(GameObject obj){
             if(!dontUseSound){
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+                RuntimeManager.AttachInstanceToGameObject(eventInstance, obj.transform);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(obj));
-                PlaySoundMain(eventInstance);
+
+                ParticleSystem newNoteParticleSystem = SetupParticleBoilerPlate(obj.transform.position);
+
+                ParticleSystem.ShapeModule shape = newNoteParticleSystem.shape;
+                Renderer renderer = obj.GetComponent<Renderer>();
+                if(renderer != null) shape.scale = (renderer.bounds.size/1.5f) * particleOffset;
+
+                PlaySoundMain(eventInstance, newNoteParticleSystem);
             }
         }
 
@@ -86,11 +99,17 @@ public class AudioManager : MonoBehaviour
             if(!dontUseSound){
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
-                PlaySoundMain(eventInstance);
+
+                ParticleSystem newNoteParticleSystem = SetupParticleBoilerPlate(pos);
+
+                ParticleSystem.ShapeModule shape = newNoteParticleSystem.shape;
+                shape.scale = shape.scale * particleOffset;
+
+                PlaySoundMain(eventInstance, newNoteParticleSystem);
             }
         }
 
-        public void PlaySoundMain(FMOD.Studio.EventInstance eventInstance){
+        public void PlaySoundMain(FMOD.Studio.EventInstance eventInstance, ParticleSystem newNoteParticleSystem){
             if(!initialized){
                 initialized = true;
                 initializedTime = Time.time;
@@ -104,7 +123,8 @@ public class AudioManager : MonoBehaviour
             eventInstance.start();
 
             Coroutine coroutine = AudioManager.instance.StartCoroutine(TrackSound(eventInstance));
-            EventHandler eventHandler = new EventHandler(this, eventInstance, coroutine, Time.time, particleSpeed, particleOffset, impact);
+            newNoteParticleSystem.Play();
+            EventHandler eventHandler = new EventHandler(this, eventInstance, newNoteParticleSystem, coroutine, Time.time, particleSpeed, particleOffset, particleLifeTime, impact);
             AudioManager.instance.currentEvents.Add(eventHandler);
             eventHandlers.Add(eventHandler);
 
@@ -147,6 +167,20 @@ public class AudioManager : MonoBehaviour
             }
         }
 
+        private ParticleSystem SetupParticleBoilerPlate(Vector3 pos){
+                GameObject newParticleObj = GameObject.Instantiate(AudioManager.instance.musicNoteEmitterPrefab, pos, Quaternion.identity);
+                ParticleSystem newNoteParticleSystem = newParticleObj.GetComponent<ParticleSystem>();
+
+                ParticleSystem.MainModule main = newNoteParticleSystem.main;
+                main.simulationSpace = ParticleSystemSimulationSpace.World;
+                main.startLifetime = particleLifeTime;
+
+                ParticleSystem.EmissionModule emission = newNoteParticleSystem.emission;
+                emission.rateOverTime = impact;
+
+                return newNoteParticleSystem;
+        }
+
         private IEnumerator TrackSound(FMOD.Studio.EventInstance eventInstance){
             FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
 
@@ -161,6 +195,9 @@ public class AudioManager : MonoBehaviour
                     eventHandlerToRemove = eventHandler;
                 }   
             }
+            ParticleSystem noteParticleSystem = eventHandlerToRemove.noteParticleSystem;
+            noteParticleSystem.Stop();
+            Destroy(eventHandlerToRemove.noteParticleObj, noteParticleSystem.main.duration);
             eventHandlers.Remove(eventHandlerToRemove);
             AudioManager.instance.currentEvents.Remove(eventHandlerToRemove);
         }
@@ -169,25 +206,54 @@ public class AudioManager : MonoBehaviour
     public class EventHandler{
         public AudioManager.AudioReferenceClass referenceClass;
         public FMOD.Studio.EventInstance eventInstance;
+        public GameObject noteParticleObj;
+        public ParticleSystem noteParticleSystem;
         public Coroutine activeCoroutine;
         public Vector3 position;
         public float time;
         public float particleSpeed;
         public float particleOffset;
+        public float particleLifeTime;
         public int impact;
 
-        public EventHandler(AudioManager.AudioReferenceClass newReferenceClass, FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newTime, float newParticleSpeed, float newParticleOffset, int newImpact){
+        public EventHandler(AudioManager.AudioReferenceClass newReferenceClass, FMOD.Studio.EventInstance newEventInstance, ParticleSystem newNoteParticleSystem, Coroutine newActiveCoroutine, float newTime, float newParticleSpeed, float newParticleOffset, float newParticleLifeTime, int newImpact){
             referenceClass = newReferenceClass;
             eventInstance = newEventInstance;
+            noteParticleObj = newNoteParticleSystem.gameObject;
+            noteParticleSystem = newNoteParticleSystem;
             activeCoroutine = newActiveCoroutine;
             time = newTime;
             particleSpeed = newParticleSpeed;
             particleOffset = newParticleOffset;
+            particleLifeTime = newParticleLifeTime;
             impact = newImpact;
 
-            FMOD.ATTRIBUTES_3D attributes;
-            eventInstance.get3DAttributes(out attributes);
-            position = new Vector3(attributes.position.x, attributes.position.y, attributes.position.z);
+            position = AudioManager.instance.GetEventInstancePosition(eventInstance);
+            noteParticleObj.transform.position = position;
+        }
+
+        public void SendParticlesObject(GameObject obj, float soundDistance){
+            AudioManager.instance.StartSendParticlesCoroutine(this, obj, soundDistance);
+        }
+
+        public void SendParticlesVector3(Vector3 targetPos, float soundDistance){
+            SendParticlesMain(targetPos,soundDistance);
+        }
+
+        public void SendParticlesMain(Vector3 targetPos, float soundDistance){
+            ParticleSystem.Particle[] currParticles;
+            currParticles = new ParticleSystem.Particle[noteParticleSystem.main.maxParticles];
+
+            int count = noteParticleSystem.GetParticles(currParticles);
+            for(int i = 0; i < count; i++) {
+                Vector3 particlePos = currParticles[i].position;
+                float distance = (targetPos - particlePos).sqrMagnitude;
+                if(distance <= soundDistance*soundDistance){
+                    currParticles[i].velocity = (targetPos - particlePos).normalized * particleSpeed;
+                    currParticles[i].remainingLifetime = distance / particleSpeed;
+                }
+            }
+            noteParticleSystem.SetParticles(currParticles, count);
         }
 
         public void Update(){
@@ -195,6 +261,7 @@ public class AudioManager : MonoBehaviour
             if(newPosition != Vector3.zero){
                 position = newPosition;
             }
+            noteParticleObj.transform.position = position;
         }
     }
 
@@ -203,6 +270,10 @@ public class AudioManager : MonoBehaviour
     private List<EventHandler> currentEvents = new List<EventHandler>();
 
     private FMOD.Studio.Bus masterBus;
+
+    [SerializeField] private GameObject musicNoteEmitterPrefab;
+
+    private ParticleSystem noteParticleSystem;
 
     [SerializeField] private int soundCount;
 
@@ -213,6 +284,8 @@ public class AudioManager : MonoBehaviour
         instance = this;
 
         FMODUnity.RuntimeManager.StudioSystem.getBus("bus:/", out masterBus);
+
+        noteParticleSystem = musicNoteEmitterPrefab.GetComponent<ParticleSystem>();
     }
 
     void Update() {
@@ -229,6 +302,18 @@ public class AudioManager : MonoBehaviour
         rawVolume = Mathf.Clamp(rawVolume, minVolume, maxVolume);
         float volume = Mathf.Pow(rawVolume, 2.2f);
         masterBus.setVolume(volume);
+    }
+
+    public Coroutine StartSendParticlesCoroutine(EventHandler handler, GameObject target, float soundDistance) {
+        return StartCoroutine(SendParticlesCoroutine(handler, target, soundDistance));
+    }
+
+    private IEnumerator SendParticlesCoroutine(EventHandler handler, GameObject target, float soundDistance) {
+        float endTime = handler.time + handler.particleLifeTime;
+        while (Time.time < endTime) {
+            handler.SendParticlesMain(target.transform.position, soundDistance);
+            yield return null;
+        }
     }
 
     public List<EventHandler> GetCurrentEvents(){
