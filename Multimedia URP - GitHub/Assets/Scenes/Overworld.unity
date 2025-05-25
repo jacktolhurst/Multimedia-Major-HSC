@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 263586609}
   - component: {fileID: 263586608}
   - component: {fileID: 263586612}
+  - component: {fileID: 263586613}
   m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -427,6 +428,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &263586613
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263586607}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &278363496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -439,6 +456,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Microphone (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090148987600239162, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
         type: 3}
@@ -488,6 +510,11 @@ PrefabInstance:
     - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8403315660668790673, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: speakers.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -594,6 +621,7 @@ GameObject:
   - component: {fileID: 1030361495}
   - component: {fileID: 1030361494}
   - component: {fileID: 1030361498}
+  - component: {fileID: 1030361499}
   m_Layer: 11
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -717,6 +745,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &1030361499
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030361493}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1034551051
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +973,7 @@ GameObject:
   - component: {fileID: 1146506474}
   - component: {fileID: 1146506473}
   - component: {fileID: 1146506477}
+  - component: {fileID: 1146506478}
   m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
@@ -1052,6 +1097,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &1146506478
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146506472}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1262051453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,30 +1466,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.dontUseSound
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_Name
       value: PlayerHolder
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.impact
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.particleSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.particleOffset
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1622,8 +1663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdeddf208d625ac46b0f9f54c28d3090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 762517348031247824, guid: a303c6e6c2865604ebeb89010705e98d,
-    type: 3}
   particleTargetTrans: {fileID: 140545647}
   blockLayerMask:
     serializedVersion: 2
@@ -1643,6 +1682,7 @@ GameObject:
   - component: {fileID: 1848614707}
   - component: {fileID: 1848614706}
   - component: {fileID: 1848614710}
+  - component: {fileID: 1848614711}
   m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1766,6 +1806,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &1848614711
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848614705}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1920668929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,6 +1835,7 @@ GameObject:
   - component: {fileID: 1920668931}
   - component: {fileID: 1920668930}
   - component: {fileID: 1920668934}
+  - component: {fileID: 1920668935}
   m_Layer: 11
   m_Name: Cube (4)
   m_TagString: Untagged
@@ -1902,6 +1959,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &1920668935
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920668929}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!20 &1998151384 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5594015207422758346, guid: 82057c97d8ed7fe4a8be580be5a0f032,

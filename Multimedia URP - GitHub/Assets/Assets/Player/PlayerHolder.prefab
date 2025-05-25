@@ -518,6 +518,7 @@ MonoBehaviour:
     minDistance: 10
     particleSpeed: 8
     particleOffset: 0
+    particleLifeTime: 1
     impact: 1
     dontUseSound: 0
 --- !u!114 &5621938116740447220
@@ -590,6 +591,7 @@ MonoBehaviour:
     minDistance: 1
     particleSpeed: 6
     particleOffset: 1
+    particleLifeTime: 1
     impact: 1
     dontUseSound: 0
 --- !u!114 &8239444818348434316

@@ -182,12 +182,7 @@ public class AudioManager : MonoBehaviour
         }
 
         private IEnumerator TrackSound(FMOD.Studio.EventInstance eventInstance){
-            FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
-
-            while (state != FMOD.Studio.PLAYBACK_STATE.STOPPED){
-                eventInstance.getPlaybackState(out state);
-                yield return null;
-            }
+            yield return null;
 
             EventHandler eventHandlerToRemove = null;
             foreach(EventHandler eventHandler in AudioManager.instance.currentEvents){
@@ -195,10 +190,24 @@ public class AudioManager : MonoBehaviour
                     eventHandlerToRemove = eventHandler;
                 }   
             }
+
+            FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
+            while (state != FMOD.Studio.PLAYBACK_STATE.STOPPED || eventHandlerToRemove.endTime + 1 > Time.time){
+                eventInstance.getPlaybackState(out state);
+                yield return null;
+            }
+
+            bool stateState = state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
+            bool timeState = eventHandlerToRemove.endTime > Time.time;
+
+            Debug.Log("state " + stateState);
+            Debug.Log("time " + timeState);
+
             ParticleSystem noteParticleSystem = eventHandlerToRemove.noteParticleSystem;
             noteParticleSystem.Stop();
             Destroy(eventHandlerToRemove.noteParticleObj, noteParticleSystem.main.duration);
             eventHandlers.Remove(eventHandlerToRemove);
+            Debug.Log("remove event");
             AudioManager.instance.currentEvents.Remove(eventHandlerToRemove);
         }
     }
@@ -210,30 +219,41 @@ public class AudioManager : MonoBehaviour
         public ParticleSystem noteParticleSystem;
         public Coroutine activeCoroutine;
         public Vector3 position;
-        public float time;
+        public float startTime;
         public float particleSpeed;
         public float particleOffset;
         public float particleLifeTime;
+        public float endTime;
         public int impact;
 
-        public EventHandler(AudioManager.AudioReferenceClass newReferenceClass, FMOD.Studio.EventInstance newEventInstance, ParticleSystem newNoteParticleSystem, Coroutine newActiveCoroutine, float newTime, float newParticleSpeed, float newParticleOffset, float newParticleLifeTime, int newImpact){
+        public EventHandler(AudioManager.AudioReferenceClass newReferenceClass, FMOD.Studio.EventInstance newEventInstance, ParticleSystem newNoteParticleSystem, Coroutine newActiveCoroutine, float newStartTime, float newParticleSpeed, float newParticleOffset, float newParticleLifeTime, int newImpact){
             referenceClass = newReferenceClass;
             eventInstance = newEventInstance;
             noteParticleObj = newNoteParticleSystem.gameObject;
             noteParticleSystem = newNoteParticleSystem;
             activeCoroutine = newActiveCoroutine;
-            time = newTime;
+            startTime = newStartTime;
             particleSpeed = newParticleSpeed;
             particleOffset = newParticleOffset;
             particleLifeTime = newParticleLifeTime;
             impact = newImpact;
 
+
             position = AudioManager.instance.GetEventInstancePosition(eventInstance);
             noteParticleObj.transform.position = position;
+
+            endTime = startTime + particleLifeTime;
         }
 
-        public void SendParticlesObject(GameObject obj, float soundDistance){
-            AudioManager.instance.StartSendParticlesCoroutine(this, obj, soundDistance);
+        public void SendParticlesTransform(Transform trans, float soundDistance){
+            AudioManager.instance.StartCoroutine(SendParticlesTransformCoroutine(this, trans, soundDistance));
+        }
+
+        private IEnumerator SendParticlesTransformCoroutine(EventHandler handler, Transform target, float soundDistance) {
+            while (Time.time < handler.endTime) {
+                handler.SendParticlesMain(target.position, soundDistance);
+                yield return null;
+            }
         }
 
         public void SendParticlesVector3(Vector3 targetPos, float soundDistance){
@@ -241,19 +261,22 @@ public class AudioManager : MonoBehaviour
         }
 
         public void SendParticlesMain(Vector3 targetPos, float soundDistance){
-            ParticleSystem.Particle[] currParticles;
-            currParticles = new ParticleSystem.Particle[noteParticleSystem.main.maxParticles];
+            if(noteParticleSystem != null){
+                ParticleSystem.Particle[] currParticles;
+                currParticles = new ParticleSystem.Particle[noteParticleSystem.main.maxParticles];
 
-            int count = noteParticleSystem.GetParticles(currParticles);
-            for(int i = 0; i < count; i++) {
-                Vector3 particlePos = currParticles[i].position;
-                float distance = (targetPos - particlePos).sqrMagnitude;
-                if(distance <= soundDistance*soundDistance){
-                    currParticles[i].velocity = (targetPos - particlePos).normalized * particleSpeed;
-                    currParticles[i].remainingLifetime = distance / particleSpeed;
+                int count = noteParticleSystem.GetParticles(currParticles);
+                for(int i = 0; i < count; i++) {
+                    Vector3 particlePos = currParticles[i].position;
+                    float distance = (targetPos - particlePos).magnitude;
+                    if(distance <= soundDistance){
+                        currParticles[i].velocity = (targetPos - particlePos).normalized * particleSpeed;
+                        currParticles[i].remainingLifetime = distance / particleSpeed;
+                        particleLifeTime = currParticles[i].remainingLifetime;
+                    }
                 }
+                noteParticleSystem.SetParticles(currParticles, count);
             }
-            noteParticleSystem.SetParticles(currParticles, count);
         }
 
         public void Update(){
@@ -262,6 +285,7 @@ public class AudioManager : MonoBehaviour
                 position = newPosition;
             }
             noteParticleObj.transform.position = position;
+            endTime = startTime + particleLifeTime;
         }
     }
 
@@ -302,18 +326,6 @@ public class AudioManager : MonoBehaviour
         rawVolume = Mathf.Clamp(rawVolume, minVolume, maxVolume);
         float volume = Mathf.Pow(rawVolume, 2.2f);
         masterBus.setVolume(volume);
-    }
-
-    public Coroutine StartSendParticlesCoroutine(EventHandler handler, GameObject target, float soundDistance) {
-        return StartCoroutine(SendParticlesCoroutine(handler, target, soundDistance));
-    }
-
-    private IEnumerator SendParticlesCoroutine(EventHandler handler, GameObject target, float soundDistance) {
-        float endTime = handler.time + handler.particleLifeTime;
-        while (Time.time < endTime) {
-            handler.SendParticlesMain(target.transform.position, soundDistance);
-            yield return null;
-        }
     }
 
     public List<EventHandler> GetCurrentEvents(){

@@ -7,13 +7,6 @@ public class SoundDetection : MonoBehaviour
     private List<AudioManager.EventHandler> soundEvents = new List<AudioManager.EventHandler>();
     public AudioManager.EventHandler chosenEvent;
 
-    [SerializeField] private GameObject particlePrefab;
-    private GameObject particleObject;
-
-    private ParticleSystem newParticleSystem;
-    private ParticleSystem.EmitParams emitParams = new ParticleSystem.EmitParams();
-    private ParticleSystem.Particle[] currParticles;
-
     [SerializeField] private Transform particleTargetTrans;
 
     [SerializeField] private LayerMask blockLayerMask;
@@ -23,20 +16,6 @@ public class SoundDetection : MonoBehaviour
     [SerializeField] private float soundDistance;
 
     public bool checkSounds = true;
-
-    void Awake(){
-        particleObject = GameObject.Find(particlePrefab.transform.name);
-        if(particleObject == null) {
-            particleObject = Instantiate(particlePrefab, particleObjOffset, Quaternion.identity);
-        }
-
-        newParticleSystem = particleObject.GetComponent<ParticleSystem>();
-
-        var main = newParticleSystem.main;
-        main.simulationSpace = ParticleSystemSimulationSpace.World;
-
-        currParticles = new ParticleSystem.Particle[newParticleSystem.main.maxParticles];
-    }
 
     void Update(){
         if(checkSounds){
@@ -56,7 +35,7 @@ public class SoundDetection : MonoBehaviour
         foreach(AudioManager.EventHandler soundEvent in soundEvents){
             Ray particleRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
             if(!Physics.Raycast(particleRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position), blockLayerMask)){
-                soundEvent.SendParticlesObject(particleTargetTrans.gameObject, soundDistance);
+                soundEvent.SendParticlesTransform(particleTargetTrans, soundDistance);
             }
         }
     }
@@ -70,15 +49,17 @@ public class SoundDetection : MonoBehaviour
         foreach(AudioManager.EventHandler soundEvent in soundEvents){
             Ray particleRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
             if(!Physics.Raycast(particleRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position), blockLayerMask)){
-                if(soundEvent.impact > highestImpact){
-                    highestImpact = soundEvent.impact;
-                    lastEventTime = soundEvent.time;
-                    newChosenEvent = soundEvent;
-                }
-                else if(soundEvent.impact == highestImpact){
-                    if(soundEvent.time > lastEventTime){
-                        lastEventTime = soundEvent.time;
+                if(soundEvent.endTime + 0.1f <= Time.time){
+                    if(soundEvent.impact > highestImpact){
+                        highestImpact = soundEvent.impact;
+                        lastEventTime = soundEvent.startTime;
                         newChosenEvent = soundEvent;
+                    }
+                    else if(soundEvent.impact == highestImpact){
+                        if(soundEvent.startTime > lastEventTime){
+                            lastEventTime = soundEvent.startTime;
+                            newChosenEvent = soundEvent;
+                        }
                     }
                 }
             }
