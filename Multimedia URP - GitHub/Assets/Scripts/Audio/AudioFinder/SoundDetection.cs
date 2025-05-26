@@ -46,10 +46,12 @@ public class SoundDetection : MonoBehaviour
         float highestImpact = 0;
         float lastEventTime = 0;
 
+        FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
         foreach(AudioManager.EventHandler soundEvent in soundEvents){
-            Ray particleRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
-            if(!Physics.Raycast(particleRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position), blockLayerMask)){
-                if(soundEvent.endTime + 0.1f <= Time.time){
+            soundEvent.eventInstance.getPlaybackState(out state);
+            if(soundEvent.endTime < Time.time && state == FMOD.Studio.PLAYBACK_STATE.STOPPED){
+                Ray particleRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
+                if(!Physics.Raycast(particleRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position),   blockLayerMask)){
                     if(soundEvent.impact > highestImpact){
                         highestImpact = soundEvent.impact;
                         lastEventTime = soundEvent.startTime;

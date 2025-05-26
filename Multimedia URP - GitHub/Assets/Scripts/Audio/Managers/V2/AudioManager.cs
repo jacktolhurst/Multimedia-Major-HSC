@@ -147,7 +147,7 @@ public class AudioManager : MonoBehaviour
         }
 
         public void SetMinDistance(float newMinDistance){
-            minDistance = Mathf.Clamp(minDistance, 0, maxDistance);
+            minDistance = Mathf.Clamp(newMinDistance, 0, maxDistance);
         }
 
         public void SetImpact(int newImpact){
@@ -192,22 +192,15 @@ public class AudioManager : MonoBehaviour
             }
 
             FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
-            while (state != FMOD.Studio.PLAYBACK_STATE.STOPPED || eventHandlerToRemove.endTime + 1 > Time.time){
+            while (state != FMOD.Studio.PLAYBACK_STATE.STOPPED || eventHandlerToRemove.endTime > Time.time){
                 eventInstance.getPlaybackState(out state);
                 yield return null;
             }
-
-            bool stateState = state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
-            bool timeState = eventHandlerToRemove.endTime > Time.time;
-
-            Debug.Log("state " + stateState);
-            Debug.Log("time " + timeState);
 
             ParticleSystem noteParticleSystem = eventHandlerToRemove.noteParticleSystem;
             noteParticleSystem.Stop();
             Destroy(eventHandlerToRemove.noteParticleObj, noteParticleSystem.main.duration);
             eventHandlers.Remove(eventHandlerToRemove);
-            Debug.Log("remove event");
             AudioManager.instance.currentEvents.Remove(eventHandlerToRemove);
         }
     }
@@ -238,7 +231,6 @@ public class AudioManager : MonoBehaviour
             particleLifeTime = newParticleLifeTime;
             impact = newImpact;
 
-
             position = AudioManager.instance.GetEventInstancePosition(eventInstance);
             noteParticleObj.transform.position = position;
 
@@ -266,15 +258,19 @@ public class AudioManager : MonoBehaviour
                 currParticles = new ParticleSystem.Particle[noteParticleSystem.main.maxParticles];
 
                 int count = noteParticleSystem.GetParticles(currParticles);
+                float maxParticleLifeTime = 0;
                 for(int i = 0; i < count; i++) {
                     Vector3 particlePos = currParticles[i].position;
                     float distance = (targetPos - particlePos).magnitude;
                     if(distance <= soundDistance){
                         currParticles[i].velocity = (targetPos - particlePos).normalized * particleSpeed;
                         currParticles[i].remainingLifetime = distance / particleSpeed;
-                        particleLifeTime = currParticles[i].remainingLifetime;
+                        if(currParticles[i].remainingLifetime > maxParticleLifeTime){
+                            maxParticleLifeTime = currParticles[i].remainingLifetime;
+                        }
                     }
                 }
+                particleLifeTime = maxParticleLifeTime;
                 noteParticleSystem.SetParticles(currParticles, count);
             }
         }
@@ -286,6 +282,9 @@ public class AudioManager : MonoBehaviour
             }
             noteParticleObj.transform.position = position;
             endTime = startTime + particleLifeTime;
+
+            bool state = noteParticleSystem.IsAlive();
+            Debug.Log(state);
         }
     }
 

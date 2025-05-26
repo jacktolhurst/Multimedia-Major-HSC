@@ -74260,6 +74260,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Microphone
       objectReference: {fileID: 0}
+    - target: {fileID: 7090148987600239162, guid: 93e05e8c633c2d04a830c865894e1f42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7889758823875089076, guid: 93e05e8c633c2d04a830c865894e1f42,
         type: 3}
       propertyPath: m_LocalPosition.x
