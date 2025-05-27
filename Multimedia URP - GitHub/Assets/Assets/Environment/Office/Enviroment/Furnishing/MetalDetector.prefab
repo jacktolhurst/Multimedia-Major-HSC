@@ -200,5 +200,5 @@ MonoBehaviour:
     volume: 2
     maxDistance: 5
     minDistance: 1
-    impact: 3
+    impact: 1
     dontUseSound: 0

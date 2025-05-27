@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6628215003970527240}
   - component: {fileID: 3431720455897468361}
   - component: {fileID: 4948776691694071263}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 8257821723326193223}
   - component: {fileID: 3021768684509701555}
   - component: {fileID: 7002330272012540199}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Stand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 6851483376542905325}
   - component: {fileID: 3611524631715148081}
   - component: {fileID: 4154363618170020888}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Microphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 7889758823875089076}
   - component: {fileID: 8403315660668790673}
   - component: {fileID: 8857790807701116764}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Microphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,6 +465,7 @@ Transform:
   - {fileID: 1780492217915041749}
   - {fileID: 3623181054697523196}
   - {fileID: 956883863044038061}
+  - {fileID: 7062473617730897793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8403315660668790673
@@ -491,4 +492,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdeddf208d625ac46b0f9f54c28d3090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleTargetTrans: {fileID: 7062473617730897793}
+  ignoreLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
   soundDistance: 5
+  checkSounds: 1
+--- !u!1 &8837743612073045036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7062473617730897793}
+  m_Layer: 14
+  m_Name: MicrophoneListenPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7062473617730897793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837743612073045036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.421, y: 0.423, z: 0.0888}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7889758823875089076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

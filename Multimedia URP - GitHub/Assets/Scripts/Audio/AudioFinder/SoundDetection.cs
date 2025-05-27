@@ -4,42 +4,51 @@ using System.Collections.Generic;
 
 public class SoundDetection : MonoBehaviour
 {
-    List<AudioManager.EventHandler> soundEvents = new List<AudioManager.EventHandler>();
     public AudioManager.EventHandler chosenEvent;
+
+    [SerializeField] private Transform particleTargetTrans;
+
+    [SerializeField] private LayerMask ignoreLayerMask;
 
     [SerializeField] private float soundDistance;
 
-    [SerializeField] private GameObject particleObject;
-    
     public bool checkSounds = true;
 
     void Update(){
+        chosenEvent = GetChosenEvent();
+    }
+
+    private AudioManager.EventHandler GetChosenEvent(){
+        AudioManager.EventHandler newChosenEvent = null;
+
         if(checkSounds){
-            soundEvents = AudioManager.instance.CurrentEventsInRange(transform.position, soundDistance);
+            List<AudioManager.EventHandler> soundEvents = AudioManager.instance.CurrentEventsInRange(transform.position, soundDistance);
 
             if(soundEvents.Count != 0){
                 float highestImpact = 0;
                 float lastEventTime = 0;
                 foreach(AudioManager.EventHandler soundEvent in soundEvents){
-                    if(soundEvent.impact > highestImpact){
-                        highestImpact = soundEvent.impact;
-                        lastEventTime = soundEvent.time;
-                    }
-                    if(soundEvent.impact == highestImpact){
-                        if(soundEvent.time > lastEventTime){
+                    Ray eventRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
+                    
+                    if(Physics.Raycast(eventRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position),ignoreLayerMask)){
+                        if(soundEvent.impact > highestImpact){
+                            highestImpact = soundEvent.impact;
                             lastEventTime = soundEvent.time;
-                            chosenEvent = soundEvent;
+                            newChosenEvent = soundEvent;
+                        }
+                        if(soundEvent.impact == highestImpact){
+                            if(soundEvent.time > lastEventTime){
+                                lastEventTime = soundEvent.time;
+                                newChosenEvent = soundEvent;
+                            }
                         }
                     }
                 }
-                Debug.Log(chosenEvent.position);
-                // particleObject.transform.position = chosenEvent.position;
-            }
-            else{
-                chosenEvent = null;
             }
         }
-    }
+
+        return newChosenEvent;
+    }   
 
     void OnDrawGizmos(){
         if(checkSounds){
@@ -47,6 +56,7 @@ public class SoundDetection : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, soundDistance);
 
             if(Application.isPlaying){  
+                List<AudioManager.EventHandler> soundEvents = AudioManager.instance.CurrentEventsInRange(transform.position, soundDistance);
                 foreach(AudioManager.EventHandler soundEvent in soundEvents){
                     if(chosenEvent != null && soundEvent == chosenEvent){
                         Gizmos.color = Color.green;

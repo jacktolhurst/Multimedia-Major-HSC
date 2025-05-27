@@ -110,7 +110,7 @@ public class AudioManager : MonoBehaviour
         }
 
         public void SetMinDistance(float newMinDistance){
-            minDistance = Mathf.Clamp(minDistance, 0, maxDistance);
+            minDistance = Mathf.Clamp(newMinDistance, 0, maxDistance);
         }
 
         public void SetImpact(float newImpact){

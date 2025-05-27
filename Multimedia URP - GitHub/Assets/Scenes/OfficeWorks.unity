@@ -59716,15 +59716,15 @@ MonoBehaviour:
   orbAmbientSound:
     eventReference:
       Guid:
-        Data1: -78750832
-        Data2: 1084842981
-        Data3: 59270031
-        Data4: 513295140
-      Path: event:/Ambience/Orb/OrbAmbient
+        Data1: -1957198412
+        Data2: 1311076381
+        Data3: -1931979598
+        Data4: -1636580526
+      Path: event:/Ambience/Orb/OrbAmbience
     volume: 1
     maxDistance: 20
     minDistance: 1
-    impact: 4
+    impact: 3
     dontUseSound: 0
 --- !u!135 &1676636983
 SphereCollider:
@@ -76222,7 +76222,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -150.58
+      value: -166.58
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -76269,6 +76269,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: footStepsSound.impact
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_Name
@@ -76281,8 +76286,13 @@ PrefabInstance:
       objectReference: {fileID: 53298771}
     - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
-      propertyPath: grabbingObjectSound.volume
-      value: 0.1
+      propertyPath: grabbingObjectSound.impact
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5594015207422758346, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 2147515391
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79074,11 +79084,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8857790807701116764, guid: 93e05e8c633c2d04a830c865894e1f42,
-        type: 3}
-      propertyPath: particleObject
-      value: 
-      objectReference: {fileID: 1750387451}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
