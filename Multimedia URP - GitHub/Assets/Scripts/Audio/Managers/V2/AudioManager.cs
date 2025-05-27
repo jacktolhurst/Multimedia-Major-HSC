@@ -17,9 +17,13 @@ public class AudioManager : MonoBehaviour
         public float maxDistance = 5;
         [Min(0)]
         public float minDistance = 1;
-        public float impact = 1;
-        public float noteParticleLifetime = 1;
+        [Min(0)]
+        public int noteParticleLifetime = 1;
+        [Min(0)]
         private float initializedTime;
+
+        [Min(0)]
+        public int impact = 1;
 
         private bool initialized;
         public bool dontUseSound;
@@ -37,7 +41,23 @@ public class AudioManager : MonoBehaviour
             if(!dontUseSound){
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(obj));
-                PlaySoundMain(eventInstance);
+
+                Rigidbody objRb = obj.GetComponent<Rigidbody>();
+
+                List<GameObject> newNoteParticleObjs = new List<GameObject>();
+                for (int i = 0; i < impact; i++){
+                    GameObject newNoteParticleObj = Instantiate(AudioManager.instance.noteParticleObj, AudioManager.instance.GetEventInstancePosition(eventInstance), new Quaternion(-0.707106769f,0,0,0.707106769f));
+                    NoteParticleManager noteParticleManager = newNoteParticleObj.GetComponent<NoteParticleManager>();
+                    noteParticleManager.endTime = Time.time + noteParticleLifetime;
+                    
+                    if(objRb != null){
+                        noteParticleManager.followObjRb = objRb;
+                    }
+
+                    newNoteParticleObjs.Add(newNoteParticleObj);
+                }
+
+                PlaySoundMain(eventInstance, newNoteParticleObjs);
             }
         }
 
@@ -45,11 +65,21 @@ public class AudioManager : MonoBehaviour
             if(!dontUseSound){
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
-                PlaySoundMain(eventInstance);
+
+                List<GameObject> newNoteParticleObjs = new List<GameObject>();
+                for (int i = 0; i < impact; i++){
+                    GameObject newNoteParticleObj = Instantiate(AudioManager.instance.noteParticleObj, AudioManager.instance.GetEventInstancePosition(eventInstance), new Quaternion(-0.707106769f,0,0,0.707106769f));
+                    NoteParticleManager noteParticleManager = newNoteParticleObj.GetComponent<NoteParticleManager>();
+                    noteParticleManager.endTime = Time.time + noteParticleLifetime;
+                    
+                    newNoteParticleObjs.Add(newNoteParticleObj);
+                }
+
+                PlaySoundMain(eventInstance, newNoteParticleObjs);
             }
         }
 
-        public void PlaySoundMain(FMOD.Studio.EventInstance eventInstance){
+        public void PlaySoundMain(FMOD.Studio.EventInstance eventInstance, List<GameObject> newNoteParticleObjs){
             if(!initialized){
                 initialized = true;
                 initializedTime = Time.time;
@@ -62,12 +92,8 @@ public class AudioManager : MonoBehaviour
 
             eventInstance.start();
 
-            GameObject newNoteParticleObj = Instantiate(AudioManager.instance.noteParticleObj, AudioManager.instance.GetEventInstancePosition(eventInstance), new Quaternion(-0.707106769f,0,0,0.707106769f));
-            float noteParticleEndTime = Time.time + noteParticleLifetime;
-            newNoteParticleObj.GetComponent<NoteParticleManager>().endTime = noteParticleEndTime;
-
             Coroutine coroutine = AudioManager.instance.StartCoroutine(TrackSound(eventInstance));
-            EventHandler eventHandler = new EventHandler(eventInstance, coroutine, impact, noteParticleEndTime , Time.time);
+            EventHandler eventHandler = new EventHandler(eventInstance, coroutine, newNoteParticleObjs, newNoteParticleObjs[0].GetComponent<NoteParticleManager>().endTime, impact, Time.time);
             AudioManager.instance.currentEvents.Add(eventHandler);
             eventHandlers.Add(eventHandler);
 
@@ -93,7 +119,7 @@ public class AudioManager : MonoBehaviour
             minDistance = Mathf.Clamp(newMinDistance, 0, maxDistance);
         }
 
-        public void SetImpact(float newImpact){
+        public void SetImpact(int newImpact){
             impact = Mathf.Max(newImpact, 0);
         }
 
@@ -137,16 +163,18 @@ public class AudioManager : MonoBehaviour
     public class EventHandler{
         public FMOD.Studio.EventInstance eventInstance;
         public Coroutine activeCoroutine;
+        public List<GameObject> noteParticleObjs = new List<GameObject>();
         public Vector3 position;
-        public float impact;
         public float noteParticleEndTime;
+        public float impact;
         public float time;
 
-        public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newImpact, float newNoteParticleEndTime, float newTime){
+        public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, List<GameObject> newNoteParticleObjs, float newNoteParticleEndTime, float newImpact, float newTime){
             eventInstance = newEventInstance;
             activeCoroutine = newActiveCoroutine;
-            impact = newImpact;
+            noteParticleObjs = newNoteParticleObjs; 
             noteParticleEndTime = newNoteParticleEndTime;
+            impact = newImpact;
             time = newTime;
 
             position = AudioManager.instance.GetEventInstancePosition(eventInstance);
