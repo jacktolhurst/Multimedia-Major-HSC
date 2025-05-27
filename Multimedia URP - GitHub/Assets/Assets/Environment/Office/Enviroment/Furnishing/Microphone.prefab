@@ -493,10 +493,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleTargetTrans: {fileID: 7062473617730897793}
-  ignoreLayerMask:
+  hitLayerMask:
     serializedVersion: 2
-    m_Bits: 16384
-  soundDistance: 5
+    m_Bits: 2147500031
+  soundDistance: 20
   checkSounds: 1
 --- !u!1 &8837743612073045036
 GameObject:

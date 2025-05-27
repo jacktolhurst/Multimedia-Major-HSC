@@ -517,6 +517,7 @@ MonoBehaviour:
     maxDistance: 2
     minDistance: 10
     impact: 1
+    noteParticleLifetime: 1
     dontUseSound: 0
 --- !u!114 &5621938116740447220
 MonoBehaviour:
@@ -587,6 +588,7 @@ MonoBehaviour:
     maxDistance: 20
     minDistance: 1
     impact: 2
+    noteParticleLifetime: 1
     dontUseSound: 0
 --- !u!114 &8239444818348434316
 MonoBehaviour:

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 57244820443227909}
   - component: {fileID: 760923963730435648}
   - component: {fileID: 7301341895102879652}
-  m_Layer: 10
+  - component: {fileID: -1260493499447775163}
+  m_Layer: 0
   m_Name: DoubleDoubleNote
   m_TagString: UI
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 34.925674, y: 6.2500005, z: 12.104343}
+  m_LocalScale: {x: 5.4400005, y: 1.0880002, z: 2.4557111}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dc8665a5a2ce4d14b940337dbf99addb, type: 2}
+  - {fileID: 2100000, guid: affa7b7e729fe604bbbabd7cb4d72a85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,3 +87,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-1260493499447775163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3497936027590250768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb53ed1cdfc9614398b14dbee8673bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endTime: 0
+  speed: 1

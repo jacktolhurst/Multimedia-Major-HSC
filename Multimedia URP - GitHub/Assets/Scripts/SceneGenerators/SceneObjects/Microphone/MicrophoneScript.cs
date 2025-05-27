@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[SelectionBase]
 public class MicrophoneScript : MonoBehaviour
 {
     private SoundDetection SoundDetectionScript;

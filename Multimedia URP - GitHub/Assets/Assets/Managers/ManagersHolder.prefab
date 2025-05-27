@@ -120,6 +120,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4959087006669043320}
     m_Modifications:
+    - target: {fileID: 1330322925444061774, guid: fb1e2f1200486694faedb93ebd8b0e9b,
+        type: 3}
+      propertyPath: particleObj
+      value: 
+      objectReference: {fileID: 3497936027590250768, guid: eb68ea4c8cdf6bb489f962afc85feb02,
+        type: 3}
+    - target: {fileID: 1330322925444061774, guid: fb1e2f1200486694faedb93ebd8b0e9b,
+        type: 3}
+      propertyPath: noteParticleObj
+      value: 
+      objectReference: {fileID: 3497936027590250768, guid: eb68ea4c8cdf6bb489f962afc85feb02,
+        type: 3}
     - target: {fileID: 2748131770413059655, guid: fb1e2f1200486694faedb93ebd8b0e9b,
         type: 3}
       propertyPath: m_LocalPosition.x

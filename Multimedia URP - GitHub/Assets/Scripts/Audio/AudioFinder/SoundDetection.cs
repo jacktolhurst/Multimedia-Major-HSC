@@ -8,7 +8,7 @@ public class SoundDetection : MonoBehaviour
 
     [SerializeField] private Transform particleTargetTrans;
 
-    [SerializeField] private LayerMask ignoreLayerMask;
+    [SerializeField] private LayerMask hitLayerMask;
 
     [SerializeField] private float soundDistance;
 
@@ -30,7 +30,7 @@ public class SoundDetection : MonoBehaviour
                 foreach(AudioManager.EventHandler soundEvent in soundEvents){
                     Ray eventRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
                     
-                    if(Physics.Raycast(eventRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position),ignoreLayerMask)){
+                    if(!Physics.Raycast(eventRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position),hitLayerMask)){
                         if(soundEvent.impact > highestImpact){
                             highestImpact = soundEvent.impact;
                             lastEventTime = soundEvent.time;

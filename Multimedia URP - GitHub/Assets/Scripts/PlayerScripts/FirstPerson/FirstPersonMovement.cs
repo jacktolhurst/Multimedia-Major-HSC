@@ -177,7 +177,7 @@ public class FirstPersonMovement : MonoBehaviour
         if(isGrounded){
             rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.Acceleration);
             if(!footStepsSound.IsPlaying()){
-                if(moveDirection.normalized != Vector3.zero){
+                if(moveDirection.normalized != Vector3.zero && Input.GetAxisRaw("Sprint") != 0){
                     footStepsSound.PlaySoundObject(transform.gameObject);
                 }
                 else{

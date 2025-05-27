@@ -201,4 +201,5 @@ MonoBehaviour:
     maxDistance: 5
     minDistance: 1
     impact: 1
+    noteParticleLifetime: 1
     dontUseSound: 0

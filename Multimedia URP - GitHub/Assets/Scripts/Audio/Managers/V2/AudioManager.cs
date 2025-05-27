@@ -13,15 +13,12 @@ public class AudioManager : MonoBehaviour
 
         [Range(0,3)]
         public float volume;
-        private float prevVolume;
         [Min(0)]
-        public float maxDistance;
-        private float prevMaxDistance;
+        public float maxDistance = 5;
         [Min(0)]
-        public float minDistance;
-        private float prevMinDistance;
-        public float impact;
-        private float prevImpact;
+        public float minDistance = 1;
+        public float impact = 1;
+        public float noteParticleLifetime = 1;
         private float initializedTime;
 
         private bool initialized;
@@ -29,27 +26,6 @@ public class AudioManager : MonoBehaviour
         
         private IEnumerator UpdateLoop(){
             while(initialized){
-                if(prevVolume != volume || prevMaxDistance != maxDistance || prevMinDistance != minDistance || prevImpact != impact){
-                    foreach(EventHandler eventHandler in eventHandlers){
-                        if(prevVolume != volume){
-                            eventHandler.eventInstance.setVolume(volume);
-                            prevVolume = volume;
-                        }
-                        if(prevMinDistance != minDistance){
-                            eventHandler.eventInstance.setProperty(FMOD.Studio.EVENT_PROPERTY.MINIMUM_DISTANCE, minDistance);
-                            prevMinDistance = minDistance;
-                        }
-                        if(prevMaxDistance != maxDistance ){
-                            eventHandler.eventInstance.setProperty(FMOD.Studio.EVENT_PROPERTY.MAXIMUM_DISTANCE, maxDistance);
-                            prevMaxDistance = maxDistance;
-                        }
-                        if(prevImpact != impact){
-                            eventHandler.impact = impact;
-                            prevImpact = impact;
-                        }
-                    }
-                }
-
                 if(initializedTime + 60 <= Time.time && eventHandlers.Count == 0){
                     initialized = false;
                 }
@@ -86,8 +62,12 @@ public class AudioManager : MonoBehaviour
 
             eventInstance.start();
 
+            GameObject newNoteParticleObj = Instantiate(AudioManager.instance.noteParticleObj, AudioManager.instance.GetEventInstancePosition(eventInstance), new Quaternion(-0.707106769f,0,0,0.707106769f));
+            float noteParticleEndTime = Time.time + noteParticleLifetime;
+            newNoteParticleObj.GetComponent<NoteParticleManager>().endTime = noteParticleEndTime;
+
             Coroutine coroutine = AudioManager.instance.StartCoroutine(TrackSound(eventInstance));
-            EventHandler eventHandler = new EventHandler(eventInstance, coroutine, impact, Time.time);
+            EventHandler eventHandler = new EventHandler(eventInstance, coroutine, impact, noteParticleEndTime , Time.time);
             AudioManager.instance.currentEvents.Add(eventHandler);
             eventHandlers.Add(eventHandler);
 
@@ -133,19 +113,24 @@ public class AudioManager : MonoBehaviour
         private IEnumerator TrackSound(FMOD.Studio.EventInstance eventInstance){
             FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
 
-            while (state != FMOD.Studio.PLAYBACK_STATE.STOPPED){
+            yield return null;
+
+            EventHandler eventHandler = null;
+            foreach (EventHandler checkEvent in AudioManager.instance.currentEvents){
+                if (checkEvent.eventInstance.Equals(eventInstance)){
+                    eventHandler = checkEvent;
+                    break;
+                }
+            }
+
+            while (state != FMOD.Studio.PLAYBACK_STATE.STOPPED || eventHandler.noteParticleEndTime > Time.time){
                 eventInstance.getPlaybackState(out state);
                 yield return null;
             }
 
-            EventHandler eventHandlerToRemove = null;
-            foreach(EventHandler eventHandler in AudioManager.instance.currentEvents){
-                if(eventHandler.eventInstance.Equals(eventInstance)){
-                    eventHandlerToRemove = eventHandler;
-                }   
-            }
-            eventHandlers.Remove(eventHandlerToRemove);
-            AudioManager.instance.currentEvents.Remove(eventHandlerToRemove);
+
+            eventHandlers.Remove(eventHandler);
+            AudioManager.instance.currentEvents.Remove(eventHandler);
         }
     }
 
@@ -154,17 +139,21 @@ public class AudioManager : MonoBehaviour
         public Coroutine activeCoroutine;
         public Vector3 position;
         public float impact;
+        public float noteParticleEndTime;
         public float time;
 
-        public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newImpact, float newTime){
+        public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, float newImpact, float newNoteParticleEndTime, float newTime){
             eventInstance = newEventInstance;
             activeCoroutine = newActiveCoroutine;
             impact = newImpact;
+            noteParticleEndTime = newNoteParticleEndTime;
             time = newTime;
+
+            position = AudioManager.instance.GetEventInstancePosition(eventInstance);
         }
 
         public void Update(){
-            Vector3 newPosition =  AudioManager.instance.GetEventInstancePosition(eventInstance);
+            Vector3 newPosition = AudioManager.instance.GetEventInstancePosition(eventInstance);
             if(newPosition != Vector3.zero){
                 position = newPosition;
             }
@@ -176,6 +165,8 @@ public class AudioManager : MonoBehaviour
     private List<EventHandler> currentEvents = new List<EventHandler>();
 
     private FMOD.Studio.Bus masterBus;
+
+    [SerializeField] private GameObject noteParticleObj;
 
     [SerializeField] private int soundCount;
 
