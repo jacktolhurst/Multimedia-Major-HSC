@@ -44,28 +44,14 @@ public class AudioManager : MonoBehaviour
 
                 Rigidbody objRb = obj.GetComponent<Rigidbody>();
 
-                Bounds bounds = obj.GetComponent<Collider>().bounds;
-                Vector3 extents = bounds.extents;
+                GameObject oldNoteParticleObj = AudioManager.instance.noteParticleObj;
 
                 List<GameObject> newNoteParticleObjs = new List<GameObject>();
                 for (int i = 0; i < impact; i++){
-                    Vector3 spawnPoint = Vector3.zero;
-                    if(bounds != null){
-                        Vector3 dir = Random.onUnitSphere;
-                        float requiredDistance =  (Mathf.Abs(dir.x) * extents.x) + (Mathf.Abs(dir.y) * extents.y) + (Mathf.Abs(dir.z) * extents.z);
-                        float spawnDistance = requiredDistance + 1;
-                        spawnPoint = bounds.center + dir * spawnDistance;
-                    }
-                    else spawnPoint = obj.transform.position;
+                    GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, obj.transform.position, oldNoteParticleObj.transform.rotation);
 
-                    GameObject newNoteParticleObj = Instantiate(AudioManager.instance.noteParticleObj, spawnPoint, new Quaternion(-0.707106769f,0,0,0.707106769f));
-                    NoteParticleManager noteParticleManager = newNoteParticleObj.GetComponent<NoteParticleManager>();
-                    noteParticleManager.endTime = Time.time + noteParticleLifetime;
+                    newNoteParticleObj.GetComponent<NoteParticleManager>().StartObj(obj, Time.time + noteParticleLifetime);
                     
-                    if(objRb != null){
-                        noteParticleManager.followObjRb = objRb;
-                    }
-
                     newNoteParticleObjs.Add(newNoteParticleObj);
                 }
 
