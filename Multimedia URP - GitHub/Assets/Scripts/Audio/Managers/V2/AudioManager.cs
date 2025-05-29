@@ -44,18 +44,14 @@ public class AudioManager : MonoBehaviour
 
                 Rigidbody objRb = obj.GetComponent<Rigidbody>();
 
+                GameObject oldNoteParticleObj = AudioManager.instance.noteParticleObj;
+
                 List<GameObject> newNoteParticleObjs = new List<GameObject>();
                 for (int i = 0; i < impact; i++){
+                    GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, obj.transform.position, oldNoteParticleObj.transform.rotation);
 
-                    GameObject newNoteParticleObj = Instantiate(AudioManager.instance.noteParticleObj, obj.transform.position, new Quaternion(-0.707106769f,0,0,0.707106769f));
-                    NoteParticleManager noteParticleManager = newNoteParticleObj.GetComponent<NoteParticleManager>();
-                    noteParticleManager.endTime = Time.time + noteParticleLifetime;
+                    newNoteParticleObj.GetComponent<NoteParticleManager>().StartObj(obj, Time.time + noteParticleLifetime);
                     
-                    if(objRb != null){
-                        noteParticleManager.followObjRb = objRb;
-                        noteParticleManager.usingGameObject = true;
-                    }
-
                     newNoteParticleObjs.Add(newNoteParticleObj);
                 }
 

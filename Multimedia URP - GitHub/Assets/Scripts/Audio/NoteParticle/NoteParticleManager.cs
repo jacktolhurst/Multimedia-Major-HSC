@@ -1,17 +1,16 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class NoteParticleManager : MonoBehaviour
 {
-    [HideInInspector] public Rigidbody followObjRb;
+    private GameObject followObj;
+
     private Rigidbody selfRb;
 
-    private Collider[] followObjColliders;
+    private List<Collider> followObjColliders = new List<Collider>();
     private Collider selfCollider;
-
-    private List<Bounds> followObjBounds = new List<Bounds>();
-    private Bounds selfBound;
 
     private Vector3 targetPos;
     private Vector3 velocity = Vector3.zero;
@@ -22,14 +21,9 @@ public class NoteParticleManager : MonoBehaviour
     [HideInInspector] public float speed = 1;
     private float randScaleChangeTime;
 
-    [HideInInspector] public bool usingGameObject = false;
-
-    void Start(){
-        StartCoroutine(AfterStart());
-    }
-
-    private IEnumerator AfterStart(){
-        yield return null;
+    public void StartObj(GameObject newFollowObj, float newEndTime){
+        followObj = newFollowObj;
+        endTime = newEndTime;
 
         startTime = Time.time;
         lifeTime = endTime - startTime;
@@ -43,31 +37,30 @@ public class NoteParticleManager : MonoBehaviour
         selfRb = GetComponent<Rigidbody>();
         selfRb.linearVelocity = (transform.position - targetPos).normalized * speed;
 
-        if(usingGameObject){
-            selfCollider = GetComponent<Collider>();
-            selfCollider.isTrigger = false;
-            followObjColliders = followObjRb.gameObject.GetComponents<Collider>();
+        selfCollider = GetComponent<Collider>();
 
-            foreach(Collider followObjCollider in followObjColliders) followObjBounds.Add(followObjCollider.bounds);
+        foreach(Collider collider in followObj.GetComponents<Collider>()) {
+            followObjColliders.Add(collider);
+            Physics.IgnoreCollision(selfCollider, collider, true);
+        }
+        StartCoroutine(ColliderCheck());
+    }
 
-            selfBound = GetComponent<Collider>().bounds;
+    private IEnumerator ColliderCheck(){
+        yield return null;
+        
+        bool touching = true;
+        
+        while(touching){
+            touching = followObjColliders.Any(followObjCollider => AreTouching(followObjCollider, selfCollider));
 
-            CheckIfColliding();
+            yield return null;
         }
 
-        // Bounds bounds = obj.GetComponent<Collider>().bounds;
-        // Vector3 extents = bounds.extents;
-        // List<GameObject> newNoteParticleObjs = new List<GameObject>();
-
-        // Vector3 spawnPoint = Vector3.zero;
-        // if(bounds != null){
-            // Vector3 dir = Random.onUnitSphere;
-            // float requiredDistance =  (Mathf.Abs(dir.x) * extents.x) + (Mathf.Abs(dir.y) * extents.y) + (Mathf.Abs(dir.z) * extents.z);
-            // float spawnDistance = requiredDistance + 1;
-            // spawnPoint = bounds.center + dir * spawnDistance;
-        // }
-        // else spawnPoint = obj.transform.position;
-    }
+        foreach(Collider followObjCollider in followObjColliders) {
+            Physics.IgnoreCollision(selfCollider, followObjCollider, false);
+        }
+    }   
 
     void Update(){
         if(Time.time > endTime){
@@ -77,18 +70,15 @@ public class NoteParticleManager : MonoBehaviour
         if(randScaleChangeTime < Time.time){   
             transform.localScale = Vector3.SmoothDamp(transform.localScale, Vector3.zero, ref velocity,0.1f);
         }
-
-        if(usingGameObject) CheckIfColliding();
     }
 
-    private void CheckIfColliding(){
-        foreach(Bounds followObjBound in followObjBounds){
-            if(selfBound.Intersects(followObjBound)){
-                foreach(Collider followObjCollider in followObjColliders) Physics.IgnoreCollision(selfCollider, followObjCollider, true);
-            }
-            else{
-                foreach(Collider followObjCollider in followObjColliders) Physics.IgnoreCollision(selfCollider, followObjCollider, false);
-            }
-        }
+    private bool AreTouching(Collider colliderA, Collider colliderB){
+        Vector3 direction;
+        float distance;
+        return Physics.ComputePenetration(
+            colliderA, colliderA.transform.position, colliderA.transform.rotation,
+            colliderB, colliderB.transform.position, colliderB.transform.rotation,
+            out direction, out distance
+        );
     }
 }
