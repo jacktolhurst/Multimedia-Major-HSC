@@ -52,15 +52,7 @@ public class NoteParticleManager : MonoBehaviour
         bool touching = true;
         
         while(touching){
-            foreach(Collider followObjCollider in followObjColliders){
-                if(AreTouching(followObjCollider, selfCollider)){
-                    touching = true;
-                    break;
-                }
-                else{
-                    touching = false;
-                }
-            }
+            touching = followObjColliders.Any(followObjCollider => AreTouching(followObjCollider, selfCollider));
 
             yield return null;
         }
