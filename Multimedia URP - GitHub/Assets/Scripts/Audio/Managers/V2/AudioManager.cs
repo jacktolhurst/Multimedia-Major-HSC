@@ -51,7 +51,6 @@ public class AudioManager : MonoBehaviour
                     GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, obj.transform.position, oldNoteParticleObj.transform.rotation);
 
                     newNoteParticleObj.GetComponent<NoteParticleManager>().StartObj(obj, Time.time + noteParticleLifetime);
-                    
                     newNoteParticleObjs.Add(newNoteParticleObj);
                 }
 
@@ -64,12 +63,13 @@ public class AudioManager : MonoBehaviour
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
 
+                GameObject oldNoteParticleObj = AudioManager.instance.noteParticleObj;
+
                 List<GameObject> newNoteParticleObjs = new List<GameObject>();
                 for (int i = 0; i < impact; i++){
-                    GameObject newNoteParticleObj = Instantiate(AudioManager.instance.noteParticleObj, pos, new Quaternion(-0.707106769f,0,0,0.707106769f));
-                    NoteParticleManager noteParticleManager = newNoteParticleObj.GetComponent<NoteParticleManager>();
-                    noteParticleManager.endTime = Time.time + noteParticleLifetime;
-                    
+                    GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, pos, oldNoteParticleObj.transform.rotation);
+
+                    newNoteParticleObj.GetComponent<NoteParticleManager>().StartPosition(Time.time + noteParticleLifetime);
                     newNoteParticleObjs.Add(newNoteParticleObj);
                 }
 
@@ -151,7 +151,6 @@ public class AudioManager : MonoBehaviour
                 eventInstance.getPlaybackState(out state);
                 yield return null;
             }
-
 
             eventHandlers.Remove(eventHandler);
             AudioManager.instance.currentEvents.Remove(eventHandler);
