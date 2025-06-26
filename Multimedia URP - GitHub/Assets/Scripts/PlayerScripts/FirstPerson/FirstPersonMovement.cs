@@ -69,6 +69,8 @@ public class FirstPersonMovement : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioManager.AudioReferenceClass footStepsSound;
 
+    [SerializeField] private Transform footstepTrans;
+
     void Awake(){
         rb = GetComponent<Rigidbody>();
 
@@ -180,7 +182,7 @@ public class FirstPersonMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.Acceleration);
             if(!footStepsSound.IsPlaying()){
                 if(moveDirection.normalized != Vector3.zero && Input.GetAxisRaw("Sprint") != 0){
-                    footStepsSound.PlaySoundObject(playerRenderer.gameObject);
+                    footStepsSound.PlaySoundPosition(footstepTrans.position);
                 }
                 else{
                     footStepsSound.StopSound();

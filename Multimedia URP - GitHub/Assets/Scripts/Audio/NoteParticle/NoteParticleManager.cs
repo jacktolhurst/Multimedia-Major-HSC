@@ -18,7 +18,7 @@ public class NoteParticleManager : MonoBehaviour
     private float startTime;
     private float lifeTime;
     [HideInInspector] public float endTime;
-    [HideInInspector] public float speed = 100;
+    private float speed = 1;
     private float randScaleChangeTime;
 
     void Awake(){
@@ -26,14 +26,12 @@ public class NoteParticleManager : MonoBehaviour
         selfRb.linearVelocity = Vector3.zero;
         
         selfCollider = GetComponent<Collider>();
-        selfCollider.isTrigger = true;
     }
 
     public void StartObj(GameObject newFollowObj, float newEndTime){
         followObj = newFollowObj;
         endTime = newEndTime;
 
-        selfCollider.isTrigger = false;
         foreach(Collider followObjCollider in followObj.GetComponents<Collider>()) {
             followObjColliders.Add(followObjCollider);
             Physics.IgnoreCollision(selfCollider, followObjCollider, true);
@@ -46,12 +44,7 @@ public class NoteParticleManager : MonoBehaviour
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, Random.Range(0,360), transform.eulerAngles.z);
 
-        transform.position = RandomPointInsideMesh(followObjColliders[Random.Range(0,followObjColliders.Count)]);
-
-        selfRb = GetComponent<Rigidbody>();
-        selfRb.linearVelocity = Vector3.zero;
-
-        targetPos = transform.position + (Random.insideUnitSphere * 4);
+        selfRb.position = RandomPointInCollider(followObj.GetComponents<Collider>());
 
         StartCoroutine(ColliderCheck());
     }
@@ -65,11 +58,13 @@ public class NoteParticleManager : MonoBehaviour
         randScaleChangeTime = ((startTime + lifeTime) - (lifeTime/3)) - Random.Range(-0.2f,0.2f);
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, Random.Range(0,360), transform.eulerAngles.z);    
+
+        targetPos = transform.position + (Random.insideUnitSphere*2);
+        Vector3 dir = (targetPos - transform.position).normalized;
+        selfRb.AddForce(dir * speed, ForceMode.VelocityChange);
     }
 
     private IEnumerator ColliderCheck(){
-        yield return null;
-        
         while(!followObjColliders.Any(followObjCollider => AreTouching(selfCollider, followObjCollider))){
             yield return null;
         }
@@ -78,6 +73,7 @@ public class NoteParticleManager : MonoBehaviour
             Physics.IgnoreCollision(selfCollider, followObjCollider, false);
         }
 
+        targetPos = transform.position + (Random.insideUnitSphere*2);
         Vector3 dir = (targetPos - transform.position).normalized;
         selfRb.AddForce(dir * speed, ForceMode.VelocityChange);
     }   
@@ -101,21 +97,21 @@ public class NoteParticleManager : MonoBehaviour
             out direction, out distance
         );
     }
-    private Vector3 RandomPointInsideMesh(Collider collider){
-        Bounds bounds = collider.bounds;
-        Vector3 point;
-        int attempts = 0;
 
-        do{
-            point = new Vector3(
-                Random.Range(bounds.min.x, bounds.max.x),
-                Random.Range(bounds.min.y, bounds.max.y),
-                Random.Range(bounds.min.z, bounds.max.z)
+    public Vector3 RandomPointInCollider(Collider[] colliders, int maxTries = 30){
+        Collider col = colliders[Random.Range(0, colliders.Length)];
+        var b = col.bounds;
+        for (int i = 0; i < maxTries; i++)
+        {
+            Vector3 p = new Vector3(
+                Random.Range(b.min.x, b.max.x),
+                Random.Range(b.min.y, b.max.y),
+                Random.Range(b.min.z, b.max.z)
             );
-            attempts++;
+            if (col.ClosestPoint(p) == p)
+                return p;
         }
-        while (!collider.bounds.Contains(point) && attempts < 100);
-
-        return point;
+        return col.bounds.center;
     }
+
 }
