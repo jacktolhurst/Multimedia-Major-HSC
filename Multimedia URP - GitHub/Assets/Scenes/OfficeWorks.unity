@@ -31923,8 +31923,8 @@ Transform:
   m_GameObject: {fileID: 976243076}
   serializedVersion: 2
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0.00017455219}
-  m_LocalPosition: {x: 0.02199707, y: -0.00058, z: 0.00518}
-  m_LocalScale: {x: -1.9760001, y: -0.43379638, z: -0.2875037}
+  m_LocalPosition: {x: 0.02199707, y: -0.00017, z: 0.00339}
+  m_LocalScale: {x: -3.17, y: -0.69591826, z: -0.46122807}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1425342248}
@@ -40161,7 +40161,7 @@ Transform:
   m_GameObject: {fileID: 1102541502}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0346, y: -0.00681, z: -0.00143}
+  m_LocalPosition: {x: -0.0346, y: -0.00681, z: -0.0038}
   m_LocalScale: {x: 2.145259, y: 0.147669, z: 0.09844605}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70384,6 +70384,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 8996366946497366863, guid: 95ecb50c5e17ed8419a1fb2d466e966a,
+        type: 3}
+      propertyPath: targetFrameRate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -70475,7 +70480,7 @@ Transform:
   m_GameObject: {fileID: 6034282540009803154}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.00017452026, z: 1, w: 0}
-  m_LocalPosition: {x: 0.027197266, y: -0.00681, z: -0.00135}
+  m_LocalPosition: {x: 0.027197266, y: -0.00681, z: -0.00372}
   m_LocalScale: {x: 2.145259, y: 0.147669, z: 0.09844605}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -38,6 +38,8 @@ public class FirstPersonMovement : MonoBehaviour
     [SerializeField] private float heightDivision;
     private float standardHeight;
 
+    private bool jumpRequested;
+
 // ----------------------------------------------------------------
 
     [Header("Raycasting")]
@@ -109,14 +111,20 @@ public class FirstPersonMovement : MonoBehaviour
         GetInput();
 
         isGrounded = CheckGround();
-        if(Input.GetButtonDown("Jump")){
-            if(isGrounded && Time.time - lastJumpTime > jumpIntervalTime){
-                Jump();
-            }
+        if(Input.GetButtonDown("Jump") && isGrounded && Time.time - lastJumpTime > jumpIntervalTime){
+            jumpRequested = true;
+            lastJumpTime = Time.time;
         }
 
-        if(useStartPos){
-            rb.isKinematic = false;
+        if(useStartPos) rb.isKinematic = false;
+    }
+
+    void FixedUpdate(){
+        Movement();
+
+        if(jumpRequested){
+            Jump();
+            jumpRequested = false;
         }
     }
 
@@ -152,8 +160,6 @@ public class FirstPersonMovement : MonoBehaviour
     private void Jump(){
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-
-        lastJumpTime = Time.time;
     }
 
     private void ControlDragAndSize(){ 
@@ -167,10 +173,6 @@ public class FirstPersonMovement : MonoBehaviour
 
             playerCollider.height = standardHeight/heightDivision;
         }
-    }
-
-    void FixedUpdate(){
-        Movement();
     }
 
     private void Movement(){
