@@ -276,7 +276,7 @@ Transform:
   m_GameObject: {fileID: 4228943313145979319}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.971, z: 0}
+  m_LocalPosition: {x: 0, y: -0.511, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,8 +620,8 @@ MonoBehaviour:
     volume: 0.1
     maxDistance: 20
     minDistance: 1
-    noteParticleLifetime: 3
-    impact: 5
+    noteParticleLifetime: 1
+    impact: 3
     dontUseSound: 0
 --- !u!114 &8239444818348434316
 MonoBehaviour:

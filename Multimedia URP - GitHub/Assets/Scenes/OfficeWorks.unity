@@ -50682,7 +50682,6 @@ GameObject:
   - component: {fileID: 1496860203}
   - component: {fileID: 1496860202}
   - component: {fileID: 1496860201}
-  - component: {fileID: 1496860206}
   m_Layer: 11
   m_Name: Baracade (3)
   m_TagString: Untagged
@@ -50806,33 +50805,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 564071939}
   m_LocalEulerAnglesHint: {x: 80.378, y: 90, z: 90}
---- !u!114 &1496860206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496860200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2ae7ea40eee034fa4f680913b350f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound:
-    eventReference:
-      Guid:
-        Data1: 456978871
-        Data2: 1325953534
-        Data3: 1524490667
-        Data4: -2094243013
-      Path: event:/SFX/MetalDectector/MetalDetectorThru
-    volume: 0
-    maxDistance: 5
-    minDistance: 1
-    noteParticleLifetime: 5
-    impact: 5
-    dontUseSound: 0
-  playSound: 0
 --- !u!1 &1497143246
 GameObject:
   m_ObjectHideFlags: 0
@@ -67049,16 +67021,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: footStepsSound.noteParticleLifetime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641847277369801668, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.511
-      objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_Name
@@ -67069,16 +67031,6 @@ PrefabInstance:
       propertyPath: cubicleGeneratorV2
       value: 
       objectReference: {fileID: 53298771}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.impact
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.noteParticleLifetime
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
