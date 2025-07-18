@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638837691647672372
+  lastModified: 638832505760018135
   FileSizes:
   - Name: Desktop
     Value: 564128
@@ -116,10 +116,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638837686277420103
+  lastModified: 638816993248936506
   FileSizes:
   - Name: Desktop
-    Value: 26080
+    Value: 26144
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -143,14 +143,14 @@ MonoBehaviour:
   - {fileID: -6920724778921333292}
   - {fileID: -7315876423429746698}
   - {fileID: 6294642499686712106}
-  - {fileID: 3462665849825127051}
+  - {fileID: 7188965932555653883}
   EditorParameters:
   - {fileID: 6989685808616427903}
   MasterBanks:
   - {fileID: 3956975277666668580}
   StringsBanks:
   - {fileID: 2858901492147362299}
-  cacheTime: 638837691647672372
+  cacheTime: 638832505760018135
   cacheVersion: 131624
 --- !u!114 &2858901492147362299
 MonoBehaviour:
@@ -167,38 +167,11 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638837686277521364
+  lastModified: 638830012146378856
   FileSizes:
   - Name: Desktop
-    Value: 1196
+    Value: 1194
   Exists: 1
---- !u!114 &3462665849825127051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience/Orb/OrbAmbience
-  m_EditorClassIdentifier: 
-  Path: event:/Ambience/Orb/OrbAmbience
-  Guid:
-    Data1: -1957198412
-    Data2: 1311076381
-    Data3: -1931979598
-    Data4: -1636580526
-  Banks:
-  - {fileID: -747344034031883587}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &3956975277666668580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +187,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638837686277509226
+  lastModified: 638830012146353715
   FileSizes:
   - Name: Desktop
     Value: 1218
@@ -270,3 +243,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &7188965932555653883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Orb/OrbAmbient
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Orb/OrbAmbient
+  Guid:
+    Data1: -78750832
+    Data2: 1084842981
+    Data3: 59270031
+    Data4: 513295140
+  Banks:
+  - {fileID: -747344034031883587}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2182

@@ -16,8 +16,8 @@ MonoBehaviour:
   showInSceneView: 1
   debugView: 0
   debugSectionsRaw: 0
-  discontinuityInput: -1
-  depthSensitivity: 0
+  discontinuityInput: 14
+  depthSensitivity: 1
   depthDistanceModulation: 0.4
   grazingAngleMaskPower: 0.2
   grazingAngleMaskHardness: 1
@@ -42,16 +42,16 @@ MonoBehaviour:
   backgroundColor: {r: 0, g: 0, b: 0, a: 0}
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   overrideColorInShadow: 0
-  outlineColorShadow: {r: 1, g: 0, b: 0, a: 1}
+  outlineColorShadow: {r: 1, g: 1, b: 1, a: 1}
   fillColor: {r: 0, g: 0, b: 0, a: 1}
   fadeByDistance: 0
   distanceFadeColor: {r: 0, g: 0, b: 0, a: 0}
-  distanceFadeStart: 200
-  distanceFadeDistance: 20
+  distanceFadeStart: 100
+  distanceFadeDistance: 10
   fadeByHeight: 0
   heightFadeColor: {r: 0, g: 0, b: 0, a: 0}
-  heightFadeStart: 2
-  heightFadeDistance: 0.04
+  heightFadeStart: 1
+  heightFadeDistance: 0.5
   blendMode: 0
   sectionMapPrecision: 1
   sectionMapClearValue: 1

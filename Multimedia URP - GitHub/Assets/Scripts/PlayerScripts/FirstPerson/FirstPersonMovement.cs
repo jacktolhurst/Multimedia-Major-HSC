@@ -38,8 +38,6 @@ public class FirstPersonMovement : MonoBehaviour
     [SerializeField] private float heightDivision;
     private float standardHeight;
 
-    private bool jumpRequested;
-
 // ----------------------------------------------------------------
 
     [Header("Raycasting")]
@@ -68,8 +66,6 @@ public class FirstPersonMovement : MonoBehaviour
 // ----------------------------------------------------------------
     [Header("Audio")]
     [SerializeField] private AudioManager.AudioReferenceClass footStepsSound;
-
-    [SerializeField] private Transform footstepTrans;
 
     void Awake(){
         rb = GetComponent<Rigidbody>();
@@ -113,20 +109,14 @@ public class FirstPersonMovement : MonoBehaviour
         GetInput();
 
         isGrounded = CheckGround();
-        if(Input.GetButtonDown("Jump") && isGrounded && Time.time - lastJumpTime > jumpIntervalTime){
-            jumpRequested = true;
-            lastJumpTime = Time.time;
+        if(Input.GetButtonDown("Jump")){
+            if(isGrounded && Time.time - lastJumpTime > jumpIntervalTime){
+                Jump();
+            }
         }
 
-        if(useStartPos) rb.isKinematic = false;
-    }
-
-    void FixedUpdate(){
-        Movement();
-
-        if(jumpRequested){
-            Jump();
-            jumpRequested = false;
+        if(useStartPos){
+            rb.isKinematic = false;
         }
     }
 
@@ -162,6 +152,8 @@ public class FirstPersonMovement : MonoBehaviour
     private void Jump(){
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+        lastJumpTime = Time.time;
     }
 
     private void ControlDragAndSize(){ 
@@ -177,15 +169,16 @@ public class FirstPersonMovement : MonoBehaviour
         }
     }
 
+    void FixedUpdate(){
+        Movement();
+    }
+
     private void Movement(){
         if(isGrounded){
             rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.Acceleration);
             if(!footStepsSound.IsPlaying()){
                 if(moveDirection.normalized != Vector3.zero && Input.GetAxisRaw("Sprint") != 0){
-                    footStepsSound.PlaySoundPosition(footstepTrans.position);
-                }
-                else{
-                    footStepsSound.StopSound();
+                    footStepsSound.PlaySoundObject(transform.gameObject);
                 }
             }
         }

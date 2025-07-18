@@ -49,11 +49,11 @@ Material:
     m_Floats:
     - _Clamp: 1
     - _ClampMax: 0
-    - _CloseTextureDiv: 2.3
+    - _CloseTextureDiv: 8.04
     - _CloseTiling: 1
     - _Curves: 0.08
     - _DistanceSub: 8.24
-    - _DistanceSubtract: -0.26
+    - _DistanceSubtract: -0.1
     - _Div: 0.005
     - _Fuzz: 0.11
     - _MainOffset: 0.03
