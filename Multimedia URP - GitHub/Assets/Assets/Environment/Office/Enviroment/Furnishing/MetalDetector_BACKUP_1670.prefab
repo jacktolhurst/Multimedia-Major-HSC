@@ -197,9 +197,15 @@ MonoBehaviour:
         Data3: 1524490667
         Data4: -2094243013
       Path: event:/SFX/MetalDectector/MetalDetectorThru
-    volume: 2
+    volume: 2.5
     maxDistance: 5
     minDistance: 1
+<<<<<<< HEAD
     impact: 1
     noteParticleLifetime: 1
+=======
+    particleSpeed: 8
+    particleOffset: 0.5
+    impact: 1
+>>>>>>> origin/main
     dontUseSound: 0

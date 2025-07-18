@@ -66,9 +66,6 @@ public class OrbManager : MonoBehaviour
                     obj.SetActive(false);
                 }
             }
-            if(layer == 9){
-                manager.RestartScene();
-            }
         }
     }
 

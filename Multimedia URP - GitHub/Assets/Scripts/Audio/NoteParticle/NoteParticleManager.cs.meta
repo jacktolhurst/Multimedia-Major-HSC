@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: b4b298cfb85c27e498f895bf83c96ded
+guid: 3fb53ed1cdfc9614398b14dbee8673bd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - noteParticleObj: {fileID: 3497936027590250768, guid: eb68ea4c8cdf6bb489f962afc85feb02,
-      type: 3}
+  - playerTrans: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

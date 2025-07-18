@@ -431,37 +431,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.034850284, y: 0.03485029, z: 0.033766747}
   m_Center: {x: -0.00000024476253, y: 0.000000004990785, z: 0.011351084}
---- !u!1 &5465988285779939283
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5755735167474422714}
-  m_Layer: 14
-  m_Name: MicrophoneHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5755735167474422714
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5465988285779939283}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.395, y: 0.4361, z: 0.079}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7889758823875089076}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7090148987600239162
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,9 +463,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1780492217915041749}
-  - {fileID: 5755735167474422714}
   - {fileID: 3623181054697523196}
   - {fileID: 956883863044038061}
+  - {fileID: 7062473617730897793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8403315660668790673
@@ -511,8 +480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220bea9f9c97e03438d7bccddea66c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speakers:
-  - {fileID: 0}
 --- !u!114 &8857790807701116764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -525,11 +492,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdeddf208d625ac46b0f9f54c28d3090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 762517348031247824, guid: a303c6e6c2865604ebeb89010705e98d,
-    type: 3}
-  particleTargetTrans: {fileID: 5755735167474422714}
-  blockLayerMask:
+  particleTargetTrans: {fileID: 7062473617730897793}
+  hitLayerMask:
     serializedVersion: 2
     m_Bits: 2147500031
-  soundDistance: 10
+  soundDistance: 20
   checkSounds: 1
+--- !u!1 &8837743612073045036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7062473617730897793}
+  m_Layer: 14
+  m_Name: MicrophoneListenPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7062473617730897793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837743612073045036}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.421, y: 0.423, z: 0.0888}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7889758823875089076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
