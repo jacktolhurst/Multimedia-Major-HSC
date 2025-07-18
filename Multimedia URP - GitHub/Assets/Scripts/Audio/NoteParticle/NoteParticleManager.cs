@@ -5,6 +5,8 @@ using System.Linq;
 
 public class NoteParticleManager : MonoBehaviour
 {
+    private Coroutine collideCheckCoroutine;
+
     private GameObject followObj;
 
     private Rigidbody selfRb;
@@ -28,7 +30,7 @@ public class NoteParticleManager : MonoBehaviour
         selfCollider = GetComponent<Collider>();
     }
 
-    public void StartObj(GameObject newFollowObj, float newEndTime){
+    public void StartObj(GameObject newFollowObj, float newEndTime){ // used for if starting by given an object
         followObj = newFollowObj;
         endTime = newEndTime;
 
@@ -46,10 +48,10 @@ public class NoteParticleManager : MonoBehaviour
 
         selfRb.position = RandomPointInCollider(followObj.GetComponents<Collider>());
 
-        StartCoroutine(ColliderCheck());
+        collideCheckCoroutine = StartCoroutine(ColliderCheck());
     }
 
-    public void StartPosition(float newEndTime){
+    public void StartPosition(float newEndTime){ // used for if starting by given a position
         endTime = newEndTime;
 
         startTime = Time.time;
@@ -81,6 +83,9 @@ public class NoteParticleManager : MonoBehaviour
     void Update(){
         if(Time.time > endTime){
             Destroy(transform.gameObject);
+            if(collideCheckCoroutine != null){
+                StopCoroutine(collideCheckCoroutine);
+            }
         }
 
         if(randScaleChangeTime < Time.time){   

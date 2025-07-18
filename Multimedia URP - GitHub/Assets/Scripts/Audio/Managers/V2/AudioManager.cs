@@ -19,7 +19,6 @@ public class AudioManager : MonoBehaviour
         public float minDistance = 1;
         [Min(0)]
         public int noteParticleLifetime = 1;
-        [Min(0)]
         private float initializedTime;
 
         [Min(0)]
