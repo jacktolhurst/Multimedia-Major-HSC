@@ -20,6 +20,19 @@ public class AudioManager : MonoBehaviour
         [Min(0)]
         public int noteParticleLifetime = 1;
         private float initializedTime;
+        [Min(0)]
+        public float particleSpeed = 8;
+        private float prevParticleSpeed;
+        [Min(0)]
+        public float particleOffset = 1;
+        private float prevParticleOffset;
+        [Min(0)]
+        public float particleLifeTime = 1;
+        private  float prevParticleLifeTime;
+
+        [Min(0)]
+        public int impact;
+        private int prevImpact;
 
         [Min(0)]
         public int impact = 1;
@@ -39,6 +52,7 @@ public class AudioManager : MonoBehaviour
         public void PlaySoundObject(GameObject obj){
             if(!dontUseSound){
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
+                RuntimeManager.AttachInstanceToGameObject(eventInstance, obj.transform);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(obj));
 
                 Rigidbody objRb = obj.GetComponent<Rigidbody>();
@@ -133,8 +147,9 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        private IEnumerator TrackSound(FMOD.Studio.EventInstance eventInstance){
-            FMOD.Studio.PLAYBACK_STATE state = FMOD.Studio.PLAYBACK_STATE.PLAYING;
+        private ParticleSystem SetupParticleBoilerPlate(Vector3 pos){
+                GameObject newParticleObj = GameObject.Instantiate(AudioManager.instance.musicNoteEmitterPrefab, pos, Quaternion.identity);
+                ParticleSystem newNoteParticleSystem = newParticleObj.GetComponent<ParticleSystem>();
 
             yield return null;
 
@@ -157,7 +172,10 @@ public class AudioManager : MonoBehaviour
     }
 
     public class EventHandler{
+        public AudioManager.AudioReferenceClass referenceClass;
         public FMOD.Studio.EventInstance eventInstance;
+        public GameObject noteParticleObj;
+        public ParticleSystem noteParticleSystem;
         public Coroutine activeCoroutine;
         public List<GameObject> noteParticleObjs = new List<GameObject>();
         public Vector3 position;
@@ -167,6 +185,8 @@ public class AudioManager : MonoBehaviour
 
         public EventHandler(FMOD.Studio.EventInstance newEventInstance, Coroutine newActiveCoroutine, List<GameObject> newNoteParticleObjs, float newNoteParticleEndTime, float newImpact, float newTime){
             eventInstance = newEventInstance;
+            noteParticleObj = newNoteParticleSystem.gameObject;
+            noteParticleSystem = newNoteParticleSystem;
             activeCoroutine = newActiveCoroutine;
             noteParticleObjs = newNoteParticleObjs; 
             noteParticleEndTime = newNoteParticleEndTime;
@@ -181,6 +201,11 @@ public class AudioManager : MonoBehaviour
             if(newPosition != Vector3.zero){
                 position = newPosition;
             }
+            noteParticleObj.transform.position = position;
+            endTime = startTime + particleLifeTime;
+
+            bool state = noteParticleSystem.IsAlive();
+            Debug.Log(state);
         }
     }
 
@@ -201,6 +226,8 @@ public class AudioManager : MonoBehaviour
         instance = this;
 
         FMODUnity.RuntimeManager.StudioSystem.getBus("bus:/", out masterBus);
+
+        noteParticleSystem = musicNoteEmitterPrefab.GetComponent<ParticleSystem>();
     }
 
     void Update() {

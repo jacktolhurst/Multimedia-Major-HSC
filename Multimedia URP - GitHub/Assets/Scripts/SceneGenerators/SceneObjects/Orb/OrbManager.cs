@@ -40,6 +40,7 @@ public class OrbManager : MonoBehaviour
         foreach(Collider collider in objColliders){
             Rigidbody rb = collider.GetComponent<Rigidbody>();
             if(rb == null) continue;
+            else rb.isKinematic = false;
 
             Vector3 direction = (transform.position - rb.position).normalized;
             float distance = Mathf.Max(Vector3.Distance(transform.position, rb.position), 0.1f);

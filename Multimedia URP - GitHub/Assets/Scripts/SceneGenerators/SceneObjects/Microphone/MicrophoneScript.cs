@@ -6,6 +6,10 @@ public class MicrophoneScript : MonoBehaviour
 {
     private SoundDetection SoundDetectionScript;
 
+    private AudioManager.EventHandler lastChosenEvent;
+
+    [SerializeField] private List<GameObject> speakers = new List<GameObject>();
+
     private List<Rigidbody> childrenRigidbodies = new List<Rigidbody>();
 
 
@@ -32,6 +36,14 @@ public class MicrophoneScript : MonoBehaviour
                     break;
                 }
             }
+
+            if(SoundDetectionScript.chosenEvent != null && lastChosenEvent != SoundDetectionScript.chosenEvent){
+                foreach(GameObject speaker in speakers){
+                    SoundDetectionScript.chosenEvent.referenceClass.PlaySoundObject(speaker);;
+                }
+            }
+
+            lastChosenEvent = SoundDetectionScript.chosenEvent;
         }
     }
 }
