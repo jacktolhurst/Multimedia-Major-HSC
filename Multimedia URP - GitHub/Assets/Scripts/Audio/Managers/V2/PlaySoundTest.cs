@@ -8,7 +8,7 @@ public class PlaySoundTest : MonoBehaviour
 
     void Update(){
         if(playSound){
-            sound.PlaySoundObject(gameObject);
+            sound.PlaySoundPosition(transform.position);
             playSound = false;
         }
     }

@@ -495,8 +495,9 @@ MonoBehaviour:
   particleTargetTrans: {fileID: 7062473617730897793}
   hitLayerMask:
     serializedVersion: 2
-    m_Bits: 2147500031
+    m_Bits: 2147491327
   soundDistance: 20
+  particleMoveSpeed: 2
   checkSounds: 1
 --- !u!1 &8837743612073045036
 GameObject:

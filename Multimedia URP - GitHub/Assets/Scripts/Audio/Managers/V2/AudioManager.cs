@@ -182,6 +182,10 @@ public class AudioManager : MonoBehaviour
                 position = newPosition;
             }
         }
+
+        public List<GameObject> GetParticles(){
+            return noteParticleObjs;
+        }
     }
 
     public static AudioManager instance;

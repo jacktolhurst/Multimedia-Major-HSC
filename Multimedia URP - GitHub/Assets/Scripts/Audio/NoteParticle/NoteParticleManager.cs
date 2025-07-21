@@ -14,35 +14,40 @@ public class NoteParticleManager : MonoBehaviour
     private List<Collider> followObjColliders = new List<Collider>();
     private Collider selfCollider;
 
+    private Material particleMat;
+
     private Vector3 targetPos;
-    private Vector3 velocity = Vector3.zero;
+    private Vector3 scaleDownVelocity = Vector3.zero;
+    private Vector3 scaleUpVelocity = Vector3.zero;
+    private Vector3 defaultSize;
 
     private float startTime;
     private float lifeTime;
-    [HideInInspector] public float endTime;
+    // [HideInInspector] public float endTime;
+    public float endTime;
     private float speed = 1;
     private float randScaleChangeTime;
 
     void Awake(){
         selfRb = GetComponent<Rigidbody>();
-        selfRb.linearVelocity = Vector3.zero;
         
         selfCollider = GetComponent<Collider>();
+
+        particleMat = GetComponent<MeshRenderer>().material;
+
+        defaultSize = transform.localScale;
+        transform.localScale = Vector3.zero;
     }
 
     public void StartObj(GameObject newFollowObj, float newEndTime){ // used for if starting by given an object
+        SetEndTime(newEndTime);
+
         followObj = newFollowObj;
-        endTime = newEndTime;
 
         foreach(Collider followObjCollider in followObj.GetComponents<Collider>()) {
             followObjColliders.Add(followObjCollider);
             Physics.IgnoreCollision(selfCollider, followObjCollider, true);
         }
-
-        startTime = Time.time;
-        lifeTime = endTime - startTime;
-
-        randScaleChangeTime = ((startTime + lifeTime) - (lifeTime/3)) - Random.Range(-0.2f,0.2f);
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, Random.Range(0,360), transform.eulerAngles.z);
 
@@ -52,12 +57,7 @@ public class NoteParticleManager : MonoBehaviour
     }
 
     public void StartPosition(float newEndTime){ // used for if starting by given a position
-        endTime = newEndTime;
-
-        startTime = Time.time;
-        lifeTime = endTime - startTime;
-
-        randScaleChangeTime = ((startTime + lifeTime) - (lifeTime/3)) - Random.Range(-0.2f,0.2f);
+        SetEndTime(newEndTime);
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, Random.Range(0,360), transform.eulerAngles.z);    
 
@@ -89,8 +89,27 @@ public class NoteParticleManager : MonoBehaviour
         }
 
         if(randScaleChangeTime < Time.time){   
-            transform.localScale = Vector3.SmoothDamp(transform.localScale, Vector3.zero, ref velocity, 0.1f);
+            transform.localScale = Vector3.SmoothDamp(transform.localScale, Vector3.zero, ref scaleDownVelocity, 0.1f);
         }
+
+        if(!IsVector3Close(defaultSize, transform.localScale, 0.1f)){
+            transform.localScale = Vector3.SmoothDamp(transform.localScale, defaultSize, ref scaleUpVelocity, 0.1f);
+
+            selfRb.linearVelocity = Vector3.zero;
+            selfRb.angularVelocity = Vector3.zero;
+        }
+
+        // particleMat.SetFloat("_TimeLeft", (float)(((Time.time - startTime) / (randScaleChangeTime - startTime)) * 1.5f));
+    }
+
+    public void SetEndTime(float newEndTime, bool isRandom=true){
+        endTime = newEndTime;
+
+        startTime = Time.time;
+        lifeTime = endTime - startTime;
+
+        if(isRandom) randScaleChangeTime = ((startTime + lifeTime) - (lifeTime/3)) + Random.Range(-0.2f,0.2f);
+        else randScaleChangeTime = ((startTime + lifeTime) - (lifeTime/3));
     }
 
     private bool AreTouching(Collider colliderA, Collider colliderB){
@@ -103,7 +122,7 @@ public class NoteParticleManager : MonoBehaviour
         );
     }
 
-    public Vector3 RandomPointInCollider(Collider[] colliders, int maxTries = 30){
+    private Vector3 RandomPointInCollider(Collider[] colliders, int maxTries = 30){
         Collider col = colliders[Random.Range(0, colliders.Length)];
         var b = col.bounds;
         for (int i = 0; i < maxTries; i++)
@@ -119,4 +138,7 @@ public class NoteParticleManager : MonoBehaviour
         return col.bounds.center;
     }
 
+    private bool IsVector3Close(Vector3 vecA, Vector3 vecB, float distance) {
+        return Vector3.Distance(vecA, vecB) < distance;
+    }
 }

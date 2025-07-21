@@ -621,7 +621,7 @@ MonoBehaviour:
     maxDistance: 20
     minDistance: 1
     noteParticleLifetime: 1
-    impact: 3
+    impact: 2
     dontUseSound: 0
 --- !u!114 &8239444818348434316
 MonoBehaviour:

@@ -200,6 +200,6 @@ MonoBehaviour:
     volume: 2
     maxDistance: 5
     minDistance: 1
+    noteParticleLifetime: 3
     impact: 1
-    noteParticleLifetime: 1
     dontUseSound: 0
