@@ -29,6 +29,9 @@ public class NoteParticleManager : MonoBehaviour
     private float randomPointSpeed = 1;
     private float scaleDownTime;
     private float scaleDuration = 0.5f;
+
+    private bool scaledUp = false;
+    private bool scaledDown = false;
     
     void Awake(){
         selfRb = GetComponent<Rigidbody>();
@@ -91,12 +94,16 @@ public class NoteParticleManager : MonoBehaviour
         }
         else{
             if(Time.time > scaleDownTime){   
-                // transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, scaleSpeed * Time.deltaTime);
-                transform.DOScale(Vector3.zero, scaleDuration);
+                if(!scaledUp){
+                    transform.DOScale(Vector3.zero, scaleDuration);
+                    scaledUp = true;
+                }
             }
             else if(!IsVector3Close(defaultSize, transform.localScale, 0.1f)){
-                // transform.localScale = Vector3.Lerp(transform.localScale, defaultSize, scaleSpeed * Time.deltaTime);
-                transform.DOScale(defaultSize, scaleDuration);
+                if(!scaledDown){
+                    transform.DOScale(defaultSize, scaleDuration);
+                    scaledDown = true;
+                }
 
                 selfRb.linearVelocity = Vector3.zero;
                 selfRb.angularVelocity = Vector3.zero;

@@ -8821,11 +8821,11 @@ MonoBehaviour:
   sound:
     eventReference:
       Guid:
-        Data1: -78750832
-        Data2: 1084842981
-        Data3: 59270031
-        Data4: 513295140
-      Path: event:/Ambience/Orb/OrbAmbient
+        Data1: -1957198412
+        Data2: 1311076381
+        Data3: -1931979598
+        Data4: -1636580526
+      Path: event:/Ambience/Orb/OrbAmbience
     volume: 0
     maxDistance: 5
     minDistance: 1
@@ -28962,11 +28962,11 @@ MonoBehaviour:
   sound:
     eventReference:
       Guid:
-        Data1: -78750832
-        Data2: 1084842981
-        Data3: 59270031
-        Data4: 513295140
-      Path: event:/Ambience/Orb/OrbAmbient
+        Data1: -1957198412
+        Data2: 1311076381
+        Data3: -1931979598
+        Data4: -1636580526
+      Path: event:/Ambience/Orb/OrbAmbience
     volume: 0
     maxDistance: 5
     minDistance: 1
@@ -31018,11 +31018,11 @@ MonoBehaviour:
   sound:
     eventReference:
       Guid:
-        Data1: -78750832
-        Data2: 1084842981
-        Data3: 59270031
-        Data4: 513295140
-      Path: event:/Ambience/Orb/OrbAmbient
+        Data1: -1957198412
+        Data2: 1311076381
+        Data3: -1931979598
+        Data4: -1636580526
+      Path: event:/Ambience/Orb/OrbAmbience
     volume: 0
     maxDistance: 5
     minDistance: 1
@@ -39176,11 +39176,11 @@ MonoBehaviour:
   sound:
     eventReference:
       Guid:
-        Data1: -78750832
-        Data2: 1084842981
-        Data3: 59270031
-        Data4: 513295140
-      Path: event:/Ambience/Orb/OrbAmbient
+        Data1: -1957198412
+        Data2: 1311076381
+        Data3: -1931979598
+        Data4: -1636580526
+      Path: event:/Ambience/Orb/OrbAmbience
     volume: 0
     maxDistance: 5
     minDistance: 1
@@ -40642,11 +40642,11 @@ MonoBehaviour:
   sound:
     eventReference:
       Guid:
-        Data1: -78750832
-        Data2: 1084842981
-        Data3: 59270031
-        Data4: 513295140
-      Path: event:/Ambience/Orb/OrbAmbient
+        Data1: -1957198412
+        Data2: 1311076381
+        Data3: -1931979598
+        Data4: -1636580526
+      Path: event:/Ambience/Orb/OrbAmbience
     volume: 0
     maxDistance: 5
     minDistance: 1
@@ -55514,7 +55514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1676636979
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61473,11 +61473,11 @@ MonoBehaviour:
   sound:
     eventReference:
       Guid:
-        Data1: -78750832
-        Data2: 1084842981
-        Data3: 59270031
-        Data4: 513295140
-      Path: event:/Ambience/Orb/OrbAmbient
+        Data1: -1957198412
+        Data2: 1311076381
+        Data3: -1931979598
+        Data4: -1636580526
+      Path: event:/Ambience/Orb/OrbAmbience
     volume: 0
     maxDistance: 5
     minDistance: 1

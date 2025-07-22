@@ -197,6 +197,8 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private GameObject noteParticleObj;
 
+    private float lastNewCurrentEventsCount;
+
     void Awake() {
         if(instance != null){
             Debug.LogWarning("Two AudioManager instances");
@@ -207,13 +209,15 @@ public class AudioManager : MonoBehaviour
     }
 
     void Update() {
+        if(lastNewCurrentEventsCount != 0){
+            newCurrentEvents.Clear();
+        }
+
         foreach(EventHandler currentEvent in currentEvents){
             currentEvent.Update();
         }
-    }
 
-    void LateUpdate(){
-        newCurrentEvents = new List<EventHandler>();
+        lastNewCurrentEventsCount = newCurrentEvents.Count;
     }
 
     public void ChangeAllVolume(float rawVolume) {

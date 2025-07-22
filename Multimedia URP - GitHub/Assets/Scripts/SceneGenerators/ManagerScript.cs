@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using DG.Tweening;
 
 public class ManagerScript : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class ManagerScript : MonoBehaviour
     [SerializeField] private float baseVolume;
 
     [SerializeField] private int targetFrameRate;
+
+    void Awake(){
+        DOTween.SetTweensCapacity(100, 50);
+    }
 
     void Start(){
 		Application.targetFrameRate = targetFrameRate;

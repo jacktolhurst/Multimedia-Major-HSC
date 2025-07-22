@@ -39,9 +39,8 @@ public class SoundDetection : MonoBehaviour
                 Rigidbody particleRigidbody = particle.GetComponent<Rigidbody>();
                 NoteParticleManager particleManager = particle.GetComponent<NoteParticleManager>();
 
-                if(!IsVector3Close(particlePos, particleTargetTrans.position, 0.1f)){
+                if(!IsVector3Close(particlePos, particleTargetTrans.position, 0.01f)){
                     Vector3 direction = (particleTargetTrans.position - particlePos).normalized;
-                    float distance = Vector3.Distance(particleTargetTrans.position, particlePos);
 
                     particleRigidbody.linearVelocity = direction * particleMoveSpeed;
                 }
@@ -61,7 +60,8 @@ public class SoundDetection : MonoBehaviour
     private void ChangeParticleEndTime(AudioManager.EventHandler chosenEvent){
         foreach(GameObject particle in chosenEvent.GetParticles()){
             if(particle != null && particle.activeSelf){
-                particle.GetComponent<NoteParticleManager>().SetEndTime(Time.time + (1f / particleMoveSpeed), false);
+                float distance = Vector3.Distance(particleTargetTrans.position, particle.transform.position);
+                particle.GetComponent<NoteParticleManager>().SetEndTime(Time.time + (distance/particleMoveSpeed), false);
             }
         }
     }
@@ -94,6 +94,8 @@ public class SoundDetection : MonoBehaviour
                     Ray eventRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
                     
                     if(!Physics.Raycast(eventRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position),hitLayerMask)){
+                            ChangeParticleEndTime(soundEvent);
+
                         if(soundEvent.impact > highestImpact){
                             highestImpact = soundEvent.impact;
                             lastEventTime = soundEvent.time;
@@ -109,8 +111,6 @@ public class SoundDetection : MonoBehaviour
                 }
             }
         }
-
-        if(newChosenEvent != null) ChangeParticleEndTime(newChosenEvent);
 
         return newChosenEvent;
     }   
