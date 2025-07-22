@@ -91,7 +91,7 @@ public class AudioManager : MonoBehaviour
 
             Coroutine coroutine = AudioManager.instance.StartCoroutine(TrackSound(eventInstance));
             EventHandler eventHandler = new EventHandler(eventInstance, coroutine, newNoteParticleObjs, newNoteParticleObjs[0].GetComponent<NoteParticleManager>().endTime, impact, Time.time);
-            AudioManager.instance.currentEvents.Add(eventHandler);
+            AudioManager.instance.AddEvent(eventHandler);
             eventHandlers.Add(eventHandler);
 
             eventInstance.release();
@@ -152,7 +152,7 @@ public class AudioManager : MonoBehaviour
             }
 
             eventHandlers.Remove(eventHandler);
-            AudioManager.instance.currentEvents.Remove(eventHandler);
+            AudioManager.instance.RemoveEvent(eventHandler);
         }
     }
 
@@ -191,12 +191,11 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     private List<EventHandler> currentEvents = new List<EventHandler>();
+    private List<EventHandler> newCurrentEvents = new List<EventHandler>();
 
     private FMOD.Studio.Bus masterBus;
 
     [SerializeField] private GameObject noteParticleObj;
-
-    [SerializeField] private int soundCount;
 
     void Awake() {
         if(instance != null){
@@ -208,11 +207,13 @@ public class AudioManager : MonoBehaviour
     }
 
     void Update() {
-        soundCount = currentEvents.Count;
-
         foreach(EventHandler currentEvent in currentEvents){
             currentEvent.Update();
         }
+    }
+
+    void LateUpdate(){
+        newCurrentEvents = new List<EventHandler>();
     }
 
     public void ChangeAllVolume(float rawVolume) {
@@ -223,14 +224,38 @@ public class AudioManager : MonoBehaviour
         masterBus.setVolume(volume);
     }
 
+    public void AddEvent(EventHandler newEvent){
+        newCurrentEvents.Add(newEvent);
+        currentEvents.Add(newEvent);
+    }
+
+    public void RemoveEvent(EventHandler oldEvent){
+        currentEvents.Remove(oldEvent);
+    }
+
     public List<EventHandler> GetCurrentEvents(){
         return currentEvents;
     }
 
+    public List<EventHandler> GetNewCurrentEvents(){
+        return newCurrentEvents;
+    }
+
     public List<EventHandler> CurrentEventsInRange(Vector3 position, float range){
-        List<EventHandler> currentEventsInRange = new List<EventHandler>();
-        foreach(EventHandler currentEvent in currentEvents){
+        return EventsInRange(currentEvents, position, range);
+    }
+
+    public List<EventHandler> GetNewCurrentEventsInRange(Vector3 position, float range){
+        return EventsInRange(newCurrentEvents, position, range);
+    }
+
+    public List<EventHandler> EventsInRange(List<EventHandler> eventToCheck, Vector3 position, float range){
+        List<EventHandler> currentEventsInRange = null;
+        foreach(EventHandler currentEvent in eventToCheck){
             if(Vector3.Distance(position, currentEvent.position) <= range){
+                if(currentEventsInRange == null){
+                    currentEventsInRange = new List<EventHandler>();
+                }
                 currentEventsInRange.Add(currentEvent);
             }
         }

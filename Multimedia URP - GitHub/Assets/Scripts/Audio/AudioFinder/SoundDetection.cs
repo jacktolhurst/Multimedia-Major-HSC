@@ -19,7 +19,8 @@ public class SoundDetection : MonoBehaviour
     void Update(){
         chosenEvent = GetChosenEvent();
 
-        if(chosenEvent != null && chosenEvent.GetParticles() != null)currParticles.AddRange(chosenEvent.GetParticles());
+        List<GameObject> newParticles = GetNewParticles();
+        if(newParticles != null) currParticles.AddRange(newParticles);
     }
 
     void FixedUpdate(){
@@ -33,15 +34,22 @@ public class SoundDetection : MonoBehaviour
                     particlesToRemove.Add(particle);
                     continue;
                 }
-
-            if(particle.activeSelf){
-                NoteParticleManager particleManager = particle.GetComponent<NoteParticleManager>();
+            else if(particle.activeSelf){
+                Vector3 particlePos = particle.transform.position;
                 Rigidbody particleRigidbody = particle.GetComponent<Rigidbody>();
+                NoteParticleManager particleManager = particle.GetComponent<NoteParticleManager>();
 
-                Vector3 direction = (particleTargetTrans.position - particle.transform.position).normalized;
-                float distance = Vector3.Distance(particleTargetTrans.position, particle.transform.position);
+                if(!IsVector3Close(particlePos, particleTargetTrans.position, 0.1f)){
+                    Vector3 direction = (particleTargetTrans.position - particlePos).normalized;
+                    float distance = Vector3.Distance(particleTargetTrans.position, particlePos);
 
-                particleRigidbody.linearVelocity = direction * distance * particleMoveSpeed;
+                    particleRigidbody.linearVelocity = direction * particleMoveSpeed;
+                }
+                else{
+                    particleRigidbody.linearVelocity = Vector3.zero;
+                    particleManager.SetEndTime(Time.time, false);
+                    particlesToRemove.Add(particle);
+                }
             }
             else{
                 particlesToRemove.Add(particle);
@@ -58,13 +66,28 @@ public class SoundDetection : MonoBehaviour
         }
     }
 
+    private List<GameObject> GetNewParticles(){
+        List<GameObject> newParticles = null;
+        List<AudioManager.EventHandler> newCurrentEvents = AudioManager.instance.GetNewCurrentEventsInRange(transform.position, soundDistance);
+        if(newCurrentEvents != null){
+            if(newParticles == null){
+                newParticles = new List<GameObject>();
+            }
+            foreach(AudioManager.EventHandler soundEvent in newCurrentEvents){
+                newParticles.AddRange(soundEvent.GetParticles());
+            }
+        }
+
+        return newParticles;
+    }
+
     private AudioManager.EventHandler GetChosenEvent(){
         AudioManager.EventHandler newChosenEvent = null;
 
         if(checkSounds){
             List<AudioManager.EventHandler> soundEvents = AudioManager.instance.CurrentEventsInRange(transform.position, soundDistance);
 
-            if(soundEvents.Count != 0){
+            if(soundEvents != null){
                 float highestImpact = 0;
                 float lastEventTime = 0;
                 foreach(AudioManager.EventHandler soundEvent in soundEvents){
@@ -92,6 +115,10 @@ public class SoundDetection : MonoBehaviour
         return newChosenEvent;
     }   
 
+    private bool IsVector3Close(Vector3 vecA, Vector3 vecB, float distance) {
+        return Vector3.Distance(vecA, vecB) < distance;
+    }
+
     void OnDrawGizmos(){
         if(checkSounds){
             Gizmos.color = Color.blue;
@@ -99,18 +126,20 @@ public class SoundDetection : MonoBehaviour
 
             if(Application.isPlaying){  
                 List<AudioManager.EventHandler> soundEvents = AudioManager.instance.CurrentEventsInRange(transform.position, soundDistance);
-                foreach(AudioManager.EventHandler soundEvent in soundEvents){
-                    if(chosenEvent != null && soundEvent == chosenEvent){
+                if(soundEvents != null){
+                    foreach(AudioManager.EventHandler soundEvent in soundEvents){
+                        if(chosenEvent != null && soundEvent == chosenEvent){
+                            Gizmos.color = Color.green;
+                        }
+                        else{
+                            Gizmos.color = Color.red;
+                        }
+                        Gizmos.DrawWireSphere(soundEvent.position, soundEvent.impact);
+                    }
+                    if(chosenEvent != null){
                         Gizmos.color = Color.green;
+                        Debug.DrawRay(transform.position, (chosenEvent.position - transform.position).normalized * Vector3.Distance(transform.  position, chosenEvent.position), Color.green);
                     }
-                    else{
-                        Gizmos.color = Color.red;
-                    }
-                    Gizmos.DrawWireSphere(soundEvent.position, soundEvent.impact);
-                }
-                if(chosenEvent != null && soundEvents.Count != 0){
-                    Gizmos.color = Color.green;
-                    Debug.DrawRay(transform.position, (chosenEvent.position - transform.position).normalized * Vector3.Distance(transform.position, chosenEvent.position), Color.green);
                 }
             }
         }

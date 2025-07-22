@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 
 public class NoteParticleManager : MonoBehaviour
 {
@@ -23,11 +24,12 @@ public class NoteParticleManager : MonoBehaviour
 
     private float startTime;
     private float lifeTime;
-    // [HideInInspector] public float endTime;
     public float endTime;
-    private float speed = 1;
-    private float randScaleChangeTime;
-
+    public float currTime;
+    private float randomPointSpeed = 1;
+    private float scaleDownTime;
+    private float scaleDuration = 0.5f;
+    
     void Awake(){
         selfRb = GetComponent<Rigidbody>();
         
@@ -63,7 +65,7 @@ public class NoteParticleManager : MonoBehaviour
 
         targetPos = transform.position + (Random.insideUnitSphere*2);
         Vector3 dir = (targetPos - transform.position).normalized;
-        selfRb.AddForce(dir * speed, ForceMode.VelocityChange);
+        selfRb.AddForce(dir * randomPointSpeed, ForceMode.VelocityChange);
     }
 
     private IEnumerator ColliderCheck(){
@@ -77,7 +79,7 @@ public class NoteParticleManager : MonoBehaviour
 
         targetPos = transform.position + (Random.insideUnitSphere*2);
         Vector3 dir = (targetPos - transform.position).normalized;
-        selfRb.AddForce(dir * speed, ForceMode.VelocityChange);
+        selfRb.AddForce(dir * randomPointSpeed, ForceMode.VelocityChange);
     }   
 
     void Update(){
@@ -87,29 +89,31 @@ public class NoteParticleManager : MonoBehaviour
                 StopCoroutine(collideCheckCoroutine);
             }
         }
+        else{
+            if(Time.time > scaleDownTime){   
+                // transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, scaleSpeed * Time.deltaTime);
+                transform.DOScale(Vector3.zero, scaleDuration);
+            }
+            else if(!IsVector3Close(defaultSize, transform.localScale, 0.1f)){
+                // transform.localScale = Vector3.Lerp(transform.localScale, defaultSize, scaleSpeed * Time.deltaTime);
+                transform.DOScale(defaultSize, scaleDuration);
 
-        if(randScaleChangeTime < Time.time){   
-            transform.localScale = Vector3.SmoothDamp(transform.localScale, Vector3.zero, ref scaleDownVelocity, 0.1f);
+                selfRb.linearVelocity = Vector3.zero;
+                selfRb.angularVelocity = Vector3.zero;
+            }
+
+            // particleMat.SetFloat("_TimeLeft", (float)(((Time.time - startTime) / (scaleDownTime - startTime)) * 1.5f));
         }
-
-        if(!IsVector3Close(defaultSize, transform.localScale, 0.1f)){
-            transform.localScale = Vector3.SmoothDamp(transform.localScale, defaultSize, ref scaleUpVelocity, 0.1f);
-
-            selfRb.linearVelocity = Vector3.zero;
-            selfRb.angularVelocity = Vector3.zero;
-        }
-
-        // particleMat.SetFloat("_TimeLeft", (float)(((Time.time - startTime) / (randScaleChangeTime - startTime)) * 1.5f));
     }
 
     public void SetEndTime(float newEndTime, bool isRandom=true){
-        endTime = newEndTime;
+        endTime = newEndTime + scaleDuration;
 
         startTime = Time.time;
         lifeTime = endTime - startTime;
 
-        if(isRandom) randScaleChangeTime = ((startTime + lifeTime) - (lifeTime/3)) + Random.Range(-0.2f,0.2f);
-        else randScaleChangeTime = ((startTime + lifeTime) - (lifeTime/3));
+        if(isRandom) scaleDownTime = (endTime-scaleDuration)+ Random.Range(-0.2f,0.2f);
+        else scaleDownTime = endTime-scaleDuration;
     }
 
     private bool AreTouching(Collider colliderA, Collider colliderB){
