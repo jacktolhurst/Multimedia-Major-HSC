@@ -8832,7 +8832,7 @@ MonoBehaviour:
     noteParticleLifetime: 4
     impact: 1
     dontUseSound: 0
-  playSound: 1
+  playSound: 0
 --- !u!4 &315983384
 Transform:
   m_ObjectHideFlags: 0
@@ -28973,7 +28973,7 @@ MonoBehaviour:
     noteParticleLifetime: 4
     impact: 1
     dontUseSound: 0
-  playSound: 1
+  playSound: 0
 --- !u!4 &798962015
 Transform:
   m_ObjectHideFlags: 0
@@ -31029,7 +31029,7 @@ MonoBehaviour:
     noteParticleLifetime: 4
     impact: 1
     dontUseSound: 0
-  playSound: 1
+  playSound: 0
 --- !u!4 &933321429
 Transform:
   m_ObjectHideFlags: 0
@@ -39187,7 +39187,7 @@ MonoBehaviour:
     noteParticleLifetime: 4
     impact: 1
     dontUseSound: 0
-  playSound: 1
+  playSound: 0
 --- !u!4 &1062637955
 Transform:
   m_ObjectHideFlags: 0
@@ -40653,7 +40653,7 @@ MonoBehaviour:
     noteParticleLifetime: 4
     impact: 1
     dontUseSound: 0
-  playSound: 1
+  playSound: 0
 --- !u!4 &1103460223
 Transform:
   m_ObjectHideFlags: 0
@@ -61484,7 +61484,7 @@ MonoBehaviour:
     noteParticleLifetime: 4
     impact: 1
     dontUseSound: 0
-  playSound: 1
+  playSound: 0
 --- !u!4 &1899065870
 Transform:
   m_ObjectHideFlags: 0
@@ -70801,11 +70801,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Managers
-      objectReference: {fileID: 0}
-    - target: {fileID: 8996366946497366863, guid: 95ecb50c5e17ed8419a1fb2d466e966a,
-        type: 3}
-      propertyPath: targetFrameRate
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -6,6 +6,7 @@ public class SoundDetection : MonoBehaviour
     public AudioManager.EventHandler chosenEvent;
 
     private List<GameObject> currParticles = new List<GameObject>();
+    private List<GameObject> timeAppliedParticles = new List<GameObject>();
 
     [SerializeField] private Transform particleTargetTrans;
 
@@ -21,6 +22,8 @@ public class SoundDetection : MonoBehaviour
 
         List<GameObject> newParticles = GetNewParticles();
         if(newParticles != null) currParticles.AddRange(newParticles);
+
+        timeAppliedParticles = RemoveInactiveObjects(timeAppliedParticles);
     }
 
     void FixedUpdate(){
@@ -39,16 +42,19 @@ public class SoundDetection : MonoBehaviour
                 Rigidbody particleRigidbody = particle.GetComponent<Rigidbody>();
                 NoteParticleManager particleManager = particle.GetComponent<NoteParticleManager>();
 
-                if(!IsVector3Close(particlePos, particleTargetTrans.position, 0.01f)){
-                    Vector3 direction = (particleTargetTrans.position - particlePos).normalized;
+                Vector3 direction = (particleTargetTrans.position - particlePos).normalized;
+                particleRigidbody.linearVelocity = direction * particleMoveSpeed;
 
-                    particleRigidbody.linearVelocity = direction * particleMoveSpeed;
-                }
-                else{
-                    particleRigidbody.linearVelocity = Vector3.zero;
-                    particleManager.SetEndTime(Time.time, false);
-                    particlesToRemove.Add(particle);
-                }
+                // if(!IsVector3Close(particlePos, particleTargetTrans.position, 0.01f)){
+                    // Vector3 direction = (particleTargetTrans.position - particlePos).normalized;
+// 
+                    // particleRigidbody.linearVelocity = direction * particleMoveSpeed;
+                // }
+                // else{
+                    // particleRigidbody.linearVelocity = Vector3.zero;
+                    // particleManager.SetEndTime(Time.time, false);
+                    // particlesToRemove.Add(particle);
+                // }
             }
             else{
                 particlesToRemove.Add(particle);
@@ -59,9 +65,11 @@ public class SoundDetection : MonoBehaviour
 
     private void ChangeParticleEndTime(AudioManager.EventHandler chosenEvent){
         foreach(GameObject particle in chosenEvent.GetParticles()){
-            if(particle != null && particle.activeSelf){
+            if(particle != null && particle.activeSelf && !timeAppliedParticles.Contains(particle)){
                 float distance = Vector3.Distance(particleTargetTrans.position, particle.transform.position);
                 particle.GetComponent<NoteParticleManager>().SetEndTime(Time.time + (distance/particleMoveSpeed), false);
+
+                timeAppliedParticles.Add(particle);
             }
         }
     }
@@ -79,6 +87,15 @@ public class SoundDetection : MonoBehaviour
         }
 
         return newParticles;
+    }
+
+    private List<GameObject> RemoveInactiveObjects(List<GameObject> oldList){
+        List<GameObject> newList = new List<GameObject>();
+        foreach(GameObject obj in oldList){
+            if(obj != null && obj.activeSelf) newList.Add(obj);
+        }
+
+        return newList;
     }
 
     private AudioManager.EventHandler GetChosenEvent(){
