@@ -1494,11 +1494,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdeddf208d625ac46b0f9f54c28d3090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleTargetTrans: {fileID: 0}
+  particleTargetTrans: {fileID: 140545647}
   hitLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147507711
   soundDistance: 40
+  particleMoveSpeed: 10
   checkSounds: 1
 --- !u!54 &1700599298
 Rigidbody:
@@ -1534,7 +1535,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700599291}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fc303b442df9ea4ab158e87736af4e8, type: 3}
   m_Name: 

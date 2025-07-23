@@ -44,7 +44,7 @@ Material:
     - _MovementIntensity: 0.1
     - _MovementSpeed: 0.005
     - _NoiseScale: 50
-    - _Outline: 0.02
+    - _Outline: -0.03
     - _PanSpeed: 0
     - _QueueControl: 0
     - _QueueOffset: 0

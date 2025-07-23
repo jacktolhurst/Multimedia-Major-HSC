@@ -24,18 +24,22 @@ public class PanelSpinner : MonoBehaviour
 
     private IEnumerator Spin(Transform objTrans, float speed){ 
         while(true){ 
-            float projectedY = Random.Range(0f, 360f);
-            float randTimes = Random.Range(-1,2);
+            if(!objTrans.gameObject.activeSelf) break;
+            else{
 
-            if(randTimes == 0){
-                randTimes = 1;
-            }
+                float projectedY = Random.Range(0f, 360f);
+                float randTimes = Random.Range(-1,2);
 
-            while(!IsClose(objTrans.eulerAngles.y, projectedY, rotateDist)){
-                objTrans.Rotate(0, 0, Mathf.Lerp(objTrans.rotation.y, projectedY, speed * Time.deltaTime) * randTimes * Random.Range(0,2));
-                yield return null;
+                if(randTimes == 0){
+                    randTimes = 1;
+                }
+
+                while(!IsClose(objTrans.eulerAngles.y, projectedY, rotateDist)){
+                    objTrans.Rotate(0, 0, Mathf.Lerp(objTrans.rotation.y, projectedY, speed * Time.deltaTime) * randTimes * Random.Range (0, 2));
+                    yield return null;
+                }
+                yield return new WaitForSeconds(Random.Range(0,4));
             }
-            yield return new WaitForSeconds(Random.Range(0,4));
         }
     }
 

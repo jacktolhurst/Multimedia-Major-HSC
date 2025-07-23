@@ -1,77 +1,72 @@
 using UnityEngine;
 using System.Collections; 
 using System.Collections.Generic; 
+using DG.Tweening;
 
 [SelectionBase]
 public class OrbManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> deletedObjs = new List<GameObject>();
-
-    [SerializeField] private ManagerScript manager;
-
-    private Bounds selfBounds;
-
-    private float sceneRadius; 
-    [SerializeField] private float forceRadius; 
-    [SerializeField] private float attractorMass;
-
-    [SerializeField] private AudioManager.AudioReferenceClass orbAmbientSound;
-
-    void Start(){
-        selfBounds = GetComponent<Collider>().bounds;
-
-        StartCoroutine(PlayAmbientSound());
-    }
+    [SerializeField] private float checkSize;
+    [SerializeField] private float orbForce;
 
     void Update(){
-        ForceAddition();
-        SceneCheck();
+        ApplyForceToRigidbodies(GetRigidbodiesInRange(checkSize), orbForce);
+        ApplyDeletionToRigidbodies(GetRigidbodiesInRange(transform.localScale.x-1));
     }
 
-    private IEnumerator PlayAmbientSound(){
-        while(true){
-            orbAmbientSound.PlaySoundObject(transform.gameObject);
-            yield return new WaitForSeconds(5);
+    private void ApplyForceToRigidbodies(List<Rigidbody> rigidbodies, float baseForce){
+        foreach(Rigidbody body in rigidbodies){
+            Vector3 direction = (transform.position - body.position).normalized;
+            float distance = Vector3.Distance(transform.position, body.position);
+
+            body.AddForce(direction * (baseForce/distance), ForceMode.Acceleration);
+
+            Debug.DrawRay(body.position, direction * distance, Color.red);
         }
     }
 
-    private void ForceAddition(){
-        Collider[] objColliders = Physics.OverlapSphere(transform.position, forceRadius);
-        foreach(Collider collider in objColliders){
-            Rigidbody rb = collider.GetComponent<Rigidbody>();
-            if(rb == null) continue;
-
-            Vector3 direction = (transform.position - rb.position).normalized;
-            float distance = Mathf.Max(Vector3.Distance(transform.position, rb.position), 0.1f);
-            float force = attractorMass;
-
-            rb.AddForce(direction * force, ForceMode.Acceleration);
-            Debug.DrawRay(rb.position, direction * distance, Color.red);
+    private void ApplyDeletionToRigidbodies(List<Rigidbody> rigidbodies){
+        foreach(Rigidbody body in rigidbodies){
+            StartCoroutine(TrackDestroyObject(body.gameObject, 0.5f));
         }
     }
 
-    private void SceneCheck(){
-        sceneRadius = transform.localScale.magnitude/3;
+    private List<Rigidbody> GetRigidbodiesInRange(float range){
+        List<GameObject> alreadyCheckedObjects = new List<GameObject>();
+        List<Rigidbody> rigidbodiesInRange = new List<Rigidbody>();
+        Collider[] collidersInRange = Physics.OverlapSphere(transform.position, range);
 
-        Collider[] objColliders = Physics.OverlapSphere(transform.position, sceneRadius);
-        foreach(Collider collider in objColliders){
-            GameObject obj = collider.transform.gameObject;
-            Bounds objBounds = obj.GetComponent<Collider>().bounds;
-            int layer = obj.layer;
-
-            if(layer == 11 || layer == 12){
-                if(selfBounds.Contains(objBounds.max) && selfBounds.Contains(objBounds.min)){
-                    deletedObjs.Add(obj);
-                    obj.SetActive(false);
-                }
+        foreach(Collider collider in collidersInRange){
+            GameObject obj = collider.gameObject;
+            if(obj.GetComponent<Rigidbody>() && !alreadyCheckedObjects.Contains(obj)){
+                rigidbodiesInRange.Add(obj.GetComponent<Rigidbody>());
+                alreadyCheckedObjects.Add(obj);
             }
         }
+
+        return rigidbodiesInRange;
+    }
+
+    private IEnumerator TrackDestroyObject(GameObject obj, float scaleDuration){
+        float deletionTime = Time.time + scaleDuration;
+
+        Transform objTransform = obj.transform;
+        Rigidbody objRigidbody = obj.GetComponent<Rigidbody>();
+        objRigidbody.linearDamping = 10;
+
+        objTransform.DOScale(Vector3.zero, scaleDuration);
+        
+        while(Time.time < deletionTime){
+            yield return null;
+        }
+
+        DOTween.Kill(objTransform);
+        Destroy(obj);
     }
 
     void OnDrawGizmos(){
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, sceneRadius);
-        Gizmos.DrawWireSphere(transform.position, forceRadius);
+        Gizmos.DrawWireSphere(transform.position, checkSize);
     }
 
     // private List<GameObject> objects = new List<GameObject>();

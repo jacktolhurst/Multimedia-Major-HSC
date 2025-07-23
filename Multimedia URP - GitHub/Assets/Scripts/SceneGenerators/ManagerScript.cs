@@ -11,7 +11,7 @@ public class ManagerScript : MonoBehaviour
     [SerializeField] private int targetFrameRate;
 
     void Awake(){
-        DOTween.SetTweensCapacity(100, 50);
+        DOTween.SetTweensCapacity(300, 50);
     }
 
     void Start(){
