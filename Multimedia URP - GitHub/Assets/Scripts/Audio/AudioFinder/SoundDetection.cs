@@ -33,28 +33,13 @@ public class SoundDetection : MonoBehaviour
     private void UpdateParticlePosition(){
         List<GameObject> particlesToRemove = new List<GameObject>();
         foreach(GameObject particle in currParticles){
-            if(particle == null){
-                    particlesToRemove.Add(particle);
-                    continue;
-                }
-            else if(particle.activeSelf){
+            if(particle != null && particle.activeSelf){
                 Vector3 particlePos = particle.transform.position;
                 Rigidbody particleRigidbody = particle.GetComponent<Rigidbody>();
                 NoteParticleManager particleManager = particle.GetComponent<NoteParticleManager>();
 
                 Vector3 direction = (particleTargetTrans.position - particlePos).normalized;
                 particleRigidbody.linearVelocity = direction * particleMoveSpeed;
-
-                // if(!IsVector3Close(particlePos, particleTargetTrans.position, 0.01f)){
-                    // Vector3 direction = (particleTargetTrans.position - particlePos).normalized;
-// 
-                    // particleRigidbody.linearVelocity = direction * particleMoveSpeed;
-                // }
-                // else{
-                    // particleRigidbody.linearVelocity = Vector3.zero;
-                    // particleManager.SetEndTime(Time.time, false);
-                    // particlesToRemove.Add(particle);
-                // }
             }
             else{
                 particlesToRemove.Add(particle);
@@ -67,7 +52,8 @@ public class SoundDetection : MonoBehaviour
         foreach(GameObject particle in chosenEvent.GetParticles()){
             if(particle != null && particle.activeSelf && !timeAppliedParticles.Contains(particle)){
                 float distance = Vector3.Distance(particleTargetTrans.position, particle.transform.position);
-                particle.GetComponent<NoteParticleManager>().SetEndTime(Time.time + (distance/particleMoveSpeed), false);
+                NoteParticleManager particleManager = particle.GetComponent<NoteParticleManager>();
+                particleManager.SetEndTime(Time.time + (distance/particleMoveSpeed) + (particleManager.GetScaleDuration()/2), false);
 
                 timeAppliedParticles.Add(particle);
             }
@@ -111,7 +97,7 @@ public class SoundDetection : MonoBehaviour
                     Ray eventRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
                     
                     if(!Physics.Raycast(eventRay, out RaycastHit hit, Vector3.Distance(particleTargetTrans.position, soundEvent.position),hitLayerMask)){
-                            ChangeParticleEndTime(soundEvent);
+                        ChangeParticleEndTime(soundEvent);
 
                         if(soundEvent.impact > highestImpact){
                             highestImpact = soundEvent.impact;

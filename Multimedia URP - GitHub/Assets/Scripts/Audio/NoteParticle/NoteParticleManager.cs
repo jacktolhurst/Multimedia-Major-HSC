@@ -87,8 +87,9 @@ public class NoteParticleManager : MonoBehaviour
 
     void Update(){
         if(Time.time > endTime){
+            DOTween.Kill(transform);
             Destroy(transform.gameObject);
-            if(collideCheckCoroutine != null){
+            if (collideCheckCoroutine != null){
                 StopCoroutine(collideCheckCoroutine);
             }
         }
@@ -131,6 +132,10 @@ public class NoteParticleManager : MonoBehaviour
             colliderB, colliderB.transform.position, colliderB.transform.rotation,
             out direction, out distance
         );
+    }
+
+    public float GetScaleDuration(){
+        return scaleDuration;
     }
 
     private Vector3 RandomPointInCollider(Collider[] colliders, int maxTries = 30){

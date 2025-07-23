@@ -8789,65 +8789,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1306725515}
   m_LocalEulerAnglesHint: {x: -89.98, y: 90, z: 0}
---- !u!1 &315983382
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 315983384}
-  - component: {fileID: 315983383}
-  m_Layer: 0
-  m_Name: NoiseMaker (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &315983383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315983382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2ae7ea40eee034fa4f680913b350f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound:
-    eventReference:
-      Guid:
-        Data1: -1957198412
-        Data2: 1311076381
-        Data3: -1931979598
-        Data4: -1636580526
-      Path: event:/Ambience/Orb/OrbAmbience
-    volume: 0
-    maxDistance: 5
-    minDistance: 1
-    noteParticleLifetime: 4
-    impact: 1
-    dontUseSound: 0
-  playSound: 0
---- !u!4 &315983384
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315983382}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -171.07, y: 0.532, z: -15.199204}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317134986
 GameObject:
   m_ObjectHideFlags: 0
@@ -28930,65 +28871,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795621954}
   m_Mesh: {fileID: 1724015385465822904, guid: 70943d61426848a42af3d2f98c6d4429, type: 3}
---- !u!1 &798962013
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 798962015}
-  - component: {fileID: 798962014}
-  m_Layer: 0
-  m_Name: NoiseMaker (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &798962014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798962013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2ae7ea40eee034fa4f680913b350f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound:
-    eventReference:
-      Guid:
-        Data1: -1957198412
-        Data2: 1311076381
-        Data3: -1931979598
-        Data4: -1636580526
-      Path: event:/Ambience/Orb/OrbAmbience
-    volume: 0
-    maxDistance: 5
-    minDistance: 1
-    noteParticleLifetime: 4
-    impact: 1
-    dontUseSound: 0
-  playSound: 0
---- !u!4 &798962015
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798962013}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -170.07, y: 0.532, z: -14.199204}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &803966812
 GameObject:
   m_ObjectHideFlags: 0
@@ -29631,7 +29513,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821079823}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.16673283, g: 0, b: 0.18867922, a: 1}
@@ -30986,65 +30868,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928649834}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &933321427
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 933321429}
-  - component: {fileID: 933321428}
-  m_Layer: 0
-  m_Name: NoiseMaker (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &933321428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933321427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2ae7ea40eee034fa4f680913b350f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound:
-    eventReference:
-      Guid:
-        Data1: -1957198412
-        Data2: 1311076381
-        Data3: -1931979598
-        Data4: -1636580526
-      Path: event:/Ambience/Orb/OrbAmbience
-    volume: 0
-    maxDistance: 5
-    minDistance: 1
-    noteParticleLifetime: 4
-    impact: 1
-    dontUseSound: 0
-  playSound: 0
---- !u!4 &933321429
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933321427}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -171.07, y: 1.5320001, z: -14.199204}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934312295
 GameObject:
   m_ObjectHideFlags: 0
@@ -39144,65 +38967,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062189294}
   m_Mesh: {fileID: 1486264504929471971, guid: 70943d61426848a42af3d2f98c6d4429, type: 3}
---- !u!1 &1062637953
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1062637955}
-  - component: {fileID: 1062637954}
-  m_Layer: 0
-  m_Name: NoiseMaker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1062637954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062637953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2ae7ea40eee034fa4f680913b350f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound:
-    eventReference:
-      Guid:
-        Data1: -1957198412
-        Data2: 1311076381
-        Data3: -1931979598
-        Data4: -1636580526
-      Path: event:/Ambience/Orb/OrbAmbience
-    volume: 0
-    maxDistance: 5
-    minDistance: 1
-    noteParticleLifetime: 4
-    impact: 1
-    dontUseSound: 0
-  playSound: 0
---- !u!4 &1062637955
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062637953}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -171.07, y: 0.532, z: -14.199204}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064674016
 GameObject:
   m_ObjectHideFlags: 0
@@ -40610,65 +40374,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102541502}
   m_Mesh: {fileID: 8984254119399216120, guid: b81d65a37837b8540a98bb552f9ec8b5, type: 3}
---- !u!1 &1103460221
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1103460223}
-  - component: {fileID: 1103460222}
-  m_Layer: 0
-  m_Name: NoiseMaker (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1103460222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103460221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2ae7ea40eee034fa4f680913b350f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound:
-    eventReference:
-      Guid:
-        Data1: -1957198412
-        Data2: 1311076381
-        Data3: -1931979598
-        Data4: -1636580526
-      Path: event:/Ambience/Orb/OrbAmbience
-    volume: 0
-    maxDistance: 5
-    minDistance: 1
-    noteParticleLifetime: 4
-    impact: 1
-    dontUseSound: 0
-  playSound: 0
---- !u!4 &1103460223
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103460221}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -172.07, y: 0.532, z: -14.199204}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1105540974
 GameObject:
   m_ObjectHideFlags: 0
@@ -61441,65 +61146,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1898177476}
   m_Mesh: {fileID: -4879134415351364548, guid: 10a73e84fbabe0a4c86b8c8944ec5a26, type: 3}
---- !u!1 &1899065868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1899065870}
-  - component: {fileID: 1899065869}
-  m_Layer: 0
-  m_Name: NoiseMaker (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1899065869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899065868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2ae7ea40eee034fa4f680913b350f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sound:
-    eventReference:
-      Guid:
-        Data1: -1957198412
-        Data2: 1311076381
-        Data3: -1931979598
-        Data4: -1636580526
-      Path: event:/Ambience/Orb/OrbAmbience
-    volume: 0
-    maxDistance: 5
-    minDistance: 1
-    noteParticleLifetime: 4
-    impact: 1
-    dontUseSound: 0
-  playSound: 0
---- !u!4 &1899065870
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899065868}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -171.07, y: 0.532, z: -13.199204}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1901485098
 GameObject:
   m_ObjectHideFlags: 0
@@ -70180,16 +69826,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8857790807701116764, guid: 93e05e8c633c2d04a830c865894e1f42,
-        type: 3}
-      propertyPath: checkSounds
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8857790807701116764, guid: 93e05e8c633c2d04a830c865894e1f42,
-        type: 3}
-      propertyPath: particleMoveSpeed
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -73716,9 +73352,3 @@ SceneRoots:
   - {fileID: 413495424}
   - {fileID: 3115963324043973803}
   - {fileID: 6027997856748734087}
-  - {fileID: 1062637955}
-  - {fileID: 798962015}
-  - {fileID: 315983384}
-  - {fileID: 1899065870}
-  - {fileID: 1103460223}
-  - {fileID: 933321429}
