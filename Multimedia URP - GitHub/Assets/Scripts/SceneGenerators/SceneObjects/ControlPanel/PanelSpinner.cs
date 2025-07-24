@@ -18,28 +18,28 @@ public class PanelSpinner : MonoBehaviour
 
     void Awake(){
         foreach(SpinnerClass spinner in spinners){ 
-            StartCoroutine(Spin(spinner.obj.transform, spinner.speed));
+            StartCoroutine(Spin(spinner.obj, spinner.speed));
         }
     }
 
-    private IEnumerator Spin(Transform objTrans, float speed){ 
-        while(true){ 
-            if(!objTrans.gameObject.activeSelf) break;
-            else{
+    private IEnumerator Spin(GameObject obj, float speed){ 
+        Transform objTrans = obj.transform;
+        while (obj != null) { 
 
-                float projectedY = Random.Range(0f, 360f);
-                float randTimes = Random.Range(-1,2);
+            float projectedY = Random.Range(0f, 360f);
+            float randTimes = Random.Range(-1,2);
 
-                if(randTimes == 0){
-                    randTimes = 1;
-                }
-
-                while(!IsClose(objTrans.eulerAngles.y, projectedY, rotateDist)){
-                    objTrans.Rotate(0, 0, Mathf.Lerp(objTrans.rotation.y, projectedY, speed * Time.deltaTime) * randTimes * Random.Range (0, 2));
-                    yield return null;
-                }
-                yield return new WaitForSeconds(Random.Range(0,4));
+            if(randTimes == 0){
+                randTimes = 1;
             }
+            
+            while(!IsClose(objTrans.eulerAngles.y, projectedY, rotateDist)){
+                objTrans.Rotate(0, 0, Mathf.Lerp(objTrans.rotation.y, projectedY, speed * Time.deltaTime) * randTimes * Random.Range(0, 2));
+                yield return null;
+
+                if (obj == null || objTrans == null) yield break;
+            }
+            yield return new WaitForSeconds(Random.Range(0,4));
         }
     }
 

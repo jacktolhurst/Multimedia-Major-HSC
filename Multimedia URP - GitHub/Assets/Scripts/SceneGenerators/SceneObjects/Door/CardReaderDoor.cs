@@ -34,22 +34,24 @@ public class CardReaderDoor : MonoBehaviour
 
     void Update(){
         foreach(ReaderClass reader in readers){
-            if(!unlocked && reader.bounds.Contains(key.transform.position)){
-                lockedDoor.Unlock(new Vector3(-2, 0, 0), 10f, 50f);
+            if(reader.obj.activeSelf && key){
+                if(!unlocked && reader.bounds.Contains(key.transform.position)){
+                    lockedDoor.Unlock(new Vector3(-2, 0, 0), 10f, 50f);
 
-                unlocked = true;
-            }
-            if(unlocked){
-                reader.readerMat[0].SetColor("_MainColor", Color.green);
-                reader.readerMat[2].SetColor("_MainColor", Color.green);
-                reader.readerMat[3].SetColor("_Color", Color.green + (Color.white/2));
-            }
-            else{
-                lockedDoor.Lock();
+                    unlocked = true;
+                }
+                if(unlocked){
+                    reader.readerMat[0].SetColor("_MainColor", Color.green);
+                    reader.readerMat[2].SetColor("_MainColor", Color.green);
+                    reader.readerMat[3].SetColor("_Color", Color.green + (Color.white/2));
+                }
+                else{
+                    lockedDoor.Lock();
 
-                reader.readerMat[0].SetColor("_MainColor", Color.red);
-                reader.readerMat[2].SetColor("_MainColor", Color.red);
-                reader.readerMat[3].SetColor("_Color", Color.red + (Color.white/2));
+                    reader.readerMat[0].SetColor("_MainColor", Color.red);
+                    reader.readerMat[2].SetColor("_MainColor", Color.red);
+                    reader.readerMat[3].SetColor("_Color", Color.red + (Color.white/2));
+                }
             }
         }
     }

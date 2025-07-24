@@ -6,29 +6,67 @@ using DG.Tweening;
 [SelectionBase]
 public class OrbManager : MonoBehaviour
 {
-    [SerializeField] private float checkSize;
+    private List<GameObject> deletedObjs = new List<GameObject>();
+
+    private Vector3 baseScale;
+    private Vector3 projectedScale;
+
+    [SerializeField] private float baseCheckSize;
     [SerializeField] private float orbForce;
+    [SerializeField] private float sizeSpeed;
+
+    void Awake(){
+        baseScale = transform.localScale;
+    }
 
     void Update(){
-        ApplyForceToRigidbodies(GetRigidbodiesInRange(checkSize), orbForce);
+        ManageRigidbodies();
+        ManageScaling();
+    }
+
+    private void ManageRigidbodies(){
+        ApplyForceToRigidbodies(GetRigidbodiesInRange(GetCheckSize(transform.localScale, baseCheckSize)), orbForce);
         ApplyDeletionToRigidbodies(GetRigidbodiesInRange(transform.localScale.x-1));
     }
 
+    private void ManageScaling(){
+        DOTween.Kill(transform);
+
+        projectedScale = ListToScale(deletedObjs, baseScale);
+        transform.DOScale(projectedScale, sizeSpeed);
+    } 
+
     private void ApplyForceToRigidbodies(List<Rigidbody> rigidbodies, float baseForce){
         foreach(Rigidbody body in rigidbodies){
+            if(body.isKinematic){
+                body.isKinematic = false;
+            }
+
             Vector3 direction = (transform.position - body.position).normalized;
             float distance = Vector3.Distance(transform.position, body.position);
 
             body.AddForce(direction * (baseForce/distance), ForceMode.Acceleration);
-
-            Debug.DrawRay(body.position, direction * distance, Color.red);
         }
     }
 
     private void ApplyDeletionToRigidbodies(List<Rigidbody> rigidbodies){
         foreach(Rigidbody body in rigidbodies){
-            StartCoroutine(TrackDestroyObject(body.gameObject, 0.5f));
+            GameObject obj = body.gameObject;
+            if(!deletedObjs.Contains(obj)){
+                StartCoroutine(TrackDestroyObject(obj, 0.5f));
+                deletedObjs.Add(obj);
+            }
         }
+    }
+
+    private float GetCheckSize(Vector3 givenScale, float baseSize){
+        float average = (givenScale.x + givenScale.y + givenScale.z)/3;
+        return average + baseSize;
+    }
+
+    private Vector3 ListToScale(List<GameObject> objs, Vector3 baseScale, float multiplier=1){
+        Vector3 countInVector3 = new Vector3(1,1,1) * objs.Count * multiplier;
+        return baseScale + countInVector3;
     }
 
     private List<Rigidbody> GetRigidbodiesInRange(float range){
@@ -52,11 +90,12 @@ public class OrbManager : MonoBehaviour
 
         Transform objTransform = obj.transform;
         Rigidbody objRigidbody = obj.GetComponent<Rigidbody>();
-        objRigidbody.linearDamping = 10;
+        objRigidbody.linearDamping = 100;
 
         objTransform.DOScale(Vector3.zero, scaleDuration);
         
         while(Time.time < deletionTime){
+            objTransform.position = Vector3.Lerp(objTransform.position, transform.position, 5f*Time.deltaTime);
             yield return null;
         }
 
@@ -66,7 +105,7 @@ public class OrbManager : MonoBehaviour
 
     void OnDrawGizmos(){
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, checkSize);
+        Gizmos.DrawWireSphere(transform.position, GetCheckSize(transform.localScale, baseCheckSize));
     }
 
     // private List<GameObject> objects = new List<GameObject>();
