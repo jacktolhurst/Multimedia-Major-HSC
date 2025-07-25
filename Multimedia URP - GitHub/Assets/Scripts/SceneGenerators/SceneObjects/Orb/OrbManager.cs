@@ -8,15 +8,20 @@ public class OrbManager : MonoBehaviour
 {
     private List<GameObject> deletedObjs = new List<GameObject>();
 
-    private Vector3 baseScale;
+    private Bounds selfBounds;
+
+    private Vector3 baseSize;
     private Vector3 projectedScale;
 
-    [SerializeField] private float baseCheckSize;
+    [SerializeField] private float baseForceSize;
     [SerializeField] private float orbForce;
     [SerializeField] private float sizeSpeed;
 
+    private int lastDeletedObjsSize;
+
     void Awake(){
-        baseScale = transform.localScale;
+        selfBounds = GetBoundsFromObj(transform.gameObject);
+        baseSize = selfBounds.size;
     }
 
     void Update(){
@@ -25,23 +30,23 @@ public class OrbManager : MonoBehaviour
     }
 
     private void ManageRigidbodies(){
-        ApplyForceToRigidbodies(GetRigidbodiesInRange(GetCheckSize(transform.localScale, baseCheckSize)), orbForce);
-        ApplyDeletionToRigidbodies(GetRigidbodiesInRange(transform.localScale.x-1));
+        ApplyForceToRigidbodies(GetRigidbodiesInRange(GetCheckSize(selfBounds.size, baseForceSize)), orbForce);
+        ApplyDeletionToRigidbodies(GetRigidbodiesInRange(GetCheckSize(selfBounds.size, -1)));
     }
 
     private void ManageScaling(){
-        DOTween.Kill(transform);
+        if(lastDeletedObjsSize != deletedObjs.Count){
+            DOTween.Kill(transform);
 
-        projectedScale = ListToScale(deletedObjs, baseScale);
-        transform.DOScale(projectedScale, sizeSpeed);
+            projectedScale = ListToScale(deletedObjs, baseSize);
+            transform.DOScale(projectedScale, sizeSpeed);
+
+            lastDeletedObjsSize = deletedObjs.Count;
+        }
     } 
 
     private void ApplyForceToRigidbodies(List<Rigidbody> rigidbodies, float baseForce){
         foreach(Rigidbody body in rigidbodies){
-            if(body.isKinematic){
-                body.isKinematic = false;
-            }
-
             Vector3 direction = (transform.position - body.position).normalized;
             float distance = Vector3.Distance(transform.position, body.position);
 
@@ -64,9 +69,13 @@ public class OrbManager : MonoBehaviour
         return average + baseSize;
     }
 
-    private Vector3 ListToScale(List<GameObject> objs, Vector3 baseScale, float multiplier=1){
+    private Vector3 ListToScale(List<GameObject> objs, Vector3 baseSize, float multiplier=1){
         Vector3 countInVector3 = new Vector3(1,1,1) * objs.Count * multiplier;
-        return baseScale + countInVector3;
+        return baseSize + countInVector3;
+    }
+
+    private Bounds GetBoundsFromObj(GameObject obj){
+        return obj.GetComponent<Collider>().bounds;
     }
 
     private List<Rigidbody> GetRigidbodiesInRange(float range){
@@ -105,7 +114,8 @@ public class OrbManager : MonoBehaviour
 
     void OnDrawGizmos(){
         Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, GetCheckSize(transform.localScale, baseCheckSize));
+        Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.size, baseForceSize));
+        Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.size, -1));
     }
 
     // private List<GameObject> objects = new List<GameObject>();
@@ -123,7 +133,7 @@ public class OrbManager : MonoBehaviour
 
     // Material[] objMaterials;
 
-    // private Vector3 baseScale;
+    // private Vector3 baseSize;
     // private Vector3 projectedScale;
     // [SerializeField] private Vector3 speakerPosition;
 
@@ -140,7 +150,7 @@ public class OrbManager : MonoBehaviour
     // private bool statedForceCheck;
 
     // void Awake(){
-    //     baseScale = transform.localScale;
+    //     baseSize = transform.localScale;
 
     //     projectedScale = transform.localScale;
 
@@ -178,7 +188,7 @@ public class OrbManager : MonoBehaviour
     //         var shape = childParticleSystem.shape;
     //         shape.scale = localScale;
 
-    //         mainLight.intensity = initialIntensity + ((localScale.magnitude - baseScale.magnitude) * 3000);
+    //         mainLight.intensity = initialIntensity + ((localScale.magnitude - baseSize.magnitude) * 3000);
     //         mainLight.range = forceRadius
 
     //         wire.SetActive(true);
@@ -244,7 +254,7 @@ public class OrbManager : MonoBehaviour
 
     //                 Vector3 direction = (transform.position - rb.position).normalized;
     //                 float distance = Vector3.Distance(transform.position, rb.position);
-    //                 float force = (baseForce * 2/distance) * (Vector3.Distance(baseScale, transform.localScale) + 1);
+    //                 float force = (baseForce * 2/distance) * (Vector3.Distance(baseSize, transform.localScale) + 1);
 
     //                 rb.AddForce(direction * force, ForceMode.Acceleration);
 

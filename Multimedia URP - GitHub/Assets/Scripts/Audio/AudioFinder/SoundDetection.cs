@@ -33,7 +33,7 @@ public class SoundDetection : MonoBehaviour
     private void UpdateParticlePosition(){
         List<GameObject> particlesToRemove = new List<GameObject>();
         foreach(GameObject particle in currParticles){
-            if(particle != null && particle.activeSelf){
+            if(particle != null && particle.activeSelf && particleTargetTrans != null){
                 Vector3 particlePos = particle.transform.position;
                 Rigidbody particleRigidbody = particle.GetComponent<Rigidbody>();
                 NoteParticleManager particleManager = particle.GetComponent<NoteParticleManager>();
@@ -50,7 +50,7 @@ public class SoundDetection : MonoBehaviour
 
     private void ChangeParticleEndTime(AudioManager.EventHandler chosenEvent){
         foreach(GameObject particle in chosenEvent.GetParticles()){
-            if(particle != null && particle.activeSelf && !timeAppliedParticles.Contains(particle)){
+            if(particle != null && particle.activeSelf && !timeAppliedParticles.Contains(particle) && particleTargetTrans != null){
                 float distance = Vector3.Distance(particleTargetTrans.position, particle.transform.position);
                 NoteParticleManager particleManager = particle.GetComponent<NoteParticleManager>();
                 particleManager.SetEndTime(Time.time + (distance/particleMoveSpeed) + (particleManager.GetScaleDuration()/2), false);

@@ -52035,8 +52035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa1cd57cca5d6c4ca4ac92e03563232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCheckSize: 8.49
-  orbForce: 1
+  baseForceSize: 3.77
+  orbForce: 40
   sizeSpeed: 10
 --- !u!135 &1676636983
 SphereCollider:
@@ -62384,7 +62384,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -163.57
+      value: -5.1
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -62430,6 +62430,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670167641232594765, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: jumpForce
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
