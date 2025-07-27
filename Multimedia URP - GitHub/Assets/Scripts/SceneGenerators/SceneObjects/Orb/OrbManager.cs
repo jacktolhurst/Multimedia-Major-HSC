@@ -14,6 +14,7 @@ public class OrbManager : MonoBehaviour
     private Vector3 projectedScale;
 
     [SerializeField] private float baseForceSize;
+    [SerializeField] private float baseDeletionSize;
     [SerializeField] private float orbForce;
     [SerializeField] private float sizeSpeed;
 
@@ -25,13 +26,15 @@ public class OrbManager : MonoBehaviour
     }
 
     void Update(){
+        selfBounds = GetBoundsFromObj(transform.gameObject);
+
         ManageRigidbodies();
         ManageScaling();
     }
 
     private void ManageRigidbodies(){
-        ApplyForceToRigidbodies(GetRigidbodiesInRange(GetCheckSize(selfBounds.size, baseForceSize)), orbForce);
-        ApplyDeletionToRigidbodies(GetRigidbodiesInRange(GetCheckSize(selfBounds.size, -1)));
+        ApplyForceToRigidbodies(GetRigidbodiesInRange(GetCheckSize(selfBounds.extents, baseForceSize)), orbForce);
+        ApplyDeletionToRigidbodies(GetRigidbodiesInRange(GetCheckSize(selfBounds.extents, baseDeletionSize)));
     }
 
     private void ManageScaling(){
@@ -50,7 +53,9 @@ public class OrbManager : MonoBehaviour
             Vector3 direction = (transform.position - body.position).normalized;
             float distance = Vector3.Distance(transform.position, body.position);
 
-            body.AddForce(direction * (baseForce/distance), ForceMode.Acceleration);
+            float distanceScaledForce = Mathf.Min(baseForce/distance, 1000);
+
+            body.AddForce(direction * distanceScaledForce, ForceMode.Acceleration);
         }
     }
 
@@ -64,9 +69,13 @@ public class OrbManager : MonoBehaviour
         }
     }
 
-    private float GetCheckSize(Vector3 givenScale, float baseSize){
+    private float GetCheckSize(Vector3 givenScale, float baseSize=0){
         float average = (givenScale.x + givenScale.y + givenScale.z)/3;
         return average + baseSize;
+    }
+
+    private float ApplyOrbRatio(Bounds bounds, float originalScale){
+        return bounds.size.magnitude / originalScale;
     }
 
     private Vector3 ListToScale(List<GameObject> objs, Vector3 baseSize, float multiplier=1){
@@ -100,11 +109,15 @@ public class OrbManager : MonoBehaviour
         Transform objTransform = obj.transform;
         Rigidbody objRigidbody = obj.GetComponent<Rigidbody>();
         objRigidbody.linearDamping = 100;
+        float velocity = objRigidbody.linearVelocity.magnitude;
+        if(velocity < 2) velocity = 5;
+        float distance = Vector3.Distance(objTransform.position, transform.position);
+        
 
         objTransform.DOScale(Vector3.zero, scaleDuration);
+        objTransform.DOMove(transform.position, distance/velocity);
         
         while(Time.time < deletionTime){
-            objTransform.position = Vector3.Lerp(objTransform.position, transform.position, 5f*Time.deltaTime);
             yield return null;
         }
 
@@ -113,9 +126,11 @@ public class OrbManager : MonoBehaviour
     }
 
     void OnDrawGizmos(){
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.size, baseForceSize));
-        Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.size, -1));
+        if(Application.isPlaying){
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.extents, baseForceSize));
+            Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.extents, baseDeletionSize));
+        }
     }
 
     // private List<GameObject> objects = new List<GameObject>();

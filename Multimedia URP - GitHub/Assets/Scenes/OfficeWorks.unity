@@ -52035,7 +52035,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa1cd57cca5d6c4ca4ac92e03563232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseForceSize: 3.77
+  baseForceSize: 10
+  baseDeletionSize: 1
   orbForce: 40
   sizeSpeed: 10
 --- !u!135 &1676636983

@@ -66,9 +66,7 @@ public class NoteParticleManager : MonoBehaviour
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, Random.Range(0,360), transform.eulerAngles.z);    
 
-        targetPos = transform.position + (Random.insideUnitSphere*2);
-        Vector3 dir = (targetPos - transform.position).normalized;
-        selfRb.AddForce(dir * randomPointSpeed, ForceMode.VelocityChange);
+        targetPos = transform.position + (Random.insideUnitSphere*2) + (Vector3.up * 100);
     }
 
     private IEnumerator ColliderCheck(){
@@ -80,9 +78,7 @@ public class NoteParticleManager : MonoBehaviour
             Physics.IgnoreCollision(selfCollider, followObjCollider, false);
         }
 
-        targetPos = transform.position + (Random.insideUnitSphere*2);
-        Vector3 dir = (targetPos - transform.position).normalized;
-        selfRb.AddForce(dir * randomPointSpeed, ForceMode.VelocityChange);
+        targetPos = transform.position + (Random.insideUnitSphere*2) + (Vector3.up*100);
     }   
 
     void Update(){
@@ -94,6 +90,9 @@ public class NoteParticleManager : MonoBehaviour
             }
         }
         else{
+            Vector3 dir = (targetPos - transform.position).normalized;
+            selfRb.linearVelocity = dir * randomPointSpeed;
+
             if(Time.time > scaleDownTime){   
                 if(!scaledUp){
                     transform.DOScale(Vector3.zero, scaleDuration);
@@ -110,7 +109,7 @@ public class NoteParticleManager : MonoBehaviour
                 selfRb.angularVelocity = Vector3.zero;
             }
 
-            // particleMat.SetFloat("_TimeLeft", (float)(((Time.time - startTime) / (scaleDownTime - startTime)) * 1.5f));
+            particleMat.SetFloat("_TimeLeft", (float)(((Time.time - startTime) / (scaleDownTime - startTime))));
         }
     }
 
