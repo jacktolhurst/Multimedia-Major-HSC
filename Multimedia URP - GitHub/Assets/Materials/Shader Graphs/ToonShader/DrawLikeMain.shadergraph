@@ -26,6 +26,9 @@
         },
         {
             "m_Id": "6dd9e14954de45f8919d30933099a13a"
+        },
+        {
+            "m_Id": "682f68ec61da447e8a4d8cd439641c29"
         }
     ],
     "m_Keywords": [],
@@ -170,6 +173,9 @@
         },
         {
             "m_Id": "9415c5e852c7490597a194a3e442f3c8"
+        },
+        {
+            "m_Id": "8e7410df55824486b3d538f7b5ea4d6d"
         }
     ],
     "m_GroupDatas": [
@@ -575,6 +581,20 @@
                     "m_Id": "5b16863eb5b64f7bab0540b5c51ff6bb"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "8e7410df55824486b3d538f7b5ea4d6d"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "eecd13ca64ca40f088335da4fda5437d"
+                },
+                "m_SlotId": 2
             }
         },
         {
@@ -1462,8 +1482,8 @@
     "m_ObjectId": "23f817e9c4fe45918dea543fb8f35457",
     "m_Title": "Calc Shadows",
     "m_Position": {
-        "x": 2247.33349609375,
-        "y": 256.66650390625
+        "x": 2248.0,
+        "y": 256.0
     }
 }
 
@@ -1581,8 +1601,8 @@
     "m_ObjectId": "2e1cdbd07e804b2690a9402ea7efd3ec",
     "m_Title": "Texturing",
     "m_Position": {
-        "x": -2318.6669921875,
-        "y": 1071.333740234375
+        "x": -2318.0,
+        "y": 1071.0
     }
 }
 
@@ -2875,6 +2895,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector2ShaderProperty",
+    "m_ObjectId": "682f68ec61da447e8a4d8cd439641c29",
+    "m_Guid": {
+        "m_GuidSerialized": "f80e2e9d-562b-479e-ae7c-9bf41839509c"
+    },
+    "m_Name": "TextureOffset",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "TextureOffset",
+    "m_DefaultReferenceName": "_TextureOffset",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "6879b65942f746d5bf261ac4a653837a",
@@ -3626,6 +3674,42 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "8e7410df55824486b3d538f7b5ea4d6d",
+    "m_Group": {
+        "m_Id": "2e1cdbd07e804b2690a9402ea7efd3ec"
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -2281.0,
+            "y": 1470.0,
+            "width": 149.0,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "d21c8525efcc4b87bac6681d50dec297"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "682f68ec61da447e8a4d8cd439641c29"
+    }
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicValueMaterialSlot",
     "m_ObjectId": "90feb17e52914adcb30f1e02038e31e7",
     "m_Id": 1,
@@ -4179,6 +4263,9 @@
             "m_Id": "8267967e18b0479487397c328a071977"
         },
         {
+            "m_Id": "682f68ec61da447e8a4d8cd439641c29"
+        },
+        {
             "m_Id": "5ef12297fce94dda84e73ee88d79b651"
         },
         {
@@ -4557,8 +4644,8 @@
     "m_ObjectId": "be3bf9af861e48e4a3c13844a1d6a124",
     "m_Title": "Calc Shadows",
     "m_Position": {
-        "x": -4474.66650390625,
-        "y": -784.000244140625
+        "x": -4474.0,
+        "y": -784.0
     }
 }
 
@@ -5014,6 +5101,27 @@
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
+    "m_ObjectId": "d21c8525efcc4b87bac6681d50dec297",
+    "m_Id": 0,
+    "m_DisplayName": "TextureOffset",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0
+    },
     "m_Labels": []
 }
 
