@@ -141,11 +141,9 @@ public class CubicleGeneratorV2 : MonoBehaviour
         List<GameObject> parentObjects = new List<GameObject>();
         
         while(iteration < maxIteration){
-
             List<GameObject> chunkedObjects = new List<GameObject>();
 
             for(int i = 0; i < chunkSize + 1; i++){
-
 
                 GameObject obj = GetObj();
                 

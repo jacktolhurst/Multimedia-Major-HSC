@@ -1708,8 +1708,8 @@ MonoBehaviour:
   playerDistBoundsSize: {x: 10, y: 10, z: 10}
   additionDistFromPrev: -0.25
   walkwayDistance: 15
-  cubicleScaling: 1.45
-  gapDistance: 15
+  cubicleScaling: 1
+  gapDistance: 20
   chunkSize: 10
   maxIteration: 200
   playerCubicleNum: 15
