@@ -1673,27 +1673,35 @@ MonoBehaviour:
   - objMain: {fileID: 6872805143060948726, guid: 5c60b59e5ae538f43a553f85b018442a,
       type: 3}
     chance: 40
+    noteAmount: 5
   - objMain: {fileID: 5484985688424306213, guid: a5949bd6091a12943915084fedbeb753,
       type: 3}
     chance: 5
+    noteAmount: 20
   - objMain: {fileID: 1579061923543834654, guid: bb09bfa2be664b848b7e3e3dad660ca6,
       type: 3}
     chance: 5
+    noteAmount: 15
   - objMain: {fileID: 5255830076675516124, guid: e0cfde0ace2c3a84986c72b925a436bf,
       type: 3}
     chance: 2
+    noteAmount: 0
   - objMain: {fileID: 7223554113747979325, guid: f74bf68e7554a7941a508b1cf6addbae,
       type: 3}
-    chance: 100
+    chance: 1
+    noteAmount: 2
   - objMain: {fileID: 6316331835703175235, guid: 4f35b1db503d97d46a7193ef3662ead1,
       type: 3}
     chance: 1
+    noteAmount: 5
   - objMain: {fileID: 6872805143060948726, guid: 130a6922aa13c4147b066d5414222550,
       type: 3}
     chance: 5
+    noteAmount: 5
   - objMain: {fileID: 6872805143060948726, guid: e9a7ee62ba9b8f54da5e42bd77351972,
       type: 3}
     chance: 40
+    noteAmount: 5
   notes:
   - {fileID: 508076036907165358, guid: 5b0a05430b3797e4aa7a9895ec766b3d, type: 3}
   - {fileID: 8904216416957733636, guid: 739bba1c8918287489772710fdc77537, type: 3}
@@ -1713,7 +1721,6 @@ MonoBehaviour:
   playerDistBoundsSize: {x: 10, y: 10, z: 10}
   additionDistFromPrev: 1.9
   walkwayDistance: 15
-  cubicleScaling: 1
   gapDistance: 20
   chunkSize: 10
   maxIteration: 200

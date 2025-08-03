@@ -47,6 +47,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ColorReplaceRange: -0.86
+    - _Fuzz: 0.04
     - _HighAddition: 0.4
     - _HighesCuttoff: 0.6
     - _LightingCuttoff: -0.31
@@ -55,8 +57,10 @@ Material:
     - _Shadow_Brightness: 0.5
     - _Transparency: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color: {r: 2, g: 2, b: 2, a: 0}
+    - _NewBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
     - _RandomNumber: {r: 0, g: 0, b: 0, a: 0}
+    - _StandardBackgroundColor: {r: 1, g: 0.040543593, b: 0, a: 1}
     - _TextureOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 0.6, g: 0.7, b: 0, a: 0}
     - _Vector3: {r: 0, g: 0, b: 0, a: 0}

@@ -9,6 +9,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
     private class objects{
         public GameObject objMain;
         public int chance;
+        public int noteAmount;
     }
 
     public static CubicleGeneratorV2 instance;
@@ -44,7 +45,6 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
     [SerializeField] private float additionDistFromPrev;
     [SerializeField] private float walkwayDistance;
-    [SerializeField] private float cubicleScaling;
     [SerializeField] private float gapDistance;
 
     private int rows = 0;
@@ -106,7 +106,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
     }
 
     private void SpawnNotes(List<StickyNoteMaker> noteMakers){
-        foreach(StickyNoteMaker noteMaker in noteMakers) noteMaker.SpawnNotes(100);
+        foreach(StickyNoteMaker noteMaker in noteMakers) noteMaker.SpawnNotes(Random.Range(0,100));
     }
 
     private void EarlyDistCheck(){ // an early version of discheck used in the awake to leverage intial memory
@@ -217,7 +217,10 @@ public class CubicleGeneratorV2 : MonoBehaviour
                         }
                     }
 
-                    noteMakers.Add(instanceObj.AddComponent<StickyNoteMaker>());
+                    StickyNoteMaker stickyNoteScript = instanceObj.AddComponent<StickyNoteMaker>();
+                    stickyNoteScript.SetNoteAmount(objClass.noteAmount);
+
+                    noteMakers.Add(stickyNoteScript);
                     chunkedObjects.Add(instanceObj);
                 }
             }

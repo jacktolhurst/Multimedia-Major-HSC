@@ -147,9 +147,6 @@ public class GrabObjects : MonoBehaviour
                 grabbedObj.tag = "StayInScene";
 
                 cubicleGeneratorV2.KeepObject(grabbedObj);
-                foreach(Transform child in grabbedObj.transform){
-                    cubicleGeneratorV2.KeepObject(child.gameObject);
-                }
             }
         }
 
