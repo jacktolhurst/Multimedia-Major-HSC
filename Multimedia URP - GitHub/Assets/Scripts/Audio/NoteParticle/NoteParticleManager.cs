@@ -25,7 +25,7 @@ public class NoteParticleManager : MonoBehaviour
     private float startTime;
     private float lifeTime;
     public float endTime;
-    public float currTime;
+    private float currTime;
     private float randomPointSpeed = 1;
     private float scaleDownTime;
     private float scaleDuration = 0.5f;
@@ -108,8 +108,6 @@ public class NoteParticleManager : MonoBehaviour
                 selfRb.linearVelocity = Vector3.zero;
                 selfRb.angularVelocity = Vector3.zero;
             }
-
-            particleMat.SetFloat("_TimeLeft", (float)(((Time.time - startTime) / (scaleDownTime - startTime))));
         }
     }
 

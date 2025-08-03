@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic; 
 
@@ -10,10 +11,16 @@ public class CubicleGeneratorV2 : MonoBehaviour
         public int chance;
     }
 
+    public static CubicleGeneratorV2 instance;
+
+
     private Dictionary<GameObject, Vector3> parentVector = new Dictionary<GameObject, Vector3>();
+
+    private List<StickyNoteMaker> noteMakers = new List<StickyNoteMaker>();
 
     [SerializeField] private List<objects> cubicleObjs = new List<objects>();
 
+    public List<GameObject> notes = new List<GameObject>();
     private List<GameObject> generatedObjs = new List<GameObject>();
 
     [SerializeField] private FirstPersonMovement FPM;
@@ -52,12 +59,17 @@ public class CubicleGeneratorV2 : MonoBehaviour
     [SerializeField] private bool doDistCheck;
 
     void Awake(){
+        if(instance != null){
+            Debug.LogWarning("Two CubicleGenerator V2 instances");
+        }
+        instance = this;
+
         startingPos = transform.position;
         playerPos = player.transform.position;
         delayedPlayerPos = playerPos;
 
         CreateCubicles();
-
+        SpawnNotes(noteMakers);
 
         checkBounds = GetComponent<BoxCollider>().bounds;
         checkBounds.center = playerPos;
@@ -80,6 +92,8 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
             DestroyCubicles();
             CreateCubicles();
+            SpawnNotes(noteMakers);
+
             reGenerate = false;
         }
 
@@ -89,6 +103,10 @@ public class CubicleGeneratorV2 : MonoBehaviour
         checkBounds.size = checkBoundsSize;
         
         playerMovementBounds.size = playerDistBoundsSize;
+    }
+
+    private void SpawnNotes(List<StickyNoteMaker> noteMakers){
+        foreach(StickyNoteMaker noteMaker in noteMakers) noteMaker.SpawnNotes(100);
     }
 
     private void EarlyDistCheck(){ // an early version of discheck used in the awake to leverage intial memory
@@ -139,13 +157,20 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
         List<GameObject> nonChunkedObjects = new List<GameObject>();
         List<GameObject> parentObjects = new List<GameObject>();
+
+        nonChunkedParent = new GameObject("Parent Stay In Scene");
+        generatedObjs.Add(nonChunkedParent);
+        parentObjects.Add(nonChunkedParent);
+
         
         while(iteration < maxIteration){
             List<GameObject> chunkedObjects = new List<GameObject>();
 
             for(int i = 0; i < chunkSize + 1; i++){
 
-                GameObject obj = GetObj();
+                objects objClass = GetObj();
+                GameObject obj = objClass.objMain;
+
                 
                 if(playerCubicleNum == iteration * chunkSize + i){
                     obj = playerCubicle;
@@ -187,10 +212,12 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
                         if(child.tag == "StayInScene"){
                             nonChunkedObjects.Add(child);
-                            Destroy(child);
+
+                            childTrans.SetParent(nonChunkedParent.transform);
                         }
                     }
 
+                    noteMakers.Add(instanceObj.AddComponent<StickyNoteMaker>());
                     chunkedObjects.Add(instanceObj);
                 }
             }
@@ -214,43 +241,31 @@ public class CubicleGeneratorV2 : MonoBehaviour
             transform.position = GetPos(null, gapDistance);
         }
 
-        nonChunkedParent = new GameObject("Parent Stay In Scene");
-        generatedObjs.Add(nonChunkedParent);
-        parentObjects.Add(nonChunkedParent);
-        
-        foreach(GameObject child in nonChunkedObjects){
-            GameObject obj = Instantiate(child, child.transform.position, child.transform.rotation, nonChunkedParent.transform);
-            if(child.name.Contains("Cubicle")){
-                obj.transform.localScale *= cubicleScaling;
-            }
-        }
-
         
         majorParent = new GameObject("CubiclesParent");
         foreach(GameObject obj in parentObjects){
             obj.transform.parent = majorParent.transform;
         }
-
     }
     
-    private GameObject GetObj(){ //  gets the random obj each time, uses the RandomChance func to get the chance then returns if the total chance is higher teh random chance, oif nothing returns just do the most likely one
+    private objects GetObj(){ //  gets the random obj each time, uses the RandomChance func to get the chance then returns if the total chance is higher teh random chance, oif nothing returns just do the most likely one
         int randChance = RandomChance();
 
         int totalChance = 0;
 
         int highestChance = 0;
-        GameObject highestChanceObj = null;
+        objects highestChanceObj = null;
 
         foreach(objects obj in cubicleObjs){
             totalChance += obj.chance;
 
             if(randChance < totalChance){
-                return obj.objMain;
+                return obj;
             }
 
             if(obj.chance > highestChance){
                 highestChance = obj.chance;
-                highestChanceObj = obj.objMain;
+                highestChanceObj = obj;
             }
         }
 
@@ -293,22 +308,25 @@ public class CubicleGeneratorV2 : MonoBehaviour
         return false;
     }
 
-    private Bounds GetBounds(GameObject obj){ // returns the bounds of the largest object on the x in the children of the object
-        float checkBoundsSize = 0;
-        Bounds newBounds = new Bounds();
-
-        foreach(Transform childTrans in obj.transform){
-            GameObject child = childTrans.gameObject;
-            if(child.GetComponent<Renderer>()){
-                if(child.GetComponent<Renderer>().bounds.size.x > checkBoundsSize){
-                    newBounds = child.GetComponent<Renderer>().bounds;
-                    checkBoundsSize = newBounds.size.x;
-                }
+    private Bounds GetBounds(GameObject obj) {
+        Bounds combined = new Bounds();
+        bool first = true;
+    
+        foreach (var r in obj.GetComponentsInChildren<Renderer>()) {
+            Bounds b = r.localBounds;
+            b.size = Vector3.Scale(b.size, r.transform.lossyScale);
+    
+            if (first) {
+                combined = b;
+                first = false;
+            } else {
+                combined.Encapsulate(new Bounds(b.center, b.size));
             }
         }
-
-        return newBounds;
+    
+        return combined;
     }
+
 
     private Vector3 GetMidPosition(List<GameObject> objs){ //  returns the middle position between the highest and lowest in the list, the Vector3 is timsed so then you can get the axis
         if(objs.Count >= 2){
@@ -330,6 +348,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
         generatedObjs.Clear();
         parentVector.Clear();
+        noteMakers.Clear();
     }
 
     public void KeepObject(GameObject obj){

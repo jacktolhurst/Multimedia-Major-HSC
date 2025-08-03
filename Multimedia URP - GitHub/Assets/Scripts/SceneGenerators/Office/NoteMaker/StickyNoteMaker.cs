@@ -5,34 +5,57 @@ using System.Collections.Generic;
 
 public class StickyNoteMaker : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> notes = new List<GameObject>();
+    private List<GameObject> notes = new List<GameObject>();
+    private List<GameObject> madeNotes = new List<GameObject>();
 
-    private Collider[] selfColliders;
-
-    void Awake(){
-        selfColliders = GetComponents<Collider>();
-
-        StartCoroutine(StickNotes());
+    void OnEnable(){
+        notes = CubicleGeneratorV2.instance.notes;
     }
 
-    private IEnumerator StickNotes(){
-        yield return null;
-        yield return null;
+    public void SpawnNotes(int amount=10){
+        DestroyObjs(madeNotes);
+        madeNotes = StickNotes(amount);
+    }
 
-        for(int i = 0; i < 100; i++){
+    private void DestroyObjs(List<GameObject> objs){
+        foreach(GameObject obj in objs){
+            Destroy(obj);
+        }
+    }
+
+    private List<GameObject> StickNotes(int amount){
+        List<GameObject> spawnedNotes = new List<GameObject>();
+
+        for(int i = 0; i < amount; i++){
             Vector3 direction = Random.onUnitSphere;
             Ray mainRay = new Ray(transform.position, direction);
 
             if(Physics.Raycast(mainRay, out RaycastHit hit, 100)){
-                if(selfColliders.Contains(hit.collider.GetComponent<Collider>())){
+                int layer = hit.transform.gameObject.layer;
+                if(layer != 7 && layer != 8){
                     GameObject chosenNote = notes[Random.Range(0, notes.Count)];
-                    Quaternion surfaceRotation = Quaternion.LookRotation(-hit.normal);
-                    surfaceRotation = surfaceRotation * Quaternion.Euler(0f, 0f, 180f);
-                    
-                    Instantiate(chosenNote, hit.point + hit.normal * 0.01f, surfaceRotation);
+                    float chosenNoteHeight = chosenNote.GetComponent<MeshFilter>().sharedMesh.bounds.size.y;
+
+                    Quaternion surfaceRotation = Quaternion.LookRotation(hit.normal);
+                    Quaternion originalRotation = chosenNote.transform.rotation;
+
+                    Quaternion finalRotation = surfaceRotation * originalRotation;
+
+                    GameObject spawnedObj = Instantiate(chosenNote, (hit.point + hit.normal * 0.01f) + new Vector3(0, chosenNoteHeight, 0), finalRotation);
+
+                    spawnedObj.transform.SetParent(hit.transform);
+
+                    MeshRenderer renderer = spawnedObj.GetComponent<MeshRenderer>();
+                    MaterialPropertyBlock block = new MaterialPropertyBlock();
+                
+                    block.SetVector("_RandomNumber", Random.onUnitSphere);
+                    renderer.SetPropertyBlock(block);
+
+                    spawnedNotes.Add(spawnedObj);
                 }
             }
         }
-    }
 
+        return spawnedNotes;
+    }
 }

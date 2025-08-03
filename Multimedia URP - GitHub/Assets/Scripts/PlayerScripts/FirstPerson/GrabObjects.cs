@@ -36,8 +36,6 @@ public class GrabObjects : MonoBehaviour
 
     private MeshRenderer childObjMeshRenderer;
 
-    [SerializeField] private string grabTag;
-
     private float beforeAngleDrag;
 
     [SerializeField] private int objRotDrag;
@@ -210,6 +208,5 @@ public class GrabObjects : MonoBehaviour
         else{
             Debug.DrawRay(mainRay.origin, mainRay.direction * grabDist, Color.blue);
         }
-
     }
 }
