@@ -105,19 +105,21 @@ public class GrabObjects : MonoBehaviour
         }
 
         if(isGrabbing){
-            if(Vector3.Distance(grabbedObj.transform.position, transform.position) > objectMaxDistance){
-                cursorMat.color = Color.red;
-                tooFar = true;
-            }
-            if(!grabbedObj.activeSelf){
+            if(grabbedObj == null || !grabbedObj.activeSelf){
                 cursorMat.color = Color.red;
                 inactiveObj = true;
+            }
+            else{
+                if(Vector3.Distance(grabbedObj.transform.position, transform.position) > objectMaxDistance){
+                    cursorMat.color = Color.red;
+                    tooFar = true;
+                }
             }
         }
     }
 
     void FixedUpdate(){
-        if(isGrabbing){ 
+        if(isGrabbing &&  grabbedObjrb != null){ 
             MoveObject();
         }
     }
@@ -174,6 +176,9 @@ public class GrabObjects : MonoBehaviour
     }
 
     private void LetGoObjectValues(){
+        if (grabbedObj == null || grabbedObjrb == null) return;
+
+
         grabbedObjrb.linearVelocity = grabbedObjrb.linearVelocity + mainRay.direction * throwSpeed/prevMass;
 
         grabbedObjrb.useGravity = true;
@@ -181,14 +186,14 @@ public class GrabObjects : MonoBehaviour
         grabbedObjrb.collisionDetectionMode = CollisionDetectionMode.Discrete;
         grabbedObjrb.angularDamping = beforeAngleDrag;
 
+        grabbedObjrb.mass = prevMass;
+
         foreach(Collider collider in grabbedObj.GetComponents<Collider>()){
             Physics.IgnoreCollision(collider, selfCollider, false);
         }
 
         CheckChildren(defaultMask, grabbedObj.transform);
         grabbedObj.layer = defaultMask;
-
-        grabbedObjrb.mass = prevMass;
     }
 
     private void CheckChildren(int mask, Transform objTrans){
