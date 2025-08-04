@@ -962,7 +962,6 @@ GameObject:
   - component: {fileID: 32501214}
   - component: {fileID: 32501213}
   - component: {fileID: 32501212}
-  - component: {fileID: 32501211}
   m_Layer: 11
   m_Name: FireExit (5)
   m_TagString: Untagged
@@ -970,27 +969,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &32501211
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32501210}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &32501212
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1702,6 +1680,19 @@ MonoBehaviour:
       type: 3}
     chance: 40
     noteAmount: 5
+  cubicleBorderObjs:
+  - objMain: {fileID: 3417108268198296682, guid: 3df75803856abdf418ea340b6dae2772,
+      type: 3}
+    chance: 5
+    noteAmount: 0
+  - objMain: {fileID: 476147300138452877, guid: 8ac8e7c8cd88bf14c81e2aafbf31f541,
+      type: 3}
+    chance: 3
+    noteAmount: 0
+  - objMain: {fileID: 4727086998247504650, guid: 3416be96dfe928041aa8e98b858e64a4,
+      type: 3}
+    chance: 1
+    noteAmount: 0
   notes:
   - {fileID: 508076036907165358, guid: 5b0a05430b3797e4aa7a9895ec766b3d, type: 3}
   - {fileID: 8904216416957733636, guid: 739bba1c8918287489772710fdc77537, type: 3}
@@ -5759,7 +5750,6 @@ GameObject:
   - component: {fileID: 214503685}
   - component: {fileID: 214503684}
   - component: {fileID: 214503683}
-  - component: {fileID: 214503682}
   m_Layer: 11
   m_Name: FireExit (13)
   m_TagString: Untagged
@@ -5767,27 +5757,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &214503682
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214503681}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &214503683
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8308,7 +8277,6 @@ GameObject:
   - component: {fileID: 311352854}
   - component: {fileID: 311352853}
   - component: {fileID: 311352852}
-  - component: {fileID: 311352851}
   m_Layer: 11
   m_Name: FireExit (3)
   m_TagString: Untagged
@@ -8316,27 +8284,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &311352851
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 311352850}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &311352852
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25820,7 +25767,6 @@ GameObject:
   - component: {fileID: 736571030}
   - component: {fileID: 736571029}
   - component: {fileID: 736571028}
-  - component: {fileID: 736571027}
   m_Layer: 11
   m_Name: FireExit (15)
   m_TagString: Untagged
@@ -25828,27 +25774,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &736571027
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736571026}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &736571028
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26436,7 +26361,6 @@ GameObject:
   - component: {fileID: 757233282}
   - component: {fileID: 757233281}
   - component: {fileID: 757233280}
-  - component: {fileID: 757233279}
   m_Layer: 11
   m_Name: FireExit (2)
   m_TagString: Untagged
@@ -26444,27 +26368,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &757233279
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757233278}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &757233280
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27939,7 +27842,6 @@ GameObject:
   - component: {fileID: 818355219}
   - component: {fileID: 818355218}
   - component: {fileID: 818355217}
-  - component: {fileID: 818355216}
   m_Layer: 11
   m_Name: FireExit (10)
   m_TagString: Untagged
@@ -27947,27 +27849,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &818355216
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818355215}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &818355217
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39855,7 +39736,6 @@ GameObject:
   - component: {fileID: 1164806870}
   - component: {fileID: 1164806869}
   - component: {fileID: 1164806868}
-  - component: {fileID: 1164806867}
   m_Layer: 11
   m_Name: FireExit (12)
   m_TagString: Untagged
@@ -39863,27 +39743,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1164806867
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1164806866}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1164806868
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42206,7 +42065,6 @@ GameObject:
   - component: {fileID: 1278630207}
   - component: {fileID: 1278630206}
   - component: {fileID: 1278630205}
-  - component: {fileID: 1278630204}
   m_Layer: 11
   m_Name: FireExit (18)
   m_TagString: Untagged
@@ -42214,27 +42072,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1278630204
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278630203}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1278630205
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44172,7 +44009,6 @@ GameObject:
   - component: {fileID: 1380349381}
   - component: {fileID: 1380349380}
   - component: {fileID: 1380349379}
-  - component: {fileID: 1380349378}
   m_Layer: 11
   m_Name: FireExit (19)
   m_TagString: Untagged
@@ -44180,27 +44016,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1380349378
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1380349377}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1380349379
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44964,7 +44779,6 @@ GameObject:
   - component: {fileID: 1398656833}
   - component: {fileID: 1398656832}
   - component: {fileID: 1398656831}
-  - component: {fileID: 1398656830}
   m_Layer: 11
   m_Name: FireExit (1)
   m_TagString: Untagged
@@ -44972,27 +44786,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1398656830
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398656829}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1398656831
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45909,7 +45702,6 @@ GameObject:
   - component: {fileID: 1432765784}
   - component: {fileID: 1432765783}
   - component: {fileID: 1432765782}
-  - component: {fileID: 1432765781}
   m_Layer: 11
   m_Name: FireExit (14)
   m_TagString: Untagged
@@ -45917,27 +45709,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1432765781
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1432765780}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1432765782
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46500,7 +46271,6 @@ GameObject:
   - component: {fileID: 1466740567}
   - component: {fileID: 1466740566}
   - component: {fileID: 1466740565}
-  - component: {fileID: 1466740564}
   m_Layer: 11
   m_Name: FireExit (11)
   m_TagString: Untagged
@@ -46508,27 +46278,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1466740564
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466740563}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1466740565
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46887,7 +46636,6 @@ GameObject:
   - component: {fileID: 1474736375}
   - component: {fileID: 1474736374}
   - component: {fileID: 1474736373}
-  - component: {fileID: 1474736372}
   m_Layer: 11
   m_Name: FireExit
   m_TagString: Untagged
@@ -46895,27 +46643,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1474736372
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474736371}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1474736373
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -47623,7 +47350,6 @@ GameObject:
   - component: {fileID: 1492136133}
   - component: {fileID: 1492136132}
   - component: {fileID: 1492136131}
-  - component: {fileID: 1492136130}
   m_Layer: 11
   m_Name: FireExit (17)
   m_TagString: Untagged
@@ -47631,27 +47357,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1492136130
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1492136129}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1492136131
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49540,7 +49245,6 @@ GameObject:
   - component: {fileID: 1573940579}
   - component: {fileID: 1573940578}
   - component: {fileID: 1573940577}
-  - component: {fileID: 1573940576}
   m_Layer: 11
   m_Name: FireExit (8)
   m_TagString: Untagged
@@ -49548,27 +49252,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1573940576
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573940575}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1573940577
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -50390,7 +50073,6 @@ GameObject:
   - component: {fileID: 1602998833}
   - component: {fileID: 1602998832}
   - component: {fileID: 1602998831}
-  - component: {fileID: 1602998830}
   m_Layer: 11
   m_Name: FireExit (4)
   m_TagString: Untagged
@@ -50398,27 +50080,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1602998830
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1602998829}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1602998831
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53351,7 +53012,6 @@ GameObject:
   - component: {fileID: 1734023432}
   - component: {fileID: 1734023431}
   - component: {fileID: 1734023430}
-  - component: {fileID: 1734023429}
   m_Layer: 11
   m_Name: FireExit (6)
   m_TagString: Untagged
@@ -53359,27 +53019,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1734023429
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1734023428}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1734023430
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -55675,7 +55314,6 @@ GameObject:
   - component: {fileID: 1830068033}
   - component: {fileID: 1830068032}
   - component: {fileID: 1830068031}
-  - component: {fileID: 1830068030}
   m_Layer: 11
   m_Name: FireExit (16)
   m_TagString: Untagged
@@ -55683,27 +55321,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1830068030
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1830068029}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1830068031
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56299,7 +55916,6 @@ GameObject:
   - component: {fileID: 1869891461}
   - component: {fileID: 1869891460}
   - component: {fileID: 1869891459}
-  - component: {fileID: 1869891458}
   m_Layer: 11
   m_Name: FireExit (7)
   m_TagString: Untagged
@@ -56307,27 +55923,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1869891458
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869891457}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1869891459
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -58116,7 +57711,6 @@ GameObject:
   - component: {fileID: 1958887955}
   - component: {fileID: 1958887954}
   - component: {fileID: 1958887953}
-  - component: {fileID: 1958887952}
   m_Layer: 11
   m_Name: FireExit (9)
   m_TagString: Untagged
@@ -58124,27 +57718,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1958887952
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1958887951}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.025546186, y: 0.019999996, z: 0.019999994}
-  m_Center: {x: 0.0027711836, y: 0, z: -0.000000022351742}
 --- !u!23 &1958887953
 MeshRenderer:
   m_ObjectHideFlags: 0

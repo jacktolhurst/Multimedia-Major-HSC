@@ -20,6 +20,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
     private List<StickyNoteMaker> noteMakers = new List<StickyNoteMaker>();
 
     [SerializeField] private List<objects> cubicleObjs = new List<objects>();
+    [SerializeField] private List<objects> cubicleBorderObjs = new List<objects>();
 
     public List<GameObject> notes = new List<GameObject>();
     private List<GameObject> generatedObjs = new List<GameObject>();
@@ -168,7 +169,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
 
             for(int i = 0; i < chunkSize + 1; i++){
 
-                objects objClass = GetObj();
+                objects objClass = GetObjFromList(cubicleObjs);
                 GameObject obj = objClass.objMain;
 
                 
@@ -204,16 +205,27 @@ public class CubicleGeneratorV2 : MonoBehaviour
                 }
 
                 if(i != 0){
-
                     GameObject instanceObj = Instantiate(obj, position, Quaternion.identity);
 
                     foreach(Transform childTrans in instanceObj.transform) {
                         GameObject child = childTrans.gameObject;
 
                         if(child.tag == "StayInScene"){
+                            if (child.name.Contains("Cubicle")){
+
+                                objects borderClass = GetObjFromList(cubicleBorderObjs);
+                                GameObject borderPrefab = borderClass.objMain;
+
+                                GameObject spawnedObj = Instantiate(borderPrefab, childTrans.position, borderPrefab.transform.rotation, instanceObj.transform);
+                                spawnedObj.tag = "StayInScene";
+
+                                Destroy(child);
+
+                                child = spawnedObj;
+                            }
                             nonChunkedObjects.Add(child);
 
-                            childTrans.SetParent(nonChunkedParent.transform);
+                            child.transform.SetParent(nonChunkedParent.transform);
                         }
                     }
 
@@ -251,15 +263,15 @@ public class CubicleGeneratorV2 : MonoBehaviour
         }
     }
     
-    private objects GetObj(){ //  gets the random obj each time, uses the RandomChance func to get the chance then returns if the total chance is higher teh random chance, oif nothing returns just do the most likely one
-        int randChance = RandomChance();
+    private objects GetObjFromList(List<objects> objects){ //  gets the random obj each time, uses the RandomChance func to get the chance then returns if the total chance is higher teh random chance, oif nothing returns just do the most likely one
+        int randChance = RandomChanceFromList(objects);
 
         int totalChance = 0;
 
         int highestChance = 0;
         objects highestChanceObj = null;
 
-        foreach(objects obj in cubicleObjs){
+        foreach(objects obj in objects){
             totalChance += obj.chance;
 
             if(randChance < totalChance){
@@ -275,10 +287,10 @@ public class CubicleGeneratorV2 : MonoBehaviour
         return highestChanceObj;
     }
 
-    private int RandomChance(){ // gets the random chance of the list by adding all the chances up and returning a random value
+    private int RandomChanceFromList(List<objects> objects){ // gets the random chance of the list by adding all the chances up and returning a random value
         int chance = 0;
 
-        foreach(objects obj in cubicleObjs){
+        foreach(objects obj in objects){
             chance += obj.chance;
         }
 

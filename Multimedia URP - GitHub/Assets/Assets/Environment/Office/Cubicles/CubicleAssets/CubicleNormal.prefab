@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2904307621747517276}
   - component: {fileID: 6129526367121551414}
   m_Layer: 11
-  m_Name: Cubicle
+  m_Name: CubicleNormal
   m_TagString: StayInScene
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0.32}
   m_LocalScale: {x: 200, y: 274, z: 144.8}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
@@ -45,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3417108268198296682}
-  m_Mesh: {fileID: -5495902117074765545, guid: 641e6adef5dd15146a9d83854f640cb5, type: 3}
+  m_Mesh: {fileID: 7226898618321468979, guid: cb60d7585665ac1408e7e060189cfc7c, type: 3}
 --- !u!23 &3777673109942689215
 MeshRenderer:
   m_ObjectHideFlags: 0
