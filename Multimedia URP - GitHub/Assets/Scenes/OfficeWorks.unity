@@ -1680,6 +1680,10 @@ MonoBehaviour:
       type: 3}
     chance: 40
     noteAmount: 5
+  - objMain: {fileID: 1579061923543834654, guid: ac8524fa371c61f47b03085f5d1fc47b,
+      type: 3}
+    chance: 40
+    noteAmount: 5
   cubicleBorderObjs:
   - objMain: {fileID: 3417108268198296682, guid: 3df75803856abdf418ea340b6dae2772,
       type: 3}
@@ -1718,7 +1722,7 @@ MonoBehaviour:
   playerCubicleNum: 15
   reGenerate: 0
   drawGizmos: 1
-  doDistCheck: 1
+  doDistCheck: 0
 --- !u!4 &53298772
 Transform:
   m_ObjectHideFlags: 0
@@ -62026,6 +62030,11 @@ PrefabInstance:
         type: 3}
       propertyPath: jumpForce
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: useStartPos
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}

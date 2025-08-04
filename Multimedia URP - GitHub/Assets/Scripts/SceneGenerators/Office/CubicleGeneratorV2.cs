@@ -229,10 +229,13 @@ public class CubicleGeneratorV2 : MonoBehaviour
                         }
                     }
 
-                    StickyNoteMaker stickyNoteScript = instanceObj.AddComponent<StickyNoteMaker>();
-                    stickyNoteScript.SetNoteAmount(objClass.noteAmount);
+                    if(playerCubicleNum != iteration * chunkSize + i){
+                        StickyNoteMaker stickyNoteScript = instanceObj.AddComponent<StickyNoteMaker>();
+                        stickyNoteScript.SetNoteAmount(objClass.noteAmount);
 
-                    noteMakers.Add(stickyNoteScript);
+                        noteMakers.Add(stickyNoteScript);
+                    }
+
                     chunkedObjects.Add(instanceObj);
                 }
             }
@@ -341,7 +344,6 @@ public class CubicleGeneratorV2 : MonoBehaviour
     
         return combined;
     }
-
 
     private Vector3 GetMidPosition(List<GameObject> objs){ //  returns the middle position between the highest and lowest in the list, the Vector3 is timsed so then you can get the axis
         if(objs.Count >= 2){
