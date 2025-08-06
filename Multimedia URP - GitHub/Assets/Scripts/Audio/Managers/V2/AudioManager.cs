@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        public void PlaySoundPosition(Vector3 pos){
+        public void PlaySoundPosition(Vector3 pos, float noteSpawnSize=0){
             if(!dontUseSound){
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
@@ -68,7 +68,7 @@ public class AudioManager : MonoBehaviour
                 for (int i = 0; i < impact; i++){
                     GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, pos, oldNoteParticleObj.transform.rotation);
 
-                    newNoteParticleObj.GetComponent<NoteParticleManager>().StartPosition(Time.time + noteParticleLifetime);
+                    newNoteParticleObj.GetComponent<NoteParticleManager>().StartPosition(pos, Time.time + noteParticleLifetime, noteSpawnSize);
                     newNoteParticleObjs.Add(newNoteParticleObj);
                 }
 

@@ -76,7 +76,7 @@ public class GrabObjects : MonoBehaviour
                     canGrab = true;
                     if(Input.GetKeyDown(KeyCode.Mouse0)){ 
                         grabbedObj = hit.transform.gameObject;
-                        grabbingObjectSound.PlaySoundObject(hit.transform.gameObject);
+                        grabbingObjectSound.PlaySoundPosition(hit.point - ((hit.point - cam.transform.position).normalized), 0.5f);
                         isGrabbing = true;
                         GrabObjectValues();
                     }

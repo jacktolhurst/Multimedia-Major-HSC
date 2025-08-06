@@ -24,7 +24,7 @@ public class NoteParticleManager : MonoBehaviour
 
     private float startTime;
     private float lifeTime;
-    public float endTime;
+    [HideInInspector] public float endTime;
     private float currTime;
     private float randomPointSpeed = 1;
     private float scaleDownTime;
@@ -61,7 +61,9 @@ public class NoteParticleManager : MonoBehaviour
         collideCheckCoroutine = StartCoroutine(ColliderCheck());
     }
 
-    public void StartPosition(float newEndTime){ // used for if starting by given a position
+    public void StartPosition(Vector3 pos, float newEndTime, float spawnSize){ // used for if starting by given a position
+        transform.position = pos + (Random.insideUnitSphere*spawnSize);
+
         SetEndTime(newEndTime);
 
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, Random.Range(0,360), transform.eulerAngles.z);    
