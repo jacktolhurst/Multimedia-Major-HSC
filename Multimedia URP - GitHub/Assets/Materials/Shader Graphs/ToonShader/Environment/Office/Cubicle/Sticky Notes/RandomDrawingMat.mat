@@ -59,7 +59,7 @@ Material:
     - _Transparency: 1
     m_Colors:
     - _Color: {r: 2, g: 2, b: 2, a: 0}
-    - _GeneralOffset: {r: 0.8, g: 0.75, b: 0, a: 0}
+    - _GeneralOffset: {r: 0, g: 0, b: 0, a: 0}
     - _NewBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
     - _RandomNumber: {r: 0, g: 0, b: 0, a: 0}
     - _StandardBackgroundColor: {r: 1, g: 0.040543593, b: 0, a: 1}

@@ -21,7 +21,7 @@ public class FrontDoorLOD : MonoBehaviour
     }
 
     void Update(){
-        if(transform.position != startPos && !showObjs){
+        if(!showObjs && transform.position != startPos){
             showObjs = true;
             foreach(var obj in objects){
                 obj.SetActive(true);

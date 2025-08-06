@@ -303,7 +303,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
     private Vector3 GetPos(GameObject obj = null, float size = 0){
         if(obj != null){
             for(int i = 0; i < 2; i++){
-                Vector3 generatedPos = transform.position +  new Vector3(GetBounds(obj).size.x + additionDistFromPrev, 0, 0);
+                Vector3 generatedPos = transform.position +  new Vector3(GetBounds(obj).size.x + additionDistFromPrev + Random.Range(0f, 0.1f), 0, 0);
                 if(IsPosValid(generatedPos, obj)){
                     return generatedPos;
                 }

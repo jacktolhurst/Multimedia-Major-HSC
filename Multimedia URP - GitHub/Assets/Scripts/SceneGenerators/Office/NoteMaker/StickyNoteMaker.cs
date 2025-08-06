@@ -12,7 +12,7 @@ public class StickyNoteMaker : MonoBehaviour
 
     private int noteAmount;
 
-    void OnEnable(){
+    void Awake(){
         notes = CubicleGeneratorV2.instance.notes;
     }
 
@@ -53,7 +53,7 @@ public class StickyNoteMaker : MonoBehaviour
 
             if(Physics.Raycast(mainRay, out RaycastHit hit, 100)){
                 int layer = hit.transform.gameObject.layer;
-                if(layer != 0 && layer != 7 && layer != 8 && !IsNearAnyVector(prevPoints, hit.point, 2)){
+                if(layer != 0 && layer != 7 && layer != 8 && !IsNearAnyVector(prevPoints, hit.point, 0.5f)){
                     GameObject hitObj = hit.transform.gameObject;
                     GameObject chosenNote = notes[Random.Range(0, notes.Count)];
 
@@ -74,7 +74,8 @@ public class StickyNoteMaker : MonoBehaviour
 
                     MeshRenderer renderer = spawnedObj.GetComponent<MeshRenderer>();
                     MaterialPropertyBlock block = new MaterialPropertyBlock();
-                    block.SetVector("_RandomNumber", Random.onUnitSphere);
+                    Vector2 randomOffset = Random.onUnitSphere;
+                    block.SetVector("_GeneralOffset", randomOffset);
                     renderer.SetPropertyBlock(block);
 
                     spawnedNotes.Add(spawnedObj);
