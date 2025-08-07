@@ -58,7 +58,7 @@ MonoBehaviour:
   additionalSectionPasses: []
   SectionRenderingLayer:
     serializedVersion: 0
-    m_Bits: 4294967295
+    m_Bits: 127
   showSectionMapSection: 1
   showDiscontinuitySection: 1
   showOutlineSection: 1

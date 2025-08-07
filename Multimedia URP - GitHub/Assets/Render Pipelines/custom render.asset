@@ -104,6 +104,30 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 60
+--- !u!114 &-1926467106682996907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e598cd55476104d909f677d2b056f508, type: 3}
+  m_Name: SoftOutline
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings: {fileID: 11400000, guid: f78402931d2b56a4abe1fbbf4e61eda5, type: 2}
+  shaders:
+    mask: {fileID: 4800000, guid: 231df427ffff4fee9202f22ce6a5d357, type: 3}
+    silhouette: {fileID: 4800000, guid: b0e6032b7b104d8db7f40d7f6e743674, type: 3}
+    silhouetteInstanced: {fileID: 4800000, guid: b7b25b6fd39f14aeeba46013a510a40c,
+      type: 3}
+    boxBlur: {fileID: 4800000, guid: d8d4df91388b465aa9a07d27ccc72b73, type: 3}
+    gaussianBlur: {fileID: 4800000, guid: cb6a37cd1abc46e180a83317d8fefb26, type: 3}
+    kawaseBlur: {fileID: 4800000, guid: ead7e4745cd94d22beaeeea69ae381a7, type: 3}
+    dilate: {fileID: 4800000, guid: a987f6629a694e19a74290edccde4040, type: 3}
+    outline: {fileID: 4800000, guid: b0cf66d628f541279229be85e2c31db3, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +161,9 @@ MonoBehaviour:
   - {fileID: 5318495460697027881}
   - {fileID: 5247423930915823938}
   - {fileID: -4039689526354756099}
-  m_RendererFeatureMap: 73359a661aa1ec2cc4e18032fbbe1898148cf3cbda148ae129b55f627117cf4942211f5c4398d248fd3dc26ac723f0c7
+  - {fileID: 1429579781833232102}
+  - {fileID: -1926467106682996907}
+  m_RendererFeatureMap: 73359a661aa1ec2cc4e18032fbbe1898148cf3cbda148ae129b55f627117cf4942211f5c4398d248fd3dc26ac723f0c7e60e40c23ce3d6135577af925fd043e5
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
@@ -163,6 +189,23 @@ MonoBehaviour:
   m_DepthTextureFormat: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &1429579781833232102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f513a53c9ad43a3860c8a56ea7dd26b, type: 3}
+  m_Name: SurfaceFill
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings: {fileID: 11400000, guid: 1c5dbb4a3d535d0418f597befea069f1, type: 2}
+  shaders:
+    mask: {fileID: 4800000, guid: 7db39fa69b214149be63e199c01483e7, type: 3}
+    fill: {fileID: -6465566751694194690, guid: 37e37d4fece9f421f8a99286f525bf80, type: 3}
 --- !u!114 &3237139366935147891
 MonoBehaviour:
   m_ObjectHideFlags: 0
