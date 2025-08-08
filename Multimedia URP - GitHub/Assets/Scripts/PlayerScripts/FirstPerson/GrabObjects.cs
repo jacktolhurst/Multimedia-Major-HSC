@@ -36,10 +36,6 @@ public class GrabObjects : MonoBehaviour
 
     private MeshRenderer childObjMeshRenderer;
 
-    private float beforeAngleDrag;
-
-    [SerializeField] private int objRotDrag;
-
     private bool isGrabbing = false;
 
     [Header("Grabbed Object Movement")] // all values with movement inside the grabbed object
@@ -138,8 +134,6 @@ public class GrabObjects : MonoBehaviour
 
         grabbedObjrb.useGravity = false;
         grabbedObjrb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-        beforeAngleDrag = grabbedObjrb.angularDamping;
-        grabbedObjrb.angularDamping = objRotDrag;
         grabbedObjrb.useGravity = true;
         grabbedObjrb.isKinematic = false;
         grabbedObjrb.interpolation = RigidbodyInterpolation.Interpolate;
@@ -184,7 +178,6 @@ public class GrabObjects : MonoBehaviour
         grabbedObjrb.useGravity = true;
 
         grabbedObjrb.collisionDetectionMode = CollisionDetectionMode.Discrete;
-        grabbedObjrb.angularDamping = beforeAngleDrag;
 
         grabbedObjrb.mass = prevMass;
 

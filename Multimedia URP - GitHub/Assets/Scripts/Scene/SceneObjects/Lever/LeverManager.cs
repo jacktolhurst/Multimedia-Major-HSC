@@ -11,7 +11,9 @@ public class LeverManager : MonoBehaviour
     }
 
     [System.Serializable]
-    private class Lever{
+    public class Lever{
+        public string name;
+
         public Difference difference;
 
         public GameObject obj;
@@ -22,11 +24,13 @@ public class LeverManager : MonoBehaviour
 
         [HideInInspector] public Vector3 lastEulerAngle;
 
+        public float minimumDifference;
+
         public bool isActive; 
         [HideInInspector] public bool isRotating;
     }
 
-    [SerializeField] private List<Lever> leverObjs;
+    public List<Lever> leverObjs;
 
     void Awake(){
         foreach(Lever lever in leverObjs){
@@ -55,14 +59,11 @@ public class LeverManager : MonoBehaviour
         }
     }
 
-    void Update(){
-        foreach(Lever lever in leverObjs) print(lever.isRotating);
-    }
-
     private IEnumerator ManageLeverLess(Lever lever){
         yield return null;
         while(lever.isActive){
-            if(lever.lastEulerAngle.y > lever.trans.eulerAngles.y) lever.isRotating = true;
+            float difference = lever.lastEulerAngle.y - lever.trans.eulerAngles.y;
+            if(difference > lever.minimumDifference) lever.isRotating = true;
             else lever.isRotating = false;
 
             lever.lastEulerAngle = lever.trans.eulerAngles;
@@ -86,7 +87,8 @@ public class LeverManager : MonoBehaviour
     private IEnumerator ManageLeverMore(Lever lever){
         yield return null;
         while(lever.isActive){
-            if(lever.lastEulerAngle.y < lever.trans.eulerAngles.y) lever.isRotating = true;
+            float difference = lever.lastEulerAngle.y - lever.trans.eulerAngles.y;
+            if(difference < lever.minimumDifference) lever.isRotating = true;
             else lever.isRotating = false;
 
             lever.lastEulerAngle = lever.trans.eulerAngles;
@@ -95,12 +97,12 @@ public class LeverManager : MonoBehaviour
         }
     }
 
-    // void Update(){
-    //     if(leverTrans.eulerAngles.y < lastEulerAngle.y) print("rotating correct!");
-    //     else print("Not rotating");
-    // }
-
-    // void LateUpdate(){
-    //     lastEulerAngle = leverTrans.eulerAngles;
-    // }
+    public Lever GetLeverByName(string name){
+        foreach(Lever lever in leverObjs){
+            if(lever.name.ToLower() == name.ToLower()){
+                return lever;
+            }
+        }
+        return null;
+    }
 }
