@@ -20,12 +20,12 @@ GameObject:
   - component: {fileID: 8772175620882272976}
   - component: {fileID: 1935245044297785717}
   - component: {fileID: 8013708528397971715}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CubicleFancy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7602663868272574307
 Transform:

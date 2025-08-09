@@ -10631,7 +10631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &413495424
 Transform:
   m_ObjectHideFlags: 0
@@ -16796,7 +16796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1842111534}
-  doLOD: 0
+  doLOD: 1
 --- !u!1 &518861985
 GameObject:
   m_ObjectHideFlags: 0
@@ -61195,7 +61195,7 @@ PrefabInstance:
     - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: useStartPos
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -61207,6 +61207,11 @@ PrefabInstance:
       propertyPath: cubicleGeneratorV2
       value: 
       objectReference: {fileID: 53298771}
+    - target: {fileID: 6171885227097587224, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -62675,26 +62680,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
-        type: 3}
-      propertyPath: soundSize
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
-        type: 3}
-      propertyPath: soundSpawnPoint.x
-      value: -79.067
-      objectReference: {fileID: 0}
-    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
-        type: 3}
-      propertyPath: soundSpawnPoint.y
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
-        type: 3}
-      propertyPath: soundSpawnPoint.z
-      value: -2.185
       objectReference: {fileID: 0}
     - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
         type: 3}
@@ -65369,7 +65354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1380980023}
-  doLOD: 0
+  doLOD: 1
 --- !u!1 &8240409424806655745
 GameObject:
   m_ObjectHideFlags: 0

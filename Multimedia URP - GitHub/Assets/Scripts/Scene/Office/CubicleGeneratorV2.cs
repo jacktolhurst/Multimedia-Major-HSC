@@ -259,12 +259,73 @@ public class CubicleGeneratorV2 : MonoBehaviour
             transform.position = GetPos(null, gapDistance);
         }
 
+        CombineRecursively(nonChunkedParent);
+
         
         majorParent = new GameObject("CubiclesParent");
         foreach(GameObject obj in parentObjects){
             obj.transform.parent = majorParent.transform;
         }
     }
+
+    private void CombineRecursively(GameObject root){
+        List<CombineInstance> combines = new List<CombineInstance>();
+        List<Material> materials = new List<Material>();
+
+        void CollectMeshesRecursive(Transform current){
+            MeshFilter mf = current.GetComponent<MeshFilter>();
+            MeshRenderer mr = current.GetComponent<MeshRenderer>();
+
+            if (mf != null && mr != null && mf.sharedMesh != null) {
+                Mesh mesh = mf.sharedMesh;
+                Material[] mats = mr.sharedMaterials;
+
+                for (int sub = 0; sub < mesh.subMeshCount; sub++){
+                    CombineInstance ci = new CombineInstance{
+                        mesh = mesh,
+                        subMeshIndex = sub,
+                        transform = mf.transform.localToWorldMatrix
+                    };
+                    combines.Add(ci);
+
+                    if (sub < mats.Length)
+                        materials.Add(mats[sub]);
+                    else
+                        materials.Add(mats[0]);
+                }
+            }
+
+            foreach (Transform child in current){
+                if(!child.GetComponent<Rigidbody>())CollectMeshesRecursive(child);
+            }
+        }
+
+        CollectMeshesRecursive(root.transform);
+
+        Mesh combinedMesh = new Mesh();
+        combinedMesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+
+        combinedMesh.CombineMeshes(combines.ToArray(), false, true);
+
+        MeshFilter mfRoot = root.GetComponent<MeshFilter>();
+        if (mfRoot == null) mfRoot = root.AddComponent<MeshFilter>();
+        mfRoot.sharedMesh = combinedMesh;
+
+        MeshRenderer mrRoot = root.GetComponent<MeshRenderer>();
+        if (mrRoot == null) mrRoot = root.AddComponent<MeshRenderer>();
+        mrRoot.sharedMaterials = materials.ToArray();
+
+        foreach (Transform child in root.transform){
+            Destroy(child.gameObject.GetComponent<MeshRenderer>());
+            Destroy(child.gameObject.GetComponent<MeshFilter>());
+
+            if (child.gameObject.GetComponents<Component>().Length == 1) 
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
+
     
     private objects GetObjFromList(List<objects> objects){ //  gets the random obj each time, uses the RandomChance func to get the chance then returns if the total chance is higher teh random chance, oif nothing returns just do the most likely one
         int randChance = RandomChanceFromList(objects);
