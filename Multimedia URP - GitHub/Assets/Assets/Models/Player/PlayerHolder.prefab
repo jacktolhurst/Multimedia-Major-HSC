@@ -486,7 +486,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8889559804420758385}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -526,7 +526,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 18560
-  jumpForce: 12
+  jumpForce: 120
   jumpMultiplier: 0.015
   airDrag: 0.8
   jumpIntervalTime: 1.5
@@ -536,7 +536,7 @@ MonoBehaviour:
   iterations: 20
   generatedStartPos: {x: 0, y: 0, z: 0}
   subtractedPosition: {x: 0, y: 0, z: 1.5}
-  useStartPos: 0
+  useStartPos: 1
   footStepsSound:
     eventReference:
       Guid:
@@ -599,8 +599,6 @@ MonoBehaviour:
     m_Bits: 2147510728
   grabDist: 4
   canGrab: 0
-  grabTag: Grabbable
-  objRotDrag: 2
   baseMoveSpeed: 8
   objectMaxDistance: 5
   massDivision: 3

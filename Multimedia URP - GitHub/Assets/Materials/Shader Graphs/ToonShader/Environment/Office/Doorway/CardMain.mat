@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-4265661650823067353
+--- !u!114 &-3077819401141782221
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21,14 +21,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CardMain
-  m_Shader: {fileID: -6465566751694194690, guid: 5201a8130ca304b40aadfcb34f948a6c,
+  m_Shader: {fileID: -6465566751694194690, guid: a6660a122dc864247b866d2be28ce6a2,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -56,10 +56,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Divide2: 500
+    - _DivideSpeed: 0.006
+    - _HighAddition: 0.4
+    - _HighesCuttoff: 0.6
+    - _LightingCuttoff: -0.31
+    - _LownessCuttoff: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Shadow_Brightness: 0.5
+    - _Transparency: 1
     m_Colors:
-    - _Color: {r: 0.408805, g: 0.408805, b: 0.408805, a: 0}
+    - _Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0}
+    - _TextureOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Tiling: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

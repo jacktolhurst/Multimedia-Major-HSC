@@ -2,22 +2,25 @@ using UnityEngine;
 
 public class RobotDogManager : MonoBehaviour
 {
-    [SerializeField] private LeverManager leverManager;
+    private LeverManager leverManager;
 
     private LeverManager.Lever lever;
 
-    [SerializeField] private int health;
+    [SerializeField] private float health;
+    [SerializeField] private float leverDamage;
 
     [SerializeField] private string leverName;
 
 
     void Awake(){
+        leverManager = GetComponent<LeverManager>();
+
         lever = leverManager.GetLeverByName(leverName);
     }
 
     void Update(){
         if(lever.isRotating){
-            health -= 1;
+            health -= leverDamage*Time.deltaTime;
         }
     }
 }
