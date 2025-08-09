@@ -69,8 +69,8 @@ Material:
     - _ColorReplacement: {r: 0.12681782, g: 1, b: 0, a: 0}
     - _MainColor: {r: 0.8117647, g: 0.8117647, b: 0.8117647, a: 0}
     - _MainOffset: {r: 0.06, g: 0, b: 0, a: 0}
-    - _MaintextOffset: {r: 0.03, g: 0, b: 0, a: 0}
-    - _MaintextTiling: {r: 0.96, g: 1, b: 0, a: 0}
+    - _MaintextOffset: {r: -0.03, g: 0, b: 0, a: 0}
+    - _MaintextTiling: {r: -0.96, g: 1, b: 0, a: 0}
     - _ReplacedColor: {r: 0.2954039, g: 0.2574858, b: 0.29559743, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

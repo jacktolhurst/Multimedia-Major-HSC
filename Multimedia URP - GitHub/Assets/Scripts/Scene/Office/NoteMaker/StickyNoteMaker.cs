@@ -16,8 +16,8 @@ public class StickyNoteMaker : MonoBehaviour
         notes = CubicleGeneratorV2.instance.notes;
     }
 
-    public void SpawnNotes(int amount=10){
-        SetNoteAmount(amount);
+    public void SpawnNotes(bool useDefualt, int amount=0){
+        if(!useDefualt) SetNoteAmount(amount);
 
         DestroyObjs(madeNotes);
         madeNotes = StickNotes(GetNoteAmount());

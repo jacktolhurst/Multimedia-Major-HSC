@@ -23,7 +23,7 @@ Material:
   m_Name: GrounDoorWayMat
   m_Shader: {fileID: -6465566751694194690, guid: 5201a8130ca304b40aadfcb34f948a6c,
     type: 3}
-  m_Parent: {fileID: 2100000, guid: 750f63c621f2611449e166764614156d, type: 2}
+  m_Parent: {fileID: 2100000, guid: 4b0e7f8a2da93f34a9af50bd86409d07, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -41,6 +41,6 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Color: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 0}
+    - _Color: {r: 0.106918216, g: 0.106918216, b: 0.106918216, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

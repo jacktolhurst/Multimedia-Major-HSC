@@ -107,7 +107,7 @@ public class CubicleGeneratorV2 : MonoBehaviour
     }
 
     private void SpawnNotes(List<StickyNoteMaker> noteMakers){
-        foreach(StickyNoteMaker noteMaker in noteMakers) noteMaker.SpawnNotes(Random.Range(0,100));
+        foreach(StickyNoteMaker noteMaker in noteMakers) noteMaker.SpawnNotes(true);
     }
 
     private void EarlyDistCheck(){ // an early version of discheck used in the awake to leverage intial memory
