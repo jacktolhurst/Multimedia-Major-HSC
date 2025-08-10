@@ -21,7 +21,7 @@ Material:
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  m_LockedProperties: 
+  m_LockedProperties: _Fuzz
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -63,6 +63,10 @@ Material:
     - _Range: 0
     - _Tiling: 1
     m_Colors:
+    - _C: {r: 0, g: 0, b: 0, a: 0}
+    - _CloseTiling: {r: 0, g: 0, b: 0, a: 0}
+    - _CloseTilingVect: {r: 0, g: 0, b: 0, a: 0}
+    - _CloseTill: {r: 1, g: 1, b: 0, a: 0}
     - _ColorReplacement: {r: 0, g: 0, b: 0, a: 0}
     - _MainColor: {r: 1, g: 1, b: 1, a: 0}
     - _MaintextOffset: {r: 0.25, g: 0.25, b: 0, a: 0}

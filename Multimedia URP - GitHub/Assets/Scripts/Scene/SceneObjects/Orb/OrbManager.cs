@@ -61,7 +61,7 @@ public class OrbManager : MonoBehaviour
 
     private void ApplyForceToRigidbodies(List<Rigidbody> rigidbodies, float baseForce){
         foreach(Rigidbody body in rigidbodies){
-            if(!body.isKinematic){
+            if(!body.isKinematic & body.gameObject.layer != 13){
                 Vector3 direction = (transform.position - body.position).normalized;
                 float distance = Vector3.Distance(transform.position, body.position);
 

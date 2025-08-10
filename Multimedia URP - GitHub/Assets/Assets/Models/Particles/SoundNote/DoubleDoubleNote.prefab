@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1893756359634241249}
   m_Layer: 13
   m_Name: DoubleDoubleNote
-  m_TagString: UI
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
