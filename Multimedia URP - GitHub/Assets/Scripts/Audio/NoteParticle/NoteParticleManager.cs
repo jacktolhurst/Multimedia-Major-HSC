@@ -8,6 +8,7 @@ public class NoteParticleManager : MonoBehaviour
 {
     private Coroutine collideCheckCoroutine;
 
+    private GameObject claimedObj;
     private GameObject followObj;
 
     private Rigidbody selfRb;

@@ -25,6 +25,8 @@ public class CardReaderDoor : MonoBehaviour
     void Awake(){
         lockedDoor = GetComponent<LockedDoor>();
 
+        lockedDoor.Lock();
+
         foreach(ReaderClass reader in readers){
             reader.readerMat = new List<Material>(reader.obj.GetComponent<Renderer>().materials);
 
@@ -38,7 +40,7 @@ public class CardReaderDoor : MonoBehaviour
                 if(reader.obj.activeSelf && key){
                     if(!unlocked && reader.bounds.Contains(key.transform.position)){
                         lockedDoor.Unlock(new Vector3(-2, 0, 0), 10f, 50f);
-
+                        
                         unlocked = true;
                     }
                     if(unlocked){

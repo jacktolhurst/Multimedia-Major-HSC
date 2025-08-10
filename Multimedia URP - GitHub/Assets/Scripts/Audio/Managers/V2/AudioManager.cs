@@ -160,6 +160,7 @@ public class AudioManager : MonoBehaviour
         public FMOD.Studio.EventInstance eventInstance;
         public Coroutine activeCoroutine;
         public List<GameObject> noteParticleObjs = new List<GameObject>();
+        public GameObject claimedObj;
         public Vector3 position;
         public float noteParticleEndTime;
         public float impact;
@@ -183,8 +184,16 @@ public class AudioManager : MonoBehaviour
             }
         }
 
+        public void SetClaimedObj(GameObject obj){
+            claimedObj = obj;
+        }
+
         public List<GameObject> GetParticles(){
             return noteParticleObjs;
+        }
+
+        public GameObject GetClaimedObj(){
+            return claimedObj;
         }
     }
 

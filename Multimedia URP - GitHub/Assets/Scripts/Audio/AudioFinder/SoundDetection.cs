@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+[SelectionBase]
 public class SoundDetection : MonoBehaviour
 {
     public AudioManager.EventHandler chosenEvent;
@@ -18,12 +19,18 @@ public class SoundDetection : MonoBehaviour
     public bool checkSounds = true;
 
     void Update(){
-        chosenEvent = GetChosenEvent();
+        if(particleTargetTrans == null) checkSounds = false;
 
-        List<GameObject> newParticles = GetNewParticles();
-        if(newParticles != null) currParticles.AddRange(newParticles);
+        if(checkSounds){
 
-        timeAppliedParticles = RemoveInactiveObjects(timeAppliedParticles);
+            chosenEvent = GetChosenEvent();
+
+            List<GameObject> newParticles = GetNewParticles();
+            if(newParticles != null) currParticles.AddRange(newParticles);
+
+            timeAppliedParticles = RemoveInactiveObjects(timeAppliedParticles);
+        }
+
     }
 
     void FixedUpdate(){
@@ -68,7 +75,13 @@ public class SoundDetection : MonoBehaviour
                 newParticles = new List<GameObject>();
             }
             foreach(AudioManager.EventHandler soundEvent in newCurrentEvents){
-                newParticles.AddRange(soundEvent.GetParticles());
+                Ray eventRay = new Ray(soundEvent.position, particleTargetTrans.position - soundEvent.position);
+                float rayDist = Vector3.Distance(particleTargetTrans.position, soundEvent.position);
+    
+                if(!Physics.Raycast(eventRay, out RaycastHit hit, rayDist, hitLayerMask) && soundEvent.GetClaimedObj() == null){
+                    soundEvent.SetClaimedObj(transform.gameObject);
+                    newParticles.AddRange(soundEvent.GetParticles());
+                }
             }
         }
 

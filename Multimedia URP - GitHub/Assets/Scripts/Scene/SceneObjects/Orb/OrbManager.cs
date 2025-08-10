@@ -8,6 +8,10 @@ public class OrbManager : MonoBehaviour
 {
     private List<GameObject> deletedObjs = new List<GameObject>();
 
+    [SerializeField] private Transform playerTrans;
+
+    [SerializeField] private Light orbLight;
+
     private Bounds selfBounds;
 
     private Vector3 baseSize;
@@ -30,10 +34,13 @@ public class OrbManager : MonoBehaviour
 
         ManageRigidbodies();
         ManageScaling();
+        ManageLighting();
     }
 
     private void ManageRigidbodies(){
-        ApplyForceToRigidbodies(GetRigidbodiesInRange(GetCheckSize(selfBounds.extents, baseForceSize)), orbForce);
+        float scaledForceSize = GetScaledForceSize();
+
+        ApplyForceToRigidbodies(GetRigidbodiesInRange(GetCheckSize(selfBounds.extents, scaledForceSize)),orbForce);
         ApplyDeletionToRigidbodies(GetRigidbodiesInRange(GetCheckSize(selfBounds.extents, baseDeletionSize)));
     }
 
@@ -48,20 +55,28 @@ public class OrbManager : MonoBehaviour
         }
     } 
 
+    private void ManageLighting(){
+        orbLight.range = GetCheckSize(selfBounds.extents, GetScaledForceSize()) * 2;
+    }
+
     private void ApplyForceToRigidbodies(List<Rigidbody> rigidbodies, float baseForce){
         foreach(Rigidbody body in rigidbodies){
-            Vector3 direction = (transform.position - body.position).normalized;
-            float distance = Vector3.Distance(transform.position, body.position);
+            if(!body.isKinematic){
+                Vector3 direction = (transform.position - body.position).normalized;
+                float distance = Vector3.Distance(transform.position, body.position);
 
-            float distanceScaledForce = Mathf.Min(baseForce/distance, 1000);
+                float distanceScaledForce = baseForce/distance;
+                if(float.IsNaN(distanceScaledForce) || distanceScaledForce == Mathf.Infinity) distanceScaledForce = 1;
 
-            body.AddForce(direction * distanceScaledForce, ForceMode.Acceleration);
+                body.AddForce(direction * distanceScaledForce, ForceMode.Acceleration);
+                body.linearVelocity = Vector3.Min(body.linearVelocity, new Vector3(1000,1000,1000));
 
-            Collider[] bodyColliders = body.gameObject.GetComponents<Collider>();
-            foreach(Collider collider in bodyColliders){
-                collider.material.dynamicFriction = 0;
-                collider.material.staticFriction = 0;
-                collider.material.frictionCombine = PhysicsMaterialCombine.Minimum;
+                Collider[] bodyColliders = body.gameObject.GetComponents<Collider>();
+                foreach(Collider collider in bodyColliders){
+                    collider.material.dynamicFriction = 0;
+                    collider.material.staticFriction = 0;
+                    collider.material.frictionCombine = PhysicsMaterialCombine.Minimum;
+                }
             }
         }
     }
@@ -69,7 +84,9 @@ public class OrbManager : MonoBehaviour
     private void ApplyDeletionToRigidbodies(List<Rigidbody> rigidbodies){
         foreach(Rigidbody body in rigidbodies){
             GameObject obj = body.gameObject;
-            if(!deletedObjs.Contains(obj)){
+
+            if(obj.layer == 9) print("hit the player");
+            else if(!deletedObjs.Contains(obj)){
                 StartCoroutine(TrackDestroyObject(obj, 0.5f));
                 deletedObjs.Add(obj);
             }
@@ -84,6 +101,12 @@ public class OrbManager : MonoBehaviour
     private float ApplyOrbRatio(Bounds bounds, float originalScale){
         return bounds.size.magnitude / originalScale;
     }
+
+    private float GetScaledForceSize(){
+        float sizeRatio = selfBounds.size.magnitude / baseSize.magnitude;
+        return (baseForceSize * sizeRatio)/2;
+    }
+
 
     private Vector3 ListToScale(List<GameObject> objs, Vector3 baseSize, float multiplier=1){
         Vector3 countInVector3 = new Vector3(1,1,1) * objs.Count * multiplier;
@@ -133,10 +156,8 @@ public class OrbManager : MonoBehaviour
     }
 
     void OnDrawGizmos(){
-        if(Application.isPlaying){
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.extents, baseForceSize));
-            Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.extents, baseDeletionSize));
-        }
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.extents, GetScaledForceSize()));
+        Gizmos.DrawWireSphere(transform.position, GetCheckSize(selfBounds.extents, baseDeletionSize));
     }
 }
