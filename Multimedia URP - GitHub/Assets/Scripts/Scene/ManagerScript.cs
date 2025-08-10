@@ -5,12 +5,19 @@ using DG.Tweening;
 
 public class ManagerScript : MonoBehaviour
 {
+    public static ManagerScript instance;
+
     [Range(0,4)]
     [SerializeField] private float baseVolume;
 
     [SerializeField] private int targetFrameRate;
 
     void Awake(){
+        if(instance != null){
+            Debug.LogWarning("Two Manager instances");
+        }
+        instance = this;
+
         DOTween.SetTweensCapacity(750, 50);
     }
 
@@ -33,6 +40,13 @@ public class ManagerScript : MonoBehaviour
 
     public void RestartScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void LoadNextScene(){
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
+
+        print(OrbData.objs.Count);
     }
 
     private void TurnOffShadows(){ 

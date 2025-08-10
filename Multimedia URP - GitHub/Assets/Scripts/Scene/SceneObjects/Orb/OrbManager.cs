@@ -1,14 +1,17 @@
 using UnityEngine;
 using System.Collections; 
 using System.Collections.Generic; 
+using System.Linq;
 using DG.Tweening;
+
+public static class OrbData{
+    public static List<GameObject> objs = new List<GameObject>();
+}
 
 [SelectionBase]
 public class OrbManager : MonoBehaviour
 {
     private List<GameObject> deletedObjs = new List<GameObject>();
-
-    [SerializeField] private Transform playerTrans;
 
     [SerializeField] private Light orbLight;
 
@@ -85,7 +88,10 @@ public class OrbManager : MonoBehaviour
         foreach(Rigidbody body in rigidbodies){
             GameObject obj = body.gameObject;
 
-            if(obj.layer == 9) print("hit the player");
+            if(obj.layer == 9){
+                OrbData.objs = deletedObjs.OrderBy(x => Random.value).Take(4).ToList();
+                ManagerScript.instance.LoadNextScene();
+            }
             else if(!deletedObjs.Contains(obj)){
                 StartCoroutine(TrackDestroyObject(obj, 0.5f));
                 deletedObjs.Add(obj);
