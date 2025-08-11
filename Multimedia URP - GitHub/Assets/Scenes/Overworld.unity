@@ -2634,7 +2634,7 @@ MonoBehaviour:
   hitLayerMask:
     serializedVersion: 2
     m_Bits: 2147491327
-  soundDistance: 6
+  soundDistance: 12
   particleMoveSpeed: 5
   checkSounds: 1
 --- !u!114 &702661266
@@ -3595,6 +3595,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Orb
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232146418566116979, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904572321488126376, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db, type: 3}
