@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7315876423429746698
+--- !u!114 &-8807254520616253705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,52 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/MetalDectector/MetalDetectorThru
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Volume
   m_EditorClassIdentifier: 
-  Path: event:/SFX/MetalDectector/MetalDetectorThru
-  Guid:
-    Data1: 456978871
-    Data2: 1325953534
-    Data3: 1524490667
-    Data4: -2094243013
-  Banks:
-  - {fileID: -4961575657137098124}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-6920724778921333292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/Grabbing object/Grabbing Object
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/Grabbing object/Grabbing Object
-  Guid:
-    Data1: 2023125065
-    Data2: 1295130547
-    Data3: 1837349250
-    Data4: -329610991
-  Banks:
-  - {fileID: -4961575657137098124}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-6708192978742304146
+  Name: Volume
+  StudioPath: parameter:/Volume
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 1113324
+    data2: 3789873207
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-993436832418081731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +43,7 @@ MonoBehaviour:
     Data3: 1113861267
     Data4: 872523554
   Banks:
-  - {fileID: -4961575657137098124}
+  - {fileID: 7398162616249443241}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -81,7 +51,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
---- !u!114 &-4961575657137098124
+--- !u!114 &-859186123744958899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -91,17 +61,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/SFX.bank
+  m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
-  Name: SFX
-  StudioPath: bank:/SFX
-  lastModified: 638856671926320920
+  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638830012146378856
   FileSizes:
   - Name: Desktop
-    Value: 564128
+    Value: 1194
   Exists: 1
---- !u!114 &-747344034031883587
+--- !u!114 &-304591977665065580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,25 +104,25 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 2858901492147362299}
-  - {fileID: -747344034031883587}
-  - {fileID: 3956975277666668580}
-  - {fileID: -4961575657137098124}
+  - {fileID: -859186123744958899}
+  - {fileID: -304591977665065580}
+  - {fileID: 3432731776088306205}
+  - {fileID: 7398162616249443241}
   EditorEvents:
-  - {fileID: -6708192978742304146}
-  - {fileID: -6920724778921333292}
-  - {fileID: -7315876423429746698}
-  - {fileID: 6294642499686712106}
-  - {fileID: 4156275868838773014}
+  - {fileID: 802383359286821849}
+  - {fileID: -993436832418081731}
+  - {fileID: 3197902876649339956}
+  - {fileID: 6177869021471416182}
+  - {fileID: 4740799290479464983}
   EditorParameters:
-  - {fileID: 6989685808616427903}
+  - {fileID: -8807254520616253705}
   MasterBanks:
-  - {fileID: 3956975277666668580}
+  - {fileID: 3432731776088306205}
   StringsBanks:
-  - {fileID: 2858901492147362299}
+  - {fileID: -859186123744958899}
   cacheTime: 638856671926320920
-  cacheVersion: 131624
---- !u!114 &2858901492147362299
+  cacheVersion: 131625
+--- !u!114 &802383359286821849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,18 +131,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Orb/OrbAmbient
   m_EditorClassIdentifier: 
-  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638830012146378856
-  FileSizes:
-  - Name: Desktop
-    Value: 1194
-  Exists: 1
---- !u!114 &3956975277666668580
+  Path: event:/Ambience/Orb/OrbAmbient
+  Guid:
+    Data1: -78750832
+    Data2: 1084842981
+    Data3: 59270031
+    Data4: 513295140
+  Banks:
+  - {fileID: -304591977665065580}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2182
+--- !u!114 &3197902876649339956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Grabbing object/Grabbing Object
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Grabbing object/Grabbing Object
+  Guid:
+    Data1: 2023125065
+    Data2: 1295130547
+    Data3: 1837349250
+    Data4: -329610991
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &3432731776088306205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,34 +196,7 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1218
   Exists: 1
---- !u!114 &4156275868838773014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience/Orb/OrbAmbient
-  m_EditorClassIdentifier: 
-  Path: event:/Ambience/Orb/OrbAmbient
-  Guid:
-    Data1: -78750832
-    Data2: 1084842981
-    Data3: 59270031
-    Data4: 513295140
-  Banks:
-  - {fileID: -747344034031883587}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2182
---- !u!114 &6294642499686712106
+--- !u!114 &4740799290479464983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,7 +215,7 @@ MonoBehaviour:
     Data3: -125844576
     Data4: -1545723645
   Banks:
-  - {fileID: -4961575657137098124}
+  - {fileID: 7398162616249443241}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -246,7 +223,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5100
---- !u!114 &6989685808616427903
+--- !u!114 &6177869021471416182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -255,18 +232,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Volume
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MetalDectector/MetalDetectorThru
   m_EditorClassIdentifier: 
-  Name: Volume
-  StudioPath: parameter:/Volume
-  Min: 0
-  Max: 2
-  Default: 0
-  ID:
-    data1: 1113324
-    data2: 3789873207
-  Type: 0
-  IsGlobal: 1
-  Labels: []
+  Path: event:/SFX/MetalDectector/MetalDetectorThru
+  Guid:
+    Data1: 456978871
+    Data2: 1325953534
+    Data3: 1524490667
+    Data4: -2094243013
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7398162616249443241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638856671926320920
+  FileSizes:
+  - Name: Desktop
+    Value: 564128
   Exists: 1

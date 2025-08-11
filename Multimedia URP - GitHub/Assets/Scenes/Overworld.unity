@@ -4980,6 +4980,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHolder
       objectReference: {fileID: 0}
+    - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6228,6 +6233,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotDogWalking
       objectReference: {fileID: 0}
+    - target: {fileID: 5556537074727802680, guid: e41d8789cd1fc6d4c98f5a1394366794,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5630923706611557690, guid: e41d8789cd1fc6d4c98f5a1394366794,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6290,9 +6300,9 @@ SceneRoots:
   - {fileID: 1034551053}
   - {fileID: 410218335}
   - {fileID: 1437069438}
+  - {fileID: 1718222549}
   - {fileID: 1591182830}
   - {fileID: 1700599295}
   - {fileID: 7405616223892214177}
-  - {fileID: 1718222549}
   - {fileID: 1550675136}
   - {fileID: 1041573850}
