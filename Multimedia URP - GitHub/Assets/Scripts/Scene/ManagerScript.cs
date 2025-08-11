@@ -45,8 +45,6 @@ public class ManagerScript : MonoBehaviour
     public void LoadNextScene(){
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
-
-        print(OrbData.objs.Count);
     }
 
     private void TurnOffShadows(){ 

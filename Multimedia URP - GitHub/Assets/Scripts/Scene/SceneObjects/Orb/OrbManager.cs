@@ -5,13 +5,14 @@ using System.Linq;
 using DG.Tweening;
 
 public static class OrbData{
-    public static List<GameObject> objs = new List<GameObject>();
+    public static List<KeyValuePair<GameObject, Vector3>> objs = new List<KeyValuePair<GameObject, Vector3>>();
 }
 
 [SelectionBase]
 public class OrbManager : MonoBehaviour
 {
-    private List<GameObject> deletedObjs = new List<GameObject>();
+    private List<Coroutine> trackedDestroys = new List<Coroutine>();
+    private Dictionary<GameObject, Vector3> deletedObjs = new Dictionary<GameObject, Vector3>();
 
     [SerializeField] private Light orbLight;
 
@@ -51,7 +52,7 @@ public class OrbManager : MonoBehaviour
         if(lastDeletedObjsSize != deletedObjs.Count){
             DOTween.Kill(transform);
 
-            projectedScale = ListToScale(deletedObjs, baseSize);
+            projectedScale = ListToScale(deletedObjs.Keys.ToList(), baseSize);
             transform.DOScale(projectedScale, sizeSpeed);
 
             lastDeletedObjsSize = deletedObjs.Count;
@@ -89,12 +90,28 @@ public class OrbManager : MonoBehaviour
             GameObject obj = body.gameObject;
 
             if(obj.layer == 9){
-                OrbData.objs = deletedObjs.OrderBy(x => Random.value).Take(4).ToList();
+                List<KeyValuePair<GameObject, Vector3>> randomPairs = deletedObjs.OrderBy(x => Random.value).Take(20).ToList();
+                foreach(KeyValuePair<GameObject, Vector3> randomValue in randomPairs) {
+                    GameObject randomObj = randomValue.Key;
+
+                    randomObj.GetComponent<Rigidbody>().linearDamping = 0;
+
+                    DOTween.Kill(randomObj.transform);
+
+                    randomObj.transform.parent = null;
+                    DontDestroyOnLoad(randomObj);
+
+                }
+                OrbData.objs = randomPairs;
+                foreach(Coroutine coroutine in trackedDestroys){
+                    StopCoroutine(coroutine);
+                }
                 ManagerScript.instance.LoadNextScene();
+                break;
             }
-            else if(!deletedObjs.Contains(obj)){
-                StartCoroutine(TrackDestroyObject(obj, 0.5f));
-                deletedObjs.Add(obj);
+            else if(!deletedObjs.Keys.Contains(obj)){
+                trackedDestroys.Add(StartCoroutine(TrackDestroyObject(obj, 0.5f)));
+                deletedObjs.Add(obj, obj.transform.localScale);
             }
         }
     }
@@ -140,6 +157,8 @@ public class OrbManager : MonoBehaviour
     }
 
     private IEnumerator TrackDestroyObject(GameObject obj, float scaleDuration){
+        if (obj == null) yield break;
+
         float deletionTime = Time.time + scaleDuration;
 
         Transform objTransform = obj.transform;
@@ -154,11 +173,12 @@ public class OrbManager : MonoBehaviour
         objTransform.DOMove(transform.position, distance/velocity);
         
         while(Time.time < deletionTime){
+            if(obj == null) yield break;
             yield return null;
         }
 
         DOTween.Kill(objTransform);
-        Destroy(obj);
+        obj.SetActive(false);
     }
 
     void OnDrawGizmos(){
