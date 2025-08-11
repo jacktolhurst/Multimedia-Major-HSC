@@ -7,10 +7,14 @@ public class OrbSpawner : MonoBehaviour
         foreach (KeyValuePair<GameObject, Vector3> pair in OrbData.objs) {
             GameObject obj = pair.Key;
             Vector3 size = pair.Value;
-            obj.transform.position = transform.position;
+            obj.transform.position = transform.position + Random.insideUnitSphere*2;
             obj.transform.rotation = Random.rotation;
-            obj.transform.localScale = size*2;
+            obj.transform.localScale = size;
             obj.SetActive(true);
+
+            if(obj.GetComponent<HingeJoint>()){
+                Destroy(obj.GetComponent<HingeJoint>());
+            }
 
             Rigidbody rb = obj.GetComponent<Rigidbody>();
             rb.linearDamping = 0;

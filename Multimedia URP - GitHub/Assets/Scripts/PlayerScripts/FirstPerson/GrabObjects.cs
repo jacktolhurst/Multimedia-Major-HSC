@@ -172,7 +172,6 @@ public class GrabObjects : MonoBehaviour
     private void LetGoObjectValues(){
         if (grabbedObj == null || grabbedObjrb == null) return;
 
-
         grabbedObjrb.linearVelocity = grabbedObjrb.linearVelocity + mainRay.direction * throwSpeed/prevMass;
 
         grabbedObjrb.useGravity = true;
@@ -191,8 +190,10 @@ public class GrabObjects : MonoBehaviour
 
     private void CheckChildren(int mask, Transform objTrans){
         foreach(Transform child in objTrans){
-            child.gameObject.layer = mask;
-            CheckChildren(mask, child);
+            if(!child.GetComponent<ParticleSystem>()){
+                child.gameObject.layer = mask;
+                CheckChildren(mask, child);
+            }
         }
     }
 

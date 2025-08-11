@@ -111,7 +111,7 @@ public class OrbManager : MonoBehaviour
             }
             else if(!deletedObjs.Keys.Contains(obj)){
                 trackedDestroys.Add(StartCoroutine(TrackDestroyObject(obj, 0.5f)));
-                deletedObjs.Add(obj, obj.transform.localScale);
+                deletedObjs.Add(obj, obj.transform.lossyScale);
             }
         }
     }
