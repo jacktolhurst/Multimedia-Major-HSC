@@ -24,6 +24,7 @@ public class ManagerScript : MonoBehaviour
     void Start(){
 		Application.targetFrameRate = targetFrameRate;
         TurnOffShadows();
+        SetLightLayerForAll();
     }
 
     void Update(){
@@ -53,6 +54,22 @@ public class ManagerScript : MonoBehaviour
 
         foreach (Renderer rend in allRenderers){
             rend.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+    }
+
+    private void SetLightLayerForAll(){
+        uint lightLayer1Mask = 1u << 1; 
+
+        int count = 0;
+
+        foreach (GameObject rootObj in SceneManager.GetActiveScene().GetRootGameObjects())
+        {
+            Renderer[] renderers = rootObj.GetComponentsInChildren<Renderer>(true);
+            foreach (Renderer r in renderers)
+            {
+                r.renderingLayerMask = lightLayer1Mask;
+                count++;
+            }
         }
     }
 }

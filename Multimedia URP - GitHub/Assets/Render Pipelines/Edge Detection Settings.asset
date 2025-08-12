@@ -29,11 +29,11 @@ MonoBehaviour:
   sectionTexture: {fileID: 0}
   sectionTextureUvSet: 0
   sectionTextureChannel: 0
-  vertexColorChannel: 0
+  vertexColorChannel: 1
   kernel: 0
-  outlineThickness: 1
+  outlineThickness: 2
   scaleWithResolution: 0
-  referenceResolution: 2
+  referenceResolution: 0
   customResolution: 0
   backgroundColor: {r: 0, g: 0, b: 0, a: 0}
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
@@ -55,7 +55,7 @@ MonoBehaviour:
   additionalSectionPasses: []
   SectionRenderingLayer:
     serializedVersion: 0
-    m_Bits: 127
+    m_Bits: 2
   SectionMaskRenderingLayer:
     serializedVersion: 0
     m_Bits: 0

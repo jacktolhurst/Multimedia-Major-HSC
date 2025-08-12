@@ -11,26 +11,45 @@ public static class OrbData{
 [SelectionBase]
 public class OrbManager : MonoBehaviour
 {
-    private List<Coroutine> trackedDestroys = new List<Coroutine>();
     private Dictionary<GameObject, Vector3> deletedObjs = new Dictionary<GameObject, Vector3>();
 
+    private List<Coroutine> trackedDestroys = new List<Coroutine>();
+
+    [SerializeField] private List<GameObject> speakers;
+
+    private List<Light> redLights = new List<Light>();
+
     [SerializeField] private Light orbLight;
+
+    [SerializeField] private Material lightMat;
 
     private Bounds selfBounds;
 
     private Vector3 baseSize;
     private Vector3 projectedScale;
 
+    private Color lightOriginalColor;
+
     [SerializeField] private float baseForceSize;
     [SerializeField] private float baseDeletionSize;
     [SerializeField] private float orbForce;
     [SerializeField] private float sizeSpeed;
+    [SerializeField] private float orbSizeThreshold;
 
     private int lastDeletedObjsSize;
+
+    private bool metThreshold;
+    private bool playedSound;
+
+    [SerializeField] private AudioManager.AudioReferenceClass orbSizeIncreasedSound;
 
     void Awake(){
         selfBounds = GetBoundsFromObj(transform.gameObject);
         baseSize = selfBounds.size;
+
+        lightOriginalColor = lightMat.color;
+
+        redLights = Object.FindObjectsByType<Light>(FindObjectsSortMode.None).Where(l => l.name.ToLower().Contains("spot light")).OrderBy(l => l.name).ToList();
     }
 
     void Update(){
@@ -39,6 +58,7 @@ public class OrbManager : MonoBehaviour
         ManageRigidbodies();
         ManageScaling();
         ManageLighting();
+        ManageAudio();
     }
 
     private void ManageRigidbodies(){
@@ -61,6 +81,37 @@ public class OrbManager : MonoBehaviour
 
     private void ManageLighting(){
         orbLight.range = GetCheckSize(selfBounds.extents, GetScaledForceSize()) * 2;
+
+        if(selfBounds.size.magnitude > (Vector3.one*orbSizeThreshold).magnitude){
+            if(!metThreshold){
+                metThreshold = true;
+
+                ApplyLightingToLights(redLights, Color.red);
+                lightMat.color = Color.red;
+            }
+        }
+        else lightMat.color = lightOriginalColor;
+    }
+
+    private void ManageAudio(){
+        if(metThreshold && !playedSound){
+            if(!orbSizeIncreasedSound.IsPlaying()){
+                foreach(GameObject speaker in speakers){
+                    if(speaker != null){
+                        orbSizeIncreasedSound.PlaySoundObject(speaker);
+                    }
+                }
+
+                playedSound = true;
+            }
+        }
+    }
+
+    private void ApplyLightingToLights(List<Light> lights, Color color){
+        foreach(Light light in lights){
+            light.color = color;
+            light.intensity = 50;
+        }
     }
 
     private void ApplyForceToRigidbodies(List<Rigidbody> rigidbodies, float baseForce){
@@ -111,7 +162,7 @@ public class OrbManager : MonoBehaviour
             }
             else if(!deletedObjs.Keys.Contains(obj)){
                 trackedDestroys.Add(StartCoroutine(TrackDestroyObject(obj, 0.5f)));
-                deletedObjs.Add(obj, obj.transform.lossyScale);
+                if(obj.layer != 13) deletedObjs.Add(obj, obj.transform.lossyScale);
             }
         }
     }
@@ -178,7 +229,11 @@ public class OrbManager : MonoBehaviour
         }
 
         DOTween.Kill(objTransform);
-        obj.SetActive(false);
+        if(obj != null) obj.SetActive(false);
+    }
+
+    void OnDisable(){
+        lightMat.color = lightOriginalColor;
     }
 
     void OnDrawGizmos(){

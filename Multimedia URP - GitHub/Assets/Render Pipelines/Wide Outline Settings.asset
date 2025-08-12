@@ -18,7 +18,7 @@ MonoBehaviour:
   informationMaterialInstanced: {fileID: 0}
   isActive: 1
   customDepthEnabled: 1
-  disableWidthControl: 0
+  disableWidthControl: 1
   RenderingLayer:
     serializedVersion: 0
     m_Bits: 4294967295
@@ -36,7 +36,7 @@ MonoBehaviour:
   gpuInstancing: 0
   vertexAnimation: 0
   color: {r: 1, g: 1, b: 1, a: 1}
-  width: 2
+  width: 6.5
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,9 +55,13 @@ MonoBehaviour:
   - {fileID: -2592998942250063961}
   materialType: 0
   customMaterial: {fileID: 0}
-  widthControl: 1
-  sharedWidth: 20
-  gap: 0
+  widthControl: 0
+  sharedWidth: 4.5
+  gap: 0.098
   blendMode: 0
   customDepthBuffer: 1
   occludedColor: {r: 1, g: 1, b: 1, a: 1}
+  clearStencil: 0
+  scaleWithResolution: 0
+  referenceResolution: 2
+  customResolution: 0

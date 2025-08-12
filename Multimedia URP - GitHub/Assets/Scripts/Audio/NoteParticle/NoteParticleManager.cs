@@ -27,7 +27,7 @@ public class NoteParticleManager : MonoBehaviour
     private float lifeTime;
     [HideInInspector] public float endTime;
     private float currTime;
-    private float randomPointSpeed = 1;
+    private float randomPointSpeed = 0.5f;
     private float scaleDownTime;
     private float scaleDuration = 0.5f;
 
