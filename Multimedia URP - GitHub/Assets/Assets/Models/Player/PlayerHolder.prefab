@@ -596,7 +596,7 @@ MonoBehaviour:
   cam: {fileID: 9071721636445013011}
   playerMask:
     serializedVersion: 2
-    m_Bits: 2147510728
+    m_Bits: 2147502536
   grabDist: 4
   canGrab: 0
   baseMoveSpeed: 8

@@ -41,20 +41,22 @@ public class AudioManager : MonoBehaviour
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(obj));
 
-                Rigidbody objRb = obj.GetComponent<Rigidbody>();
-
-                GameObject oldNoteParticleObj = AudioManager.instance.noteParticleObj;
-
-                List<GameObject> newNoteParticleObjs = new List<GameObject>();
-                for (int i = 0; i < impact; i++){
-                    GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, obj.transform.position, oldNoteParticleObj.transform.rotation);
-
-                    newNoteParticleObj.GetComponent<NoteParticleManager>().StartObj(obj, Time.time + noteParticleLifetime);
-                    newNoteParticleObjs.Add(newNoteParticleObj);
-                }
-
-                PlaySoundMain(eventInstance, newNoteParticleObjs);
+                PlaySoundMain(eventInstance, SpawnParticlesObject(obj));
             }
+        }
+
+        public List<GameObject> SpawnParticlesObject(GameObject obj){
+            GameObject oldNoteParticleObj = AudioManager.instance.noteParticleObj;
+
+            List<GameObject> newNoteParticleObjs = new List<GameObject>();
+            for (int i = 0; i < impact; i++){
+                GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, obj.transform.position, oldNoteParticleObj.transform.rotation);
+                
+                newNoteParticleObj.GetComponent<NoteParticleManager>().StartObj(obj, Time.time + noteParticleLifetime);
+                newNoteParticleObjs.Add(newNoteParticleObj);
+            }
+
+            return newNoteParticleObjs;
         }
 
         public void PlaySoundPosition(Vector3 pos, float noteSpawnSize=0){
@@ -62,19 +64,24 @@ public class AudioManager : MonoBehaviour
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
 
-                GameObject oldNoteParticleObj = AudioManager.instance.noteParticleObj;
-
-                List<GameObject> newNoteParticleObjs = new List<GameObject>();
-                for (int i = 0; i < impact; i++){
-                    GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, pos, oldNoteParticleObj.transform.rotation);
-
-                    newNoteParticleObj.GetComponent<NoteParticleManager>().StartPosition(pos, Time.time + noteParticleLifetime, noteSpawnSize);
-                    newNoteParticleObjs.Add(newNoteParticleObj);
-                }
-
-                PlaySoundMain(eventInstance, newNoteParticleObjs);
+                PlaySoundMain(eventInstance, SpawnParticlesPosition(pos, noteSpawnSize));
             }
         }
+
+        public List<GameObject> SpawnParticlesPosition(Vector3 pos, float noteSpawnSize){
+            GameObject oldNoteParticleObj = AudioManager.instance.noteParticleObj;
+
+            List<GameObject> newNoteParticleObjs = new List<GameObject>();
+            for (int i = 0; i < impact; i++){
+                GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, pos, oldNoteParticleObj.transform.rotation);
+
+                newNoteParticleObj.GetComponent<NoteParticleManager>().StartPosition(pos, Time.time + noteParticleLifetime, noteSpawnSize);
+                newNoteParticleObjs.Add(newNoteParticleObj);
+            }
+
+            return newNoteParticleObjs;
+        }
+
 
         public void PlaySoundMain(FMOD.Studio.EventInstance eventInstance, List<GameObject> newNoteParticleObjs){
             if(!initialized){

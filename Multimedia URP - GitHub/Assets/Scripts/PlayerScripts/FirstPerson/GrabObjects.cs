@@ -67,7 +67,7 @@ public class GrabObjects : MonoBehaviour
     void Update(){
         mainRay = new Ray(cam.transform.position, cam.transform.forward);
         if(!isGrabbing){
-            if(Physics.Raycast(mainRay, out RaycastHit hit, grabDist, playerMask)){
+            if(Physics.Raycast(mainRay, out RaycastHit hit, grabDist, playerMask, QueryTriggerInteraction.Ignore)){
                 if(hit.collider.GetComponent<Rigidbody>()){
                     canGrab = true;
                     if(Input.GetKeyDown(KeyCode.Mouse0)){ 
