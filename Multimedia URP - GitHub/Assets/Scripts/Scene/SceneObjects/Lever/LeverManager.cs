@@ -135,4 +135,10 @@ public class LeverManager : MonoBehaviour
         Debug.LogWarning("There is no lever with name: " + name);
         return null;
     }
+
+    public Lever GetLeverAtIndex(int index){
+        index -= 1;
+        if(index <= leverObjs.Count) return leverObjs[index];
+        else return null;
+    }
 }
