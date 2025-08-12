@@ -19,11 +19,9 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private bool respawn;
 
     void Awake(){
-        spawnedObjs = SpawnTowers(towerAmount, transform.position, checkArea, SizeOfPrefab(towerPrefab), towerPrefab, spawnMask);
+        spawnedObjs = SpawnTowers(towerAmount, transform.position, checkArea, SizeOfPrefab(towerPrefab), towerPrefab, lookAtObj, spawnMask);
 
-        RotateObjsToObj(lookAtObj, spawnedObjs);
-
-        parent = new GameObject("TowerParent");
+        parent = new GameObject("TowerMain");
         AddObjectsToParent(parent, spawnedObjs);
     }
 
@@ -31,9 +29,7 @@ public class TowerSpawner : MonoBehaviour
         if(respawn){
             DestroyTowers(spawnedObjs);
 
-            spawnedObjs = SpawnTowers(towerAmount, transform.position, checkArea, SizeOfPrefab(towerPrefab), towerPrefab, spawnMask);
-
-            RotateObjsToObj(lookAtObj, spawnedObjs);
+            spawnedObjs = SpawnTowers(towerAmount, transform.position, checkArea, SizeOfPrefab(towerPrefab), towerPrefab, lookAtObj, spawnMask);
 
             AddObjectsToParent(parent, spawnedObjs);
 
@@ -71,9 +67,10 @@ public class TowerSpawner : MonoBehaviour
         }
     }
 
-    private List<GameObject> SpawnTowers(int amount, Vector3 spawnCenter, Vector3 spawnSize, Vector3 towerSize, GameObject tower, LayerMask spawnMask){
+    private List<GameObject> SpawnTowers(int amount, Vector3 spawnCenter, Vector3 spawnSize, Vector3 towerSize, GameObject tower, GameObject target, LayerMask spawnMask){
         int iterations = 0;
         List<GameObject> spawnedObjs = new List<GameObject>();
+        Transform targetTrans = target.transform;
         for(int i = 0; i < amount; i++){
             Vector3 point = RandomPointInBox(spawnCenter, spawnSize);
 
@@ -89,9 +86,22 @@ public class TowerSpawner : MonoBehaviour
                     Vector3 forward = Vector3.ProjectOnPlane(Vector3.forward, hit.normal);
                     if (forward.sqrMagnitude < 0.0001f)
                         forward = Vector3.ProjectOnPlane(Vector3.right, hit.normal);
-
+                    
+                    Vector3 pos =  hit.point + new Vector3(0,-1,0);
                     Quaternion rotation = Quaternion.LookRotation(forward.normalized, hit.normal);
-                    spawnedObjs.Add(Instantiate(tower, hit.point + new Vector3(0,-1,0), rotation));
+
+                    Vector3 direction = targetTrans.position - pos;
+
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+                    Vector3 euler = targetRotation.eulerAngles;
+                    float yRotation = euler.y;
+
+                    Vector3 currentEuler = rotation.eulerAngles;
+                    rotation = Quaternion.Euler(currentEuler.x, yRotation + Random.Range(-30,30), currentEuler.z);
+
+                    GameObject spawnedObj = Instantiate(tower, pos, rotation);
+                    spawnedObjs.Add(spawnedObj);
                 }
             }
             else {
