@@ -17374,7 +17374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1842111534}
-  doLOD: 0
+  doLOD: 1
 --- !u!1 &518861985
 GameObject:
   m_ObjectHideFlags: 0
@@ -45953,7 +45953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1447687197}
-  doLOD: 0
+  doLOD: 1
 --- !u!1 &1432765780
 GameObject:
   m_ObjectHideFlags: 0
@@ -62370,7 +62370,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -76.323
+      value: -26.9
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -62417,41 +62417,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: useStartPos
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: subtractedPosition.x
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_Name
       value: PlayerHolder
-      objectReference: {fileID: 0}
-    - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: cubicleGeneratorV2
       value: 
       objectReference: {fileID: 53298771}
-    - target: {fileID: 6171885227097587224, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: m_Cameras.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6171885227097587224, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: 'm_Cameras.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -67152,7 +67127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1380980023}
-  doLOD: 0
+  doLOD: 1
 --- !u!23 &8244370214581316472
 MeshRenderer:
   m_ObjectHideFlags: 0

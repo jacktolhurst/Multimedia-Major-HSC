@@ -31,7 +31,7 @@ public class TowerController : MonoBehaviour
 
     void Update(){
         if(lever.isRotating){
-            health -= leverDamage*Time.deltaTime;
+            health -= leverDamage;
         }
 
         if(!playingAnimation && health <= 0){

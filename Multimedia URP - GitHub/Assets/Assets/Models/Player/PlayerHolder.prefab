@@ -393,8 +393,8 @@ MonoBehaviour:
   innerIterations: 4
   iterations: 20
   generatedStartPos: {x: 0, y: 0, z: 0}
-  subtractedPosition: {x: 0, y: 0, z: 1.5}
-  useStartPos: 0
+  subtractedPosition: {x: -1, y: 0, z: 1.5}
+  useStartPos: 1
   walkingfootsteps:
     eventReference:
       Guid:
@@ -629,8 +629,7 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 1
   m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
-  m_Cameras:
-  - {fileID: 0}
+  m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
