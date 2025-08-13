@@ -203,6 +203,8 @@ public class FirstPersonMovement : MonoBehaviour
         }
         else{
             rb.AddForce(moveDirection.normalized * speed * movementMultiplier * jumpMultiplier, ForceMode.  Acceleration);
+            walkingfootsteps.StopSound();
+            runningfootsteps.StopSound();
         }
     }
 

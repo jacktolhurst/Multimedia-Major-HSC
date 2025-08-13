@@ -9,6 +9,7 @@ public class KeyCardMaker : MonoBehaviour
     [SerializeField] private CardReaderDoor cardReaderDoorScript;
 
     [SerializeField] private GameObject keyCardPrefab;
+    [SerializeField] private GameObject pipe;
 
     [SerializeField] private Vector3 cardSpawnPoint;
     [SerializeField] private Vector3 soundSpawnPoint;
@@ -39,6 +40,7 @@ public class KeyCardMaker : MonoBehaviour
             GameObject keyCard = Instantiate(keyCardPrefab, cardSpawnPoint, Random.rotation);
             cardReaderDoorScript.AddKey(keyCard);
             cardSpawnSound.PlaySoundPosition(soundSpawnPoint, soundSize);
+            cardSpawnSound.SpawnParticlesObject(pipe, 10);
             health = originalHealth;
         }
     }

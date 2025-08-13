@@ -1082,6 +1082,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spark
       objectReference: {fileID: 0}
+    - target: {fileID: 3472909197731596614, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3906285023778893091, guid: 3f2a315fab80c8f478bd9e8f89d17239,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1146,6 +1151,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866588847813157098, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: grabbingObjectSound.maxDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2768,6 +2778,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spark
       objectReference: {fileID: 0}
+    - target: {fileID: 3472909197731596614, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3906285023778893091, guid: 3f2a315fab80c8f478bd9e8f89d17239,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2837,6 +2852,16 @@ PrefabInstance:
         type: 3}
       propertyPath: lengthInSec
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886563651775860293, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: startDelay.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866588847813157098, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: grabbingObjectSound.maxDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3024,6 +3049,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorWithBrokenKeycard
       objectReference: {fileID: 0}
+    - target: {fileID: 1063697728190428751, guid: 34d228ed80dd92949b24089bb1bb4f7d,
+        type: 3}
+      propertyPath: grabbingObjectSound.maxDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1089244822857909960, guid: 34d228ed80dd92949b24089bb1bb4f7d,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3078,6 +3108,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7042017779789815779, guid: 34d228ed80dd92949b24089bb1bb4f7d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2889567509261406367, guid: 34d228ed80dd92949b24089bb1bb4f7d, type: 3}
@@ -3245,74 +3280,6 @@ Transform:
   - {fileID: 659604903}
   m_Father: {fileID: 1718222549}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &861422848
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -82.93282
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.144493
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20.504585
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 92795712f1009e74c851a9232790d5b0,
-        type: 3}
-      propertyPath: m_Name
-      value: LP_FlatTown_1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 92795712f1009e74c851a9232790d5b0, type: 3}
 --- !u!1001 &871282310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3325,6 +3292,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spark
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472909197731596614, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3906285023778893091, guid: 3f2a315fab80c8f478bd9e8f89d17239,
         type: 3}
@@ -3395,6 +3367,16 @@ PrefabInstance:
         type: 3}
       propertyPath: lengthInSec
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886563651775860293, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: startDelay.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866588847813157098, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: grabbingObjectSound.maxDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4829,6 +4811,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spark
       objectReference: {fileID: 0}
+    - target: {fileID: 3472909197731596614, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3906285023778893091, guid: 3f2a315fab80c8f478bd9e8f89d17239,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4903,6 +4890,16 @@ PrefabInstance:
         type: 3}
       propertyPath: lengthInSec
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4886563651775860293, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: startDelay.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866588847813157098, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: grabbingObjectSound.maxDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4999,7 +4996,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6837909
+      value: -33.4
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -5009,7 +5006,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.62
+      value: -50.5
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -6127,6 +6124,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spark
       objectReference: {fileID: 0}
+    - target: {fileID: 3472909197731596614, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3906285023778893091, guid: 3f2a315fab80c8f478bd9e8f89d17239,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -6201,6 +6203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: lengthInSec
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6866588847813157098, guid: 3f2a315fab80c8f478bd9e8f89d17239,
+        type: 3}
+      propertyPath: grabbingObjectSound.maxDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6629,5 +6636,4 @@ SceneRoots:
   - {fileID: 1041573850}
   - {fileID: 1709833639}
   - {fileID: 447330186}
-  - {fileID: 861422848}
   - {fileID: 1539549305}

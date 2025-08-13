@@ -656,33 +656,33 @@ MonoBehaviour:
   health: 2
   leverDamage: 1
   pipeAnimationName: PipeSpin
-  spinningSound:
+  startSound:
     eventReference:
       Guid:
-        Data1: -1957198412
-        Data2: 1311076381
-        Data3: -1931979598
-        Data4: -1636580526
-      Path: event:/Ambience/Orb/OrbAmbience
-    volume: 1
-    maxDistance: 20
+        Data1: 746503965
+        Data2: 1268203084
+        Data3: -712932951
+        Data4: -485470843
+      Path: event:/SFX/Shaft/ShaftStart
+    volume: 1.5
+    maxDistance: 40
     minDistance: 1
     noteParticleLifetime: 5
     impact: 40
     dontUseSound: 0
-  speakersSound:
+  spinningSound:
     eventReference:
       Guid:
-        Data1: -1957198412
-        Data2: 1311076381
-        Data3: -1931979598
-        Data4: -1636580526
-      Path: event:/Ambience/Orb/OrbAmbience
-    volume: 1
-    maxDistance: 5
+        Data1: -2012772901
+        Data2: 1262177402
+        Data3: -1339767652
+        Data4: -936752753
+      Path: event:/SFX/Shaft/ShaftMoving
+    volume: 0.75
+    maxDistance: 30
     minDistance: 1
     noteParticleLifetime: 5
-    impact: 3
+    impact: 5
     dontUseSound: 0
 --- !u!1 &5100572107915053588
 GameObject:

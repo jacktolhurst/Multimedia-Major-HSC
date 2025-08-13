@@ -17,8 +17,8 @@ public class TowerController : MonoBehaviour
 
     [SerializeField] private string pipeAnimationName;
 
+    [SerializeField] private AudioManager.AudioReferenceClass startSound;
     [SerializeField] private AudioManager.AudioReferenceClass spinningSound;
-    [SerializeField] private AudioManager.AudioReferenceClass speakersSound;
 
     private bool playingAnimation;
 
@@ -41,18 +41,10 @@ public class TowerController : MonoBehaviour
             lever.obj.GetComponent<HingeJoint>().breakForce = 0;
             lever.obj.transform.rotation = prevRotation;
 
+            startSound.PlaySoundObject(pipe);
             spinningSound.PlaySoundObject(pipe);
 
-            SpawnParticles(speakers, bigSpeaker);
-
             playingAnimation = true;
-        }
-    }
-
-    private void SpawnParticles(List<GameObject> objs, GameObject mainObj){
-        foreach(GameObject obj in objs){
-            if(obj == mainObj) speakersSound.PlaySoundObject(mainObj);
-            else speakersSound.SpawnParticlesObject(obj);
         }
     }
 }

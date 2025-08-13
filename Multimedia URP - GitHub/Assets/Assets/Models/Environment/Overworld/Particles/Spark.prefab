@@ -1033,7 +1033,7 @@ ParticleSystem:
           m_RotationOrder: 4
       cycleCount: 1
       repeatInterval: 0.01
-      probability: 0.75
+      probability: 0.5
   SizeModule:
     enabled: 1
     curve:
@@ -4907,12 +4907,12 @@ MonoBehaviour:
   grabbingObjectSound:
     eventReference:
       Guid:
-        Data1: -1957198412
-        Data2: 1311076381
-        Data3: -1931979598
-        Data4: -1636580526
-      Path: event:/Ambience/Orb/OrbAmbience
-    volume: 1
+        Data1: 1038564900
+        Data2: 1260579435
+        Data3: 905861781
+        Data4: 1888955064
+      Path: event:/SFX/Spark/Spark
+    volume: 0.05
     maxDistance: 5
     minDistance: 1
     noteParticleLifetime: 1

@@ -89,9 +89,11 @@ public class LeverManager : MonoBehaviour
         yield return null;
 
         while (lever.isActive && lever.obj != null) {
-            float angleDiff = ComputeAngleDifference(lever);
+            if(lever.obj.layer == 12){
+                float angleDiff = ComputeAngleDifference(lever);
 
-            lever.isRotating = (angleDiff > lever.tolerance) && (angleDiff < lever.minimumDifference);
+                lever.isRotating = (angleDiff > lever.tolerance) && (angleDiff < lever.minimumDifference);
+            }
 
             lever.lastRotation = lever.trans.rotation;
             lever.lastEulerAngle = lever.trans.eulerAngles;
@@ -103,9 +105,11 @@ public class LeverManager : MonoBehaviour
     private IEnumerator ManageLeverEqual(Lever lever) {
         yield return null;
         while (lever.isActive && lever.obj != null) {
-            float angleDiff = ComputeAngleDifference(lever);
+            if(lever.obj.layer == 12){
+                float angleDiff = ComputeAngleDifference(lever);
 
-            lever.isRotating = !(angleDiff <= lever.tolerance);
+                lever.isRotating = !(angleDiff <= lever.tolerance);
+            }
 
             lever.lastRotation = lever.trans.rotation;
             lever.lastEulerAngle = lever.trans.eulerAngles;
@@ -117,9 +121,11 @@ public class LeverManager : MonoBehaviour
     private IEnumerator ManageLeverMore(Lever lever) {
         yield return null;
         while (lever.isActive && lever.obj != null) {
-            float angleDiff = ComputeAngleDifference(lever);
+            if(lever.obj.layer == 12){
+                float angleDiff = ComputeAngleDifference(lever);
 
-            lever.isRotating = angleDiff > lever.minimumDifference;
+                lever.isRotating = angleDiff > lever.minimumDifference;
+            }
 
             lever.lastRotation = lever.trans.rotation;
             lever.lastEulerAngle = lever.trans.eulerAngles;

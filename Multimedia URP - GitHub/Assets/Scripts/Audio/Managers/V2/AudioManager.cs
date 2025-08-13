@@ -41,15 +41,15 @@ public class AudioManager : MonoBehaviour
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(obj));
 
-                PlaySoundMain(eventInstance, SpawnParticlesObject(obj));
+                PlaySoundMain(eventInstance, SpawnParticlesObject(obj, impact));
             }
         }
 
-        public List<GameObject> SpawnParticlesObject(GameObject obj){
+        public List<GameObject> SpawnParticlesObject(GameObject obj, int particleCount=1){
             GameObject oldNoteParticleObj = AudioManager.instance.noteParticleObj;
 
             List<GameObject> newNoteParticleObjs = new List<GameObject>();
-            for (int i = 0; i < impact; i++){
+            for (int i = 0; i < particleCount; i++){
                 GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, obj.transform.position, oldNoteParticleObj.transform.rotation);
                 
                 newNoteParticleObj.GetComponent<NoteParticleManager>().StartObj(obj, Time.time + noteParticleLifetime);
@@ -64,15 +64,15 @@ public class AudioManager : MonoBehaviour
                 FMOD.Studio.EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
                 eventInstance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
 
-                PlaySoundMain(eventInstance, SpawnParticlesPosition(pos, noteSpawnSize));
+                PlaySoundMain(eventInstance, SpawnParticlesPosition(pos, noteSpawnSize, impact));
             }
         }
 
-        public List<GameObject> SpawnParticlesPosition(Vector3 pos, float noteSpawnSize){
+        public List<GameObject> SpawnParticlesPosition(Vector3 pos, float noteSpawnSize, int particleCount=1){
             GameObject oldNoteParticleObj = AudioManager.instance.noteParticleObj;
 
             List<GameObject> newNoteParticleObjs = new List<GameObject>();
-            for (int i = 0; i < impact; i++){
+            for (int i = 0; i < particleCount; i++){
                 GameObject newNoteParticleObj = Instantiate(oldNoteParticleObj, pos, oldNoteParticleObj.transform.rotation);
 
                 newNoteParticleObj.GetComponent<NoteParticleManager>().StartPosition(pos, Time.time + noteParticleLifetime, noteSpawnSize);

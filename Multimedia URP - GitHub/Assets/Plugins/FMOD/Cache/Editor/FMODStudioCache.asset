@@ -51,6 +51,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 674
+--- !u!114 &-1672631182305237551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/KeycardMaker/KeycardMaker
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/KeycardMaker/KeycardMaker
+  Guid:
+    Data1: -2136695406
+    Data2: 1154544268
+    Data3: 1249623936
+    Data4: -3647831
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1630410722207447069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,10 +121,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638906857372115619
+  lastModified: 638906961480873618
   FileSizes:
   - Name: Desktop
-    Value: 1280
+    Value: 1486
   Exists: 1
 --- !u!114 &-721755911091708779
 MonoBehaviour:
@@ -198,13 +225,17 @@ MonoBehaviour:
   - {fileID: 7231359503176662484}
   - {fileID: 7503007169630074524}
   - {fileID: -8414348607603824177}
+  - {fileID: 6169034891901638228}
+  - {fileID: 8678281735740769537}
+  - {fileID: 3892472748729870786}
+  - {fileID: -1672631182305237551}
   EditorParameters:
   - {fileID: -8807254520616253705}
   MasterBanks:
   - {fileID: 3432731776088306205}
   StringsBanks:
   - {fileID: -859186123744958899}
-  cacheTime: 638906863005999833
+  cacheTime: 638906968590724440
   cacheVersion: 131625
 --- !u!114 &3432731776088306205
 MonoBehaviour:
@@ -221,11 +252,65 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638906857372095552
+  lastModified: 638906961480853623
   FileSizes:
   - Name: Desktop
     Value: 198880
   Exists: 1
+--- !u!114 &3892472748729870786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Shaft/ShaftMoving
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Shaft/ShaftMoving
+  Guid:
+    Data1: -2012772901
+    Data2: 1262177402
+    Data3: -1339767652
+    Data4: -936752753
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10952
+--- !u!114 &6169034891901638228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Spark/Spark
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Spark/Spark
+  Guid:
+    Data1: 1038564900
+    Data2: 1260579435
+    Data3: 905861781
+    Data4: 1888955064
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 340
 --- !u!114 &6177869021471416182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,12 +359,12 @@ MonoBehaviour:
   Banks:
   - {fileID: 7398162616249443241}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1000
+  Length: 990
 --- !u!114 &7398162616249443241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,10 +380,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638906863005999833
+  lastModified: 638906968590724440
   FileSizes:
   - Name: Desktop
-    Value: 477952
+    Value: 674464
   Exists: 1
 --- !u!114 &7503007169630074524
 MonoBehaviour:
@@ -327,3 +412,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 360
+--- !u!114 &8678281735740769537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Shaft/ShaftStart
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Shaft/ShaftStart
+  Guid:
+    Data1: 746503965
+    Data2: 1268203084
+    Data3: -712932951
+    Data4: -485470843
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1754

@@ -165,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 4281747037695408054}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.954, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -395,17 +395,31 @@ MonoBehaviour:
   generatedStartPos: {x: 0, y: 0, z: 0}
   subtractedPosition: {x: 0, y: 0, z: 1.5}
   useStartPos: 0
-  footStepsSound:
+  walkingfootsteps:
     eventReference:
       Guid:
         Data1: 553788734
         Data2: 1338763801
         Data3: 1113861267
         Data4: 872523554
-      Path: event:/SFX/Player/Footsteps/Footsteps
-    volume: 1
-    maxDistance: 2
-    minDistance: 10
+      Path: event:/SFX/Player/Footsteps/Walking
+    volume: 0.75
+    maxDistance: 5
+    minDistance: 1
+    noteParticleLifetime: 1
+    impact: 1
+    dontUseSound: 0
+  runningfootsteps:
+    eventReference:
+      Guid:
+        Data1: 1309148986
+        Data2: 1296977021
+        Data3: -1915913827
+        Data4: 2021811773
+      Path: event:/SFX/Player/Footsteps/Running
+    volume: 0.75
+    maxDistance: 5
+    minDistance: 1
     noteParticleLifetime: 1
     impact: 1
     dontUseSound: 0
@@ -468,13 +482,13 @@ MonoBehaviour:
   grabbingObjectSound:
     eventReference:
       Guid:
-        Data1: 2023125065
-        Data2: 1295130547
-        Data3: 1837349250
-        Data4: -329610991
-      Path: event:/SFX/Player/Grabbing object/Grabbing Object
-    volume: 0.1
-    maxDistance: 20
+        Data1: -28836629
+        Data2: 1092015593
+        Data3: -1556368715
+        Data4: 1196866945
+      Path: event:/SFX/Player/Grabbing object/GrabObject
+    volume: 0.75
+    maxDistance: 5
     minDistance: 1
     noteParticleLifetime: 1
     impact: 2

@@ -25811,6 +25811,12 @@ Transform:
   - {fileID: 229573070}
   m_Father: {fileID: 1842111535}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &726217226 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 782015547121192850, guid: c221d4c96810cc442a889417ee68a170,
+    type: 3}
+  m_PrefabInstance: {fileID: 3322148035555597373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &732876328
 GameObject:
   m_ObjectHideFlags: 0
@@ -62370,7 +62376,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -79.8
+      value: -159.84
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -62380,7 +62386,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.26
+      value: -8.88
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -62417,116 +62423,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: runningfootsteps.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: walkingfootsteps.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: runningfootsteps.eventReference.Path
-      value: event:/SFX/Player/Footsteps/Running
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: walkingfootsteps.eventReference.Path
-      value: event:/SFX/Player/Footsteps/Walking
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: runningfootsteps.eventReference.Guid.Data1
-      value: 1309148986
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: runningfootsteps.eventReference.Guid.Data2
-      value: 1296977021
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: runningfootsteps.eventReference.Guid.Data3
-      value: -1915913827
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: runningfootsteps.eventReference.Guid.Data4
-      value: 2021811773
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: walkingfootsteps.eventReference.Guid.Data1
-      value: 553788734
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: walkingfootsteps.eventReference.Guid.Data2
-      value: 1338763801
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: walkingfootsteps.eventReference.Guid.Data3
-      value: 1113861267
-      objectReference: {fileID: 0}
-    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: walkingfootsteps.eventReference.Guid.Data4
-      value: 872523554
-      objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_Name
       value: PlayerHolder
-      objectReference: {fileID: 0}
-    - target: {fileID: 2832750046654439211, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: cubicleGeneratorV2
       value: 
       objectReference: {fileID: 53298771}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.maxDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Path
-      value: event:/SFX/Player/Grabbing object/GrabObject
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Guid.Data1
-      value: -28836629
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Guid.Data2
-      value: 1092015593
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Guid.Data3
-      value: -1556368715
-      objectReference: {fileID: 0}
-    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
-        type: 3}
-      propertyPath: grabbingObjectSound.eventReference.Guid.Data4
-      value: 1196866945
-      objectReference: {fileID: 0}
     - target: {fileID: 6171885227097587224, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: 'm_Cameras.Array.data[0]'
@@ -64275,6 +64181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
         type: 3}
+      propertyPath: pipe
+      value: 
+      objectReference: {fileID: 726217226}
+    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
       propertyPath: leverDamage
       value: 10
       objectReference: {fileID: 0}
@@ -64285,28 +64196,38 @@ PrefabInstance:
       objectReference: {fileID: 1425342255}
     - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
         type: 3}
+      propertyPath: cardSpawnSound.impact
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
+      propertyPath: cardSpawnSound.volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
       propertyPath: cardSpawnSound.eventReference.Path
-      value: event:/Ambience/Orb/OrbAmbient
+      value: event:/SFX/KeycardMaker/KeycardMaker
       objectReference: {fileID: 0}
     - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
         type: 3}
       propertyPath: cardSpawnSound.eventReference.Guid.Data1
-      value: -78750832
+      value: -2136695406
       objectReference: {fileID: 0}
     - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
         type: 3}
       propertyPath: cardSpawnSound.eventReference.Guid.Data2
-      value: 1084842981
+      value: 1154544268
       objectReference: {fileID: 0}
     - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
         type: 3}
       propertyPath: cardSpawnSound.eventReference.Guid.Data3
-      value: 59270031
+      value: 1249623936
       objectReference: {fileID: 0}
     - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
         type: 3}
       propertyPath: cardSpawnSound.eventReference.Guid.Data4
-      value: 513295140
+      value: -3647831
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
