@@ -24,7 +24,7 @@ public class ManagerScript : MonoBehaviour
     void Start(){
 		Application.targetFrameRate = targetFrameRate;
         TurnOffShadows();
-        SetLightLayerForAll();
+        // SetLightLayerForAll();
     }
 
     void Update(){
@@ -57,19 +57,35 @@ public class ManagerScript : MonoBehaviour
         }
     }
 
-    private void SetLightLayerForAll(){
-        uint lightLayer1Mask = 1u << 1; 
-
+    private void SetLightLayerForAll()
+    {
+        uint lightLayer1Mask = 1u << 1; // Layer 1 mask
         int count = 0;
 
         foreach (GameObject rootObj in SceneManager.GetActiveScene().GetRootGameObjects())
         {
-            Renderer[] renderers = rootObj.GetComponentsInChildren<Renderer>(true);
-            foreach (Renderer r in renderers)
-            {
-                r.renderingLayerMask = lightLayer1Mask;
-                count++;
-            }
+            count += SetLightLayerRecursive(rootObj, lightLayer1Mask);
         }
+    }
+
+    private int SetLightLayerRecursive(GameObject obj, uint lightLayerMask)
+    {
+        int count = 0;
+
+        // If it has a Renderer, set the mask
+        Renderer renderer = obj.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.renderingLayerMask = lightLayerMask;
+            count++;
+        }
+
+        // Recurse through children
+        foreach (Transform child in obj.transform)
+        {
+            count += SetLightLayerRecursive(child.gameObject, lightLayerMask);
+        }
+
+        return count;
     }
 }

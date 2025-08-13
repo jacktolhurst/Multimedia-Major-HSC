@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{f2d99378-a5ef-40f6-a4b1-febd763e4bfd}">
+		<property name="name">
+			<value>Random Time Percent</value>
+		</property>
+		<relationship name="folder">
+			<destination>{e0be11dc-862e-4b84-af8e-a5e3c27a4f9a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{aa7581cb-e6bf-44bc-9b08-79e338012f63}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{aa7581cb-e6bf-44bc-9b08-79e338012f63}">
+		<property name="maximum">
+			<value>100</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

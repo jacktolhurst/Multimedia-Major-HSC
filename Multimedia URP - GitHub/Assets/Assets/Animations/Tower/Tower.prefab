@@ -1028,6 +1028,8 @@ MonoBehaviour:
     rb: {fileID: 0}
     lastRotation: {x: 0, y: 0, z: 0, w: 0}
     lastEulerAngle: {x: 0, y: 0, z: 0}
+    totalRotation: 0
+    hasCompletedFullRotation: 0
     isActive: 1
     isRotating: 0
 --- !u!4 &8854047378480079037 stripped

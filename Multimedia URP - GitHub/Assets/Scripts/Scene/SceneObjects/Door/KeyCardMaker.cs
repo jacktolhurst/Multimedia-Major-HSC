@@ -33,7 +33,7 @@ public class KeyCardMaker : MonoBehaviour
 
     void Update(){
         if(lever.isRotating){
-            health -= leverDamage*Time.deltaTime;
+            health -= leverDamage;
         }
 
         if(health <= 0){

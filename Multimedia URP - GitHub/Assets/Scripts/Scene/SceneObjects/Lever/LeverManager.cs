@@ -31,6 +31,8 @@ public class LeverManager : MonoBehaviour
         [HideInInspector] public Rigidbody rb;
         [HideInInspector] public Quaternion lastRotation;
         [HideInInspector] public Vector3 lastEulerAngle;
+        [HideInInspector] public float totalRotation = 0f; // Track total rotation
+        [HideInInspector] public bool hasCompletedFullRotation = false; // Flag for 360° completion
 
         public bool isActive = true;
         [HideInInspector] public bool isRotating;
@@ -46,6 +48,8 @@ public class LeverManager : MonoBehaviour
             lever.rb = lever.obj.GetComponent<Rigidbody>();
             lever.lastRotation = lever.trans.rotation;
             lever.lastEulerAngle = lever.trans.eulerAngles;
+            lever.totalRotation = 0f;
+            lever.hasCompletedFullRotation = false;
 
             switch (lever.difference) {
                 case Difference.less:
@@ -81,8 +85,27 @@ public class LeverManager : MonoBehaviour
                     curr = lever.trans.eulerAngles.z;
                     break;
             }
-            return Mathf.Abs(Mathf.DeltaAngle(last, curr));
+            return Mathf.DeltaAngle(last, curr); // Remove Abs to preserve direction
         }
+    }
+
+    private void UpdateTotalRotation(Lever lever) {
+        float angleDiff = ComputeAngleDifference(lever);
+        lever.totalRotation += Mathf.Abs(angleDiff);
+        
+        // Check if we've completed a full 360° rotation
+        if (lever.totalRotation >= 360f) {
+            lever.hasCompletedFullRotation = true;
+            lever.totalRotation = lever.totalRotation % 360f; // Reset for next cycle
+        }
+    }
+
+    private bool CheckFullRotationAndReset(Lever lever) {
+        if (lever.hasCompletedFullRotation) {
+            lever.hasCompletedFullRotation = false;
+            return true;
+        }
+        return false;
     }
 
     private IEnumerator ManageLeverLess(Lever lever) {
@@ -90,9 +113,10 @@ public class LeverManager : MonoBehaviour
 
         while (lever.isActive && lever.obj != null) {
             if(lever.obj.layer == 12){
-                float angleDiff = ComputeAngleDifference(lever);
-
-                lever.isRotating = (angleDiff > lever.tolerance) && (angleDiff < lever.minimumDifference);
+                UpdateTotalRotation(lever);
+                
+                // Return true every 360 degrees
+                lever.isRotating = CheckFullRotationAndReset(lever);
             }
 
             lever.lastRotation = lever.trans.rotation;
@@ -106,9 +130,10 @@ public class LeverManager : MonoBehaviour
         yield return null;
         while (lever.isActive && lever.obj != null) {
             if(lever.obj.layer == 12){
-                float angleDiff = ComputeAngleDifference(lever);
-
-                lever.isRotating = !(angleDiff <= lever.tolerance);
+                UpdateTotalRotation(lever);
+                
+                // Return true every 360 degrees
+                lever.isRotating = CheckFullRotationAndReset(lever);
             }
 
             lever.lastRotation = lever.trans.rotation;
@@ -122,9 +147,10 @@ public class LeverManager : MonoBehaviour
         yield return null;
         while (lever.isActive && lever.obj != null) {
             if(lever.obj.layer == 12){
-                float angleDiff = ComputeAngleDifference(lever);
-
-                lever.isRotating = angleDiff > lever.minimumDifference;
+                UpdateTotalRotation(lever);
+                
+                // Return true every 360 degrees
+                lever.isRotating = CheckFullRotationAndReset(lever);
             }
 
             lever.lastRotation = lever.trans.rotation;
@@ -147,5 +173,14 @@ public class LeverManager : MonoBehaviour
         index -= 1;
         if(index <= leverObjs.Count) return leverObjs[index];
         else return null;
+    }
+
+    // Optional: Method to manually reset a lever's rotation tracking
+    public void ResetLeverRotation(string leverName) {
+        Lever lever = GetLeverByName(leverName);
+        if (lever != null) {
+            lever.totalRotation = 0f;
+            lever.hasCompletedFullRotation = false;
+        }
     }
 }

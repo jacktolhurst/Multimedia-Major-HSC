@@ -108,9 +108,6 @@
 		<property name="length">
 			<value>0.35999999999999999</value>
 		</property>
-		<property name="startOffset">
-			<value>0.5</value>
-		</property>
 		<relationship name="sounds">
 			<destination>{67e8b60b-60ac-4d9d-8c02-624216f22772}</destination>
 			<destination>{e38203c9-3c33-4310-9ae6-f0c42b5d0fa1}</destination>
@@ -212,7 +209,6 @@
 	<object class="MixerBusEffectChain" id="{1f2bafaf-e3d2-4f5a-9beb-cd55eba3966a}">
 		<relationship name="effects">
 			<destination>{122f4df2-de97-4190-bff1-d05ec8977766}</destination>
-			<destination>{a50abeea-ab13-420a-8c66-5d24075126bb}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{2a5c3e86-8278-436b-9943-0cda607bb7bd}" />
@@ -248,16 +244,5 @@
 	<object class="MixerBusPanner" id="{3dc2f2e4-e322-400d-90e2-5035f8fa76e9}" />
 	<object class="MixerBusFader" id="{53ca8c90-7fa6-41db-abb9-520e51164a2e}" />
 	<object class="MixerBusFader" id="{122f4df2-de97-4190-bff1-d05ec8977766}" />
-	<object class="ChorusEffect" id="{a50abeea-ab13-420a-8c66-5d24075126bb}">
-		<property name="rate">
-			<value>0.939999998</value>
-		</property>
-		<property name="depth">
-			<value>100</value>
-		</property>
-		<property name="mix">
-			<value>38.5</value>
-		</property>
-	</object>
 	<object class="MixerBusFader" id="{52eee5c1-1613-4af7-b254-f4648cfea6fd}" />
 </objects>

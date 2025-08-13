@@ -24,34 +24,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-8414348607603824177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/Footsteps/Walking
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/Footsteps/Walking
-  Guid:
-    Data1: 553788734
-    Data2: 1338763801
-    Data3: 1113861267
-    Data4: 872523554
-  Banks:
-  - {fileID: 7398162616249443241}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 674
---- !u!114 &-1672631182305237551
+--- !u!114 &-2669946932836242802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,6 +42,60 @@ MonoBehaviour:
     Data2: 1154544268
     Data3: 1249623936
     Data4: -3647831
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2111008664174292710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Door/UnlockDoorPluck
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Door/UnlockDoorPluck
+  Guid:
+    Data1: -393888522
+    Data2: 1177968551
+    Data3: 2092840376
+    Data4: 1490872260
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2007507181147802267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/MetalDectector/MetalDetectorThru
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/MetalDectector/MetalDetectorThru
+  Guid:
+    Data1: 456978871
+    Data2: 1325953534
+    Data3: 1524490667
+    Data4: -2094243013
   Banks:
   - {fileID: 7398162616249443241}
   IsStream: 0
@@ -121,7 +148,7 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638906961480873618
+  lastModified: 638906982663027211
   FileSizes:
   - Name: Desktop
     Value: 1486
@@ -153,33 +180,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2182
---- !u!114 &-414963304312437004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Door/UnlockDoorPluck
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Door/UnlockDoorPluck
-  Guid:
-    Data1: -393888522
-    Data2: 1177968551
-    Data3: 2092840376
-    Data4: 1490872260
-  Banks:
-  - {fileID: 7398162616249443241}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-304591977665065580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,127 +218,26 @@ MonoBehaviour:
   - {fileID: 3432731776088306205}
   - {fileID: 7398162616249443241}
   EditorEvents:
-  - {fileID: 6177869021471416182}
   - {fileID: -721755911091708779}
   - {fileID: -1630410722207447069}
-  - {fileID: -414963304312437004}
-  - {fileID: 7231359503176662484}
-  - {fileID: 7503007169630074524}
-  - {fileID: -8414348607603824177}
-  - {fileID: 6169034891901638228}
-  - {fileID: 8678281735740769537}
-  - {fileID: 3892472748729870786}
-  - {fileID: -1672631182305237551}
+  - {fileID: 2603144241888774454}
+  - {fileID: 6614698162025494915}
+  - {fileID: 1397137491745350006}
+  - {fileID: 2773231977195482099}
+  - {fileID: -2669946932836242802}
+  - {fileID: -2007507181147802267}
+  - {fileID: 7901289655957012178}
+  - {fileID: 333318427323213447}
+  - {fileID: -2111008664174292710}
   EditorParameters:
   - {fileID: -8807254520616253705}
   MasterBanks:
   - {fileID: 3432731776088306205}
   StringsBanks:
   - {fileID: -859186123744958899}
-  cacheTime: 638906968590724440
+  cacheTime: 638907153908811542
   cacheVersion: 131625
---- !u!114 &3432731776088306205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638906961480853623
-  FileSizes:
-  - Name: Desktop
-    Value: 198880
-  Exists: 1
---- !u!114 &3892472748729870786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Shaft/ShaftMoving
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Shaft/ShaftMoving
-  Guid:
-    Data1: -2012772901
-    Data2: 1262177402
-    Data3: -1339767652
-    Data4: -936752753
-  Banks:
-  - {fileID: 7398162616249443241}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 10952
---- !u!114 &6169034891901638228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Spark/Spark
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Spark/Spark
-  Guid:
-    Data1: 1038564900
-    Data2: 1260579435
-    Data3: 905861781
-    Data4: 1888955064
-  Banks:
-  - {fileID: 7398162616249443241}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 340
---- !u!114 &6177869021471416182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/MetalDectector/MetalDetectorThru
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/MetalDectector/MetalDetectorThru
-  Guid:
-    Data1: 456978871
-    Data2: 1325953534
-    Data3: 1524490667
-    Data4: -2094243013
-  Banks:
-  - {fileID: 7398162616249443241}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &7231359503176662484
+--- !u!114 &333318427323213447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -364,28 +263,8 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 990
---- !u!114 &7398162616249443241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/SFX.bank
-  m_EditorClassIdentifier: 
-  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
-  Name: SFX
-  StudioPath: bank:/SFX
-  lastModified: 638906968590724440
-  FileSizes:
-  - Name: Desktop
-    Value: 674464
-  Exists: 1
---- !u!114 &7503007169630074524
+  Length: 550
+--- !u!114 &1397137491745350006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -412,7 +291,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 360
---- !u!114 &8678281735740769537
+--- !u!114 &2603144241888774454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -439,3 +318,124 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1754
+--- !u!114 &2773231977195482099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Footsteps/Walking
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Footsteps/Walking
+  Guid:
+    Data1: 553788734
+    Data2: 1338763801
+    Data3: 1113861267
+    Data4: 872523554
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 674
+--- !u!114 &3432731776088306205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638906982663006932
+  FileSizes:
+  - Name: Desktop
+    Value: 198880
+  Exists: 1
+--- !u!114 &6614698162025494915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Spark/Spark
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Spark/Spark
+  Guid:
+    Data1: 1038564900
+    Data2: 1260579435
+    Data3: 905861781
+    Data4: 1888955064
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 340
+--- !u!114 &7398162616249443241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 638907153908811542
+  FileSizes:
+  - Name: Desktop
+    Value: 674208
+  Exists: 1
+--- !u!114 &7901289655957012178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Shaft/ShaftMoving
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Shaft/ShaftMoving
+  Guid:
+    Data1: -2012772901
+    Data2: 1262177402
+    Data3: -1339767652
+    Data4: -936752753
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10952
