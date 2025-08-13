@@ -17374,7 +17374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1842111534}
-  doLOD: 1
+  doLOD: 0
 --- !u!1 &518861985
 GameObject:
   m_ObjectHideFlags: 0
@@ -45918,7 +45918,21 @@ MonoBehaviour:
     bounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
-  unlocked: 1
+  unlocked: 0
+  unlockedDoorSound:
+    eventReference:
+      Guid:
+        Data1: -393888522
+        Data2: 1177968551
+        Data3: 2092840376
+        Data4: 1490872260
+      Path: event:/SFX/Door/UnlockDoorPluck
+    volume: 1
+    maxDistance: 5
+    minDistance: 1
+    noteParticleLifetime: 2
+    impact: 1
+    dontUseSound: 0
 --- !u!114 &1425342256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62356,7 +62370,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -160.4
+      value: -79.8
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -62366,7 +62380,7 @@ PrefabInstance:
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.981
+      value: -5.26
       objectReference: {fileID: 0}
     - target: {fileID: 455956658781397143, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
@@ -62403,6 +62417,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: runningfootsteps.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: walkingfootsteps.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: runningfootsteps.eventReference.Path
+      value: event:/SFX/Player/Footsteps/Running
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: walkingfootsteps.eventReference.Path
+      value: event:/SFX/Player/Footsteps/Walking
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: runningfootsteps.eventReference.Guid.Data1
+      value: 1309148986
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: runningfootsteps.eventReference.Guid.Data2
+      value: 1296977021
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: runningfootsteps.eventReference.Guid.Data3
+      value: -1915913827
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: runningfootsteps.eventReference.Guid.Data4
+      value: 2021811773
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: walkingfootsteps.eventReference.Guid.Data1
+      value: 553788734
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: walkingfootsteps.eventReference.Guid.Data2
+      value: 1338763801
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: walkingfootsteps.eventReference.Guid.Data3
+      value: 1113861267
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045347837213403123, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: walkingfootsteps.eventReference.Guid.Data4
+      value: 872523554
+      objectReference: {fileID: 0}
     - target: {fileID: 2661930968212531512, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: m_Name
@@ -62418,6 +62492,41 @@ PrefabInstance:
       propertyPath: cubicleGeneratorV2
       value: 
       objectReference: {fileID: 53298771}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.maxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Path
+      value: event:/SFX/Player/Grabbing object/GrabObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Guid.Data1
+      value: -28836629
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Guid.Data2
+      value: 1092015593
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Guid.Data3
+      value: -1556368715
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555677561531216225, guid: 82057c97d8ed7fe4a8be580be5a0f032,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Guid.Data4
+      value: 1196866945
+      objectReference: {fileID: 0}
     - target: {fileID: 6171885227097587224, guid: 82057c97d8ed7fe4a8be580be5a0f032,
         type: 3}
       propertyPath: 'm_Cameras.Array.data[0]'
@@ -62870,6 +62979,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 157315724890810503, guid: fe03ed0fcc9878645b0fa7e45829e475,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1888969693870900914, guid: fe03ed0fcc9878645b0fa7e45829e475,
         type: 3}
       propertyPath: m_Name
@@ -62878,12 +62992,22 @@ PrefabInstance:
     - target: {fileID: 1888969693870900914, guid: fe03ed0fcc9878645b0fa7e45829e475,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3088798075172553855, guid: fe03ed0fcc9878645b0fa7e45829e475,
         type: 3}
       propertyPath: textScale
       value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131595781989553132, guid: fe03ed0fcc9878645b0fa7e45829e475,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6209346065879850251, guid: fe03ed0fcc9878645b0fa7e45829e475,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6541197354129101819, guid: fe03ed0fcc9878645b0fa7e45829e475,
         type: 3}
@@ -62933,6 +63057,11 @@ PrefabInstance:
     - target: {fileID: 6541197354129101819, guid: fe03ed0fcc9878645b0fa7e45829e475,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799740210097248568, guid: fe03ed0fcc9878645b0fa7e45829e475,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -63371,6 +63500,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063697728190428751, guid: 34d228ed80dd92949b24089bb1bb4f7d,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Path
+      value: event:/Ambience/Orb/OrbAmbient
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063697728190428751, guid: 34d228ed80dd92949b24089bb1bb4f7d,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Guid.Data1
+      value: -78750832
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063697728190428751, guid: 34d228ed80dd92949b24089bb1bb4f7d,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Guid.Data2
+      value: 1084842981
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063697728190428751, guid: 34d228ed80dd92949b24089bb1bb4f7d,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Guid.Data3
+      value: 59270031
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063697728190428751, guid: 34d228ed80dd92949b24089bb1bb4f7d,
+        type: 3}
+      propertyPath: grabbingObjectSound.eventReference.Guid.Data4
+      value: 513295140
       objectReference: {fileID: 0}
     - target: {fileID: 1089244822857909960, guid: 34d228ed80dd92949b24089bb1bb4f7d,
         type: 3}
@@ -64114,11 +64268,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6457964463063599897, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
+      propertyPath: leverObjs.Array.data[0].minimumDifference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
+      propertyPath: leverDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
         type: 3}
       propertyPath: cardReaderDoorScript
       value: 
       objectReference: {fileID: 1425342255}
+    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
+      propertyPath: cardSpawnSound.eventReference.Path
+      value: event:/Ambience/Orb/OrbAmbient
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
+      propertyPath: cardSpawnSound.eventReference.Guid.Data1
+      value: -78750832
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
+      propertyPath: cardSpawnSound.eventReference.Guid.Data2
+      value: 1084842981
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
+      propertyPath: cardSpawnSound.eventReference.Guid.Data3
+      value: 59270031
+      objectReference: {fileID: 0}
+    - target: {fileID: 6540216029830584978, guid: c221d4c96810cc442a889417ee68a170,
+        type: 3}
+      propertyPath: cardSpawnSound.eventReference.Guid.Data4
+      value: 513295140
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -64489,6 +64678,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
         type: 3}
+      propertyPath: sizeSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
+        type: 3}
       propertyPath: orbSizeThreshold
       value: 3
       objectReference: {fileID: 0}
@@ -64605,32 +64799,32 @@ PrefabInstance:
     - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
         type: 3}
       propertyPath: orbSizeIncreasedSound.eventReference.Path
-      value: event:/SFX/MetalDectector/MetalDetectorThru
+      value: event:/SFX/VoiceOver/OrbRoom/OrbWarning
       objectReference: {fileID: 0}
     - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
         type: 3}
       propertyPath: orbSizeIncreasedSound.noteParticleLifetime
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
         type: 3}
       propertyPath: orbSizeIncreasedSound.eventReference.Guid.Data1
-      value: 456978871
+      value: -35151254
       objectReference: {fileID: 0}
     - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
         type: 3}
       propertyPath: orbSizeIncreasedSound.eventReference.Guid.Data2
-      value: 1325953534
+      value: 1209636906
       objectReference: {fileID: 0}
     - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
         type: 3}
       propertyPath: orbSizeIncreasedSound.eventReference.Guid.Data3
-      value: 1524490667
+      value: -462196574
       objectReference: {fileID: 0}
     - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
         type: 3}
       propertyPath: orbSizeIncreasedSound.eventReference.Guid.Data4
-      value: -2094243013
+      value: 695599632
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

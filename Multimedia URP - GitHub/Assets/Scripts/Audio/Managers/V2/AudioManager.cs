@@ -111,6 +111,13 @@ public class AudioManager : MonoBehaviour
             eventHandlers.Clear();
         }
 
+        public void StopSoundFade(){
+            foreach(EventHandler eventHandler in eventHandlers){
+                eventHandler.eventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
+            eventHandlers.Clear();
+        }
+
         public void SetVolume(float newVolume){
             volume = Mathf.Clamp(newVolume, 0, 3);
         }
@@ -129,6 +136,18 @@ public class AudioManager : MonoBehaviour
 
         public void SetParameterInt(string name, int value){
             eventHandlers[0].eventInstance.setParameterByName(name, value);
+        }
+
+        public void SetParameter(string name, float value){
+            foreach(EventHandler eventHandler in eventHandlers){
+                if (eventHandler != null) eventHandler.eventInstance.setParameterByName(name, value);
+            }
+        }
+
+        public void SetTimelinePosition(int milliseconds){
+            foreach(EventHandler eventHandler in eventHandlers){
+                if (eventHandler != null) eventHandler.eventInstance.setTimelinePosition(milliseconds);
+            }
         }
 
         public bool IsPlaying(){

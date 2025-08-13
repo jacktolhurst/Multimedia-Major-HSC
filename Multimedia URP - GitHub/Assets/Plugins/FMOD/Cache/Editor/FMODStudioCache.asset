@@ -24,7 +24,7 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &-6563375021922956798
+--- !u!114 &-8414348607603824177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,36 +34,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience/Orb/OrbAmbience
+  m_Name: event:/SFX/Player/Footsteps/Walking
   m_EditorClassIdentifier: 
-  Path: event:/Ambience/Orb/OrbAmbience
-  Guid:
-    Data1: -1957198412
-    Data2: 1311076381
-    Data3: -1931979598
-    Data4: -1636580526
-  Banks:
-  - {fileID: -304591977665065580}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-993436832418081731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/Footsteps/Footsteps
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/Footsteps/Footsteps
+  Path: event:/SFX/Player/Footsteps/Walking
   Guid:
     Data1: 553788734
     Data2: 1338763801
@@ -73,11 +46,39 @@ MonoBehaviour:
   - {fileID: 7398162616249443241}
   IsStream: 0
   Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 674
+--- !u!114 &-1630410722207447069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/VoiceOver/OrbRoom/OrbWarning
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/VoiceOver/OrbRoom/OrbWarning
+  Guid:
+    Data1: -35151254
+    Data2: 1209636906
+    Data3: -462196574
+    Data4: 695599632
+  Banks:
+  - {fileID: 3432731776088306205}
+  - {fileID: 7398162616249443241}
+  IsStream: 1
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 500
+  Length: 0
 --- !u!114 &-859186123744958899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,11 +94,65 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638837686277521364
+  lastModified: 638906857372115619
   FileSizes:
   - Name: Desktop
-    Value: 1196
+    Value: 1280
   Exists: 1
+--- !u!114 &-721755911091708779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ambience/Orb/OrbAmbient
+  m_EditorClassIdentifier: 
+  Path: event:/Ambience/Orb/OrbAmbient
+  Guid:
+    Data1: -78750832
+    Data2: 1084842981
+    Data3: 59270031
+    Data4: 513295140
+  Banks:
+  - {fileID: -304591977665065580}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2182
+--- !u!114 &-414963304312437004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Door/UnlockDoorPluck
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Door/UnlockDoorPluck
+  Guid:
+    Data1: -393888522
+    Data2: 1177968551
+    Data3: 2092840376
+    Data4: 1490872260
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-304591977665065580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,10 +168,10 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638837686277420103
+  lastModified: 638906779453798960
   FileSizes:
   - Name: Desktop
-    Value: 26080
+    Value: 26144
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -136,46 +191,21 @@ MonoBehaviour:
   - {fileID: 3432731776088306205}
   - {fileID: 7398162616249443241}
   EditorEvents:
-  - {fileID: -993436832418081731}
-  - {fileID: 3197902876649339956}
   - {fileID: 6177869021471416182}
-  - {fileID: 4740799290479464983}
-  - {fileID: -6563375021922956798}
+  - {fileID: -721755911091708779}
+  - {fileID: -1630410722207447069}
+  - {fileID: -414963304312437004}
+  - {fileID: 7231359503176662484}
+  - {fileID: 7503007169630074524}
+  - {fileID: -8414348607603824177}
   EditorParameters:
   - {fileID: -8807254520616253705}
   MasterBanks:
   - {fileID: 3432731776088306205}
   StringsBanks:
   - {fileID: -859186123744958899}
-  cacheTime: 638837691647672372
+  cacheTime: 638906863005999833
   cacheVersion: 131625
---- !u!114 &3197902876649339956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/Grabbing object/Grabbing Object
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/Grabbing object/Grabbing Object
-  Guid:
-    Data1: 2023125065
-    Data2: 1295130547
-    Data3: 1837349250
-    Data4: -329610991
-  Banks:
-  - {fileID: 7398162616249443241}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &3432731776088306205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,38 +221,11 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638837686277509226
+  lastModified: 638906857372095552
   FileSizes:
   - Name: Desktop
-    Value: 1218
+    Value: 198880
   Exists: 1
---- !u!114 &4740799290479464983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/VoiceOver/OrbRoom/GravitationalField
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/VoiceOver/OrbRoom/GravitationalField
-  Guid:
-    Data1: 376305365
-    Data2: 1099554178
-    Data3: -125844576
-    Data4: -1545723645
-  Banks:
-  - {fileID: 7398162616249443241}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5100
 --- !u!114 &6177869021471416182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +253,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7231359503176662484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Grabbing object/GrabObject
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Grabbing object/GrabObject
+  Guid:
+    Data1: -28836629
+    Data2: 1092015593
+    Data3: -1556368715
+    Data4: 1196866945
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
 --- !u!114 &7398162616249443241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,8 +295,35 @@ MonoBehaviour:
   Path: ../Working Files/FMOD projects/MainSystem/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638837691647672372
+  lastModified: 638906863005999833
   FileSizes:
   - Name: Desktop
-    Value: 564128
+    Value: 477952
   Exists: 1
+--- !u!114 &7503007169630074524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Footsteps/Running
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Footsteps/Running
+  Guid:
+    Data1: 1309148986
+    Data2: 1296977021
+    Data3: -1915913827
+    Data4: 2021811773
+  Banks:
+  - {fileID: 7398162616249443241}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 360

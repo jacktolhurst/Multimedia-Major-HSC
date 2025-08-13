@@ -87,6 +87,7 @@ public class LeverManager : MonoBehaviour
 
     private IEnumerator ManageLeverLess(Lever lever) {
         yield return null;
+
         while (lever.isActive && lever.obj != null) {
             float angleDiff = ComputeAngleDifference(lever);
 

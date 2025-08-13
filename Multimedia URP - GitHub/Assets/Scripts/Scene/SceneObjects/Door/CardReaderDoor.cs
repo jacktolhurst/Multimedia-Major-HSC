@@ -22,6 +22,8 @@ public class CardReaderDoor : MonoBehaviour
 
     public bool unlocked = false;
 
+    [SerializeField] private AudioManager.AudioReferenceClass unlockedDoorSound;
+
     void Awake(){
         lockedDoor = GetComponent<LockedDoor>();
 
@@ -40,6 +42,8 @@ public class CardReaderDoor : MonoBehaviour
                 if(reader.obj.activeSelf && key){
                     if(!unlocked && reader.bounds.Contains(key.transform.position)){
                         lockedDoor.Unlock(new Vector3(-2, 0, 0), 10f, 50f);
+
+                        unlockedDoorSound.PlaySoundObject(reader.obj);
                         
                         unlocked = true;
                     }

@@ -67,7 +67,8 @@ public class FirstPersonMovement : MonoBehaviour
 
 // ----------------------------------------------------------------
     [Header("Audio")]
-    [SerializeField] private AudioManager.AudioReferenceClass footStepsSound;
+    [SerializeField] private AudioManager.AudioReferenceClass walkingfootsteps;
+    [SerializeField] private AudioManager.AudioReferenceClass runningfootsteps;
 
     [SerializeField] private Transform footstepTrans;
 
@@ -180,13 +181,24 @@ public class FirstPersonMovement : MonoBehaviour
     private void Movement(){
         if(isGrounded){
             rb.AddForce(moveDirection.normalized * (speed * movementMultiplier + (Input.GetAxisRaw("Sprint") * sprintSpeed)), ForceMode.Acceleration);
-            if(!footStepsSound.IsPlaying()){
-                if(moveDirection.normalized != Vector3.zero && Input.GetAxisRaw("Sprint") != 0){
-                    footStepsSound.PlaySoundPosition(footstepTrans.position);
+            
+            if (moveDirection.sqrMagnitude > 0.0001f){
+                if(Input.GetAxisRaw("Sprint") == 0){
+                    runningfootsteps.StopSoundFade();
+                    if(!walkingfootsteps.IsPlaying()){
+                        walkingfootsteps.PlaySoundPosition(footstepTrans.position);
+                    }
                 }
                 else{
-                    footStepsSound.StopSound();
+                    walkingfootsteps.StopSoundFade();
+                    if(!runningfootsteps.IsPlaying()){
+                        runningfootsteps.PlaySoundPosition(footstepTrans.position);
+                    }
                 }
+            }
+            else{
+                walkingfootsteps.StopSound();
+                runningfootsteps.StopSound();
             }
         }
         else{
