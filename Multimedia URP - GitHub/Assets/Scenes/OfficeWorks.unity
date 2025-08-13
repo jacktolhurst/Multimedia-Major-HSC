@@ -64684,7 +64684,7 @@ PrefabInstance:
     - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
         type: 3}
       propertyPath: orbSizeIncreasedSound.volume
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8691248142643465651, guid: 37f0fe00bcab57a4e8751e0c3adc52db,
         type: 3}
